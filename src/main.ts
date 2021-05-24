@@ -27,6 +27,7 @@ import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";
 import * as EFF_STABILIZEDETERNALD6 from "./items/active/specialized/stabilizedEternalDSix";
 import * as EFF_ENERGIZEDD6 from "./items/active/specialized/energizedDSix";
+import * as EFF_CRATEOFFRIENDS from "./items/active/specialized/crateOfFriends";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
@@ -83,6 +84,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RECONSTRUCTIVEHEA
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, EFF_RECONSTRUCTIVEHEART.preClean);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STABILIZEDETERNALD6.use, EFF_STABILIZEDETERNALD6.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDD6.use, EFF_ENERGIZEDD6.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CRATEOFFRIENDS.use, EFF_CRATEOFFRIENDS.ownType());
 
 
 // Print an initialization message to the "log.txt" file

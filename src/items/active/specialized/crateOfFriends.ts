@@ -48,8 +48,9 @@ export function findAllFriendItems(): void {
     }
 
     if (
-      !item.HasTags(1 << 27) &&
-      (item.HasTags(1 << 9) ||
+      // TODO: use actual flag enums
+      !item.HasTags(1 << 27) && // Unique_familiar
+      (item.HasTags(1 << 9) || // Baby
         hasFlag(item.CacheFlags, CacheFlag.CACHE_FAMILIARS))
     ) {
       FRIEND_ITEMS.add(item.ID);

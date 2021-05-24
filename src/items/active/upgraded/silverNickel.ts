@@ -22,7 +22,7 @@ export function use(
         amt = extMath.randomInt(rand, 10, 15);
       }
     }
-    spawnCoins(amt, player.Position, rand, false, true);
+    spawnCoins(amt, player.Position, rand, true, true);
   }
 
   return true;

@@ -1,0 +1,35 @@
+{
+  // https://www.typescriptlang.org/docs/handbook/compiler-options.html
+  "compilerOptions": {
+    // Recommended as per TypeScriptToLua
+    // https://typescripttolua.github.io/docs/getting-started/
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "moduleResolution": "Node",
+    "types": ["isaac-typescript-definitions"],
+    "rootDir": "./src",
+
+    // We want the compiler to be as strict as possible to catch all the things
+    // By default, these flags are false
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    // "newLine" specifies the end of line sequence
+    // By default, it is "crlf" on Windows; we want to always use "lf" in order to match the code
+    // base and reduce the file size of the output
+    "newLine": "lf",
+  },
+
+  "include": [
+    "./src/**/*.ts",
+  ],
+
+  "tstl": {
+    "luaTarget": "5.3",
+    "luaBundle": "./mod/main.lua", // Will bundle all output Lua files into a single file
+    "luaBundleEntry": "./src/main.ts",
+  },
+}

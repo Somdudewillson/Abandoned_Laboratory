@@ -101,14 +101,13 @@ export function spawnCoins(
       spawnedVal = 5;
     }
 
-    Game().Spawn(
+    Isaac.Spawn(
       EntityType.ENTITY_PICKUP,
       PickupVariant.PICKUP_COIN,
+      coinType,
       position,
       velocity,
       null,
-      coinType,
-      rand.GetSeed(),
     );
     c -= spawnedVal;
   }

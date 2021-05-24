@@ -21,6 +21,9 @@ export enum CollectibleTypeLab {
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
+  COLLECTIBLE_RECONSTRUCTIVEHEART = Isaac.GetItemIdByName(
+    "Reconstructive Heart",
+  ),
 }
 
 export const enum FireplaceVariant {

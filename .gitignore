@@ -129,3 +129,4 @@ dist
 
 # build files
 mod/*.lua
+mod/main.lua

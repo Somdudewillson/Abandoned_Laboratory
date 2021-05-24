@@ -27,6 +27,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_STABILIZEDETERNALD6 = Isaac.GetItemIdByName(
     "Stabilized Eternal D6",
   ),
+  COLLECTIBLE_ENERGIZEDD6 = Isaac.GetItemIdByName("Energized D6"),
 }
 
 export const enum FireplaceVariant {

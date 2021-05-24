@@ -25,6 +25,7 @@ import * as EFF_SATANITYGENERATOR from "./items/active/upgraded/satanityGenerato
 // --- Upgraded Starting Actives ---
 import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";
+import * as EFF_STABILIZEDETERNALD6 from "./items/active/specialized/stabilizedEternalDSix";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
@@ -79,6 +80,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use,
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EFF_GOLDENNICKEL.interceptDamage, EntityType.ENTITY_PLAYER);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RECONSTRUCTIVEHEART.use, EFF_RECONSTRUCTIVEHEART.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, EFF_RECONSTRUCTIVEHEART.preClean);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STABILIZEDETERNALD6.use, EFF_STABILIZEDETERNALD6.ownType());
 
 
 // Print an initialization message to the "log.txt" file

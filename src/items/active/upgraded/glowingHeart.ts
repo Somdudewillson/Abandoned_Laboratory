@@ -20,7 +20,7 @@ export function use(
 
   let i = 0;
   let otherPlayer = Isaac.GetPlayer(i);
-  while (otherPlayer != null) {
+  while (otherPlayer != null && i < 5) {
     if (i !== player.Index) {
       healPlayer(otherPlayer, rand, Math.ceil(HEALTH_POINTS));
     }

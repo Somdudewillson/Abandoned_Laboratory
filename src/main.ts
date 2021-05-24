@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable prettier/prettier */
 // Define imports
-// import item code
+import { randomCollectible } from "./utils";
+// ===== import item code =====
+// --- Normal Upgraded Actives ---
 import * as EFF_DigitalCard from "./items/active/upgraded/digitalCard";
 import * as EFF_CartographersTome from "./items/active/upgraded/cartographersTome";
 import * as EFF_AnarchistsEBook from "./items/active/upgraded/anarchistsEBook";
@@ -20,7 +22,8 @@ import * as EFF_FORGETMELATER from "./items/active/upgraded/forgetMeLater";
 import * as EFF_BLOODSAW from "./items/active/upgraded/bloodSaw";
 import * as EFF_DIVINITYGENERATOR from "./items/active/upgraded/divinityGenerator";
 import * as EFF_SATANITYGENERATOR from "./items/active/upgraded/satanityGenerator";
-import { randomCollectible } from "./utils";
+// --- Upgraded Starting Actives ---
+import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
@@ -48,6 +51,7 @@ function postGameStarted(isContinued:boolean) {
 // Register callbacks
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted);
 
+// --- Normal Upgraded Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DigitalCard.use, EFF_DigitalCard.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CartographersTome.use, EFF_CartographersTome.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AnarchistsEBook.use, EFF_AnarchistsEBook.ownType());
@@ -68,6 +72,10 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, EFF_FORG
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLOODSAW.use, EFF_BLOODSAW.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DIVINITYGENERATOR.use, EFF_DIVINITYGENERATOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SATANITYGENERATOR.use, EFF_SATANITYGENERATOR.ownType());
+
+// --- Upgraded Starting Actives ---
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EFF_GOLDENNICKEL.interceptDamage, EntityType.ENTITY_PLAYER);
 
 
 // Print an initialization message to the "log.txt" file

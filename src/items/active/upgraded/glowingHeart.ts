@@ -16,21 +16,29 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean {
+  healPlayer(player, rand, HEALTH_POINTS);
+
+  let i = 0;
+  let otherPlayer = Isaac.GetPlayer(i);
+  while (otherPlayer != null) {
+    if (i !== player.Index) {
+      healPlayer(otherPlayer, rand, Math.ceil(HEALTH_POINTS));
+    }
+    otherPlayer = Isaac.GetPlayer(++i);
+  }
+  return true;
+}
+
+function healPlayer(player: EntityPlayer, rand: RNG, amount: int): void {
   if (
     player.GetPlayerType() === Isaac.GetPlayerTypeByName("Keeper") ||
     player.GetPlayerType() === Isaac.GetPlayerTypeByName("Keeper", true)
   ) {
-    spawnCoins(
-      Math.ceil(HEALTH_POINTS / 2),
-      player.Position,
-      rand,
-      false,
-      true,
-    );
-    return true;
+    spawnCoins(Math.ceil(amount / 2), player.Position, rand, false, true);
+    return;
   }
 
-  let healAmount = HEALTH_POINTS;
+  let healAmount = amount;
   while (healAmount > 0) {
     if (player.HasFullHearts()) {
       if (player.Type === PlayerType.PLAYER_BETHANY) {
@@ -48,6 +56,4 @@ export function use(
       healAmount--;
     }
   }
-
-  return true;
 }

@@ -39,3 +39,9 @@ export function randomSign(rand: RNG): int {
   }
   return 1;
 }
+
+export function randomOnCircle(rand: RNG, radius: float = 1): Vector {
+  const theta = math.pi * 2 * rand.RandomFloat();
+
+  return Vector(Math.cos(theta) * radius, Math.sin(theta) * radius);
+}

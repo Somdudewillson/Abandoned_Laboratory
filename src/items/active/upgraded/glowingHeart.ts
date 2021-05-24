@@ -16,20 +16,25 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean {
-  healPlayer(player, rand, HEALTH_POINTS);
+  healPlayer(player, rand, HEALTH_POINTS, SOUL_COST);
 
   let i = 0;
   let otherPlayer = Isaac.GetPlayer(i);
   while (otherPlayer != null && i < 5) {
     if (i !== player.Index) {
-      healPlayer(otherPlayer, rand, Math.ceil(HEALTH_POINTS));
+      healPlayer(otherPlayer, rand, Math.ceil(HEALTH_POINTS / 2), SOUL_COST);
     }
     otherPlayer = Isaac.GetPlayer(++i);
   }
   return true;
 }
 
-function healPlayer(player: EntityPlayer, rand: RNG, amount: int): void {
+function healPlayer(
+  player: EntityPlayer,
+  rand: RNG,
+  amount: int,
+  soulCost: int,
+): void {
   if (
     player.GetPlayerType() === Isaac.GetPlayerTypeByName("Keeper") ||
     player.GetPlayerType() === Isaac.GetPlayerTypeByName("Keeper", true)
@@ -43,13 +48,13 @@ function healPlayer(player: EntityPlayer, rand: RNG, amount: int): void {
     if (player.HasFullHearts()) {
       if (player.Type === PlayerType.PLAYER_BETHANY) {
         player.AddSoulCharge(1);
-        healAmount -= SOUL_COST;
+        healAmount -= soulCost;
       } else if (player.Type === PlayerType.PLAYER_BETHANY_B) {
         player.AddBloodCharge(1);
         healAmount--;
       } else {
         player.AddSoulHearts(1);
-        healAmount -= SOUL_COST;
+        healAmount -= soulCost;
       }
     } else {
       player.AddHearts(1);

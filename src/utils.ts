@@ -283,3 +283,7 @@ export function playSound(
   effEntity.ToNPC()!.PlaySound(sound, volume, frameDelay, loop, pitch);
   effEntity.Remove();
 }
+
+export function hasFlag(flags: int, testFlag: int): boolean {
+  return (flags & testFlag) === testFlag;
+}

@@ -128,4 +128,6 @@ dist
 .pnp.*
 
 # build files
-mod/*.lua
+mod/main.lua
+mod/metadata.xml
+mod/content/*.xml

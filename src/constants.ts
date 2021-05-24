@@ -31,6 +31,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_CRATEOFFRIENDS = Isaac.GetItemIdByName("Crate of Friends"),
   COLLECTIBLE_CHAOSPOOP = Isaac.GetItemIdByName("Chaos Poop"),
   COLLECTIBLE_SIGILOFBELIAL = Isaac.GetItemIdByName("Sigil of Belial"),
+  COLLECTIBLE_TEMPEREDBLADE = Isaac.GetItemIdByName("Tempered Blade"),
 }
 
 export const enum FireplaceVariant {

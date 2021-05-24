@@ -29,7 +29,7 @@ export function use(
   return true;
 }
 
-function healPlayer(
+export function healPlayer(
   player: EntityPlayer,
   rand: RNG,
   amount: int,
@@ -47,13 +47,17 @@ function healPlayer(
   while (healAmount > 0) {
     if (player.HasFullHearts()) {
       if (player.Type === PlayerType.PLAYER_BETHANY) {
-        player.AddSoulCharge(1);
+        if (healAmount > soulCost) {
+          player.AddSoulCharge(1);
+        }
         healAmount -= soulCost;
       } else if (player.Type === PlayerType.PLAYER_BETHANY_B) {
         player.AddBloodCharge(1);
         healAmount--;
       } else {
-        player.AddSoulHearts(1);
+        if (healAmount > soulCost) {
+          player.AddSoulHearts(1);
+        }
         healAmount -= soulCost;
       }
     } else {

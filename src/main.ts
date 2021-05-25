@@ -30,6 +30,7 @@ import * as EFF_BLOODSIPHON from "./items/active/upgraded/bloodSiphon";
 import * as EFF_ARTIFICIALSOUL from "./items/active/upgraded/artificialSoul";
 import * as EFF_D2 from "./items/active/upgraded/dTwo";
 import * as EFF_WEEKLYGIFT from "./items/active/upgraded/weeklyGift";
+import * as EFF_DISCOUNTCODE from "./items/active/upgraded/discountCode";
 // --- Upgraded Starting Actives ---
 import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";
@@ -99,6 +100,8 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_ARTIFICIALSO
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_D2.use, EFF_D2.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WEEKLYGIFT.use, EFF_WEEKLYGIFT.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EFF_WEEKLYGIFT.postLevel);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DISCOUNTCODE.use, EFF_DISCOUNTCODE.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_DISCOUNTCODE.postRoom);
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

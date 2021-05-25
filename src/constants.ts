@@ -24,6 +24,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_ZKEY = Isaac.GetItemIdByName("Z Key"),
   COLLECTIBLE_SYNTHETICSKIN = Isaac.GetItemIdByName("Synthetic Skin"),
   COLLECTIBLE_PAUSE2 = Isaac.GetItemIdByName("Pause 2.0"),
+  COLLECTIBLE_BLOODSIPHON = Isaac.GetItemIdByName("Blood Siphon"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),

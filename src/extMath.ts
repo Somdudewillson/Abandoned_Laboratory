@@ -45,3 +45,7 @@ export function randomOnCircle(rand: RNG, radius: float = 1): Vector {
 
   return Vector(Math.cos(theta) * radius, Math.sin(theta) * radius);
 }
+
+export function bitCount(n: int): int {
+  return Number(n.toString(2).split("").sort().join("")).toString().length;
+}

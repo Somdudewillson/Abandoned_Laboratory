@@ -1,8 +1,4 @@
-import {
-  CollectibleTypeLab,
-  SHOT_SPEED_MULT,
-  TearFlag128,
-} from "../../../constants";
+import { CollectibleTypeLab, SHOT_SPEED_MULT } from "../../../constants";
 
 const TEAR_COUNT: int = 10;
 const FIRE_CONE: float = 75;
@@ -41,14 +37,12 @@ export function use(
       player,
       0.8,
     );
-    // firedTear.TearFlags.bor(TearFlags.TEAR_PIERCING);
-    // firedTear.TearFlags.bor(TearFlags.TEAR_SPECTRAL);
     firedTear.SetColor(Color(0.7, 0.8, 1, 0.7), -1, 1);
     firedTear.SizeMulti = Vector(2, 2);
     firedTear.KnockbackMultiplier *= 100;
-    firedTear.AddTearFlags(TearFlag128.TEAR_PIERCING);
-    firedTear.AddTearFlags(TearFlag128.TEAR_SPECTRAL);
-    firedTear.AddTearFlags(TearFlag128.TEAR_HYDROBOUNCE);
+    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_PIERCING);
+    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_SPECTRAL);
+    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_HYDROBOUNCE);
   }
 
   // Fire wave 2
@@ -71,11 +65,9 @@ export function use(
     firedTear.SetColor(Color(0, 0.6, 1, 0.55), -1, 1);
     firedTear.SizeMulti = Vector(3.5, 3.5);
     firedTear.KnockbackMultiplier *= 500;
-    // firedTear.TearFlags.bor(TearFlags.TEAR_PIERCING);
-    // firedTear.TearFlags.bor(TearFlags.TEAR_SPECTRAL);
-    firedTear.AddTearFlags(TearFlag128.TEAR_PIERCING);
-    firedTear.AddTearFlags(TearFlag128.TEAR_SPECTRAL);
-    firedTear.AddTearFlags(TearFlag128.TEAR_HYDROBOUNCE);
+    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_PIERCING);
+    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_SPECTRAL);
+    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_HYDROBOUNCE);
   }
 
   return true;

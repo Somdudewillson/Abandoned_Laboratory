@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { CollectibleTypeLab } from "../../../constants";
 import { hasFlag } from "../../../utils";
 
@@ -48,9 +49,9 @@ export function findAllFriendItems(): void {
     }
 
     if (
-      // TODO: use actual flag enums
-      !item.HasTags(1 << 27) && // Unique_familiar
-      (item.HasTags(1 << 9) || // Baby
+      !item.HasTags(ItemConfigTag.UNIQUE_FAMILIAR) && // Unique_familiar
+      item.Type !== ItemType.ITEM_ACTIVE &&
+      (item.HasTags(ItemConfigTag.BABY) || // Baby
         hasFlag(item.CacheFlags, CacheFlag.CACHE_FAMILIARS))
     ) {
       FRIEND_ITEMS.add(item.ID);

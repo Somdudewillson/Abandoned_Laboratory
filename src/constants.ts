@@ -53,6 +53,165 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_TEMPEREDBLADE = Isaac.GetItemIdByName("Tempered Blade"),
 }
 
+export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
+  // =====Vanilla -> Vanilla Upgrades
+  [
+    CollectibleType.COLLECTIBLE_BUTTER_BEAN,
+    CollectibleType.COLLECTIBLE_WAIT_WHAT as number,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_TELEPORT,
+    CollectibleType.COLLECTIBLE_TELEPORT_2 as number,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_LEMON_MISHAP,
+    CollectibleType.COLLECTIBLE_FREE_LEMONADE as number,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_SCISSORS,
+    CollectibleType.COLLECTIBLE_PINKING_SHEARS as number,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_UNICORN_STUMP,
+    CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN as number,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_PONY,
+    CollectibleType.COLLECTIBLE_WHITE_PONY as number,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_HOURGLASS,
+    CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS as number,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_BEAN,
+    CollectibleType.COLLECTIBLE_MEGA_BEAN as number,
+  ],
+  // =====New Upgraded Items=====
+  [
+    CollectibleType.COLLECTIBLE_BLANK_CARD,
+    CollectibleTypeLab.COLLECTIBLE_DIGITALCARD,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS,
+    CollectibleTypeLab.COLLECTIBLE_CARTOGRAPHERTOME,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK,
+    CollectibleTypeLab.COLLECTIBLE_ANARCHISTEBOOK,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS,
+    CollectibleTypeLab.COLLECTIBLE_SHADOWDEVICE,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_BOOK_OF_SIN,
+    CollectibleTypeLab.COLLECTIBLE_CHESTOFSIN,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_CLEAR_RUNE,
+    CollectibleTypeLab.COLLECTIBLE_RUNICAMPLIFIER,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_YUM_HEART,
+    CollectibleTypeLab.COLLECTIBLE_GLOWINGHEART,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_PLACEBO,
+    CollectibleTypeLab.COLLECTIBLE_PILLMACHINE,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_BOBS_ROTTEN_HEAD,
+    CollectibleTypeLab.COLLECTIBLE_JAROFHEADS,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_WOODEN_NICKEL,
+    CollectibleTypeLab.COLLECTIBLE_SILVERNICKEL,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_CRACK_THE_SKY,
+    CollectibleTypeLab.COLLECTIBLE_METALFEATHER,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_BOX_OF_SPIDERS,
+    CollectibleTypeLab.COLLECTIBLE_BIGBOXOFSPIDERS,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_MR_BOOM,
+    CollectibleTypeLab.COLLECTIBLE_BOMBDISPENSER,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_D20,
+    CollectibleTypeLab.COLLECTIBLE_MATTERREARRANGER,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_FORGET_ME_NOW,
+    CollectibleTypeLab.COLLECTIBLE_FORGETMELATER,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_BLOOD_RIGHTS,
+    CollectibleTypeLab.COLLECTIBLE_BLOODSAW,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_PRAYER_CARD,
+    CollectibleTypeLab.COLLECTIBLE_DIVINITYGENERATOR,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_SATANIC_BIBLE,
+    CollectibleTypeLab.COLLECTIBLE_SATANITYGENERATOR,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_GLASS_CANNON,
+    CollectibleTypeLab.COLLECTIBLE_TEMPEREDGLASSCANNON,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_BROKEN_GLASS_CANNON,
+    CollectibleTypeLab.COLLECTIBLE_TEMPEREDGLASSCANNON,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS,
+    CollectibleTypeLab.COLLECTIBLE_ZKEY,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_MAGIC_SKIN,
+    CollectibleTypeLab.COLLECTIBLE_SYNTHETICSKIN,
+  ],
+  [CollectibleType.COLLECTIBLE_PAUSE, CollectibleTypeLab.COLLECTIBLE_PAUSE2],
+  [
+    CollectibleType.COLLECTIBLE_SHARP_STRAW,
+    CollectibleTypeLab.COLLECTIBLE_BLOODSIPHON,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_EDENS_SOUL,
+    CollectibleTypeLab.COLLECTIBLE_ARTIFICIALSOUL,
+  ],
+  [CollectibleType.COLLECTIBLE_D1, CollectibleTypeLab.COLLECTIBLE_D2],
+  [
+    CollectibleType.COLLECTIBLE_MYSTERY_GIFT,
+    CollectibleTypeLab.COLLECTIBLE_WEEKLYGIFT,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_COUPON,
+    CollectibleTypeLab.COLLECTIBLE_DISCOUNTCODE,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_DULL_RAZOR,
+    CollectibleTypeLab.COLLECTIBLE_ILLUSORYRAZOR,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_D12,
+    CollectibleTypeLab.COLLECTIBLE_PORTABLETERRAFORMER,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_ISAACS_TEARS,
+    CollectibleTypeLab.COLLECTIBLE_TEARRESERVOIR,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_TAMMYS_HEAD,
+    CollectibleTypeLab.COLLECTIBLE_WAVECANNON,
+  ],
+]);
+
 export const enum FireplaceVariant {
   FIREPLACE_NORMAL = 0,
   FIREPLACE_RED = 1,

@@ -22,10 +22,9 @@ export function use(
   }
 
   player.UseActiveItem(CollectibleType.COLLECTIBLE_BOX_OF_FRIENDS, 0);
-  player.UseActiveItem(CollectibleType.COLLECTIBLE_BOX_OF_SPIDERS, 0);
-  player.UseActiveItem(CollectibleType.COLLECTIBLE_GUPPYS_HEAD, 0);
 
   for (const item of FRIEND_ITEMS) {
+    Isaac.DebugString(`FRIEND_ITEM: ${item}`);
     if (player.HasCollectible(item) && rand.RandomFloat() < REPLICATE_CHANCE) {
       player.AddCollectible(item);
     }
@@ -41,7 +40,7 @@ export function findAllFriendItems(): void {
   for (let i = 0; i < collectibles.Size; i++) {
     const item = itemConfig.GetCollectible(i);
 
-    if (item.IsNull()) {
+    if (item == null || item.IsNull()) {
       continue;
     }
     if (!item.IsCollectible()) {

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable prettier/prettier */
 // Define imports
-import { randomCollectible } from "./utils";
+import { randomCollectible } from "./constants";
 // ===== import item code =====
 // --- Normal Upgraded Actives ---
 import * as EFF_DigitalCard from "./items/active/upgraded/digitalCard";
@@ -34,6 +34,7 @@ import * as EFF_DISCOUNTCODE from "./items/active/upgraded/discountCode";
 import * as EFF_ILLUSORYRAZOR from "./items/active/upgraded/illusoryRazor";
 import * as EFF_PORTABLETERRAFORMER from "./items/active/upgraded/portableTerraformer";
 import * as EFF_TEARRESERVOIR from "./items/active/upgraded/tearReservoir";
+import * as EFF_WAVECANNON from "./items/active/upgraded/waveCannon";
 // --- Upgraded Starting Actives ---
 import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";
@@ -109,6 +110,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ILLUSORYRAZOR.use
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTABLETERRAFORMER.use, EFF_PORTABLETERRAFORMER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEARRESERVOIR.use, EFF_TEARRESERVOIR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, EFF_TEARRESERVOIR.postTear);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WAVECANNON.use, EFF_WAVECANNON.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

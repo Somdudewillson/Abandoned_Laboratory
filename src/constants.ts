@@ -1,3 +1,5 @@
+import { toTearFlag } from "./utils";
+
 export enum CollectibleTypeLab {
   // --- Normal Upgraded Actives ---
   COLLECTIBLE_DIGITALCARD = Isaac.GetItemIdByName("Digital Card"),
@@ -34,6 +36,7 @@ export enum CollectibleTypeLab {
     "Portable Terraformer",
   ),
   COLLECTIBLE_TEARRESERVOIR = Isaac.GetItemIdByName("Tear Reservoir"),
+  COLLECTIBLE_WAVECANNON = Isaac.GetItemIdByName("Wave Cannon"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -62,4 +65,114 @@ export const enum FireplaceVariant {
   FIREPLACE_MOVEABLE_PURPLE = 13,
 }
 
+export const TearFlag128 = {
+  TEAR_NORMAL: BitSet128(0, 0),
+  TEAR_SPECTRAL: toTearFlag(0),
+  TEAR_PIERCING: toTearFlag(1),
+  TEAR_HOMING: toTearFlag(2),
+  TEAR_SLOW: toTearFlag(3),
+  TEAR_POISON: toTearFlag(4),
+  TEAR_FREEZE: toTearFlag(5),
+  TEAR_SPLIT: toTearFlag(6),
+  TEAR_GROW: toTearFlag(7),
+  TEAR_BOOMERANG: toTearFlag(8),
+  TEAR_PERSISTENT: toTearFlag(9),
+  TEAR_WIGGLE: toTearFlag(10),
+  TEAR_MULLIGAN: toTearFlag(11),
+  TEAR_EXPLOSIVE: toTearFlag(12),
+  TEAR_CHARM: toTearFlag(13),
+  TEAR_CONFUSION: toTearFlag(14),
+  TEAR_HP_DROP: toTearFlag(15),
+  TEAR_ORBIT: toTearFlag(16),
+  TEAR_WAIT: toTearFlag(17),
+  TEAR_QUADSPLIT: toTearFlag(18),
+  TEAR_BOUNCE: toTearFlag(19),
+  TEAR_FEAR: toTearFlag(20),
+  TEAR_SHRINK: toTearFlag(21),
+  TEAR_BURN: toTearFlag(22),
+  TEAR_ATTRACTOR: toTearFlag(23),
+  TEAR_KNOCKBACK: toTearFlag(24),
+  TEAR_PULSE: toTearFlag(25),
+  TEAR_SPIRAL: toTearFlag(26),
+  TEAR_FLAT: toTearFlag(27),
+  TEAR_SAD_BOMB: toTearFlag(28),
+  TEAR_BUTT_BOMB: toTearFlag(29),
+  TEAR_SQUARE: toTearFlag(30),
+  TEAR_GLOW: toTearFlag(31),
+  TEAR_GISH: toTearFlag(32),
+  TEAR_MYSTERIOUS_LIQUID_CREEP: toTearFlag(33),
+  TEAR_SHIELDED: toTearFlag(34),
+  TEAR_GLITTER_BOMB: toTearFlag(35),
+  TEAR_SCATTER_BOMB: toTearFlag(36),
+  TEAR_STICKY: toTearFlag(37),
+  TEAR_CONTINUUM: toTearFlag(38),
+  TEAR_LIGHT_FROM_HEAVEN: toTearFlag(39),
+  TEAR_COIN_DROP: toTearFlag(40),
+  TEAR_BLACK_HP_DROP: toTearFlag(41),
+  TEAR_TRACTOR_BEAM: toTearFlag(42),
+  TEAR_GODS_FLESH: toTearFlag(43),
+  TEAR_GREED_COIN: toTearFlag(44),
+  TEAR_CROSS_BOMB: toTearFlag(45),
+  TEAR_BIG_SPIRAL: toTearFlag(46),
+  TEAR_PERMANENT_CONFUSION: toTearFlag(47),
+  TEAR_BOOGER: toTearFlag(48),
+  TEAR_EGG: toTearFlag(49),
+  TEAR_ACID: toTearFlag(50),
+  TEAR_BONE: toTearFlag(51),
+  TEAR_BELIAL: toTearFlag(52),
+  TEAR_MIDAS: toTearFlag(53),
+  TEAR_NEEDLE: toTearFlag(54),
+  TEAR_JACOBS: toTearFlag(55),
+  TEAR_HORN: toTearFlag(56),
+  TEAR_LASER: toTearFlag(57),
+  TEAR_POP: toTearFlag(58),
+  TEAR_ABSORB: toTearFlag(59),
+  TEAR_LASERSHOT: toTearFlag(60),
+  TEAR_HYDROBOUNCE: toTearFlag(61),
+  TEAR_BURSTSPLIT: toTearFlag(62),
+  TEAR_CREEP_TRAIL: toTearFlag(63),
+  TEAR_PUNCH: toTearFlag(64),
+  TEAR_ICE: toTearFlag(65),
+  TEAR_MAGNETIZE: toTearFlag(66),
+  TEAR_BAIT: toTearFlag(67),
+  TEAR_OCCULT: toTearFlag(68),
+  TEAR_ORBIT_ADVANCED: toTearFlag(69),
+  TEAR_ROCK: toTearFlag(70),
+  TEAR_TURN_HORIZONTAL: toTearFlag(71),
+  TEAR_BLOOD_BOMB: toTearFlag(72),
+  TEAR_ECOLI: toTearFlag(73),
+  TEAR_COIN_DROP_DEATH: toTearFlag(74),
+  TEAR_BRIMSTONE_BOMB: toTearFlag(75),
+  TEAR_RIFT: toTearFlag(76),
+  TEAR_SPORE: toTearFlag(77),
+  TEAR_GHOST_BOMB: toTearFlag(78),
+  TEAR_CARD_DROP_DEATH: toTearFlag(79),
+  TEAR_RUNE_DROP_DEATH: toTearFlag(80),
+  TEAR_TELEPORT: toTearFlag(81),
+  TEAR_REROLL_ROCK_WISP: toTearFlag(115),
+  TEAR_MOM_STOMP_WISP: toTearFlag(116),
+  TEAR_ENEMY_TO_WISP: toTearFlag(117),
+  TEAR_REROLL_ENEMY: toTearFlag(118),
+  TEAR_GIGA_BOMB: toTearFlag(119),
+  TEAR_EXTRA_GORE: toTearFlag(120),
+  TEAR_RAINBOW: toTearFlag(121),
+  TEAR_DETONATE: toTearFlag(122),
+  TEAR_CHAIN: toTearFlag(123),
+  TEAR_DARK_MATTER: toTearFlag(124),
+  TEAR_GOLDEN_BOMB: toTearFlag(125),
+  TEAR_FAST_BOMB: toTearFlag(126),
+  TEAR_LUDOVICO: toTearFlag(127),
+};
+
 export const SHOT_SPEED_MULT = 10;
+
+export function randomCollectible(rand: RNG): number {
+  const enumEntries: Array<[string | number, string | number]> =
+    Object.entries(CollectibleTypeLab);
+
+  const randomIndex = Math.floor(rand.RandomFloat() * enumEntries.length);
+  if (type(enumEntries[randomIndex][0]) === "number") {
+    return enumEntries[randomIndex][0] as number;
+  }
+  return enumEntries[randomIndex][1] as number;
+}

@@ -1,5 +1,3 @@
-import { CollectibleTypeLab } from "./constants";
-
 export function getCoinVal(pickup: EntityPickup, useDevil = false): int {
   switch (pickup.Variant) {
     case PickupVariant.PICKUP_COIN:
@@ -253,17 +251,6 @@ export function spawnPickup(
   spawnPickupCluster(1, position, rand, variant, subType, placeFree);
 }
 
-export function randomCollectible(rand: RNG): number {
-  const enumEntries: Array<[string | number, string | number]> =
-    Object.entries(CollectibleTypeLab);
-
-  const randomIndex = Math.floor(rand.RandomFloat() * enumEntries.length);
-  if (type(enumEntries[randomIndex][0]) === "number") {
-    return enumEntries[randomIndex][0] as number;
-  }
-  return enumEntries[randomIndex][1] as number;
-}
-
 export function playSound(
   sound: SoundEffect,
   volume: int = 1,
@@ -285,4 +272,11 @@ export function playSound(
 
 export function hasFlag(flags: int, testFlag: int): boolean {
   return (flags & testFlag) === testFlag;
+}
+
+export function toTearFlag(x: int): BitSet128 {
+  if (x >= 64) {
+    return BitSet128(0, 1 << (x - 64));
+  }
+  return BitSet128(1 << x, 0);
 }

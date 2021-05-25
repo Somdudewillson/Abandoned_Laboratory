@@ -22,6 +22,7 @@ export enum CollectibleTypeLab {
     "Tempered Glass Cannon",
   ),
   COLLECTIBLE_ZKEY = Isaac.GetItemIdByName("Z Key"),
+  COLLECTIBLE_SYNTHETICSKIN = Isaac.GetItemIdByName("Synthetic Skin"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),

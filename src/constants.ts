@@ -29,6 +29,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_D2 = Isaac.GetItemIdByName("D2"),
   COLLECTIBLE_WEEKLYGIFT = Isaac.GetItemIdByName("Weekly Gift"),
   COLLECTIBLE_DISCOUNTCODE = Isaac.GetItemIdByName("Discount Code"),
+  COLLECTIBLE_ILLUSORYRAZOR = Isaac.GetItemIdByName("Illusory Razor"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),

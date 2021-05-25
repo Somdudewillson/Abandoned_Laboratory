@@ -37,6 +37,9 @@ export enum CollectibleTypeLab {
   ),
   COLLECTIBLE_TEARRESERVOIR = Isaac.GetItemIdByName("Tear Reservoir"),
   COLLECTIBLE_WAVECANNON = Isaac.GetItemIdByName("Wave Cannon"),
+  COLLECTIBLE_TERRORVORTEX = Isaac.GetItemIdByName("Terror Vortex"),
+  COLLECTIBLE_PETRIFACTIONVORTEX = Isaac.GetItemIdByName("Petrifaction Vortex"),
+  COLLECTIBLE_WEBBEDVORTEX = Isaac.GetItemIdByName("Webbed Vortex"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -86,6 +89,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
   [
     CollectibleType.COLLECTIBLE_BEAN,
     CollectibleType.COLLECTIBLE_MEGA_BEAN as number,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_MOVING_BOX,
+    CollectibleType.COLLECTIBLE_BLUE_BOX as number,
   ],
   // =====New Upgraded Items=====
   [
@@ -209,6 +216,18 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
   [
     CollectibleType.COLLECTIBLE_TAMMYS_HEAD,
     CollectibleTypeLab.COLLECTIBLE_WAVECANNON,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_MOMS_PAD,
+    CollectibleTypeLab.COLLECTIBLE_TERRORVORTEX,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_MOMS_BRA,
+    CollectibleTypeLab.COLLECTIBLE_PETRIFACTIONVORTEX,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_SPIDER_BUTT,
+    CollectibleTypeLab.COLLECTIBLE_WEBBEDVORTEX,
   ],
 ]);
 

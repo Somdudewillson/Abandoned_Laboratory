@@ -35,6 +35,9 @@ import * as EFF_ILLUSORYRAZOR from "./items/active/upgraded/illusoryRazor";
 import * as EFF_PORTABLETERRAFORMER from "./items/active/upgraded/portableTerraformer";
 import * as EFF_TEARRESERVOIR from "./items/active/upgraded/tearReservoir";
 import * as EFF_WAVECANNON from "./items/active/upgraded/waveCannon";
+import * as EFF_TERRORVORTEX from "./items/active/upgraded/terrorVortex";
+import * as EFF_PETRIFACTIONVORTEX from "./items/active/upgraded/pertifactionVortex";
+import * as EFF_WEBBEDVORTEX from "./items/active/upgraded/webbedVortex";
 // --- Upgraded Starting Actives ---
 import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";
@@ -111,6 +114,9 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTABLETERRAFORM
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEARRESERVOIR.use, EFF_TEARRESERVOIR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, EFF_TEARRESERVOIR.postTear);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WAVECANNON.use, EFF_WAVECANNON.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TERRORVORTEX.use, EFF_TERRORVORTEX.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PETRIFACTIONVORTEX.use, EFF_PETRIFACTIONVORTEX.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WEBBEDVORTEX.use, EFF_WEBBEDVORTEX.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

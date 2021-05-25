@@ -32,6 +32,7 @@ import * as EFF_D2 from "./items/active/upgraded/dTwo";
 import * as EFF_WEEKLYGIFT from "./items/active/upgraded/weeklyGift";
 import * as EFF_DISCOUNTCODE from "./items/active/upgraded/discountCode";
 import * as EFF_ILLUSORYRAZOR from "./items/active/upgraded/illusoryRazor";
+import * as EFF_PORTABLETERRAFORMER from "./items/active/upgraded/portableTerraformer";
 // --- Upgraded Starting Actives ---
 import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";
@@ -104,6 +105,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EFF_WEEKLYGIFT.
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DISCOUNTCODE.use, EFF_DISCOUNTCODE.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_DISCOUNTCODE.postRoom);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ILLUSORYRAZOR.use, EFF_ILLUSORYRAZOR.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTABLETERRAFORMER.use, EFF_PORTABLETERRAFORMER.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

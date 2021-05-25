@@ -67,7 +67,7 @@ export function postLevel(): void {
     }
     for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
       if (player.GetActiveItem(s) === ownType()) {
-        player.FullCharge(s, true);
+        player.SetActiveCharge(1, s);
       }
     }
   }

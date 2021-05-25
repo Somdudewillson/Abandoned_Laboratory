@@ -18,6 +18,10 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_BLOODSAW = Isaac.GetItemIdByName("Blood Saw"),
   COLLECTIBLE_DIVINITYGENERATOR = Isaac.GetItemIdByName("Divinity Generator"),
   COLLECTIBLE_SATANITYGENERATOR = Isaac.GetItemIdByName("Satanity Generator"),
+  COLLECTIBLE_TEMPEREDGLASSCANNON = Isaac.GetItemIdByName(
+    "Tempered Glass Cannon",
+  ),
+  COLLECTIBLE_ZKEY = Isaac.GetItemIdByName("Z Key"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -32,9 +36,6 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_CHAOSPOOP = Isaac.GetItemIdByName("Chaos Poop"),
   COLLECTIBLE_SIGILOFBELIAL = Isaac.GetItemIdByName("Sigil of Belial"),
   COLLECTIBLE_TEMPEREDBLADE = Isaac.GetItemIdByName("Tempered Blade"),
-  COLLECTIBLE_TEMPEREDGLASSCANNON = Isaac.GetItemIdByName(
-    "Tempered Glass Cannon",
-  ),
 }
 
 export const enum FireplaceVariant {

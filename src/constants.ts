@@ -33,6 +33,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_PORTABLETERRAFORMER = Isaac.GetItemIdByName(
     "Portable Terraformer",
   ),
+  COLLECTIBLE_TEARRESERVOIR = Isaac.GetItemIdByName("Tear Reservoir"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -60,3 +61,5 @@ export const enum FireplaceVariant {
   FIREPLACE_MOVEABLE_BLUE = 12,
   FIREPLACE_MOVEABLE_PURPLE = 13,
 }
+
+export const SHOT_SPEED_MULT = 10;

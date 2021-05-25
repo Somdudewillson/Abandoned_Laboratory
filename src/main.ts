@@ -28,6 +28,7 @@ import * as EFF_SYNTHETICSKIN from "./items/active/upgraded/syntheticSkin";
 import * as EFF_PAUSE2 from "./items/active/upgraded/pauseTwo";
 import * as EFF_BLOODSIPHON from "./items/active/upgraded/bloodSiphon";
 import * as EFF_ARTIFICIALSOUL from "./items/active/upgraded/artificialSoul";
+import * as EFF_D2 from "./items/active/upgraded/dTwo";
 // --- Upgraded Starting Actives ---
 import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";
@@ -94,6 +95,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PAUSE2.use, EFF_P
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLOODSIPHON.use, EFF_BLOODSIPHON.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ARTIFICIALSOUL.use, EFF_ARTIFICIALSOUL.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_ARTIFICIALSOUL.postRoom);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_D2.use, EFF_D2.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

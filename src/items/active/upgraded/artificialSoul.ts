@@ -1,4 +1,5 @@
 import { CollectibleTypeLab } from "../../../constants";
+import { playSound } from "../../../utils";
 
 export function ownType(): number {
   return CollectibleTypeLab.COLLECTIBLE_ARTIFICIALSOUL as number;
@@ -59,13 +60,17 @@ export function postRoom(): void {
     Isaac.DebugString(
       `Unique rooms visited:${visitedUniqueRooms}/${level.GetRoomCount()}`,
     );
-    const newCharge = Math.floor(
-      (visitedUniqueRooms / (level.GetRoomCount() * 0.9)) * 100,
+    const newCharge = math.min(
+      Math.floor((visitedUniqueRooms / (level.GetRoomCount() * 0.9)) * 100),
+      100,
     );
 
     for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
       if (player.GetActiveItem(s) === ownType()) {
-        player.SetActiveCharge(math.min(newCharge, 100), s);
+        if (player.GetActiveCharge(s) < newCharge) {
+          playSound(SoundEffect.SOUND_BATTERYCHARGE);
+        }
+        player.SetActiveCharge(newCharge, s);
       }
     }
   }

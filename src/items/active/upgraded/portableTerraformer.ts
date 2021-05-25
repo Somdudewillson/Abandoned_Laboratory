@@ -124,6 +124,8 @@ export function use(
               ChestSubType.CHEST_CLOSED,
             );
           }
+        } else if (rand.RandomFloat() < 0.1) {
+          gridEntity.SetType(GridEntityType.GRID_ROCKT);
         }
         break;
       case GridEntityType.GRID_POOP: {

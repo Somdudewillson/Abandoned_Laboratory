@@ -37,6 +37,7 @@
 	<active description="I'm a big boy now!" gfx="cybermush.png" maxcharges="6" name="Cyber Mush" hidden="true"/>
 	<active description="Safer Last Resort" gfx="pland.png" maxcharges="0" name="Plan D" hidden="true"/>
 	<active description="Fake Your Death" gfx="counterfeitdeathcertificate.png" maxcharges="0" name="Counterfeit Death Certificate" hidden="true"/>
+	<active description="75/25" gfx="straightenedpenny.png" maxcharges="4" name="Straightened Penny" hidden="true"/>
 
 	<active description="Flip a Coin" gfx="goldennickel.png" maxcharges="200" chargetype="timed" name="Golden Nickel" hidden="true"/>
 	<active description="Active Reusable Regeneration" gfx="reconstructiveheart.png" maxcharges="4" name="Reconstructive Heart" hidden="true"/>

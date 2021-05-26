@@ -42,6 +42,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_WEBBEDVORTEX = Isaac.GetItemIdByName("Webbed Vortex"),
   COLLECTIBLE_MICROTRANSACTION = Isaac.GetItemIdByName("Microtransaction"),
   COLLECTIBLE_CYBERMUSH = Isaac.GetItemIdByName("Cyber Mush"),
+  COLLECTIBLE_PLAND = Isaac.GetItemIdByName("Plan D"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -239,6 +240,7 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
     CollectibleType.COLLECTIBLE_MEGA_MUSH,
     CollectibleTypeLab.COLLECTIBLE_CYBERMUSH,
   ],
+  [CollectibleType.COLLECTIBLE_PLAN_C, CollectibleTypeLab.COLLECTIBLE_PLAND],
 ]);
 
 export const enum FireplaceVariant {

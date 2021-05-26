@@ -40,6 +40,7 @@ import * as EFF_PETRIFACTIONVORTEX from "./items/active/upgraded/pertifactionVor
 import * as EFF_WEBBEDVORTEX from "./items/active/upgraded/webbedVortex";
 import * as EFF_MICROTRANSACTION from "./items/active/upgraded/microtransaction";
 import * as EFF_CYBERMUSH from "./items/active/upgraded/cyberMush";
+import * as EFF_PLAND from "./items/active/upgraded/planD";
 // --- Upgraded Starting Actives ---
 import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";
@@ -121,6 +122,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PETRIFACTIONVORTE
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WEBBEDVORTEX.use, EFF_WEBBEDVORTEX.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MICROTRANSACTION.use, EFF_MICROTRANSACTION.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERMUSH.use, EFF_CYBERMUSH.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLAND.use, EFF_PLAND.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

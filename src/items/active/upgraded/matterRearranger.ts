@@ -208,7 +208,6 @@ export function use(
   while (points > 0) {
     // ---Copy base weights---
     const pickupWeights = copyWeights(BASE_PICKUP_WEIGHTS);
-    Isaac.DebugString(`source size outer:${pickupWeights.size}`);
 
     // ---Modify weights conditionally---
     for (const entry of pickupWeights) {
@@ -390,10 +389,8 @@ function copyWeights(
       cost: number;
     }
   >();
-  Isaac.DebugString(`source size inner:${source.size}`);
 
   for (const [key, value] of source.entries()) {
-    Isaac.DebugString(`source weight:${value.weight}`);
     out.set(key, { weight: value.weight, cost: value.cost });
   }
 

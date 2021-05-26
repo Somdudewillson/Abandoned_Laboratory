@@ -43,6 +43,9 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_MICROTRANSACTION = Isaac.GetItemIdByName("Microtransaction"),
   COLLECTIBLE_CYBERMUSH = Isaac.GetItemIdByName("Cyber Mush"),
   COLLECTIBLE_PLAND = Isaac.GetItemIdByName("Plan D"),
+  COLLECTIBLE_COUNTERFEITDEATHCERTIFICATE = Isaac.GetItemIdByName(
+    "Counterfeit Death Certificate",
+  ),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -241,6 +244,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
     CollectibleTypeLab.COLLECTIBLE_CYBERMUSH,
   ],
   [CollectibleType.COLLECTIBLE_PLAN_C, CollectibleTypeLab.COLLECTIBLE_PLAND],
+  [
+    CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE,
+    CollectibleTypeLab.COLLECTIBLE_COUNTERFEITDEATHCERTIFICATE,
+  ],
 ]);
 
 export const enum FireplaceVariant {

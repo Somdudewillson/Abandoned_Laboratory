@@ -39,6 +39,12 @@ export function use(
     ) {
       continue;
     }
+    if (
+      entity.Variant === PickupVariant.PICKUP_TAROTCARD &&
+      entity.SubType === Card.RUNE_JERA
+    ) {
+      continue;
+    }
 
     if (
       entity.Variant === PickupVariant.PICKUP_BIGCHEST ||

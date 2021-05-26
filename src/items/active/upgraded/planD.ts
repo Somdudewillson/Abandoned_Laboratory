@@ -35,6 +35,12 @@ export function use(
     entity.HitPoints -= DAMAGE_AMOUNT;
   }
 
+  if (player.GetMaxHearts() > 0) {
+    player.AddSoulHearts(-player.GetSoulHearts());
+    player.AddHearts(-player.GetHearts() + 1);
+  } else {
+    player.AddSoulHearts(-player.GetSoulHearts() + 1);
+  }
   player.TakeDamage(
     DAMAGE_AMOUNT,
     DamageFlag.DAMAGE_NOKILL,

@@ -1,4 +1,4 @@
-// TODO: Make the matter rearranger able to generate pills/cards
+// TODO: Maybe make the matter rearranger able to generate pills/cards?
 import { CollectibleTypeLab } from "../../../constants";
 import * as extMath from "../../../extMath";
 import { getCoinVal, spawnPickup } from "../../../utils";
@@ -7,136 +7,151 @@ const VALUE_MULT: float = 1;
 const BASE_PICKUP_WEIGHTS = new Map([
   // ===== Hearts =====
   [
-    PickupVariant.PICKUP_HEART * 100 + HeartSubType.HEART_FULL,
+    packForWeights(PickupVariant.PICKUP_HEART, HeartSubType.HEART_FULL),
     { weight: 400, cost: 3 },
   ],
   [
-    PickupVariant.PICKUP_HEART * 100 + HeartSubType.HEART_SOUL,
+    packForWeights(PickupVariant.PICKUP_HEART, HeartSubType.HEART_SOUL),
     { weight: 30, cost: 5 },
   ],
   [
-    PickupVariant.PICKUP_HEART * 100 + HeartSubType.HEART_HALF_SOUL,
+    packForWeights(PickupVariant.PICKUP_HEART, HeartSubType.HEART_HALF_SOUL),
     { weight: 30, cost: 3 },
   ],
   [
-    PickupVariant.PICKUP_HEART * 100 + HeartSubType.HEART_HALF,
+    packForWeights(PickupVariant.PICKUP_HEART, HeartSubType.HEART_HALF),
     { weight: 600, cost: 1 },
   ],
   [
-    PickupVariant.PICKUP_HEART * 100 + HeartSubType.HEART_DOUBLEPACK,
+    packForWeights(PickupVariant.PICKUP_HEART, HeartSubType.HEART_DOUBLEPACK),
     { weight: 200, cost: 6 },
   ],
   [
-    PickupVariant.PICKUP_HEART * 100 + HeartSubType.HEART_BLENDED,
+    packForWeights(PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLENDED),
     { weight: 15, cost: 6 },
   ],
   [
-    PickupVariant.PICKUP_HEART * 100 + HeartSubType.HEART_BONE,
+    packForWeights(PickupVariant.PICKUP_HEART, HeartSubType.HEART_BONE),
     { weight: 6, cost: 9 },
   ],
   [
-    PickupVariant.PICKUP_HEART * 100 + HeartSubType.HEART_ETERNAL,
+    packForWeights(PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL),
     { weight: 15, cost: 7 },
   ],
   [
-    PickupVariant.PICKUP_HEART * 100 + HeartSubType.HEART_BLACK,
+    packForWeights(PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLACK),
     { weight: 10, cost: 7 },
   ],
   [
-    PickupVariant.PICKUP_HEART * 100 + HeartSubType.HEART_GOLDEN,
+    packForWeights(PickupVariant.PICKUP_HEART, HeartSubType.HEART_GOLDEN),
     { weight: 10, cost: 4 },
   ],
   [
-    PickupVariant.PICKUP_HEART * 100 + HeartSubType.HEART_ROTTEN,
+    packForWeights(PickupVariant.PICKUP_HEART, HeartSubType.HEART_ROTTEN),
     { weight: 5, cost: 2 },
   ],
   // ===== Bombs =====
   [
-    PickupVariant.PICKUP_BOMB * 100 + BombSubType.BOMB_NORMAL,
+    packForWeights(PickupVariant.PICKUP_BOMB, BombSubType.BOMB_NORMAL),
     { weight: 100, cost: 5 },
   ],
   [
-    PickupVariant.PICKUP_BOMB * 100 + BombSubType.BOMB_DOUBLEPACK,
+    packForWeights(PickupVariant.PICKUP_BOMB, BombSubType.BOMB_DOUBLEPACK),
     { weight: 50, cost: 10 },
   ],
   [
-    PickupVariant.PICKUP_BOMB * 100 + BombSubType.BOMB_GOLDEN,
+    packForWeights(PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GOLDEN),
     { weight: 10, cost: 25 },
   ],
   [
-    PickupVariant.PICKUP_BOMB * 100 + BombSubType.BOMB_GIGA,
+    packForWeights(PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GIGA),
     { weight: 4, cost: 16 },
   ],
   [
-    PickupVariant.PICKUP_BOMB * 100 + BombSubType.BOMB_TROLL,
+    packForWeights(PickupVariant.PICKUP_BOMB, BombSubType.BOMB_TROLL),
     { weight: 15, cost: -2 },
   ],
   [
-    PickupVariant.PICKUP_BOMB * 100 + BombSubType.BOMB_SUPERTROLL,
+    packForWeights(PickupVariant.PICKUP_BOMB, BombSubType.BOMB_SUPERTROLL),
     { weight: 7.5, cost: -5 },
   ],
   [
-    PickupVariant.PICKUP_BOMB * 100 + BombSubType.BOMB_GOLDENTROLL,
+    packForWeights(PickupVariant.PICKUP_BOMB, BombSubType.BOMB_GOLDENTROLL),
     { weight: 2, cost: -20 },
   ],
   // ===== Keys =====
   [
-    PickupVariant.PICKUP_KEY * 100 + KeySubType.KEY_NORMAL,
+    packForWeights(PickupVariant.PICKUP_KEY, KeySubType.KEY_NORMAL),
     { weight: 100, cost: 5 },
   ],
   [
-    PickupVariant.PICKUP_KEY * 100 + KeySubType.KEY_DOUBLEPACK,
+    packForWeights(PickupVariant.PICKUP_KEY, KeySubType.KEY_DOUBLEPACK),
     { weight: 50, cost: 10 },
   ],
   [
-    PickupVariant.PICKUP_KEY * 100 + KeySubType.KEY_CHARGED,
+    packForWeights(PickupVariant.PICKUP_KEY, KeySubType.KEY_CHARGED),
     { weight: 33, cost: 10 },
   ],
   [
-    PickupVariant.PICKUP_KEY * 100 + KeySubType.KEY_GOLDEN,
+    packForWeights(PickupVariant.PICKUP_KEY, KeySubType.KEY_GOLDEN),
     { weight: 10, cost: 25 },
   ],
   // ===== Battery =====
   [
-    PickupVariant.PICKUP_LIL_BATTERY * 100 + BatterySubType.BATTERY_NORMAL,
+    packForWeights(
+      PickupVariant.PICKUP_LIL_BATTERY,
+      BatterySubType.BATTERY_NORMAL,
+    ),
     { weight: 100, cost: 5 },
   ],
   [
-    PickupVariant.PICKUP_LIL_BATTERY * 100 + BatterySubType.BATTERY_MICRO,
+    packForWeights(
+      PickupVariant.PICKUP_LIL_BATTERY,
+      BatterySubType.BATTERY_MICRO,
+    ),
     { weight: 50, cost: 2 },
   ],
   [
-    PickupVariant.PICKUP_LIL_BATTERY * 100 + BatterySubType.BATTERY_MEGA,
+    packForWeights(
+      PickupVariant.PICKUP_LIL_BATTERY,
+      BatterySubType.BATTERY_MEGA,
+    ),
     { weight: 50, cost: 12 },
   ],
   [
-    PickupVariant.PICKUP_LIL_BATTERY * 100 + BatterySubType.BATTERY_GOLDEN,
+    packForWeights(
+      PickupVariant.PICKUP_LIL_BATTERY,
+      BatterySubType.BATTERY_GOLDEN,
+    ),
     { weight: 10, cost: 25 },
   ],
   // ===== CHEST =====
   [
-    PickupVariant.PICKUP_CHEST * 100 + ChestSubType.CHEST_CLOSED,
+    packForWeights(PickupVariant.PICKUP_CHEST, ChestSubType.CHEST_CLOSED),
     { weight: 30, cost: 9 },
   ],
   [
-    PickupVariant.PICKUP_BOMBCHEST * 100 + ChestSubType.CHEST_CLOSED,
+    packForWeights(PickupVariant.PICKUP_BOMBCHEST, ChestSubType.CHEST_CLOSED),
     { weight: 20, cost: 12 },
   ],
   [
-    PickupVariant.PICKUP_LOCKEDCHEST * 100 + ChestSubType.CHEST_CLOSED,
+    packForWeights(PickupVariant.PICKUP_LOCKEDCHEST, ChestSubType.CHEST_CLOSED),
     { weight: 20, cost: 12 },
   ],
   [
-    PickupVariant.PICKUP_REDCHEST * 100 + ChestSubType.CHEST_CLOSED,
+    packForWeights(PickupVariant.PICKUP_REDCHEST, ChestSubType.CHEST_CLOSED),
     { weight: 10, cost: 16 },
   ],
   [
-    PickupVariant.PICKUP_ETERNALCHEST * 100 + ChestSubType.CHEST_CLOSED,
+    packForWeights(
+      PickupVariant.PICKUP_ETERNALCHEST,
+      ChestSubType.CHEST_CLOSED,
+    ),
     { weight: 8, cost: 21 },
   ],
   // ===== MISC =====
   [
-    PickupVariant.PICKUP_GRAB_BAG * 100 + SackSubType.SACK_NORMAL,
+    packForWeights(PickupVariant.PICKUP_GRAB_BAG, SackSubType.SACK_NORMAL),
     { weight: 33, cost: 7 },
   ],
 ]);
@@ -321,6 +336,17 @@ export function use(
 function evaluatePickup(pickup: EntityPickup): float {
   switch (pickup.Variant) {
     default:
+      if (
+        BASE_PICKUP_WEIGHTS.has(packForWeights(pickup.Variant, pickup.SubType))
+      ) {
+        const cost: number = BASE_PICKUP_WEIGHTS.get(
+          packForWeights(pickup.Variant, pickup.SubType),
+        )!.cost;
+        if (cost > 0) {
+          return cost;
+        }
+      }
+    // Falls through
     case PickupVariant.PICKUP_BED:
     case PickupVariant.PICKUP_BIGCHEST:
     case PickupVariant.PICKUP_COLLECTIBLE:
@@ -522,4 +548,8 @@ function modifyWeight(
     default:
       break;
   }
+}
+
+function packForWeights(variant: number, subtype: number): number {
+  return variant * 100 + subtype;
 }

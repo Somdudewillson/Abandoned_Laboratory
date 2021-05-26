@@ -16,6 +16,7 @@ export function use(
     CollectibleType.COLLECTIBLE_MEGA_MUSH,
     UseFlag.USE_NOANIM,
   );
+  player.SetColor(Color(0.3, 0.3, 0.25), 30 * 30, 1);
 
   return true;
 }

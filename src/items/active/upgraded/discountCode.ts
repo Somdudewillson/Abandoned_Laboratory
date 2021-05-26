@@ -80,8 +80,9 @@ export function postRoom(): void {
     if (!pickup.IsShopItem()) {
       continue;
     }
-
-    pickup.AutoUpdatePrice = false;
-    pickup.Price = Math.floor(pickup.Price / 2.5);
+    if (pickup.AutoUpdatePrice) {
+      pickup.AutoUpdatePrice = false;
+      pickup.Price = Math.floor(pickup.Price / 2.5);
+    }
   }
 }

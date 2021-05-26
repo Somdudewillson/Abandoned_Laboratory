@@ -130,4 +130,3 @@ dist
 # build files
 mod/main.lua
 mod/metadata.xml
-mod/content/*.xml

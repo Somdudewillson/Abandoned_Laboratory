@@ -40,6 +40,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_TERRORVORTEX = Isaac.GetItemIdByName("Terror Vortex"),
   COLLECTIBLE_PETRIFACTIONVORTEX = Isaac.GetItemIdByName("Petrifaction Vortex"),
   COLLECTIBLE_WEBBEDVORTEX = Isaac.GetItemIdByName("Webbed Vortex"),
+  COLLECTIBLE_MICROTRANSACTION = Isaac.GetItemIdByName("Microtransaction"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -228,6 +229,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
   [
     CollectibleType.COLLECTIBLE_SPIDER_BUTT,
     CollectibleTypeLab.COLLECTIBLE_WEBBEDVORTEX,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_MAGIC_FINGERS,
+    CollectibleTypeLab.COLLECTIBLE_MICROTRANSACTION,
   ],
 ]);
 

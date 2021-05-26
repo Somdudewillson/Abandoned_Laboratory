@@ -85,15 +85,20 @@ export function use(
           );
         }
         break;
-      case GridEntityType.GRID_ROCK_SPIKED:
-        gridEntity.SetType(GridEntityType.GRID_ROCK);
-        gridEntity.Update();
-        break;
-      case GridEntityType.GRID_PIT:
-        gridEntity.ToPit().SetLadder(true);
-        break;
-      case GridEntityType.GRID_ROCK:
       case GridEntityType.GRID_ROCKB:
+        if (rand.RandomFloat() < 0.45) {
+          break;
+        }
+      // Falls through
+      case GridEntityType.GRID_ROCK_SPIKED:
+        replaceGridEntity(gridEntity, GridEntityType.GRID_ROCK);
+        break;
+      case GridEntityType.GRID_PIT: {
+        const pit: GridEntityPit = gridEntity.ToPit();
+        pit.MakeBridge(null);
+        break;
+      }
+      case GridEntityType.GRID_ROCK:
         if (rand.RandomFloat() < 0.4) {
           gridEntity.Destroy(false);
 
@@ -116,7 +121,7 @@ export function use(
             );
           }
 
-          if (rand.RandomFloat() < 0.03) {
+          if (rand.RandomFloat() < 0.02) {
             spawnPickup(
               gridEntity.Position,
               rand,
@@ -125,24 +130,29 @@ export function use(
             );
           }
         } else if (rand.RandomFloat() < 0.1) {
-          gridEntity.SetType(GridEntityType.GRID_ROCKT);
+          replaceGridEntity(gridEntity, GridEntityType.GRID_ROCKT);
         }
         break;
       case GridEntityType.GRID_POOP: {
-        const poop = gridEntity.ToPoop();
-
-        switch (poop.GetVariant()) {
+        switch (gridEntity.GetVariant()) {
           case PoopVariant.RED:
-            poop.SetVariant(PoopVariant.NORMAL);
-            poop.Update();
+            replaceGridEntity(
+              gridEntity,
+              GridEntityType.GRID_POOP,
+              PoopVariant.NORMAL,
+            );
             break;
           case PoopVariant.NORMAL:
-            if (rand.RandomFloat() < 0.5) {
+            if (rand.RandomFloat() < 0.45) {
               switch (randomInt(rand, 1, 5)) {
                 default:
                 case 1:
                 case 2:
-                  poop.SetVariant(PoopVariant.RAINBOW);
+                  replaceGridEntity(
+                    gridEntity,
+                    GridEntityType.GRID_POOP,
+                    PoopVariant.RAINBOW,
+                  );
 
                   if (rand.RandomFloat() < 0.2) {
                     spawnPickupCluster(
@@ -155,7 +165,11 @@ export function use(
                   }
                   break;
                 case 3:
-                  poop.SetVariant(PoopVariant.BLACK);
+                  replaceGridEntity(
+                    gridEntity,
+                    GridEntityType.GRID_POOP,
+                    PoopVariant.BLACK,
+                  );
 
                   if (rand.RandomFloat() < 0.05) {
                     spawnPickup(
@@ -168,7 +182,11 @@ export function use(
                   break;
                 case 4:
                 case 5:
-                  poop.SetVariant(PoopVariant.GOLDEN);
+                  replaceGridEntity(
+                    gridEntity,
+                    GridEntityType.GRID_POOP,
+                    PoopVariant.GOLDEN,
+                  );
 
                   if (rand.RandomFloat() < 0.2) {
                     spawnCoins(
@@ -181,7 +199,6 @@ export function use(
                   break;
               }
             }
-            poop.Update();
             break;
           default:
             break;
@@ -194,4 +211,13 @@ export function use(
   }
 
   return true;
+}
+
+function replaceGridEntity(
+  original: GridEntity,
+  newType: int,
+  newVariant: int = 0,
+): void {
+  original.Destroy(true);
+  Isaac.GridSpawn(newType, newVariant, original.Position, true);
 }

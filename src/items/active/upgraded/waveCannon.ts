@@ -40,9 +40,9 @@ export function use(
     firedTear.SetColor(Color(0.7, 0.8, 1, 0.7), -1, 1);
     firedTear.SizeMulti = Vector(2, 2);
     firedTear.KnockbackMultiplier *= 100;
-    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_PIERCING);
-    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_SPECTRAL);
-    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_HYDROBOUNCE);
+    firedTear.AddTearFlags(TearFlags.TEAR_PIERCING);
+    firedTear.AddTearFlags(TearFlags.TEAR_SPECTRAL);
+    firedTear.AddTearFlags(TearFlags.TEAR_HYDROBOUNCE);
   }
 
   // Fire wave 2
@@ -65,9 +65,9 @@ export function use(
     firedTear.SetColor(Color(0, 0.6, 1, 0.55), -1, 1);
     firedTear.SizeMulti = Vector(3.5, 3.5);
     firedTear.KnockbackMultiplier *= 500;
-    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_PIERCING);
-    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_SPECTRAL);
-    firedTear.TearFlags = firedTear.TearFlags.bor(TearFlags.TEAR_HYDROBOUNCE);
+    firedTear.AddTearFlags(TearFlags.TEAR_PIERCING);
+    firedTear.AddTearFlags(TearFlags.TEAR_SPECTRAL);
+    firedTear.AddTearFlags(TearFlags.TEAR_HYDROBOUNCE);
   }
 
   return true;

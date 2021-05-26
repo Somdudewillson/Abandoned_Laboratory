@@ -54,7 +54,7 @@ export function preClean(_rand: RNG, _SpawnPosition: Vector): boolean | null {
         }
       }
     }
-    player = Isaac.GetPlayer(p++);
+    player = Isaac.GetPlayer(++p);
   }
   return null;
 }

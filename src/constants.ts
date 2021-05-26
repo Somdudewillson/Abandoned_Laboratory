@@ -102,6 +102,14 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
     CollectibleType.COLLECTIBLE_MOVING_BOX,
     CollectibleType.COLLECTIBLE_BLUE_BOX as number,
   ],
+  [
+    CollectibleType.COLLECTIBLE_D6,
+    CollectibleType.COLLECTIBLE_ETERNAL_D6 as number,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_ETERNAL_D6,
+    CollectibleType.COLLECTIBLE_D6 as number,
+  ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,

@@ -12,10 +12,41 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
-  player.UseCard(
-    Card.CARD_SOUL_CAIN,
-    UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER,
-  );
+  if (Game().GetRoom().GetType() === RoomType.ROOM_ERROR) {
+    player.UseCard(
+      Card.CARD_FOOL,
+      UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER,
+    );
+  } else {
+    player.UseCard(
+      Card.CARD_SOUL_CAIN,
+      UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER,
+    );
+  }
 
   return true;
+}
+
+export function postRoom(): void {
+  if (Game().GetRoom().GetType() !== RoomType.ROOM_ERROR) {
+    return;
+  }
+
+  for (let p = 0; p < Game().GetNumPlayers(); p++) {
+    const player = Isaac.GetPlayer(p);
+    if (player == null) {
+      continue;
+    }
+
+    if (!player.HasCollectible(ownType())) {
+      continue;
+    }
+
+    for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
+      if (player.GetActiveItem(s) === ownType()) {
+        player.FullCharge(s, true);
+        return;
+      }
+    }
+  }
 }

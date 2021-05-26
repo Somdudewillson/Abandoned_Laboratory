@@ -47,6 +47,7 @@ export enum CollectibleTypeLab {
     "Counterfeit Death Certificate",
   ),
   COLLECTIBLE_STRAIGHTENEDPENNY = Isaac.GetItemIdByName("Straightened Penny"),
+  COLLECTIBLE_CRIMSONKEY = Isaac.GetItemIdByName("Crimson Key"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -252,6 +253,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
   [
     CollectibleType.COLLECTIBLE_CROOKED_PENNY,
     CollectibleTypeLab.COLLECTIBLE_STRAIGHTENEDPENNY,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_RED_KEY,
+    CollectibleTypeLab.COLLECTIBLE_CRIMSONKEY,
   ],
 ]);
 

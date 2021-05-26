@@ -43,6 +43,7 @@ import * as EFF_CYBERMUSH from "./items/active/upgraded/cyberMush";
 import * as EFF_PLAND from "./items/active/upgraded/planD";
 import * as EFF_COUNTERFEITDEATHCERTIFICATE from "./items/active/upgraded/counterfeitDeathCertificate";
 import * as EFF_STRAIGHTENEDPENNY from "./items/active/upgraded/straightenedPenny";
+import * as EFF_CRIMSONKEY from "./items/active/upgraded/crimsonKey";
 // --- Upgraded Starting Actives ---
 import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";
@@ -127,6 +128,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERMUSH.use, EF
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLAND.use, EFF_PLAND.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_COUNTERFEITDEATHCERTIFICATE.use, EFF_COUNTERFEITDEATHCERTIFICATE.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STRAIGHTENEDPENNY.use, EFF_STRAIGHTENEDPENNY.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CRIMSONKEY.use, EFF_CRIMSONKEY.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

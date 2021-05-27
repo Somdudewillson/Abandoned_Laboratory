@@ -36,6 +36,7 @@ const SAVE_DATA = new Map([
   [
     "player1",
     new Map([
+      ["persistent", new Map<string, unknown>()],
       ["perRun", new Map<string, unknown>()],
       ["perFloor", new Map<string, unknown>()],
       ["perRoom", new Map<string, unknown>()],
@@ -44,6 +45,7 @@ const SAVE_DATA = new Map([
   [
     "player2",
     new Map([
+      ["persistent", new Map<string, unknown>()],
       ["perRun", new Map<string, unknown>()],
       ["perFloor", new Map<string, unknown>()],
       ["perRoom", new Map<string, unknown>()],
@@ -52,6 +54,7 @@ const SAVE_DATA = new Map([
   [
     "player3",
     new Map([
+      ["persistent", new Map<string, unknown>()],
       ["perRun", new Map<string, unknown>()],
       ["perFloor", new Map<string, unknown>()],
       ["perRoom", new Map<string, unknown>()],
@@ -60,6 +63,7 @@ const SAVE_DATA = new Map([
   [
     "player4",
     new Map([
+      ["persistent", new Map<string, unknown>()],
       ["perRun", new Map<string, unknown>()],
       ["perFloor", new Map<string, unknown>()],
       ["perRoom", new Map<string, unknown>()],
@@ -140,6 +144,7 @@ function wipePerRun() {
   for (const root of ROOTS) {
     SAVE_DATA.get(root)!.get(SaveType.PER_RUN)!.clear();
     SAVE_DATA.get(root)!.get(SaveType.PER_FLOOR)!.clear();
+    SAVE_DATA.get(root)!.get(SaveType.PER_ROOM)!.clear();
     SAVE_DATA.get(root)!.get(SaveType.PER_ROOM)!.clear();
   }
 }

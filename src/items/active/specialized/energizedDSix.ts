@@ -1,4 +1,5 @@
 import { CollectibleTypeLab } from "../../../constants";
+import { chargeEffect } from "../../../utils";
 
 const REROLL_SIM_COUNT = 5;
 const CHARGE_COST_PER_ITEM = 2;
@@ -71,6 +72,9 @@ export function use(
     Math.max(6 - itemCount * CHARGE_COST_PER_ITEM, 0),
     ActiveSlot,
   );
+  if (player.GetActiveCharge(ActiveSlot) > 0) {
+    chargeEffect(player.Position);
+  }
 
   return { Discharge: false, Remove: false, ShowAnim: true };
 }

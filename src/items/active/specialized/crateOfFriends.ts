@@ -24,7 +24,7 @@ export function use(
   player.UseActiveItem(CollectibleType.COLLECTIBLE_BOX_OF_FRIENDS, 0);
 
   for (const item of FRIEND_ITEMS) {
-    Isaac.DebugString(`FRIEND_ITEM: ${item}`);
+    // Isaac.DebugString(`FRIEND_ITEM: ${item}`);
     if (player.HasCollectible(item) && rand.RandomFloat() < REPLICATE_CHANCE) {
       player.AddCollectible(item);
     }

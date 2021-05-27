@@ -1,7 +1,10 @@
 import { CollectibleTypeLab } from "../../../constants";
 import * as extMath from "../../../extMath";
+import * as SaveUtil from "../../../saveData";
+import { SaveType } from "../../../saveData";
 import { spawnCoins } from "../../../utils";
 
+const DATA_KEY = "nickel_hearts";
 const NICKEL_HEALTH_CAP: int = 3;
 
 export function ownType(): number {
@@ -16,10 +19,15 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean {
-  const playerData = player.GetData();
   let nickelHearts: int = 0;
-  if (playerData.nickelHearts != null) {
-    nickelHearts = playerData.nickelHearts as number;
+  if (
+    SaveUtil.getPlayerData(player.Index, SaveType.PER_RUN, DATA_KEY) != null
+  ) {
+    nickelHearts = SaveUtil.getPlayerData(
+      player.Index,
+      SaveType.PER_RUN,
+      DATA_KEY,
+    ) as number;
   }
 
   if (rand.RandomFloat() < 0.75) {
@@ -36,7 +44,12 @@ export function use(
       nickelHearts < NICKEL_HEALTH_CAP &&
       rand.RandomFloat() < 0.75 - nickelHearts * 0.25
     ) {
-      playerData.nickelHearts = nickelHearts + 1;
+      SaveUtil.savePlayerData(
+        player.Index,
+        SaveType.PER_RUN,
+        DATA_KEY,
+        nickelHearts + 1,
+      );
     }
   }
 
@@ -62,15 +75,26 @@ export function interceptDamage(
     return null;
   }
 
-  const playerData = player.GetData();
-  if (playerData.nickelHearts == null) {
+  if (
+    SaveUtil.getPlayerData(player.Index, SaveType.PER_RUN, DATA_KEY) == null
+  ) {
     return null;
   }
-  const nickelHearts: int = playerData.nickelHearts as number;
+  const nickelHearts: int = SaveUtil.getPlayerData(
+    player.Index,
+    SaveType.PER_RUN,
+    DATA_KEY,
+  ) as number;
   if (nickelHearts <= 0) {
     return null;
   }
-  playerData.nickelHearts = nickelHearts - 1;
+
+  SaveUtil.savePlayerData(
+    player.Index,
+    SaveType.PER_RUN,
+    DATA_KEY,
+    nickelHearts - 1,
+  );
   player.TakeDamage(DamageAmount, DamageFlag.DAMAGE_FAKE, DamageSource, 0);
 
   const rand: RNG = player.GetCollectibleRNG(ownType());

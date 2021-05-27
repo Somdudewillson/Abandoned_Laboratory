@@ -3,7 +3,6 @@
 // Define imports
 import { randomCollectible } from "./constants";
 import * as SaveUtil from "./saveData";
-import { SaveType } from "./saveData";
 // ===== import item code =====
 // --- Normal Upgraded Actives ---
 import * as EFF_DigitalCard from "./items/active/upgraded/digitalCard";

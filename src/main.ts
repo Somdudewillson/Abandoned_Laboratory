@@ -47,6 +47,7 @@ import * as EFF_CRIMSONKEY from "./items/active/upgraded/crimsonKey";
 import * as EFF_DIGITALFORTUNE from "./items/active/upgraded/digitalFortune";
 import * as EFF_VENDINGMACHINE from "./items/active/upgraded/vendingMachine";
 import * as EFF_BLOODALCHEMIZER from "./items/active/upgraded/bloodAlchemizer";
+import * as EFF_SUMMARIZEDBIBLE from "./items/active/upgraded/summarizedBible";
 // --- Upgraded Starting Actives ---
 import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";
@@ -136,6 +137,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_CRIMSONKEY.p
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DIGITALFORTUNE.use, EFF_DIGITALFORTUNE.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_VENDINGMACHINE.use, EFF_VENDINGMACHINE.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLOODALCHEMIZER.use, EFF_BLOODALCHEMIZER.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUMMARIZEDBIBLE.use, EFF_SUMMARIZEDBIBLE.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

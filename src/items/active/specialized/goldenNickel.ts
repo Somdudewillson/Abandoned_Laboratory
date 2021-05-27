@@ -4,7 +4,7 @@ import * as SaveUtil from "../../../saveData";
 import { SaveType } from "../../../saveData";
 import { spawnCoins } from "../../../utils";
 
-const DATA_KEY = "nickel_hearts";
+export const KEY_NICKEL_HEARTS = "nickel_hearts";
 const NICKEL_HEALTH_CAP: int = 3;
 
 export function ownType(): number {
@@ -21,12 +21,13 @@ export function use(
 ): boolean {
   let nickelHearts: int = 0;
   if (
-    SaveUtil.getPlayerData(player.Index, SaveType.PER_RUN, DATA_KEY) != null
+    SaveUtil.getPlayerData(player.Index, SaveType.PER_RUN, KEY_NICKEL_HEARTS) !=
+    null
   ) {
     nickelHearts = SaveUtil.getPlayerData(
       player.Index,
       SaveType.PER_RUN,
-      DATA_KEY,
+      KEY_NICKEL_HEARTS,
     ) as number;
   }
 
@@ -47,7 +48,7 @@ export function use(
       SaveUtil.savePlayerData(
         player.Index,
         SaveType.PER_RUN,
-        DATA_KEY,
+        KEY_NICKEL_HEARTS,
         nickelHearts + 1,
       );
     }
@@ -76,14 +77,15 @@ export function interceptDamage(
   }
 
   if (
-    SaveUtil.getPlayerData(player.Index, SaveType.PER_RUN, DATA_KEY) == null
+    SaveUtil.getPlayerData(player.Index, SaveType.PER_RUN, KEY_NICKEL_HEARTS) ==
+    null
   ) {
     return null;
   }
   const nickelHearts: int = SaveUtil.getPlayerData(
     player.Index,
     SaveType.PER_RUN,
-    DATA_KEY,
+    KEY_NICKEL_HEARTS,
   ) as number;
   if (nickelHearts <= 0) {
     return null;
@@ -92,7 +94,7 @@ export function interceptDamage(
   SaveUtil.savePlayerData(
     player.Index,
     SaveType.PER_RUN,
-    DATA_KEY,
+    KEY_NICKEL_HEARTS,
     nickelHearts - 1,
   );
   player.TakeDamage(DamageAmount, DamageFlag.DAMAGE_FAKE, DamageSource, 0);

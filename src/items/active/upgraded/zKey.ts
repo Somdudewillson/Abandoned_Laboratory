@@ -1,4 +1,5 @@
 import { CollectibleTypeLab } from "../../../constants";
+import { chargeEffect } from "../../../utils";
 
 export function ownType(): number {
   return CollectibleTypeLab.COLLECTIBLE_ZKEY as number;
@@ -40,6 +41,9 @@ export function tick(): void {
         player.GetActiveItem(s) === ownType() &&
         player.GetActiveCharge(s) < 300
       ) {
+        if (player.GetActiveCharge(s) === 299) {
+          chargeEffect(player.Position);
+        }
         player.SetActiveCharge(player.GetActiveCharge(s) + 1, s);
       }
     }

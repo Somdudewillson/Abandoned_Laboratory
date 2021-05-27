@@ -1,4 +1,5 @@
 import { CollectibleTypeLab } from "../../../constants";
+import { chargeEffect } from "../../../utils";
 
 export function ownType(): number {
   return CollectibleTypeLab.COLLECTIBLE_CRIMSONKEY as number;
@@ -45,6 +46,7 @@ export function postRoom(): void {
     for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
       if (player.GetActiveItem(s) === ownType()) {
         player.FullCharge(s, true);
+        chargeEffect(player.Position);
         return;
       }
     }

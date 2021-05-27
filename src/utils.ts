@@ -280,3 +280,15 @@ export function toTearFlag(x: int): BitSet128 {
   }
   return BitSet128(1 << x, 0);
 }
+
+export function chargeEffect(position: Vector): void {
+  Isaac.Spawn(
+    EntityType.ENTITY_EFFECT,
+    EffectVariant.BATTERY,
+    0,
+    position,
+    Vector.Zero,
+    null,
+  );
+  playSound(SoundEffect.SOUND_BATTERYCHARGE);
+}

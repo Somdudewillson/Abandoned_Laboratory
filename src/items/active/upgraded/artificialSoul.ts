@@ -1,5 +1,5 @@
 import { CollectibleTypeLab } from "../../../constants";
-import { playSound } from "../../../utils";
+import { chargeEffect } from "../../../utils";
 
 export function ownType(): number {
   return CollectibleTypeLab.COLLECTIBLE_ARTIFICIALSOUL as number;
@@ -68,7 +68,7 @@ export function postRoom(): void {
     for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
       if (player.GetActiveItem(s) === ownType()) {
         if (player.GetActiveCharge(s) < newCharge) {
-          playSound(SoundEffect.SOUND_BATTERYCHARGE);
+          chargeEffect(player.Position);
         }
         player.SetActiveCharge(newCharge, s);
       }

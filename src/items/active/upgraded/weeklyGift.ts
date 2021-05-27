@@ -1,6 +1,6 @@
 import { CollectibleTypeLab } from "../../../constants";
 import { tanh } from "../../../extMath";
-import { playSound, spawnPickup } from "../../../utils";
+import { chargeEffect, spawnPickup } from "../../../utils";
 
 export function ownType(): number {
   return CollectibleTypeLab.COLLECTIBLE_WEEKLYGIFT as number;
@@ -68,7 +68,7 @@ export function postLevel(): void {
     for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
       if (player.GetActiveItem(s) === ownType()) {
         player.SetActiveCharge(1, s);
-        playSound(SoundEffect.SOUND_BATTERYCHARGE);
+        chargeEffect(player.Position);
       }
     }
   }

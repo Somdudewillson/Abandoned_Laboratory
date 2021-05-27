@@ -3,7 +3,8 @@ import * as SaveUtil from "../../../saveData";
 import { SaveType } from "../../../saveData";
 import { chargeEffect } from "../../../utils";
 
-const DATA_KEY = "artificial_soul_visited";
+const KEY_VISITED_ROOMS = "artificial_soul_visited";
+const KEY_USED = "artificial_soul_used";
 
 export function ownType(): number {
   return CollectibleTypeLab.COLLECTIBLE_ARTIFICIALSOUL as number;
@@ -19,7 +20,13 @@ export function use(
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
   player.UseActiveItem(CollectibleType.COLLECTIBLE_EDENS_SOUL);
 
-  SaveUtil.savePlayerData(player.Index, SaveType.PER_FLOOR, DATA_KEY, []);
+  SaveUtil.savePlayerData(
+    player.Index,
+    SaveType.PER_FLOOR,
+    KEY_VISITED_ROOMS,
+    [],
+  );
+  SaveUtil.savePlayerData(player.Index, SaveType.PER_FLOOR, KEY_USED, true);
 
   return true;
 }
@@ -39,20 +46,28 @@ export function postRoom(): void {
     if (!player.HasCollectible(ownType())) {
       continue;
     }
+    if (SaveUtil.getPlayerData(player.Index, SaveType.PER_FLOOR, KEY_USED)) {
+      continue;
+    }
 
     Isaac.DebugString(`Current room index:${level.GetCurrentRoomIndex()}`);
     let visitedRoomData = SaveUtil.getPlayerData(
       player.Index,
       SaveType.PER_FLOOR,
-      DATA_KEY,
+      KEY_VISITED_ROOMS,
     ) as int[] | null;
     if (visitedRoomData == null) {
-      SaveUtil.savePlayerData(player.Index, SaveType.PER_FLOOR, DATA_KEY, []);
+      SaveUtil.savePlayerData(
+        player.Index,
+        SaveType.PER_FLOOR,
+        KEY_VISITED_ROOMS,
+        [],
+      );
 
       visitedRoomData = SaveUtil.getPlayerData(
         player.Index,
         SaveType.PER_FLOOR,
-        DATA_KEY,
+        KEY_VISITED_ROOMS,
       ) as int[];
     }
     if (visitedRoomData.indexOf(level.GetCurrentRoomIndex()) === -1) {

@@ -48,7 +48,7 @@ export function use(
         BombSubType.BOMB_NORMAL,
         true,
       );
-    } else if (dropRoll < 0.29 + 0.24 + 0.24) {
+    } else if (dropRoll < 0.29 + 0.24 + 0.23) {
       // 23% chance key
       spawnPickup(
         player.Position,
@@ -57,9 +57,9 @@ export function use(
         KeySubType.KEY_NORMAL,
         true,
       );
-    } else if (dropRoll < 0.29 + 0.24 + 0.24 + 0.2) {
-      // 20% chance 2 coins
-      spawnCoins(2, player.Position, rand, false, true);
+    } else if (dropRoll < 0.29 + 0.24 + 0.23 + 0.2) {
+      // 20% chance 3 coins
+      spawnCoins(3, player.Position, rand, false, true);
     } else {
       // 3% chance pretty fly
       player.AddPrettyFly();

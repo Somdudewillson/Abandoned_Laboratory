@@ -45,7 +45,7 @@ export function use(
         true,
       );
     }
-    playSound(SoundEffect.SOUND_THUMBSUP);
+    playSound(SoundEffect.SOUND_SLOTSPAWN);
   } else {
     playSound(SoundEffect.SOUND_THUMBS_DOWN);
   }

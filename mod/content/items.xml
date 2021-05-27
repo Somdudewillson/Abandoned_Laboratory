@@ -39,6 +39,7 @@
 	<active description="Fake Your Death" gfx="counterfeitdeathcertificate.png" maxcharges="0" name="Counterfeit Death Certificate" hidden="true"/>
 	<active description="75/25" gfx="straightenedpenny.png" maxcharges="4" name="Straightened Penny" hidden="true"/>
 	<active description="Explore every other side" gfx="crimsonkey.png" maxcharges="4" name="Crimson Key" hidden="true"/>
+	<active description="Useful Reusable Fortunes" gfx="digitalfortune.png" maxcharges="3" name="Digital Fortune" hidden="true"/>
 
 	<active description="Flip a Coin" gfx="goldennickel.png" maxcharges="200" chargetype="timed" name="Golden Nickel" hidden="true"/>
 	<active description="Active Reusable Regeneration" gfx="reconstructiveheart.png" maxcharges="4" name="Reconstructive Heart" hidden="true"/>

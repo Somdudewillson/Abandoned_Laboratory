@@ -45,6 +45,7 @@ export function use(
         true,
       );
     }
+    playSound(SoundEffect.SOUND_THUMBSUP);
   } else {
     playSound(SoundEffect.SOUND_THUMBS_DOWN);
   }

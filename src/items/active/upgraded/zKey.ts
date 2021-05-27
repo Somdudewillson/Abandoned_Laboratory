@@ -50,20 +50,14 @@ export function tick(): void {
   }
 }
 
-export function postRoom(): void {
-  for (let p = 0; p < Game().GetNumPlayers(); p++) {
-    const player = Isaac.GetPlayer(p);
-    if (player == null) {
-      continue;
-    }
-    if (!player.HasCollectible(ownType())) {
-      continue;
-    }
+export function postRoom(player: EntityPlayer): void {
+  if (!player.HasCollectible(ownType())) {
+    return;
+  }
 
-    const triggerSlot = player.GetData().zTriggered as number;
-    if (triggerSlot !== 0) {
-      player.SetActiveCharge(0, triggerSlot - 1);
-      player.GetData().zTriggered = 0;
-    }
+  const triggerSlot = player.GetData().zTriggered as number;
+  if (triggerSlot !== 0) {
+    player.SetActiveCharge(0, triggerSlot - 1);
+    player.GetData().zTriggered = 0;
   }
 }

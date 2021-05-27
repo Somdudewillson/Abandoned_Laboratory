@@ -28,27 +28,11 @@ export function use(
   return true;
 }
 
-export function postRoom(): void {
+export function postRoom(player: EntityPlayer, slot: ActiveSlot): void {
   if (Game().GetRoom().GetType() !== RoomType.ROOM_ERROR) {
     return;
   }
 
-  for (let p = 0; p < Game().GetNumPlayers(); p++) {
-    const player = Isaac.GetPlayer(p);
-    if (player == null) {
-      continue;
-    }
-
-    if (!player.HasCollectible(ownType())) {
-      continue;
-    }
-
-    for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
-      if (player.GetActiveItem(s) === ownType()) {
-        player.FullCharge(s, true);
-        chargeEffect(player.Position);
-        return;
-      }
-    }
-  }
+  player.FullCharge(slot, true);
+  chargeEffect(player.Position);
 }

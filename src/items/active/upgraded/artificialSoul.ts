@@ -31,66 +31,60 @@ export function use(
   return true;
 }
 
-export function postRoom(): void {
+export function postRoom(player: EntityPlayer): void {
   const room = Game().GetRoom();
   const level = Game().GetLevel();
   if (room.GetType() === RoomType.ROOM_ERROR) {
     return;
   }
 
-  for (let p = 0; p < Game().GetNumPlayers(); p++) {
-    const player = Isaac.GetPlayer(p);
-    if (player == null) {
-      continue;
-    }
-    if (!player.HasCollectible(ownType())) {
-      continue;
-    }
-    if (SaveUtil.getPlayerData(player.Index, SaveType.PER_FLOOR, KEY_USED)) {
-      continue;
-    }
+  if (!player.HasCollectible(ownType())) {
+    return;
+  }
+  if (SaveUtil.getPlayerData(player.Index, SaveType.PER_FLOOR, KEY_USED)) {
+    return;
+  }
 
-    // Isaac.DebugString(`Current room index:${level.GetCurrentRoomIndex()}`);
-    let visitedRoomData = SaveUtil.getPlayerData(
+  // Isaac.DebugString(`Current room index:${level.GetCurrentRoomIndex()}`);
+  let visitedRoomData = SaveUtil.getPlayerData(
+    player.Index,
+    SaveType.PER_FLOOR,
+    KEY_VISITED_ROOMS,
+  ) as int[] | null;
+  if (visitedRoomData == null) {
+    SaveUtil.savePlayerData(
       player.Index,
       SaveType.PER_FLOOR,
       KEY_VISITED_ROOMS,
-    ) as int[] | null;
-    if (visitedRoomData == null) {
-      SaveUtil.savePlayerData(
-        player.Index,
-        SaveType.PER_FLOOR,
-        KEY_VISITED_ROOMS,
-        [],
-      );
-
-      visitedRoomData = SaveUtil.getPlayerData(
-        player.Index,
-        SaveType.PER_FLOOR,
-        KEY_VISITED_ROOMS,
-      ) as int[];
-    }
-    if (visitedRoomData.indexOf(level.GetCurrentRoomIndex()) === -1) {
-      visitedRoomData.push(level.GetCurrentRoomIndex());
-    }
-
-    const visitedUniqueRooms = visitedRoomData.length;
-
-    // Isaac.DebugString(
-    //   `Unique rooms visited:${visitedUniqueRooms}/${level.GetRoomCount()}`,
-    // );
-    const newCharge = math.min(
-      Math.floor((visitedUniqueRooms / (level.GetRoomCount() * 0.9)) * 100),
-      100,
+      [],
     );
 
-    for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
-      if (player.GetActiveItem(s) === ownType()) {
-        if (player.GetActiveCharge(s) < newCharge) {
-          chargeEffect(player.Position);
-        }
-        player.SetActiveCharge(newCharge, s);
+    visitedRoomData = SaveUtil.getPlayerData(
+      player.Index,
+      SaveType.PER_FLOOR,
+      KEY_VISITED_ROOMS,
+    ) as int[];
+  }
+  if (visitedRoomData.indexOf(level.GetCurrentRoomIndex()) === -1) {
+    visitedRoomData.push(level.GetCurrentRoomIndex());
+  }
+
+  const visitedUniqueRooms = visitedRoomData.length;
+
+  // Isaac.DebugString(
+  //   `Unique rooms visited:${visitedUniqueRooms}/${level.GetRoomCount()}`,
+  // );
+  const newCharge = math.min(
+    Math.floor((visitedUniqueRooms / (level.GetRoomCount() * 0.9)) * 100),
+    100,
+  );
+
+  for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
+    if (player.GetActiveItem(s) === ownType()) {
+      if (player.GetActiveCharge(s) < newCharge) {
+        chargeEffect(player.Position);
       }
+      player.SetActiveCharge(newCharge, s);
     }
   }
 }

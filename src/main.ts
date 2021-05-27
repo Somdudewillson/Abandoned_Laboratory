@@ -72,7 +72,6 @@ const USER_TEST = true;
 function postGameStarted(isContinued:boolean) {
   if (ABANDONED_LABORATORY.HasData()) {
     SaveUtil.deserialize(ABANDONED_LABORATORY.LoadData(),isContinued);
-    Isaac.DebugString(`========== test: ${SaveUtil.getGlobalData(SaveType.PERSISTENT, "test")}`);
   }
 
   if (!isContinued && USER_TEST) {

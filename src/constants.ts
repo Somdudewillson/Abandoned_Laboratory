@@ -40,6 +40,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_TERRORVORTEX = Isaac.GetItemIdByName("Terror Vortex"),
   COLLECTIBLE_PETRIFACTIONVORTEX = Isaac.GetItemIdByName("Petrifaction Vortex"),
   COLLECTIBLE_WEBBEDVORTEX = Isaac.GetItemIdByName("Webbed Vortex"),
+  COLLECTIBLE_CHRONALVORTEX = Isaac.GetItemIdByName("Chronal Vortex"),
   COLLECTIBLE_MICROTRANSACTION = Isaac.GetItemIdByName("Microtransaction"),
   COLLECTIBLE_CYBERMUSH = Isaac.GetItemIdByName("Cyber Mush"),
   COLLECTIBLE_PLAND = Isaac.GetItemIdByName("Plan D"),
@@ -93,10 +94,6 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
   [
     CollectibleType.COLLECTIBLE_PONY,
     CollectibleType.COLLECTIBLE_WHITE_PONY as number,
-  ],
-  [
-    CollectibleType.COLLECTIBLE_HOURGLASS,
-    CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS as number,
   ],
   [
     CollectibleType.COLLECTIBLE_BEAN,
@@ -248,6 +245,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
   [
     CollectibleType.COLLECTIBLE_SPIDER_BUTT,
     CollectibleTypeLab.COLLECTIBLE_WEBBEDVORTEX,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_HOURGLASS,
+    CollectibleTypeLab.COLLECTIBLE_CHRONALVORTEX,
   ],
   [
     CollectibleType.COLLECTIBLE_MAGIC_FINGERS,

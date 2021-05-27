@@ -38,6 +38,7 @@ import * as EFF_WAVECANNON from "./items/active/upgraded/waveCannon";
 import * as EFF_TERRORVORTEX from "./items/active/upgraded/terrorVortex";
 import * as EFF_PETRIFACTIONVORTEX from "./items/active/upgraded/pertifactionVortex";
 import * as EFF_WEBBEDVORTEX from "./items/active/upgraded/webbedVortex";
+import * as EFF_CHRONALVORTEX from "./items/active/upgraded/chronalVortex";
 import * as EFF_MICROTRANSACTION from "./items/active/upgraded/microtransaction";
 import * as EFF_CYBERMUSH from "./items/active/upgraded/cyberMush";
 import * as EFF_PLAND from "./items/active/upgraded/planD";
@@ -127,6 +128,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WAVECANNON.use, E
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TERRORVORTEX.use, EFF_TERRORVORTEX.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PETRIFACTIONVORTEX.use, EFF_PETRIFACTIONVORTEX.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WEBBEDVORTEX.use, EFF_WEBBEDVORTEX.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CHRONALVORTEX.use, EFF_CHRONALVORTEX.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MICROTRANSACTION.use, EFF_MICROTRANSACTION.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERMUSH.use, EFF_CYBERMUSH.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLAND.use, EFF_PLAND.ownType());

@@ -41,6 +41,7 @@
 	<active description="Explore every other side" gfx="crimsonkey.png" maxcharges="4" name="Crimson Key" hidden="true"/>
 	<active description="Useful Reusable Fortunes" gfx="digitalfortune.png" maxcharges="2" name="Digital Fortune" hidden="true"/>
 	<active description="Jams Sometimes" gfx="vendingmachine.png" maxcharges="0" name="Vending Machine" hidden="true"/>
+	<active description="Blood to Gold" gfx="bloodalchemizer.png" maxcharges="0" name="Blood Alchemizer" hidden="true"/>
 
 	<active description="Flip a Coin" gfx="goldennickel.png" maxcharges="200" chargetype="timed" name="Golden Nickel" hidden="true"/>
 	<active description="Active Reusable Regeneration" gfx="reconstructiveheart.png" maxcharges="4" name="Reconstructive Heart" hidden="true"/>

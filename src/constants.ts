@@ -50,6 +50,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_CRIMSONKEY = Isaac.GetItemIdByName("Crimson Key"),
   COLLECTIBLE_DIGITALFORTUNE = Isaac.GetItemIdByName("Digital Fortune"),
   COLLECTIBLE_VENDINGMACHINE = Isaac.GetItemIdByName("Vending Machine"),
+  COLLECTIBLE_BLOODALCHEMIZER = Isaac.GetItemIdByName("Blood Alchemizer"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -275,6 +276,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
   [
     CollectibleType.COLLECTIBLE_PORTABLE_SLOT,
     CollectibleTypeLab.COLLECTIBLE_VENDINGMACHINE,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_IV_BAG,
+    CollectibleTypeLab.COLLECTIBLE_BLOODALCHEMIZER,
   ],
 ]);
 

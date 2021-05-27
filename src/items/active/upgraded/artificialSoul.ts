@@ -50,7 +50,7 @@ export function postRoom(): void {
       continue;
     }
 
-    Isaac.DebugString(`Current room index:${level.GetCurrentRoomIndex()}`);
+    // Isaac.DebugString(`Current room index:${level.GetCurrentRoomIndex()}`);
     let visitedRoomData = SaveUtil.getPlayerData(
       player.Index,
       SaveType.PER_FLOOR,
@@ -76,9 +76,9 @@ export function postRoom(): void {
 
     const visitedUniqueRooms = visitedRoomData.length;
 
-    Isaac.DebugString(
-      `Unique rooms visited:${visitedUniqueRooms}/${level.GetRoomCount()}`,
-    );
+    // Isaac.DebugString(
+    //   `Unique rooms visited:${visitedUniqueRooms}/${level.GetRoomCount()}`,
+    // );
     const newCharge = math.min(
       Math.floor((visitedUniqueRooms / (level.GetRoomCount() * 0.9)) * 100),
       100,

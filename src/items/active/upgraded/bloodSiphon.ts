@@ -33,7 +33,7 @@ export function use(
       0,
     );
 
-    if (rand.RandomFloat() < 0.05) {
+    if (rand.RandomFloat() < 0.1) {
       if (rand.RandomFloat() < 0.8) {
         spawnPickup(
           entity.Position,

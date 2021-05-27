@@ -78,6 +78,22 @@ export function saveGlobalData(
 export function getGlobalData(type: SaveType, key: string): unknown {
   return SAVE_DATA.get(SaveRoot.DATA_GLOBAL)!.get(type)!.get(key);
 }
+export function savePlayerData(
+  playerNum: int,
+  type: SaveType,
+  key: string,
+  value: unknown,
+): void {
+  SAVE_DATA.get(playerIndexToEnum(playerNum))!.get(type)!.set(key, value);
+}
+
+export function getPlayerData(
+  playerNum: int,
+  type: SaveType,
+  key: string,
+): unknown {
+  return SAVE_DATA.get(playerIndexToEnum(playerNum))!.get(type)!.get(key);
+}
 
 export function serialize(willContinue: boolean): string {
   // Erase non-persistent data
@@ -99,6 +115,22 @@ export function deserialize(data: string, isContinued: boolean): void {
 
   if (!isContinued) {
     wipePerRun();
+  }
+}
+
+// General util functions
+
+function playerIndexToEnum(index: int): SaveRoot {
+  switch (index) {
+    default:
+    case 0:
+      return SaveRoot.DATA_PLAYER1;
+    case 1:
+      return SaveRoot.DATA_PLAYER2;
+    case 2:
+      return SaveRoot.DATA_PLAYER3;
+    case 3:
+      return SaveRoot.DATA_PLAYER4;
   }
 }
 

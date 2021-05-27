@@ -2,6 +2,8 @@
 /* eslint-disable prettier/prettier */
 // Define imports
 import { randomCollectible } from "./constants";
+import * as SaveUtil from "./saveData";
+import { SaveType } from "./saveData";
 // ===== import item code =====
 // --- Normal Upgraded Actives ---
 import * as EFF_DigitalCard from "./items/active/upgraded/digitalCard";
@@ -67,6 +69,11 @@ const USER_TEST = true;
 
 // Define callback functions
 function postGameStarted(isContinued:boolean) {
+  if (ABANDONED_LABORATORY.HasData()) {
+    SaveUtil.deserialize(ABANDONED_LABORATORY.LoadData(),isContinued);
+    Isaac.DebugString(`========== test: ${SaveUtil.getGlobalData(SaveType.PERSISTENT, "test")}`);
+  }
+
   if (!isContinued && USER_TEST) {
     const rand:RNG = RNG();
     rand.SetSeed(Game().GetSeeds().GetStartSeed(), 0);
@@ -81,9 +88,15 @@ function postGameStarted(isContinued:boolean) {
       null);
   }
 }
+function preGameExit(willContinue:boolean) {
+  ABANDONED_LABORATORY.SaveData(SaveUtil.serialize(willContinue));
+}
 
 // Register callbacks
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, SaveUtil.wipePerFloor);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, SaveUtil.wipePerRoom);
 
 // --- Normal Upgraded Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DigitalCard.use, EFF_DigitalCard.ownType());
@@ -157,3 +170,4 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDBLADE.use
 
 // Print an initialization message to the "log.txt" file
 Isaac.DebugString("Abandoned_Laboratory initialized.");
+

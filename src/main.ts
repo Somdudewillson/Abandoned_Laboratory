@@ -2,6 +2,7 @@
 /* eslint-disable prettier/prettier */
 // Define imports
 import { randomCollectible, CollectibleTypeLab, DEBUG_SPAWN } from "./constants";
+import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_MachineEvents";
 import * as SaveUtil from "./saveData";
 // ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
@@ -64,7 +65,6 @@ import * as EFF_CRATEOFFRIENDS from "./items/active/specialized/crateOfFriends";
 import * as EFF_CHAOSPOOP from "./items/active/specialized/chaosPoop";
 import * as EFF_SIGILOFBELIAL from "./items/active/specialized/sigilOfBelial";
 import * as EFF_TEMPEREDBLADE from "./items/active/specialized/temperedBlade";
-import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_MachineEvents";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)

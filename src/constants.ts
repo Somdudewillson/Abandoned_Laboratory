@@ -473,3 +473,7 @@ export function getItemUpgrade(item: int, playerType: int): number {
       return CollectibleType.COLLECTIBLE_NULL;
   }
 }
+
+// Per-Build Constants
+export const USER_TEST = true;
+export const UNBALANCED = false;

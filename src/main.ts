@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable prettier/prettier */
 // Define imports
-import { randomCollectible, CollectibleTypeLab } from "./constants";
+import { randomCollectible, CollectibleTypeLab, USER_TEST } from "./constants";
 import * as SaveUtil from "./saveData";
 // ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
@@ -69,8 +69,6 @@ import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_Mac
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
 const ABANDONED_LABORATORY = RegisterMod("Abandoned_Laboratory", 1);
-
-const USER_TEST = true;
 
 // Define callback functions
 function postGameStarted(isContinued:boolean) {

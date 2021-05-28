@@ -2,6 +2,7 @@ import {
   getItemUpgrade,
   itemHasUpgrade,
   LabMachineVariant,
+  UNBALANCED,
 } from "../constants";
 import { playSound, spawnPickup } from "../utils";
 
@@ -152,6 +153,11 @@ export function trySpawn(room: Room, floor: Level): void {
   }
 
   switch (floor.GetStage()) {
+    default:
+      if (!UNBALANCED) {
+        return;
+      }
+    // Falls through
     case LevelStage.STAGE3_1:
     case LevelStage.STAGE3_2:
     case LevelStage.STAGE4_1:
@@ -174,6 +180,5 @@ export function trySpawn(room: Room, floor: Level): void {
         );
       }
       break;
-    default:
   }
 }

@@ -9,4 +9,12 @@ declare class ExternalItemDescriptions {
     itemName?: string,
     language?: string,
   ): void;
+  addEntity(
+    id: int,
+    variant: int,
+    subtype: int,
+    entityName: string,
+    description: string,
+    language?: string,
+  ): void;
 }

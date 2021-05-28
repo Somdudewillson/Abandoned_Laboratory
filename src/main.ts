@@ -235,14 +235,11 @@ function registerExternalItemDescriptions(): void {
     "#!!! Sale effect will stop if the item is used");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_ILLUSORYRAZOR, "Deals fake damage to the player, triggering on-hit effects");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_PORTABLETERRAFORMER, "Alters room obstacles"+
-    "#↑ Destroys Tinted and Super Secret rocks, with a chance for extra drops"+
-    "#↑ Destroys lock blocks, bomb rocks, and tnt"+
+    "#↑ Destroys most rocks, with a chance for extra drops"+
     "#↑ Fills in all pits"+
-    "#↑ Turns spiked rocks and metal blocks into normal rocks"+
-    "#↑ Converts red poop to normal poop"+
-    "#↑ 45% chance to turn normal poop into Rainbow, Black, or Golden poop"+
-    "#↑ Destroys 40% of normal rocks and can spawn 1-3 {{Coin}} (20%), 1-2 {{Bomb}} (7.5%), and 1 stone chest (2%)"+
-    "#↑ Undestroyed rocks have a 10% chance to become tinted");
+    "#↑ Spiked rocks and metal blocks become normal rocks"+
+    "#↑ Poop becomes better poop"+
+    "#↑ Rocks have a 10% chance to become tinted");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_TEARRESERVOIR, "Fires a burst of 7 tears with player damage in a cone"+
     "#Charges one bar for each fired tear"+
     `#!!! Does not work with {{Collectible"}${CollectibleType.COLLECTIBLE_BRIMSTONE}}}`);
@@ -300,10 +297,7 @@ function registerExternalItemDescriptions(): void {
     "#18% chance 5-10"+
     "#2% chance 10-15"+
     "#↑ If coins are spawned, can give the player an invisible \"Coin Barrier\" that will take the next hit of damage"+
-    "#{{Blank}} Coin barriers can be layered up to 3 times, with reducing chances for each layer the player already has"+
-    "#75% chance if the player has no coin barriers"+
-    "#50% chance if the player has 1 coin barrier"+
-    "#25% chance if the player has 2 coin barriers");
+    "#{{Blank}} Coin barriers can be layered up to 3 times, with reducing chances for each layer the player already has");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_RECONSTRUCTIVEHEART, "Heals 3.5 {{Heart}}"+
     "#↑ Excess is converted to {{SoulHeart}} at 3:1 ratio"+
     "#↑ Will spawn 2 {{Coin}} if playing as Keeper/Tainted Keeper"+
@@ -318,10 +312,10 @@ function registerExternalItemDescriptions(): void {
     `#↑ Permanently gives {{Collectible${CollectibleType.COLLECTIBLE_BFFS}}} on first use if the player does not already have it`+
     "#↑ Has a 5% chance to permanently copy a familiar-giving item");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_CHAOSPOOP, "Spawns a poop of random type"+
-    "#46% chance to spawn a normal poop"+
-    "#31% chance to spawn a black poop"+
-    "#15% chance to spawn a golden poop"+
-    "#8% chance to spawn a holy poop");
+    "#46% normal poop"+
+    "#31% black poop"+
+    "#15% golden poop"+
+    "#8% holy poop");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_SIGILOFBELIAL, "{{ColorGreen}}+2{{CR}} Damage for the current room"+
     `Spawns {{Collectible${CollectibleType.COLLECTIBLE_PENTAGRAM}}} item wisps which give its effect but can be destroyed`+
     "The chance for it to spawn the wisp reduces the more you currently have");

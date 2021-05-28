@@ -9,10 +9,10 @@ const enum SaveRoot {
 }
 
 export const enum SaveType {
-  PERSISTENT = "persistent",
-  PER_RUN = "perRun",
-  PER_FLOOR = "perFloor",
-  PER_ROOM = "perRoom",
+  PERSISTENT = "persistent", // Never removed
+  PER_RUN = "perRun", // Removed at the beginning of a new run
+  PER_FLOOR = "perFloor", // Removed at MC_POST_NEW_LEVEL
+  PER_ROOM = "perRoom", // Removed at MC_POST_NEW_ROOM
 }
 
 const ROOTS = [

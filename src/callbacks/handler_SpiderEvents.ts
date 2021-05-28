@@ -63,7 +63,6 @@ export function interceptDamage(
     return null;
   }
 
-  Isaac.DebugString(`Took damage from: ${damageSource.Type}`);
   if (damageSource.Type === EntityType.ENTITY_FIREPLACE) {
     return false;
   }

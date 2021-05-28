@@ -475,5 +475,5 @@ export function getItemUpgrade(item: int, playerType: int): number {
 }
 
 // Per-Build Constants
-export const USER_TEST = true;
+export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;

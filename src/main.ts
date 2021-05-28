@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable prettier/prettier */
 // Define imports
-import { randomCollectible, CollectibleTypeLab, USER_TEST } from "./constants";
+import { randomCollectible, CollectibleTypeLab, DEBUG_SPAWN } from "./constants";
 import * as SaveUtil from "./saveData";
 // ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
@@ -78,7 +78,7 @@ function postGameStarted(isContinued:boolean) {
 
   if (EID !== null) {registerExternalItemDescriptions();}
 
-  if (!isContinued && USER_TEST) {
+  if (!isContinued && DEBUG_SPAWN) {
     const rand:RNG = RNG();
     rand.SetSeed(Game().GetSeeds().GetStartSeed(), 0);
     const collectible = randomCollectible(rand);

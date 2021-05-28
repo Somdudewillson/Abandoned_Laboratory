@@ -167,8 +167,8 @@ export function trySpawn(room: Room, floor: Level): void {
     case LevelStage.STAGE6_GREED:
       {
         const pos = Vector(
-          room.GetBottomRightPos().X - 50,
-          room.GetTopLeftPos().Y + 15,
+          room.GetBottomRightPos().X * 0.75,
+          room.GetTopLeftPos().Y + 10,
         );
         Isaac.Spawn(
           MachineEntityType.UPGRADEMACHINE,

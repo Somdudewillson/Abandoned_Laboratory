@@ -3,7 +3,10 @@
 // Define imports
 import { randomCollectible, CollectibleTypeLab } from "./constants";
 import * as SaveUtil from "./saveData";
+// ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
+// --- Entities ---
+import * as MachineEvents from "./callbacks/handler_MachineEvents";
 // ===== import item code =====
 // --- Normal Upgraded Actives ---
 import * as EFF_DigitalCard from "./items/active/upgraded/digitalCard";
@@ -61,6 +64,7 @@ import * as EFF_CRATEOFFRIENDS from "./items/active/specialized/crateOfFriends";
 import * as EFF_CHAOSPOOP from "./items/active/specialized/chaosPoop";
 import * as EFF_SIGILOFBELIAL from "./items/active/specialized/sigilOfBelial";
 import * as EFF_TEMPEREDBLADE from "./items/active/specialized/temperedBlade";
+import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_MachineEvents";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
@@ -88,6 +92,14 @@ function postGameStarted(isContinued:boolean) {
       Game().GetRoom().GetCenterPos(),
       Vector.Zero,
       null);
+
+    Isaac.Spawn(
+       MachineEntityType.UPGRADEMACHINE,
+       MachineEntityVariant.UPGRADEMACHINE,
+       0,
+       Game().GetRoom().GetCenterPos().add(Vector(0,50)),
+       Vector.Zero,
+       null);
   }
 }
 function preGameExit(willContinue:boolean) {
@@ -100,6 +112,10 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, SaveUtil.wipePerFloor);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, SaveUtil.wipePerRoom);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PostRoomHandler.postRoom);
+
+// --- Entities ---
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, MachineEvents.preCollide, MachineEntityType.UPGRADEMACHINE);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MachineEvents.update, MachineEntityType.UPGRADEMACHINE);
 
 // --- Normal Upgraded Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DigitalCard.use, EFF_DigitalCard.ownType());

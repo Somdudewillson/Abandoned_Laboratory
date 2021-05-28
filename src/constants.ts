@@ -306,6 +306,10 @@ export const enum FireplaceVariant {
   FIREPLACE_MOVEABLE_PURPLE = 13,
 }
 
+export const enum LabMachineVariant {
+  UPGRADE_MACHINE = 56,
+}
+
 export const TearFlag128 = {
   TEAR_NORMAL: BitSet128(0, 0),
   TEAR_SPECTRAL: toTearFlag(0),
@@ -416,4 +420,56 @@ export function randomCollectible(rand: RNG): number {
     return enumEntries[randomIndex][0] as number;
   }
   return enumEntries[randomIndex][1] as number;
+}
+
+export function itemHasUpgrade(item: int, playerType: int): boolean {
+  if (CollectibleUpgrade.has(item)) {
+    return true;
+  }
+
+  switch (playerType) {
+    case PlayerType.PLAYER_ISAAC:
+      return item === CollectibleType.COLLECTIBLE_D6;
+    case PlayerType.PLAYER_MAGDALENA:
+    case PlayerType.PLAYER_MAGDALENA_B:
+      return item === CollectibleType.COLLECTIBLE_YUM_HEART;
+    case PlayerType.PLAYER_JUDAS:
+      return item === CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL;
+    case PlayerType.PLAYER_EVE:
+      return item === CollectibleType.COLLECTIBLE_RAZOR_BLADE;
+    case PlayerType.PLAYER_THELOST:
+      return item === CollectibleType.COLLECTIBLE_ETERNAL_D6;
+    case PlayerType.PLAYER_LILITH:
+      return item === CollectibleType.COLLECTIBLE_BOX_OF_FRIENDS;
+    case PlayerType.PLAYER_KEEPER:
+      return item === CollectibleType.COLLECTIBLE_WOODEN_NICKEL;
+    default:
+      return false;
+  }
+}
+
+export function getItemUpgrade(item: int, playerType: int): number {
+  if (CollectibleUpgrade.has(item)) {
+    return CollectibleUpgrade.get(item)!;
+  }
+
+  switch (playerType) {
+    case PlayerType.PLAYER_ISAAC:
+      return CollectibleTypeLab.COLLECTIBLE_ENERGIZEDD6;
+    case PlayerType.PLAYER_MAGDALENA:
+    case PlayerType.PLAYER_MAGDALENA_B:
+      return CollectibleTypeLab.COLLECTIBLE_RECONSTRUCTIVEHEART;
+    case PlayerType.PLAYER_JUDAS:
+      return CollectibleTypeLab.COLLECTIBLE_SIGILOFBELIAL;
+    case PlayerType.PLAYER_EVE:
+      return CollectibleTypeLab.COLLECTIBLE_TEMPEREDBLADE;
+    case PlayerType.PLAYER_THELOST:
+      return CollectibleTypeLab.COLLECTIBLE_STABILIZEDETERNALD6;
+    case PlayerType.PLAYER_LILITH:
+      return CollectibleTypeLab.COLLECTIBLE_CRATEOFFRIENDS;
+    case PlayerType.PLAYER_KEEPER:
+      return CollectibleTypeLab.COLLECTIBLE_GOLDENNICKEL;
+    default:
+      return CollectibleType.COLLECTIBLE_NULL;
+  }
 }

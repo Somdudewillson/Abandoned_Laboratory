@@ -17,4 +17,23 @@ declare class ExternalItemDescriptions {
     description: string,
     language?: string,
   ): void;
+
+  addTrinket(
+    id: int,
+    description: string,
+    itemName?: string,
+    language?: string,
+  ): void;
+  addCard(
+    id: int,
+    description: string,
+    itemName?: string,
+    language?: string,
+  ): void;
+  addPill(
+    id: int,
+    description: string,
+    itemName?: string,
+    language?: string,
+  ): void;
 }

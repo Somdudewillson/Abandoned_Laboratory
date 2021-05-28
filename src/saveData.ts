@@ -9,10 +9,14 @@ const enum SaveRoot {
 }
 
 export const enum SaveType {
-  PERSISTENT = "persistent", // Never removed
-  PER_RUN = "perRun", // Removed at the beginning of a new run
-  PER_FLOOR = "perFloor", // Removed at MC_POST_NEW_LEVEL
-  PER_ROOM = "perRoom", // Removed at MC_POST_NEW_ROOM
+  /** Never wiped */
+  PERSISTENT = "persistent",
+  /** Wiped at the beginning of a new run */
+  PER_RUN = "perRun",
+  /** Wiped at MC_POST_NEW_LEVEL */
+  PER_FLOOR = "perFloor",
+  /** Wiped at MC_POST_NEW_ROOM */
+  PER_ROOM = "perRoom",
 }
 
 const ROOTS = [
@@ -144,7 +148,6 @@ function wipePerRun() {
   for (const root of ROOTS) {
     SAVE_DATA.get(root)!.get(SaveType.PER_RUN)!.clear();
     SAVE_DATA.get(root)!.get(SaveType.PER_FLOOR)!.clear();
-    SAVE_DATA.get(root)!.get(SaveType.PER_ROOM)!.clear();
     SAVE_DATA.get(root)!.get(SaveType.PER_ROOM)!.clear();
   }
 }

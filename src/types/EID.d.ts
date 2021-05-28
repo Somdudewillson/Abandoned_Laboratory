@@ -1,5 +1,16 @@
 declare const EID: ExternalItemDescriptions;
 
+declare interface EIDDescriptionObj {
+  ItemType: int;
+  ItemVariant: int;
+  RealID: int;
+  ID: int;
+  fullItemString: string;
+  Name: string;
+  Description: Record<string, unknown>;
+  Transformation: string;
+}
+
 declare class ExternalItemDescriptions {
   /** Adds a description for a collectible. Optional parameters: itemName, language */
   addCollectible(
@@ -117,16 +128,7 @@ declare class ExternalItemDescriptions {
   ): void;
 
   /** Overrides all potentially displayed texts and permanently displays the given texts. Can be turned off again using the `EID.hidePermanentText()` function */
-  displayPermanentText(descriptionObject: {
-    ItemType: int;
-    ItemVariant: int;
-    RealID: int;
-    ID: int;
-    fullItemString: string;
-    Name: string;
-    Description: Record<string, unknown>;
-    Transformation: string;
-  }): void;
+  displayPermanentText(descriptionObject: EIDDescriptionObj): void;
   /** Hides permanently displayed text objects if they exist. */
   hidePermanentText(): void;
 
@@ -163,20 +165,7 @@ declare class ExternalItemDescriptions {
 
   /** returns the description object of the specified entity
    * falls back to english if the objID isn't available */
-  getDescriptionObj(
-    Type: int,
-    Variant: int,
-    SubType: int,
-  ): {
-    ItemType: int;
-    ItemVariant: int;
-    RealID: int;
-    ID: int;
-    fullItemString: string;
-    Name: string;
-    Description: Record<string, unknown>;
-    Transformation: string;
-  };
+  getDescriptionObj(Type: int, Variant: int, SubType: int): EIDDescriptionObj;
   /** returns description Object from the legacy mod descriptions if they exist */
   getLegacyModDescription(
     Type: int,

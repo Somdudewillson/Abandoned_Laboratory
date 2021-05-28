@@ -50,7 +50,11 @@ export function tick(): void {
   }
 }
 
-export function postRoom(player: EntityPlayer): void {
+export function postRoom(
+  player: EntityPlayer,
+  _room: Room,
+  _level: Level,
+): void {
   if (!player.HasCollectible(ownType())) {
     return;
   }

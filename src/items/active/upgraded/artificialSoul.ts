@@ -31,9 +31,7 @@ export function use(
   return true;
 }
 
-export function postRoom(player: EntityPlayer): void {
-  const room = Game().GetRoom();
-  const level = Game().GetLevel();
+export function postRoom(player: EntityPlayer, room: Room, level: Level): void {
   if (room.GetType() === RoomType.ROOM_ERROR) {
     return;
   }

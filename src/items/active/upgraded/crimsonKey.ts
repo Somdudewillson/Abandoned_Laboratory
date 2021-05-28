@@ -28,8 +28,13 @@ export function use(
   return true;
 }
 
-export function postRoom(player: EntityPlayer, slot: ActiveSlot): void {
-  if (Game().GetRoom().GetType() !== RoomType.ROOM_ERROR) {
+export function postRoom(
+  player: EntityPlayer,
+  slot: ActiveSlot,
+  room: Room,
+  _level: Level,
+): void {
+  if (room.GetType() !== RoomType.ROOM_ERROR) {
     return;
   }
 

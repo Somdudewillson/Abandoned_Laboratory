@@ -1,4 +1,4 @@
 <entities anm2root="gfx/" version="5">
-    <entity anm2path="006.056_upgrade machine.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="0" id="60" name="Upgrade Machine" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="56">
+    <entity anm2path="060.056_upgrade machine.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000000" collisionRadius="12" friction="0" id="60" name="Upgrade Machine" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="56">
 	</entity>
 </entities>

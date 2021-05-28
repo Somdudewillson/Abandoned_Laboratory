@@ -283,7 +283,7 @@ function registerExternalItemDescriptions(): void {
     "#↑ Player can crush obstacles and enemies while giant"+
     "#↑ Increases Damage and Range while giant"+
     "#↓ Reduces Tears while giant");
-  EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_PLAND, "Kills eery enemy in the room that isn't invulnerable"+
+  EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_PLAND, "Kills every enemy in the room that isn't invulnerable"+
     "#Single-use"+
     "#!!! Reduces player to 1 half-heart of health"+
     "#!!! Will not kill both stages of multi-stage bosses");
@@ -308,6 +308,7 @@ function registerExternalItemDescriptions(): void {
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_SUMMARIZEDBIBLE, "Gives flight for the current room"+
     "#↑ Instantly kills Mom, Mom's Heart, and It Lives"+
     "#!!! Will instantly kill you if used while fighting Satan");
+
   // =====Upgraded Starting Items=====
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_GOLDENNICKEL, "75% chance to spawn coins"+
     "#80% chance 1-5"+

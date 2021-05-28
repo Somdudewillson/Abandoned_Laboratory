@@ -184,14 +184,14 @@ function registerExternalItemDescriptions(): void {
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_CARTOGRAPHERTOME, "Gives all mapping effects");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_ANARCHISTEBOOK, "Spawns troll bombs on enemies and tinted rocks");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_SHADOWDEVICE, "Gives invulnerability for 10 seconds"+
-    "#↑ Has a chance to trigger on damage, increasing based on charge");
+    "#↑ Can trigger and block damage, more likely with higher charge");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_CHESTOFSIN, "Spawns 2-3 random pickups");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_RUNICAMPLIFIER, "Copies & boosts rune effects");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_GLOWINGHEART, "Heals 2.5 {{Heart}}"+
-    "#↑ Excess is converted to {{SoulHeart}} at 3:1 ratio"+
-    "#↑ Will spawn 2 {{Coin}} if playing as Keeper/Tainted Keeper"+
-    "#↑ Will add to Bethany's soul charges/Tainted Bethany's heart charges"+
-    "#↑ Will heal other players for half the effect");
+    "#↑ Excess becomes {{SoulHeart}} at 3:1 ratio"+
+    "#↑ Spawns 2 {{Coin}} for Keeper"+
+    "#↑ Adds to Bethany's soul/heart charges"+
+    "#↑ Heals other players for half the effect");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_PILLMACHINE, "Copies & boosts pill effects");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_JAROFHEADS, "Summons a throwable bomb");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_SILVERNICKEL, "75% chance to spawn coins"+
@@ -210,8 +210,8 @@ function registerExternalItemDescriptions(): void {
   "#↓ Takes 1 full heart, prioritizing red health"+
   `#↑ {{Collectible${CollectibleType.COLLECTIBLE_MISSING_PAGE_2}}} adds 80 additional damage`+
   `#↑ {{Trinket${TrinketType.TRINKET_MISSING_PAGE}}} adds 80 additional damage`);
-  EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_DIVINITYGENERATOR, "Gives 1 {{EthernalHeart}}");
-  EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_SATANITYGENERATOR, "Gives 1 {{BlackHeart}}");
+  EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_DIVINITYGENERATOR, "Gives {{EthernalHeart}}");
+  EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_SATANITYGENERATOR, "Gives {{BlackHeart}}");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_TEMPEREDGLASSCANNON, "fires one tear with 10 times player damage");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_ZKEY, "Undoes the current room"+
     "#↓ Only charges in rooms with enemies");
@@ -220,12 +220,12 @@ function registerExternalItemDescriptions(): void {
     "#!!! Can kill the player");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_PAUSE2, "Freezes all enemies until a fire button is pressed or 30 seconds pass");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_BLOODSIPHON, "Deals 5 + player damage + 15% of the enemy's max health to all enemies"+
-    "#↑ Has a 10% chance to spawn a half heart - 8% {{HalfHeart}} and 2% {{HalfSoulHeart}}");
+    "#↑ 10% chance to spawn a half heart - 8% {{HalfHeart}} and 2% {{HalfSoulHeart}}");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_ARTIFICIALSOUL, "Spawns 2 items from the current room's item pool"+
     "#↓ Charges by exploring the floor, 90% exploration necessary for full charge"+
     "#!!! Secret and Super Secret rooms count"+
     "#!!! Charges do not carry over between floors"+
-    "#↓ Can only be used once per floor");
+    "#↓ One use per floor");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_D2, "Creates two copies of a random pickup in the room"+
     "#↓ Cannot copy {{Rune}}Jera");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_WEEKLYGIFT, "Spawns one item from the current room's item pool"+
@@ -270,24 +270,24 @@ function registerExternalItemDescriptions(): void {
     "#Single-use"+
     "#!!! Reduces player to 1 half-heart of health"+
     "#!!! Will not kill both stages of multi-stage bosses");
-  EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_COUNTERFEITDEATHCERTIFICATE, "Takes the player to an abandoned, expanded version of home where all items can be found"+
-    "#One item can be taken from this area, which will destroy all other items in the room and send the player back where they were when they used the item"+
+  EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_COUNTERFEITDEATHCERTIFICATE, "Takes the player to an area with all items"+
+    "#One item can be taken from this area, which will destroy all other items in the room and send the player back"+
     `#Single-use, but gives the player {{Collectible${CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE}}}, which has the same effect`);
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_STRAIGHTENEDPENNY, "↑ 75% chance to double all pickups and collectibles"+
     "↓ 25% chance to destroy all pickups and collectibles, and spawn a single Nickel");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_CRIMSONKEY, "Opens all doors and possible Red Rooms"+
-    "# Will charge itself if you end up in an I AM ERROR room, and will teleport you back to the start of the floor on use");
+    "# Charges itself if you end up in an I AM ERROR room, and teleports you back to the start of the floor on use");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_DIGITALFORTUNE, "Has a Luck-based chance to do nothing or spawn 1-2 {{SoulHeart}}, a {{Card}}, or a {{Trinket}}"+
-    "#↑ This item treats negative Luck as 0 Luck");
+    "#↑ Treats negative Luck as 0 Luck");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_VENDINGMACHINE, "Consumes 2 coins and has a Luck-based chance to do nothing or spawn one of the following:"+
     "#1-2 {{Heart}} (29%)"+
     "#1 {{Bomb}} (24%)"+
     "#1 {{Key}} (23%)"+
     "#3 {{Coin}} (20%)"+
     "#A Pretty Fly (2%)"+
-    "#↑ This item treats negative Luck as 0 Luck");
+    "#↑ Treats negative Luck as 0 Luck");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_BLOODALCHEMIZER, "Consumes 1 half-heart of health and spawns 1-4 {{Coin}}"+
-    "#!!! If playing as the Keeper, this item will instead spawn 2-4 Blue Flies");
+    "#!!! Will instead spawn 2-4 Blue Flies for the Keeper");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_SUMMARIZEDBIBLE, "Gives flight for the current room"+
     "#↑ Instantly kills Mom, Mom's Heart, and It Lives"+
     "#!!! Will instantly kill you if used while fighting Satan");
@@ -297,20 +297,20 @@ function registerExternalItemDescriptions(): void {
     "#18% chance 5-10"+
     "#2% chance 10-15"+
     "#↑ If coins are spawned, can give the player an invisible \"Coin Barrier\" that will take the next hit of damage"+
-    "#{{Blank}} Coin barriers can be layered up to 3 times, with reducing chances for each layer the player already has");
+    "#{{Blank}} Coin barriers can be layered up to 3 times, with reducing chances for each successive layer");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_RECONSTRUCTIVEHEART, "Heals 3.5 {{Heart}}"+
-    "#↑ Excess is converted to {{SoulHeart}} at 3:1 ratio"+
-    "#↑ Will spawn 2 {{Coin}} if playing as Keeper/Tainted Keeper"+
-    "#↑ Will add to Bethany's soul charges/Tainted Bethany's heart charges"+
-    "#↑ Will heal other players for half the effect"+
-    "#↑ Has a 20% chance to trigger its effect at half power for free on room clear");
+    "#↑ Excess becomes {{SoulHeart}} at 3:1 ratio"+
+    "#↑ Spawns 2 {{Coin}} for Keeper"+
+    "#↑ Adds to Bethany's soul/heart charges"+
+    "#↑ Heals other players for half the effect"+
+    "#↑ 20% chance to trigger its effect at half power for free on room clear");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_STABILIZEDETERNALD6, "Rerolls all collectibles in the room");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_ENERGIZEDD6, "Rerolls all collectibles in the room"+
-    "#↑ Each item rerolled will consume only 2 charge bars, so rerolling less than 3 items will not fully deplete its charge"+
+    "#↑ Each item rerolled consumes only 2 charge bars"+
     "#↑ Attempts to reroll each item 5 times, keeping the best result");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_CRATEOFFRIENDS, "Adds an extra copy of every familiar"+
     `#↑ Permanently gives {{Collectible${CollectibleType.COLLECTIBLE_BFFS}}} on first use if the player does not already have it`+
-    "#↑ Has a 5% chance to permanently copy a familiar-giving item");
+    "#↑ 5% chance to permanently copy a familiar-giving item");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_CHAOSPOOP, "Spawns a poop of random type"+
     "#46% normal poop"+
     "#31% black poop"+
@@ -318,7 +318,7 @@ function registerExternalItemDescriptions(): void {
     "#8% holy poop");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_SIGILOFBELIAL, "{{ColorGreen}}+2{{CR}} Damage for the current room"+
     `Spawns {{Collectible${CollectibleType.COLLECTIBLE_PENTAGRAM}}} item wisps which give its effect but can be destroyed`+
-    "The chance for it to spawn the wisp reduces the more you currently have");
+    "Wisp spawn chance reduces proportionally to current number");
   EID.addCollectible(CollectibleTypeLab.COLLECTIBLE_TEMPEREDBLADE, "Causes 1 half-heart of damage to the user, gives {{ColorGreen}}+2{{CR}} Damage for the current room, and deals 40 damage to all enemies"+
   `#↑ {{Collectible${CollectibleType.COLLECTIBLE_MISSING_PAGE_2}}} adds 40 additional damage`+
   `#↑ {{Trinket${TrinketType.TRINKET_MISSING_PAGE}}} adds 40 additional damage`);

@@ -145,3 +145,35 @@ export function update(self: EntityNPC): boolean | null {
 
   return true;
 }
+
+export function trySpawn(room: Room, floor: Level): void {
+  if (room.GetType() !== RoomType.ROOM_SHOP) {
+    return;
+  }
+
+  switch (floor.GetStage()) {
+    case LevelStage.STAGE3_1:
+    case LevelStage.STAGE3_2:
+    case LevelStage.STAGE4_1:
+    case LevelStage.STAGE4_2:
+    case LevelStage.STAGE5:
+    case LevelStage.STAGE6:
+    case LevelStage.STAGE6_GREED:
+      {
+        const pos = Vector(
+          room.GetBottomRightPos().X - 50,
+          room.GetTopLeftPos().Y + 15,
+        );
+        Isaac.Spawn(
+          MachineEntityType.UPGRADEMACHINE,
+          MachineEntityVariant.UPGRADEMACHINE,
+          0,
+          pos,
+          Vector.Zero,
+          null,
+        );
+      }
+      break;
+    default:
+  }
+}

@@ -97,7 +97,7 @@ function postGameStarted(isContinued:boolean) {
        MachineEntityType.UPGRADEMACHINE,
        MachineEntityVariant.UPGRADEMACHINE,
        0,
-       Game().GetRoom().GetTopLeftPos(),
+       Game().GetRoom().GetTopLeftPos().add(Vector(50, 15)),
        Vector.Zero,
        null);
   }
@@ -116,6 +116,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PostRoomHandler.
 // --- Entities ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, MachineEvents.preCollide, MachineEntityType.UPGRADEMACHINE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MachineEvents.update, MachineEntityType.UPGRADEMACHINE);
+PostRoomHandler.addRoomListener(MachineEvents.trySpawn);
 
 // --- Normal Upgraded Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DigitalCard.use, EFF_DigitalCard.ownType());

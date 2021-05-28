@@ -2,12 +2,13 @@
 /* eslint-disable prettier/prettier */
 // Define imports
 import { randomCollectible, CollectibleTypeLab, DEBUG_SPAWN } from "./constants";
-import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_MachineEvents";
 import * as SaveUtil from "./saveData";
 // ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
 // --- Entities ---
 import * as MachineEvents from "./callbacks/handler_MachineEvents";
+import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_MachineEvents";
+import * as SpiderEvents from "./callbacks/handler_SpiderEvents";
 // ===== import item code =====
 // --- Normal Upgraded Actives ---
 import * as EFF_DigitalCard from "./items/active/upgraded/digitalCard";
@@ -115,6 +116,8 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PostRoomHandler.
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, MachineEvents.preCollide, MachineEntityType.UPGRADEMACHINE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MachineEvents.update, MachineEntityType.UPGRADEMACHINE);
 PostRoomHandler.addRoomListener(MachineEvents.trySpawn);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, SpiderEvents.update, SpiderEvents.SPIDER_ENTITYTYPE);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SpiderEvents.interceptDamage, SpiderEvents.SPIDER_ENTITYTYPE);
 
 // --- Normal Upgraded Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DigitalCard.use, EFF_DigitalCard.ownType());

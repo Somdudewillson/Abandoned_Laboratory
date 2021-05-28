@@ -1,4 +1,11 @@
 <entities anm2root="gfx/" version="5">
     <entity anm2path="060.056_upgrade machine.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000000" collisionRadius="12" friction="0" id="60" name="Upgrade Machine" numGridCollisionPoints="24" shadowSize="33" stageHP="0" variant="56" shutdoors="false">
 	</entity>
+	<entity anm2path="085.056_smartspiderbot.anm2" reroll="true" baseHP="8.5" boss="0" champion="0" collisionDamage="1" collisionMass="5" collisionRadius="13" friction="1" id="85" name="Smart Spiderbot" numGridCollisionPoints="12" shadowSize="11" stageHP="0" variant="56" portrait="53" tags="spider">
+		<bestiary transform="0,0,1" anim="Walk" />
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity anm2path="013.000_Fly.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Timer" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="119">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
 </entities>

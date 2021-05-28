@@ -97,7 +97,7 @@ function postGameStarted(isContinued:boolean) {
        MachineEntityType.UPGRADEMACHINE,
        MachineEntityVariant.UPGRADEMACHINE,
        0,
-       Game().GetRoom().GetCenterPos().add(Vector(0,50)),
+       Game().GetRoom().GetTopLeftPos(),
        Vector.Zero,
        null);
   }

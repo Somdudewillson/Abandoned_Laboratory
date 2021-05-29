@@ -54,6 +54,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_VENDINGMACHINE = Isaac.GetItemIdByName("Vending Machine"),
   COLLECTIBLE_BLOODALCHEMIZER = Isaac.GetItemIdByName("Blood Alchemizer"),
   COLLECTIBLE_SUMMARIZEDBIBLE = Isaac.GetItemIdByName("Summarized Bible"),
+  COLLECTIBLE_CORNYPOOP = Isaac.GetItemIdByName("Corny Poop"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -292,6 +293,7 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
     CollectibleType.COLLECTIBLE_BIBLE,
     CollectibleTypeLab.COLLECTIBLE_SUMMARIZEDBIBLE,
   ],
+  [CollectibleType.COLLECTIBLE_POOP, CollectibleTypeLab.COLLECTIBLE_CORNYPOOP],
 ]);
 
 export const enum FireplaceVariant {
@@ -443,16 +445,14 @@ export function itemHasUpgrade(item: int, playerType?: int): boolean {
       return item === CollectibleType.COLLECTIBLE_BOX_OF_FRIENDS;
     case PlayerType.PLAYER_KEEPER:
       return item === CollectibleType.COLLECTIBLE_WOODEN_NICKEL;
+    case PlayerType.PLAYER_XXX:
+      return item === CollectibleType.COLLECTIBLE_POOP;
     default:
       return false;
   }
 }
 
 export function getItemUpgrade(item: int, playerType: int): number {
-  if (CollectibleUpgrade.has(item)) {
-    return CollectibleUpgrade.get(item)!;
-  }
-
   switch (playerType) {
     case PlayerType.PLAYER_ISAAC:
       return CollectibleTypeLab.COLLECTIBLE_ENERGIZEDD6;
@@ -469,9 +469,17 @@ export function getItemUpgrade(item: int, playerType: int): number {
       return CollectibleTypeLab.COLLECTIBLE_CRATEOFFRIENDS;
     case PlayerType.PLAYER_KEEPER:
       return CollectibleTypeLab.COLLECTIBLE_GOLDENNICKEL;
+    case PlayerType.PLAYER_XXX:
+      return CollectibleTypeLab.COLLECTIBLE_CHAOSPOOP;
     default:
-      return CollectibleType.COLLECTIBLE_NULL;
+      break;
   }
+
+  if (CollectibleUpgrade.has(item)) {
+    return CollectibleUpgrade.get(item)!;
+  }
+
+  return CollectibleType.COLLECTIBLE_NULL;
 }
 
 // Per-Build Constants

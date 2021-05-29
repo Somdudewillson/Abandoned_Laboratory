@@ -250,6 +250,11 @@ export function registerExternalItemDescriptions(): void {
       "#↑ Instantly kills Mom, Mom's Heart, and It Lives" +
       "#!!! Will instantly kill you if used while fighting Satan",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_CORNYPOOP,
+    "Spawns a poop, pushes away enemies and bullets" +
+      "#↓ Poop has reduced drops",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

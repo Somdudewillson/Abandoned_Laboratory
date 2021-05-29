@@ -422,9 +422,17 @@ export function randomCollectible(rand: RNG): number {
   return enumEntries[randomIndex][1] as number;
 }
 
-export function itemHasUpgrade(item: int, playerType: int): boolean {
+export function itemHasUpgrade(
+  item: int,
+  playerType: int,
+  includeSpecialized = false,
+): boolean {
   if (CollectibleUpgrade.has(item)) {
     return true;
+  }
+
+  if (includeSpecialized) {
+    return false;
   }
 
   switch (playerType) {

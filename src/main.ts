@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable prettier/prettier */
 // Define imports
-import { randomCollectible, DEBUG_SPAWN } from "./constants";
+import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE } from "./constants";
 import * as SaveUtil from "./saveData";
 // ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
@@ -68,6 +68,7 @@ import * as EFF_CHAOSPOOP from "./items/active/specialized/chaosPoop";
 import * as EFF_SIGILOFBELIAL from "./items/active/specialized/sigilOfBelial";
 import * as EFF_TEMPEREDBLADE from "./items/active/specialized/temperedBlade";
 import { registerExternalItemDescriptions } from "./eidCompat";
+import { parseIntChar } from "./extMath";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
@@ -107,6 +108,14 @@ function preGameExit(willContinue:boolean) {
   ABANDONED_LABORATORY.SaveData(SaveUtil.serialize(willContinue));
 }
 
+// Print flavorful logging messages
+Isaac.DebugString("| Abandoned_Laboratory initializing.");
+Isaac.DebugString("|===================================");
+Isaac.DebugString(`| LABOS v${VERSION} startup initiated`);
+Isaac.DebugString(`|LABOS| Last maintenance visit: ${parseIntChar(VERSION.charAt(0))*97 +
+  parseIntChar(VERSION.charAt(2))*23 +
+  parseIntChar(VERSION.charAt(4))} days ago`);
+
 // Register callbacks
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit);
@@ -114,7 +123,10 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, SaveUtil.wipePe
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, SaveUtil.wipePerRoom);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PostRoomHandler.postRoom);
 
+Isaac.DebugString("|LABOS| Boot initialization complete");
+
 // --- Entities ---
+Isaac.DebugString("|LABOS| Scanning facility automata...");
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, MachineEvents.preCollide, MachineEntityType.UPGRADEMACHINE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MachineEvents.update, MachineEntityType.UPGRADEMACHINE);
 PostRoomHandler.addRoomListener(MachineEvents.trySpawn);
@@ -123,7 +135,10 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SpiderEvents.i
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MicrodroneEvents.update, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, MicrodroneEvents.interceptDamage, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
 
+Isaac.DebugString("|LABOS| Automata scan complete — All units present");
+
 // --- Normal Upgraded Actives ---
+Isaac.DebugString("|LABOS| Running check on automated enhancement device...");
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DigitalCard.use, EFF_DigitalCard.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CartographersTome.use, EFF_CartographersTome.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AnarchistsEBook.use, EFF_AnarchistsEBook.ownType());
@@ -196,5 +211,24 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CHAOSPOOP.use, EF
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SIGILOFBELIAL.use, EFF_SIGILOFBELIAL.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDBLADE.use, EFF_TEMPEREDBLADE.ownType());
 
-// Print an initialization message to the "log.txt" file
-Isaac.DebugString("Abandoned_Laboratory initialized.");
+let itemsWithUpgrade = 0;
+let items = 0;
+const itemConfig = Isaac.GetItemConfig();
+for (let i=1;i<CollectibleType.NUM_COLLECTIBLES;i++) {
+  const testConfig = itemConfig.GetCollectible(i);
+    if (testConfig != null && testConfig.Type === ItemType.ITEM_ACTIVE && !testConfig.HasTags(ItemConfigTag.QUEST)) {
+      items++;
+    if (itemHasUpgrade(i)) {
+      itemsWithUpgrade++;
+    } else if (DUMP_NOUPGRADE) {
+      Isaac.DebugString(`|LABOS| WARN- No registered output for input ${testConfig.Name}[${i}]`);
+    }
+  }
+}
+Isaac.DebugString("|LABOS| Automated enhancement device check complete."+
+`  Availability: ${itemsWithUpgrade}/${items}`+
+` (${Math.round((itemsWithUpgrade/items)*100*100)/100}%)`);
+
+
+Isaac.DebugString("|LABOS| Startup complete");
+Isaac.DebugString("====================================");

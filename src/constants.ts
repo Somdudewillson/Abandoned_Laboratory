@@ -422,17 +422,9 @@ export function randomCollectible(rand: RNG): number {
   return enumEntries[randomIndex][1] as number;
 }
 
-export function itemHasUpgrade(
-  item: int,
-  playerType: int,
-  includeSpecialized = false,
-): boolean {
+export function itemHasUpgrade(item: int, playerType?: int): boolean {
   if (CollectibleUpgrade.has(item)) {
     return true;
-  }
-
-  if (includeSpecialized) {
-    return false;
   }
 
   switch (playerType) {
@@ -483,5 +475,7 @@ export function getItemUpgrade(item: int, playerType: int): number {
 }
 
 // Per-Build Constants
+export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
+export const VERSION = "0.6.2";

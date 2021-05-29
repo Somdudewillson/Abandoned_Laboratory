@@ -49,3 +49,13 @@ export function randomOnCircle(rand: RNG, radius: float = 1): Vector {
 export function bitCount(n: int): int {
   return Number(n.toString(2).split("").sort().join("")).toString().length;
 }
+
+export function sign(n: float): int {
+  if (n > 0) {
+    return 1;
+  }
+  if (n < 0) {
+    return -1;
+  }
+  return 0;
+}

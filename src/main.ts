@@ -9,6 +9,7 @@ import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
 import * as MachineEvents from "./callbacks/handler_MachineEvents";
 import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_MachineEvents";
 import * as SpiderEvents from "./callbacks/handler_SpiderEvents";
+import * as MicrodroneEvents from "./callbacks/handler_MicrodroneEvents";
 // ===== import item code =====
 // --- Normal Upgraded Actives ---
 import * as EFF_DigitalCard from "./items/active/upgraded/digitalCard";
@@ -118,6 +119,8 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MachineEvents.u
 PostRoomHandler.addRoomListener(MachineEvents.trySpawn);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, SpiderEvents.update, SpiderEvents.SPIDER_ENTITYTYPE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SpiderEvents.interceptDamage, SpiderEvents.SPIDER_ENTITYTYPE);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MicrodroneEvents.update, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, MicrodroneEvents.interceptDamage, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
 
 // --- Normal Upgraded Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DigitalCard.use, EFF_DigitalCard.ownType());

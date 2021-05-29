@@ -5,7 +5,20 @@
 		<bestiary transform="0,0,1" anim="Walk" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
-    <entity anm2path="013.000_Fly.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Timer" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="119">
+    <entity anm2path="018.027_attackmicrodrone.anm2" reroll="true" baseHP="7.5" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="17" friction="1" id="18" name="Micro Drone" numGridCollisionPoints="4" shadowSize="11" stageHP="0" variant="27" portrait="5" gridCollision="walls" tags="fly">
+		<bestiary transform="0,0,1" anim="Fly" />
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity anm2path="018.028_barriermicrodrone.anm2" reroll="true" baseHP="17.5" boss="0" champion="0" collisionDamage="0" collisionMass="6" collisionRadius="18" friction="1" id="18" name="Micro Barrier Drone" numGridCollisionPoints="4" shadowSize="12" stageHP="0" variant="28" portrait="5" gridCollision="walls" tags="fly">
+		<bestiary transform="0,0,1" anim="Fly" />
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity anm2path="018.029_nanomicrodrone.anm2" reroll="true" baseHP="5" boss="0" champion="0" collisionDamage="1" collisionMass="1" collisionRadius="10" friction="1" id="18" name="Nano Drone" numGridCollisionPoints="4" shadowSize="8" stageHP="0" variant="29" portrait="5" gridCollision="walls" tags="fly">
+		<bestiary transform="0,0,1" anim="Fly" />
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity anm2path="018.030_predictormicrodrone.anm2" reroll="true" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="1" collisionRadius="10" friction="1" id="18" name="Predictor Microdrone" numGridCollisionPoints="4" shadowSize="8" stageHP="0" variant="30" portrait="5" gridCollision="walls" tags="fly">
+		<bestiary transform="0,0,1" anim="Fly" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 </entities>

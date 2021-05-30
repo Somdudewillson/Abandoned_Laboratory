@@ -255,6 +255,12 @@ export function registerExternalItemDescriptions(): void {
     "Spawns a poop, pushes away enemies and bullets" +
       "#↓ Poop has reduced drops",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_TRIPLOPIA,
+    "Doubles all collectibles and pickups in the current room" +
+      "# Single-use" +
+      `↑ Gives the player {{Collectible${CollectibleType.COLLECTIBLE_DIPLOPIA}}}`,
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

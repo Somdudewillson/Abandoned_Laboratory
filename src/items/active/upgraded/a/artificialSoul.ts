@@ -49,15 +49,13 @@ export function postRoom(player: EntityPlayer, room: Room, level: Level): void {
     return;
   }
 
-  Isaac.DebugString(`Current room index:${level.GetCurrentRoomIndex()}`);
-  Isaac.DebugString(`Current player index:${player.Index}`);
+  // Isaac.DebugString(`Current room index:${level.GetCurrentRoomIndex()}`);
   let visitedRoomData = SaveUtil.getPlayerData(
     EntityRef(player),
     SaveType.PER_FLOOR,
     KEY_VISITED_ROOMS,
   ) as int[] | null;
   if (visitedRoomData == null) {
-    Isaac.DebugString(`Init data for:${player.Index}`);
     // Initialize array if null
     SaveUtil.savePlayerData(
       EntityRef(player),
@@ -86,13 +84,9 @@ export function postRoom(player: EntityPlayer, room: Room, level: Level): void {
     numberOfSetBits(visitedRoomData[1]) +
     numberOfSetBits(visitedRoomData[2]);
 
-  Isaac.DebugString(visitedRoomData[0].toString(2));
-  Isaac.DebugString(visitedRoomData[1].toString(2));
-  Isaac.DebugString(visitedRoomData[2].toString(2));
-
-  Isaac.DebugString(
-    `Unique rooms visited:${visitedUniqueRooms}/${level.GetRoomCount()}`,
-  );
+  // Isaac.DebugString(
+  //   `Unique rooms visited:${visitedUniqueRooms}/${level.GetRoomCount()}`,
+  // );
   const newCharge = math.min(
     Math.floor((visitedUniqueRooms / (level.GetRoomCount() * 0.9)) * 100),
     100,

@@ -1,59 +1,76 @@
 <items gfxroot="gfx/items/" version="1">
-	<active description="Enhanced Card Mimic" gfx="digitalcard.png" maxcharges="5" name="Digital Card" hidden="true"/>
-	<active description="Tome of Mapping" gfx="cartographerstome.png" maxcharges="12" name="Cartographer's Tome" hidden="true"/>
-	<active description="Summon Targeted Bombs" gfx="anarchistsebook.png" maxcharges="4" name="Anarchist's E-Book" hidden="true"/>
-	<active description="Automatic Barrier... Sometimes" gfx="shadowdevice.png" maxcharges="6" name="Shadow Device" hidden="true"/>
-	<active description="Reusable Item Generator" gfx="chestofsin.png" maxcharges="7" name="Chest of Sin" hidden="true"/>
-	<active description="Enhanced Rune Mimic" gfx="runicamplifier.png" maxcharges="5" name="Runic Amplifier" hidden="true"/>
-	<active description="Reusable Regeneration" gfx="glowingheart.png" maxcharges="4" name="Glowing Heart" hidden="true"/>
-	<active description="Enhanced Pill Mimic" gfx="pillmachine.png" maxcharges="5" name="Pill Machine" hidden="true"/>
-	<active description="Reusable Ranged Bombs" gfx="jarofheads.png" maxcharges="180" chargetype="timed" name="Jar of Heads" hidden="true"/>
-	<active description="Flip a Coin" gfx="silvernickel.png" maxcharges="1" name="Silver Nickel" hidden="true"/>
-	<active description="Fracture the Sky" gfx="metalfeather.png" maxcharges="3" name="Metal Feather" hidden="true"/>
-	<active description="It's a big box of spiders" gfx="bigboxofspiders.png" maxcharges="2" name="Big Box of Spiders" hidden="true"/>
-	<active description="Reusable Bomb Supply" gfx="bombdispenser.png" maxcharges="180" chargetype="timed" name="Bomb Dispenser" hidden="true"/>
-	<active description="Alter the Basics" gfx="matterrearranger.png" maxcharges="5" name="Matter Rearranger" hidden="true"/>
-	<active description="I don't remember..." gfx="forgetmelater.png" maxcharges="30" chargetype="special" name="Forget Me Later" hidden="true"/>
-	<active description="Powered by Sacrifice" gfx="bloodsaw.png" maxcharges="0" name="Blood Saw" hidden="true"/>
-	<active description="Artificial Eternity" gfx="divinitygenerator.png" maxcharges="4" name="Divinity Generator" hidden="true"/>
-	<active description="Artificial Evil" gfx="satanitygenerator.png" maxcharges="4" name="Satanity Generator" hidden="true"/>
-	<active description="Reinforced Glass" gfx="temperedglasscannon.png" maxcharges="480" chargetype="timed" name="Tempered Glass Cannon" hidden="true"/>
-	<active description="Ctrl+Z" gfx="zkey.png" maxcharges="300" chargetype="special" name="Z Key" hidden="true"/>
-	<active description="Artificial desires fulfilled" gfx="syntheticskin.png" maxcharges="8" name="Synthetic Skin" hidden="true"/>
-	<active description="Stop!!" gfx="goldenpause.png" maxcharges="120" chargetype="timed" name="Pause 2.0" hidden="true"/>
-	<active description="Even More Blood!!" gfx="bloodsiphon.png" maxcharges="480" chargetype="timed" name="Blood Siphon" hidden="true"/>
-	<active description="Artificial Fates" gfx="artificialsoul.png" maxcharges="100" chargetype="special" initcharge="0" name="Artificial Soul" hidden="true"/>
-	<active description="What will they be?" gfx="d2.png" maxcharges="3" name="D2" hidden="true"/>
-	<active description="Whatever could it be?" gfx="weeklygift.png" maxcharges="1" chargetype="special" initcharge="0" name="Weekly Gift" hidden="true"/>
-	<active description="Discount or gift?" gfx="discountcode.png" maxcharges="5" name="Discount Code" hidden="true"/>
-	<active description="False Pain" gfx="illusoryrazor.png" maxcharges="300" chargetype="timed" name="Illusory Razor" hidden="true"/>
-	<active description="Reshape Obstacles" gfx="portableterraformer.png" maxcharges="3" name="Portable Terraformer" hidden="true"/>
-	<active description="Accumulated Tears" gfx="tearreservoir.png" maxcharges="6" chargetype="special" initcharge="0" name="Tear Reservoir" hidden="true"/>
-	<active description="Reusable Tear Wave" gfx="wavecannon.png" maxcharges="660" chargetype="timed" name="Wave Cannon" hidden="true"/>
-	<active description="Mass Terror" gfx="terrorvortex.png" maxcharges="600" chargetype="timed" name="Terror Vortex" hidden="true"/>
-	<active description="Mass Petrifaction" gfx="petrifactionvortex.png" maxcharges="600" chargetype="timed" name="Petrifaction Vortex" hidden="true"/>
-	<active description="Mass Slow + Spiders" gfx="webbedvortex.png" maxcharges="480" chargetype="timed" name="Webbed Vortex" hidden="true"/>
-	<active description="Mass Slow" gfx="chronalvortex.png" maxcharges="420" chargetype="timed" name="Chronal Vortex" hidden="true"/>
-	<active description="Mass Damage" gfx="necrovortex.png" maxcharges="600" chargetype="timed" name="Necro Vortex" hidden="true"/>
-	<active description="Pay to win" gfx="microtransaction.png" maxcharges="0" name="Microtransaction" hidden="true"/>
-	<active description="I'm a big boy now!" gfx="cybermush.png" maxcharges="6" name="Cyber Mush" hidden="true"/>
-	<active description="Safer Last Resort" gfx="pland.png" maxcharges="0" name="Plan D" hidden="true"/>
-	<active description="Fake Your Death" gfx="counterfeitdeathcertificate.png" maxcharges="0" name="Counterfeit Death Certificate" hidden="true"/>
-	<active description="75/25" gfx="straightenedpenny.png" maxcharges="4" name="Straightened Penny" hidden="true"/>
-	<active description="Explore every other side" gfx="crimsonkey.png" maxcharges="4" name="Crimson Key" hidden="true"/>
-	<active description="Useful Reusable Fortunes" gfx="digitalfortune.png" maxcharges="2" name="Digital Fortune" hidden="true"/>
-	<active description="Jams Sometimes" gfx="vendingmachine.png" maxcharges="0" name="Vending Machine" hidden="true"/>
-	<active description="Blood to Gold" gfx="bloodalchemizer.png" maxcharges="0" name="Blood Alchemizer" hidden="true"/>
-	<active description="Temporary Flight" gfx="summarizedbible.png" maxcharges="2" name="Summarized Bible" hidden="true"/>
-	<active description="There might be flies..." gfx="cornypoop.png" maxcharges="360" chargetype="timed" name="Corny Poop" hidden="true"/>
-	<active description="Decaying double item vision" gfx="triplopia.png" maxcharges="0" name="Triplopia" hidden="true"/>
+	<active description="Summon Targeted Bombs" gfx="upgraded\a\anarchistsebook.png" maxcharges="4" name="Anarchist's E-Book" hidden="true"/>
+	<active description="Artificial Fates" gfx="upgraded\a\artificialsoul.png" maxcharges="100" chargetype="special" initcharge="0" name="Artificial Soul" hidden="true"/>
 
-	<active description="Flip a Coin" gfx="goldennickel.png" maxcharges="200" chargetype="timed" name="Golden Nickel" hidden="true"/>
-	<active description="Active Reusable Regeneration" gfx="reconstructiveheart.png" maxcharges="4" name="Reconstructive Heart" hidden="true"/>
-	<active description="Stabilized Destiny Alteration" gfx="stabilizedeternald6.png" maxcharges="3" name="Stabilized Eternal D6" hidden="true"/>
-	<active description="Energized Destiny Alteration" gfx="energizedd6.png" maxcharges="6" name="Energized D6" hidden="true"/>
-	<active description="Maximize your friends" gfx="crateoffriends.png" maxcharges="3" name="Crate of Friends" hidden="true"/>
-	<active description="Plop?!" gfx="chaospoop.png" maxcharges="1" name="Chaos Poop" hidden="true"/>
-	<active description="Semi-Temporary DMG up" gfx="sigilofbelial.png" maxcharges="3" name="Sigil of Belial" hidden="true"/>
-	<active description="Feel my pain" gfx="temperedblade.png" maxcharges="0" name="Tempered Blade" hidden="true"/>
+	<active description="It's a big box of spiders" gfx="upgraded\b\bigboxofspiders.png" maxcharges="2" name="Big Box of Spiders" hidden="true"/>
+	<active description="Blood to Gold" gfx="upgraded\b\bloodalchemizer.png" maxcharges="0" name="Blood Alchemizer" hidden="true"/>
+	<active description="Powered by Sacrifice" gfx="upgraded\b\bloodsaw.png" maxcharges="0" name="Blood Saw" hidden="true"/>
+	<active description="Even More Blood!!" gfx="upgraded\b\bloodsiphon.png" maxcharges="480" chargetype="timed" name="Blood Siphon" hidden="true"/>
+	<active description="Reusable Bomb Supply" gfx="upgraded\b\bombdispenser.png" maxcharges="180" chargetype="timed" name="Bomb Dispenser" hidden="true"/>
+
+	<active description="Tome of Mapping" gfx="upgraded\c\cartographerstome.png" maxcharges="12" name="Cartographer's Tome" hidden="true"/>
+	<active description="Reusable Item Generator" gfx="upgraded\c\chestofsin.png" maxcharges="7" name="Chest of Sin" hidden="true"/>
+	<active description="Mass Slow" gfx="upgraded\c\chronalvortex.png" maxcharges="420" chargetype="timed" name="Chronal Vortex" hidden="true"/>
+	<active description="There might be flies..." gfx="upgraded\c\cornypoop.png" maxcharges="360" chargetype="timed" name="Corny Poop" hidden="true"/>
+	<active description="Fake Your Death" gfx="upgraded\c\counterfeitdeathcertificate.png" maxcharges="0" name="Counterfeit Death Certificate" hidden="true"/>
+	<active description="Explore every other side" gfx="upgraded\c\crimsonkey.png" maxcharges="4" name="Crimson Key" hidden="true"/>
+	<active description="I'm a big boy now!" gfx="upgraded\c\cybermush.png" maxcharges="6" name="Cyber Mush" hidden="true"/>
+
+	<active description="What will they be?" gfx="upgraded\d\d2.png" maxcharges="3" name="D2" hidden="true"/>
+	<active description="Enhanced Card Mimic" gfx="upgraded\d\digitalcard.png" maxcharges="5" name="Digital Card" hidden="true"/>
+	<active description="Useful Reusable Fortunes" gfx="upgraded\d\digitalfortune.png" maxcharges="2" name="Digital Fortune" hidden="true"/>
+	<active description="Discount or gift?" gfx="upgraded\d\discountcode.png" maxcharges="5" name="Discount Code" hidden="true"/>
+	<active description="Artificial Eternity" gfx="upgraded\d\divinitygenerator.png" maxcharges="4" name="Divinity Generator" hidden="true"/>
+
+	<active description="I won't remember..." gfx="upgraded\f\forgetmelater.png" maxcharges="30" chargetype="special" name="Forget Me Later" hidden="true"/>
+
+	<active description="Reusable Regeneration" gfx="upgraded\g\glowingheart.png" maxcharges="4" name="Glowing Heart" hidden="true"/>
+	<active description="Stop!!" gfx="upgraded\g\goldenpause.png" maxcharges="120" chargetype="timed" name="Pause 2.0" hidden="true"/>
+
+	<active description="False Pain" gfx="upgraded\i\illusoryrazor.png" maxcharges="300" chargetype="timed" name="Illusory Razor" hidden="true"/>
+
+	<active description="Reusable Ranged Bombs" gfx="upgraded\j\jarofheads.png" maxcharges="180" chargetype="timed" name="Jar of Heads" hidden="true"/>
+
+	<active description="Alter the Basics" gfx="upgraded\m\matterrearranger.png" maxcharges="5" name="Matter Rearranger" hidden="true"/>
+	<active description="Fracture the Sky" gfx="upgraded\m\metalfeather.png" maxcharges="3" name="Metal Feather" hidden="true"/>
+	<active description="Pay to win" gfx="upgraded\m\microtransaction.png" maxcharges="0" name="Microtransaction" hidden="true"/>
+
+	<active description="Mass Damage" gfx="upgraded\n\necrovortex.png" maxcharges="600" chargetype="timed" name="Necro Vortex" hidden="true"/>
+
+	<active description="Mass Petrifaction" gfx="upgraded\p\petrifactionvortex.png" maxcharges="600" chargetype="timed" name="Petrifaction Vortex" hidden="true"/>
+	<active description="Enhanced Pill Mimic" gfx="upgraded\p\pillmachine.png" maxcharges="5" name="Pill Machine" hidden="true"/>
+	<active description="Safer Last Resort" gfx="upgraded\p\pland.png" maxcharges="0" name="Plan D" hidden="true"/>
+	<active description="Reshape Obstacles" gfx="upgraded\p\portableterraformer.png" maxcharges="3" name="Portable Terraformer" hidden="true"/>
+
+	<active description="Enhanced Rune Mimic" gfx="upgraded\r\runicamplifier.png" maxcharges="5" name="Runic Amplifier" hidden="true"/>
+
+	<active description="Artificial Evil" gfx="upgraded\s\satanitygenerator.png" maxcharges="4" name="Satanity Generator" hidden="true"/>
+	<active description="Automatic Barrier... Sometimes" gfx="upgraded\s\shadowdevice.png" maxcharges="6" name="Shadow Device" hidden="true"/>
+	<active description="Flip a Coin" gfx="upgraded\s\silvernickel.png" maxcharges="1" name="Silver Nickel" hidden="true"/>
+	<active description="75/25" gfx="upgraded\s\straightenedpenny.png" maxcharges="4" name="Straightened Penny" hidden="true"/>
+	<active description="Temporary Flight" gfx="upgraded\s\summarizedbible.png" maxcharges="2" name="Summarized Bible" hidden="true"/>
+	<active description="Artificial desires fulfilled" gfx="upgraded\s\syntheticskin.png" maxcharges="8" name="Synthetic Skin" hidden="true"/>
+
+	<active description="Accumulated Tears" gfx="upgraded\t\tearreservoir.png" maxcharges="6" chargetype="special" initcharge="0" name="Tear Reservoir" hidden="true"/>
+	<active description="Reinforced Glass" gfx="upgraded\t\temperedglasscannon.png" maxcharges="480" chargetype="timed" name="Tempered Glass Cannon" hidden="true"/>
+	<active description="Mass Terror" gfx="upgraded\t\terrorvortex.png" maxcharges="600" chargetype="timed" name="Terror Vortex" hidden="true"/>
+	<active description="Decaying double item vision" gfx="upgraded\t\triplopia.png" maxcharges="0" name="Triplopia" hidden="true"/>
+
+	<active description="Jams Sometimes" gfx="upgraded\v\vendingmachine.png" maxcharges="0" name="Vending Machine" hidden="true"/>
+
+	<active description="Reusable Tear Wave" gfx="upgraded\w\wavecannon.png" maxcharges="660" chargetype="timed" name="Wave Cannon" hidden="true"/>
+	<active description="Mass Slow + Spiders" gfx="upgraded\w\webbedvortex.png" maxcharges="480" chargetype="timed" name="Webbed Vortex" hidden="true"/>
+	<active description="Whatever could it be?" gfx="upgraded\w\weeklygift.png" maxcharges="1" chargetype="special" initcharge="0" name="Weekly Gift" hidden="true"/>
+
+	<active description="Ctrl+Z" gfx="upgraded\z\zkey.png" maxcharges="300" chargetype="special" name="Z Key" hidden="true"/>
+
+
+	<active description="Flip a Coin" gfx="upgraded\specialized\goldennickel.png" maxcharges="200" chargetype="timed" name="Golden Nickel" hidden="true"/>
+	<active description="Active Reusable Regeneration" gfx="upgraded\specialized\reconstructiveheart.png" maxcharges="4" name="Reconstructive Heart" hidden="true"/>
+	<active description="Stabilized Destiny Alteration" gfx="upgraded\specialized\stabilizedeternald6.png" maxcharges="3" name="Stabilized Eternal D6" hidden="true"/>
+	<active description="Energized Destiny Alteration" gfx="upgraded\specialized\energizedd6.png" maxcharges="6" name="Energized D6" hidden="true"/>
+	<active description="Maximize your friends" gfx="upgraded\specialized\crateoffriends.png" maxcharges="3" name="Crate of Friends" hidden="true"/>
+	<active description="Plop?!" gfx="upgraded\specialized\chaospoop.png" maxcharges="1" name="Chaos Poop" hidden="true"/>
+	<active description="Semi-Temporary DMG up" gfx="upgraded\specialized\sigilofbelial.png" maxcharges="3" name="Sigil of Belial" hidden="true"/>
+	<active description="Feel my pain" gfx="upgraded\specialized\temperedblade.png" maxcharges="0" name="Tempered Blade" hidden="true"/>
 </items>

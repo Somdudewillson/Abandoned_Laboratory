@@ -12,54 +12,70 @@ import * as SpiderEvents from "./callbacks/handler_SpiderEvents";
 import * as MicrodroneEvents from "./callbacks/handler_MicrodroneEvents";
 // ===== import item code =====
 // --- Normal Upgraded Actives ---
-import * as EFF_DigitalCard from "./items/active/upgraded/digitalCard";
-import * as EFF_CartographersTome from "./items/active/upgraded/cartographersTome";
-import * as EFF_AnarchistsEBook from "./items/active/upgraded/anarchistsEBook";
-import * as EFF_SHADOWDEVICE from "./items/active/upgraded/shadowDevice";
-import * as EFF_CHESTOFSIN from "./items/active/upgraded/chestOfSin";
-import * as EFF_RUNICAMPLIFIER from "./items/active/upgraded/runicAmplifier";
-import * as EFF_GLOWINGHEART from "./items/active/upgraded/glowingHeart";
-import * as EFF_PILLMACHINE from "./items/active/upgraded/pillMachine";
-import * as EFF_JAROFHEADS from "./items/active/upgraded/jarOfHeads";
-import * as EFF_SILVERNICKEL from "./items/active/upgraded/silverNickel";
-import * as EFF_METALFEATHER from "./items/active/upgraded/metalFeather";
-import * as EFF_BIGBOXOFSPIDERS from "./items/active/upgraded/bigBoxOfSpiders";
-import * as EFF_BOMBDISPENSER from "./items/active/upgraded/bombDispenser";
-import * as EFF_MATTERREARRANGER from "./items/active/upgraded/matterRearranger";
-import * as EFF_FORGETMELATER from "./items/active/upgraded/forgetMeLater";
-import * as EFF_BLOODSAW from "./items/active/upgraded/bloodSaw";
-import * as EFF_DIVINITYGENERATOR from "./items/active/upgraded/divinityGenerator";
-import * as EFF_SATANITYGENERATOR from "./items/active/upgraded/satanityGenerator";
-import * as EFF_TEMPEREDGLASSCANNON from "./items/active/upgraded/temperedGlassCannon";
-import * as EFF_ZKEY from "./items/active/upgraded/zKey";
-import * as EFF_SYNTHETICSKIN from "./items/active/upgraded/syntheticSkin";
-import * as EFF_PAUSE2 from "./items/active/upgraded/pauseTwo";
-import * as EFF_BLOODSIPHON from "./items/active/upgraded/bloodSiphon";
-import * as EFF_ARTIFICIALSOUL from "./items/active/upgraded/artificialSoul";
-import * as EFF_D2 from "./items/active/upgraded/dTwo";
-import * as EFF_WEEKLYGIFT from "./items/active/upgraded/weeklyGift";
-import * as EFF_DISCOUNTCODE from "./items/active/upgraded/discountCode";
-import * as EFF_ILLUSORYRAZOR from "./items/active/upgraded/illusoryRazor";
-import * as EFF_PORTABLETERRAFORMER from "./items/active/upgraded/portableTerraformer";
-import * as EFF_TEARRESERVOIR from "./items/active/upgraded/tearReservoir";
-import * as EFF_WAVECANNON from "./items/active/upgraded/waveCannon";
-import * as EFF_TERRORVORTEX from "./items/active/upgraded/terrorVortex";
-import * as EFF_PETRIFACTIONVORTEX from "./items/active/upgraded/pertifactionVortex";
-import * as EFF_WEBBEDVORTEX from "./items/active/upgraded/webbedVortex";
-import * as EFF_CHRONALVORTEX from "./items/active/upgraded/chronalVortex";
-import * as EFF_NECROVORTEX from "./items/active/upgraded/necroVortex";
-import * as EFF_MICROTRANSACTION from "./items/active/upgraded/microtransaction";
-import * as EFF_CYBERMUSH from "./items/active/upgraded/cyberMush";
-import * as EFF_PLAND from "./items/active/upgraded/planD";
-import * as EFF_COUNTERFEITDEATHCERTIFICATE from "./items/active/upgraded/counterfeitDeathCertificate";
-import * as EFF_STRAIGHTENEDPENNY from "./items/active/upgraded/straightenedPenny";
-import * as EFF_CRIMSONKEY from "./items/active/upgraded/crimsonKey";
-import * as EFF_DIGITALFORTUNE from "./items/active/upgraded/digitalFortune";
-import * as EFF_VENDINGMACHINE from "./items/active/upgraded/vendingMachine";
-import * as EFF_BLOODALCHEMIZER from "./items/active/upgraded/bloodAlchemizer";
-import * as EFF_SUMMARIZEDBIBLE from "./items/active/upgraded/summarizedBible";
-import * as EFF_CORNYPOOP from "./items/active/upgraded/cornyPoop";
-import * as EFF_TRIPLOPIA from "./items/active/upgraded/triplopia";
+import * as EFF_AnarchistsEBook from "./items/active/upgraded/a/anarchistsEBook";
+import * as EFF_ARTIFICIALSOUL from "./items/active/upgraded/a/artificialSoul";
+
+import * as EFF_BIGBOXOFSPIDERS from "./items/active/upgraded/b/bigBoxOfSpiders";
+import * as EFF_BLOODALCHEMIZER from "./items/active/upgraded/b/bloodAlchemizer";
+import * as EFF_BLOODSAW from "./items/active/upgraded/b/bloodSaw";
+import * as EFF_BLOODSIPHON from "./items/active/upgraded/b/bloodSiphon";
+import * as EFF_BOMBDISPENSER from "./items/active/upgraded/b/bombDispenser";
+
+import * as EFF_CartographersTome from "./items/active/upgraded/c/cartographersTome";
+import * as EFF_CHESTOFSIN from "./items/active/upgraded/c/chestOfSin";
+import * as EFF_CHRONALVORTEX from "./items/active/upgraded/c/chronalVortex";
+import * as EFF_CORNYPOOP from "./items/active/upgraded/c/cornyPoop";
+import * as EFF_COUNTERFEITDEATHCERTIFICATE from "./items/active/upgraded/c/counterfeitDeathCertificate";
+import * as EFF_CRIMSONKEY from "./items/active/upgraded/c/crimsonKey";
+import * as EFF_CYBERMUSH from "./items/active/upgraded/c/cyberMush";
+
+import * as EFF_D2 from "./items/active/upgraded/d/dTwo";
+import * as EFF_DigitalCard from "./items/active/upgraded/d/digitalCard";
+import * as EFF_DIGITALFORTUNE from "./items/active/upgraded/d/digitalFortune";
+import * as EFF_DISCOUNTCODE from "./items/active/upgraded/d/discountCode";
+import * as EFF_DIVINITYGENERATOR from "./items/active/upgraded/d/divinityGenerator";
+
+import * as EFF_FORGETMELATER from "./items/active/upgraded/f/forgetMeLater";
+
+import * as EFF_GLOWINGHEART from "./items/active/upgraded/g/glowingHeart";
+import * as EFF_PAUSE2 from "./items/active/upgraded/p/pauseTwo";
+
+import * as EFF_ILLUSORYRAZOR from "./items/active/upgraded/i/illusoryRazor";
+
+import * as EFF_JAROFHEADS from "./items/active/upgraded/j/jarOfHeads";
+
+import * as EFF_MATTERREARRANGER from "./items/active/upgraded/m/matterRearranger";
+import * as EFF_METALFEATHER from "./items/active/upgraded/m/metalFeather";
+import * as EFF_MICROTRANSACTION from "./items/active/upgraded/m/microtransaction";
+
+import * as EFF_NECROVORTEX from "./items/active/upgraded/n/necroVortex";
+
+import * as EFF_PETRIFACTIONVORTEX from "./items/active/upgraded/p/pertifactionVortex";
+import * as EFF_PILLMACHINE from "./items/active/upgraded/p/pillMachine";
+import * as EFF_PLAND from "./items/active/upgraded/p/planD";
+import * as EFF_PORTABLETERRAFORMER from "./items/active/upgraded/p/portableTerraformer";
+
+import * as EFF_RUNICAMPLIFIER from "./items/active/upgraded/r/runicAmplifier";
+
+import * as EFF_SATANITYGENERATOR from "./items/active/upgraded/s/satanityGenerator";
+import * as EFF_SHADOWDEVICE from "./items/active/upgraded/s/shadowDevice";
+import * as EFF_SILVERNICKEL from "./items/active/upgraded/s/silverNickel";
+import * as EFF_STRAIGHTENEDPENNY from "./items/active/upgraded/s/straightenedPenny";
+import * as EFF_SUMMARIZEDBIBLE from "./items/active/upgraded/s/summarizedBible";
+import * as EFF_SYNTHETICSKIN from "./items/active/upgraded/s/syntheticSkin";
+
+import * as EFF_TEARRESERVOIR from "./items/active/upgraded/t/tearReservoir";
+import * as EFF_TEMPEREDGLASSCANNON from "./items/active/upgraded/t/temperedGlassCannon";
+import * as EFF_TERRORVORTEX from "./items/active/upgraded/t/terrorVortex";
+import * as EFF_TRIPLOPIA from "./items/active/upgraded/t/triplopia";
+
+import * as EFF_VENDINGMACHINE from "./items/active/upgraded/v/vendingMachine";
+
+import * as EFF_WAVECANNON from "./items/active/upgraded/w/waveCannon";
+import * as EFF_WEBBEDVORTEX from "./items/active/upgraded/w/webbedVortex";
+import * as EFF_WEEKLYGIFT from "./items/active/upgraded/w/weeklyGift";
+
+import * as EFF_ZKEY from "./items/active/upgraded/z/zKey";
 // --- Upgraded Starting Actives ---
 import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";

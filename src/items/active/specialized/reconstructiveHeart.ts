@@ -1,6 +1,6 @@
 import { CollectibleTypeLab } from "../../../constants";
 import { playSound } from "../../../utils";
-import { healPlayer } from "../upgraded/glowingHeart";
+import { healPlayer } from "../upgraded/g/glowingHeart";
 
 const HEALTH_POINTS: int = 7;
 const SOUL_COST: int = 3;

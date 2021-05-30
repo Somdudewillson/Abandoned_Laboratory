@@ -55,6 +55,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_BLOODALCHEMIZER = Isaac.GetItemIdByName("Blood Alchemizer"),
   COLLECTIBLE_SUMMARIZEDBIBLE = Isaac.GetItemIdByName("Summarized Bible"),
   COLLECTIBLE_CORNYPOOP = Isaac.GetItemIdByName("Corny Poop"),
+  COLLECTIBLE_TRIPLOPIA = Isaac.GetItemIdByName("Triplopia"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -294,6 +295,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
     CollectibleTypeLab.COLLECTIBLE_SUMMARIZEDBIBLE,
   ],
   [CollectibleType.COLLECTIBLE_POOP, CollectibleTypeLab.COLLECTIBLE_CORNYPOOP],
+  [
+    CollectibleType.COLLECTIBLE_DIPLOPIA,
+    CollectibleTypeLab.COLLECTIBLE_TRIPLOPIA,
+  ],
 ]);
 
 export const enum FireplaceVariant {

@@ -46,6 +46,7 @@
 	<active description="Blood to Gold" gfx="bloodalchemizer.png" maxcharges="0" name="Blood Alchemizer" hidden="true"/>
 	<active description="Temporary Flight" gfx="summarizedbible.png" maxcharges="2" name="Summarized Bible" hidden="true"/>
 	<active description="There might be flies..." gfx="cornypoop.png" maxcharges="360" chargetype="timed" name="Corny Poop" hidden="true"/>
+	<active description="Decaying double item vision" gfx="triplopia.png" maxcharges="0" name="Triplopia" hidden="true"/>
 
 	<active description="Flip a Coin" gfx="goldennickel.png" maxcharges="200" chargetype="timed" name="Golden Nickel" hidden="true"/>
 	<active description="Active Reusable Regeneration" gfx="reconstructiveheart.png" maxcharges="4" name="Reconstructive Heart" hidden="true"/>

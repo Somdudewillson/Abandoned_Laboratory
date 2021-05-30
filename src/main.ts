@@ -59,6 +59,7 @@ import * as EFF_VENDINGMACHINE from "./items/active/upgraded/vendingMachine";
 import * as EFF_BLOODALCHEMIZER from "./items/active/upgraded/bloodAlchemizer";
 import * as EFF_SUMMARIZEDBIBLE from "./items/active/upgraded/summarizedBible";
 import * as EFF_CORNYPOOP from "./items/active/upgraded/cornyPoop";
+import * as EFF_TRIPLOPIA from "./items/active/upgraded/triplopia";
 // --- Upgraded Starting Actives ---
 import * as EFF_GOLDENNICKEL from "./items/active/specialized/goldenNickel";
 import * as EFF_RECONSTRUCTIVEHEART from "./items/active/specialized/reconstructiveHeart";
@@ -199,6 +200,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_VENDINGMACHINE.us
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLOODALCHEMIZER.use, EFF_BLOODALCHEMIZER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUMMARIZEDBIBLE.use, EFF_SUMMARIZEDBIBLE.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CORNYPOOP.use, EFF_CORNYPOOP.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TRIPLOPIA.use, EFF_TRIPLOPIA.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());
@@ -218,7 +220,7 @@ let items = 0;
 const itemConfig = Isaac.GetItemConfig();
 for (let i=1;i<CollectibleType.NUM_COLLECTIBLES;i++) {
   const testConfig = itemConfig.GetCollectible(i);
-    if (testConfig != null && testConfig.Type === ItemType.ITEM_ACTIVE && !testConfig.HasTags(ItemConfigTag.QUEST)) {
+    if (testConfig != null && testConfig.Type === ItemType.ITEM_ACTIVE && !testConfig.HasTags(ItemConfigTag.QUEST) && !testConfig.Hidden) {
       items++;
     if (itemHasUpgrade(i)) {
       itemsWithUpgrade++;

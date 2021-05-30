@@ -27,6 +27,8 @@ const ROOTS = [
   SaveRoot.DATA_PLAYER4,
 ];
 
+const PLAYER_HASHES = new Map<int, int>();
+
 const SAVE_DATA = new Map([
   [
     "global",
@@ -40,7 +42,6 @@ const SAVE_DATA = new Map([
   [
     "player1",
     new Map([
-      ["persistent", new Map<string, unknown>()],
       ["perRun", new Map<string, unknown>()],
       ["perFloor", new Map<string, unknown>()],
       ["perRoom", new Map<string, unknown>()],
@@ -49,7 +50,6 @@ const SAVE_DATA = new Map([
   [
     "player2",
     new Map([
-      ["persistent", new Map<string, unknown>()],
       ["perRun", new Map<string, unknown>()],
       ["perFloor", new Map<string, unknown>()],
       ["perRoom", new Map<string, unknown>()],
@@ -58,7 +58,6 @@ const SAVE_DATA = new Map([
   [
     "player3",
     new Map([
-      ["persistent", new Map<string, unknown>()],
       ["perRun", new Map<string, unknown>()],
       ["perFloor", new Map<string, unknown>()],
       ["perRoom", new Map<string, unknown>()],
@@ -67,7 +66,6 @@ const SAVE_DATA = new Map([
   [
     "player4",
     new Map([
-      ["persistent", new Map<string, unknown>()],
       ["perRun", new Map<string, unknown>()],
       ["perFloor", new Map<string, unknown>()],
       ["perRoom", new Map<string, unknown>()],
@@ -87,20 +85,24 @@ export function getGlobalData(type: SaveType, key: string): unknown {
   return SAVE_DATA.get(SaveRoot.DATA_GLOBAL)!.get(type)!.get(key);
 }
 export function savePlayerData(
-  playerNum: int,
+  playerRef: EntityRef,
   type: SaveType,
   key: string,
   value: unknown,
 ): void {
-  SAVE_DATA.get(playerIndexToEnum(playerNum))!.get(type)!.set(key, value);
+  SAVE_DATA.get(playerHashToEnum(GetPtrHash(playerRef.Entity)))!
+    .get(type)!
+    .set(key, value);
 }
 
 export function getPlayerData(
-  playerNum: int,
+  playerRef: EntityRef,
   type: SaveType,
   key: string,
 ): unknown {
-  return SAVE_DATA.get(playerIndexToEnum(playerNum))!.get(type)!.get(key);
+  return SAVE_DATA.get(playerHashToEnum(GetPtrHash(playerRef.Entity)))!
+    .get(type)!
+    .get(key);
 }
 
 export function serialize(willContinue: boolean): string {
@@ -121,6 +123,14 @@ export function deserialize(data: string, isContinued: boolean): void {
     SAVE_DATA.set(key, decoded[key]);
   }
 
+  for (let p = 0; p < 4; p++) {
+    const player = Isaac.GetPlayer(p);
+    if (player == null) {
+      continue;
+    }
+    PLAYER_HASHES.set(GetPtrHash(player), p);
+  }
+
   if (!isContinued) {
     wipePerRun();
   }
@@ -128,8 +138,8 @@ export function deserialize(data: string, isContinued: boolean): void {
 
 // General util functions
 
-function playerIndexToEnum(index: int): SaveRoot {
-  switch (index) {
+function playerHashToEnum(hash: int): SaveRoot {
+  switch (PLAYER_HASHES.get(hash)) {
     default:
     case 0:
       return SaveRoot.DATA_PLAYER1;

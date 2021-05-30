@@ -1,4 +1,5 @@
 import { CollectibleTypeLab } from "../../../../constants";
+import { numberOfSetBits } from "../../../../extMath";
 import * as SaveUtil from "../../../../saveData";
 import { SaveType } from "../../../../saveData";
 import { chargeEffect } from "../../../../utils";
@@ -21,12 +22,17 @@ export function use(
   player.UseActiveItem(CollectibleType.COLLECTIBLE_EDENS_SOUL);
 
   SaveUtil.savePlayerData(
-    player.Index,
+    EntityRef(player),
     SaveType.PER_FLOOR,
     KEY_VISITED_ROOMS,
     [],
   );
-  SaveUtil.savePlayerData(player.Index, SaveType.PER_FLOOR, KEY_USED, true);
+  SaveUtil.savePlayerData(
+    EntityRef(player),
+    SaveType.PER_FLOOR,
+    KEY_USED,
+    true,
+  );
 
   return true;
 }
@@ -39,39 +45,54 @@ export function postRoom(player: EntityPlayer, room: Room, level: Level): void {
   if (!player.HasCollectible(ownType())) {
     return;
   }
-  if (SaveUtil.getPlayerData(player.Index, SaveType.PER_FLOOR, KEY_USED)) {
+  if (SaveUtil.getPlayerData(EntityRef(player), SaveType.PER_FLOOR, KEY_USED)) {
     return;
   }
 
-  // Isaac.DebugString(`Current room index:${level.GetCurrentRoomIndex()}`);
+  Isaac.DebugString(`Current room index:${level.GetCurrentRoomIndex()}`);
+  Isaac.DebugString(`Current player index:${player.Index}`);
   let visitedRoomData = SaveUtil.getPlayerData(
-    player.Index,
+    EntityRef(player),
     SaveType.PER_FLOOR,
     KEY_VISITED_ROOMS,
   ) as int[] | null;
   if (visitedRoomData == null) {
+    Isaac.DebugString(`Init data for:${player.Index}`);
+    // Initialize array if null
     SaveUtil.savePlayerData(
-      player.Index,
+      EntityRef(player),
       SaveType.PER_FLOOR,
       KEY_VISITED_ROOMS,
-      [],
+      [0, 0, 0],
     );
 
     visitedRoomData = SaveUtil.getPlayerData(
-      player.Index,
+      EntityRef(player),
       SaveType.PER_FLOOR,
       KEY_VISITED_ROOMS,
     ) as int[];
   }
-  if (visitedRoomData.indexOf(level.GetCurrentRoomIndex()) === -1) {
-    visitedRoomData.push(level.GetCurrentRoomIndex());
+  const currentRoomIndex = level.GetCurrentRoomIndex();
+  if (currentRoomIndex < 64) {
+    visitedRoomData[0] |= 1 << currentRoomIndex;
+  } else if (currentRoomIndex < 128) {
+    visitedRoomData[1] |= 1 << (currentRoomIndex - 64);
+  } else {
+    visitedRoomData[2] |= 1 << (currentRoomIndex - 128);
   }
 
-  const visitedUniqueRooms = visitedRoomData.length;
+  const visitedUniqueRooms =
+    numberOfSetBits(visitedRoomData[0]) +
+    numberOfSetBits(visitedRoomData[1]) +
+    numberOfSetBits(visitedRoomData[2]);
 
-  // Isaac.DebugString(
-  //   `Unique rooms visited:${visitedUniqueRooms}/${level.GetRoomCount()}`,
-  // );
+  Isaac.DebugString(visitedRoomData[0].toString(2));
+  Isaac.DebugString(visitedRoomData[1].toString(2));
+  Isaac.DebugString(visitedRoomData[2].toString(2));
+
+  Isaac.DebugString(
+    `Unique rooms visited:${visitedUniqueRooms}/${level.GetRoomCount()}`,
+  );
   const newCharge = math.min(
     Math.floor((visitedUniqueRooms / (level.GetRoomCount() * 0.9)) * 100),
     100,

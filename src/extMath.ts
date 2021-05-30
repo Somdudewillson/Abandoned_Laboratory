@@ -46,8 +46,24 @@ export function randomOnCircle(rand: RNG, radius: float = 1): Vector {
   return Vector(Math.cos(theta) * radius, Math.sin(theta) * radius);
 }
 
-export function bitCount(n: int): int {
-  return Number(n.toString(2).split("").sort().join("")).toString().length;
+/*
+export function numberOfSetBits(i: int): int {
+  i -= (i >>> 1) & 0x55555555; // add pairs of bits
+  i = (i & 0x33333333) + ((i >>> 2) & 0x33333333); // quads
+  i = (i + (i >>> 4)) & 0x0f0f0f0f; // groups of 8
+  return (i * 0x0101010101010101) >>> 56; // horizontal sum of bytes
+} */
+
+export function numberOfSetBits(value: int): int {
+  let count: int = 0;
+  while (value > 0) {
+    // until all bits are zero
+    if ((value & 1) === 1)
+      // check lower bit
+      count++;
+    value >>>= 1; // shift bits, removing lower bit
+  }
+  return count;
 }
 
 export function sign(n: float): int {

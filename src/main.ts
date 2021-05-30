@@ -248,7 +248,5 @@ for (let i=1;i<CollectibleType.NUM_COLLECTIBLES;i++) {
 Isaac.DebugString("|LABOS| Automated enhancement device check complete."+
 `  Availability: ${itemsWithUpgrade}/${items}`+
 ` (${Math.round((itemsWithUpgrade/items)*100*100)/100}%)`);
-
-
 Isaac.DebugString("|LABOS| Startup complete");
 Isaac.DebugString("====================================");

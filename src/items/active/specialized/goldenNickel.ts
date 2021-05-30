@@ -21,11 +21,14 @@ export function use(
 ): boolean {
   let nickelHearts: int = 0;
   if (
-    SaveUtil.getPlayerData(player.Index, SaveType.PER_RUN, KEY_NICKEL_HEARTS) !=
-    null
+    SaveUtil.getPlayerData(
+      EntityRef(player),
+      SaveType.PER_RUN,
+      KEY_NICKEL_HEARTS,
+    ) != null
   ) {
     nickelHearts = SaveUtil.getPlayerData(
-      player.Index,
+      EntityRef(player),
       SaveType.PER_RUN,
       KEY_NICKEL_HEARTS,
     ) as number;
@@ -46,7 +49,7 @@ export function use(
       rand.RandomFloat() < 0.75 - nickelHearts * 0.25
     ) {
       SaveUtil.savePlayerData(
-        player.Index,
+        EntityRef(player),
         SaveType.PER_RUN,
         KEY_NICKEL_HEARTS,
         nickelHearts + 1,
@@ -77,13 +80,16 @@ export function interceptDamage(
   }
 
   if (
-    SaveUtil.getPlayerData(player.Index, SaveType.PER_RUN, KEY_NICKEL_HEARTS) ==
-    null
+    SaveUtil.getPlayerData(
+      EntityRef(player),
+      SaveType.PER_RUN,
+      KEY_NICKEL_HEARTS,
+    ) == null
   ) {
     return null;
   }
   const nickelHearts: int = SaveUtil.getPlayerData(
-    player.Index,
+    EntityRef(player),
     SaveType.PER_RUN,
     KEY_NICKEL_HEARTS,
   ) as number;
@@ -92,7 +98,7 @@ export function interceptDamage(
   }
 
   SaveUtil.savePlayerData(
-    player.Index,
+    EntityRef(player),
     SaveType.PER_RUN,
     KEY_NICKEL_HEARTS,
     nickelHearts - 1,

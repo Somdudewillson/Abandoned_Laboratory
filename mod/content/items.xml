@@ -7,6 +7,7 @@
 	<active description="Powered by Sacrifice" gfx="upgraded\b\bloodsaw.png" maxcharges="0" name="Blood Saw" hidden="true"/>
 	<active description="Even More Blood!!" gfx="upgraded\b\bloodsiphon.png" maxcharges="480" chargetype="timed" name="Blood Siphon" hidden="true"/>
 	<active description="Reusable Bomb Supply" gfx="upgraded\b\bombdispenser.png" maxcharges="180" chargetype="timed" name="Bomb Dispenser" hidden="true"/>
+	<active description="Faster giga fart!" gfx="upgraded\b\boostedbean.png" maxcharges="1" name="Boosted Bean" hidden="true"/>
 
 	<active description="Tome of Mapping" gfx="upgraded\c\cartographerstome.png" maxcharges="12" name="Cartographer's Tome" hidden="true"/>
 	<active description="Reusable Item Generator" gfx="upgraded\c\chestofsin.png" maxcharges="7" name="Chest of Sin" hidden="true"/>

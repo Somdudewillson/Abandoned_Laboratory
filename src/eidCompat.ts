@@ -267,6 +267,12 @@ export function registerExternalItemDescriptions(): void {
       "# Prevents bombs from detonating until used" +
       "#↓ Tear split effect can only occur once every 12 seconds",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_BOOSTEDBEAN,
+    "Temporarily petrifies all enemies" +
+      "# Poisons nearby enemies" +
+      "# Generates a rock wave along the current look direction",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

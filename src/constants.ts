@@ -57,6 +57,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_CORNYPOOP = Isaac.GetItemIdByName("Corny Poop"),
   COLLECTIBLE_TRIPLOPIA = Isaac.GetItemIdByName("Triplopia"),
   COLLECTIBLE_OMNIDETONATOR = Isaac.GetItemIdByName("Omni Detonator"),
+  COLLECTIBLE_BOOSTEDBEAN = Isaac.GetItemIdByName("Boosted Bean"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -319,6 +320,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
   [
     CollectibleType.COLLECTIBLE_REMOTE_DETONATOR,
     CollectibleTypeLab.COLLECTIBLE_OMNIDETONATOR,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_MEGA_BEAN,
+    CollectibleTypeLab.COLLECTIBLE_BOOSTEDBEAN,
   ],
 ]);
 

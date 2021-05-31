@@ -30,6 +30,7 @@ export function use(
     }
 
     pickup.AutoUpdatePrice = true;
+    pickup.GetData().discountCode = false;
   }
 
   return true;
@@ -80,8 +81,13 @@ export function postRoom(): void {
     if (!pickup.IsShopItem()) {
       continue;
     }
+    if (pickup.GetData().discountCode === true) {
+      continue;
+    }
+
     if (pickup.AutoUpdatePrice) {
       pickup.AutoUpdatePrice = false;
+      pickup.GetData().discountCode = true;
       pickup.Price = Math.floor(pickup.Price / 2.5);
     }
   }

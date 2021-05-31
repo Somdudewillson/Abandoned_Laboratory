@@ -1,7 +1,7 @@
 import { CollectibleTypeLab } from "../../../../constants";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_DISCOUNTCODE as number;
+  return CollectibleTypeLab.COLLECTIBLE_ILLUSORYRAZOR as number;
 }
 
 export function use(

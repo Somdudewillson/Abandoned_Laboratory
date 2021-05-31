@@ -152,7 +152,7 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLab.COLLECTIBLE_TEARRESERVOIR,
     "Fires a burst of 7 tears with player damage in a cone" +
       "#Charges one bar for each fired tear" +
-      `#!!! Does not work with {{Collectible"}${CollectibleType.COLLECTIBLE_BRIMSTONE}}}`,
+      `#!!! Does not work with {{Collectible${CollectibleType.COLLECTIBLE_BRIMSTONE}}}`,
   );
   EID.addCollectible(
     CollectibleTypeLab.COLLECTIBLE_WAVECANNON,
@@ -259,7 +259,13 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLab.COLLECTIBLE_TRIPLOPIA,
     "Doubles all collectibles and pickups in the current room" +
       "# Single-use" +
-      `↑ Gives the player {{Collectible${CollectibleType.COLLECTIBLE_DIPLOPIA}}}`,
+      `#↑ Gives the player {{Collectible${CollectibleType.COLLECTIBLE_DIPLOPIA}}}`,
+  );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_OMNIDETONATOR,
+    "Splits player tears into 6 and detonates bombs" +
+      "# Prevents bombs from detonating until used" +
+      "#↓ Tear split effect can only occur once every 12 seconds",
   );
 
   // =====Upgraded Starting Items=====

@@ -182,3 +182,12 @@ export function trySpawn(room: Room, floor: Level): void {
       break;
   }
 }
+
+export function onSpawn(self: EntityNPC): void {
+  if (self.Variant !== LabMachineVariant.UPGRADE_MACHINE) {
+    return;
+  }
+
+  self.AddEntityFlags(EntityFlag.FLAG_NO_STATUS_EFFECTS);
+  self.AddEntityFlags(EntityFlag.FLAG_NO_TARGET);
+}

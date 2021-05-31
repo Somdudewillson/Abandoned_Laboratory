@@ -150,6 +150,7 @@ Isaac.DebugString("|LABOS| Boot initialization complete");
 Isaac.DebugString("|LABOS| Scanning facility automata...");
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, MachineEvents.preCollide, MachineEntityType.UPGRADEMACHINE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MachineEvents.update, MachineEntityType.UPGRADEMACHINE);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_INIT, MachineEvents.onSpawn, MachineEntityType.UPGRADEMACHINE);
 PostRoomHandler.addRoomListener(MachineEvents.trySpawn);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, SpiderEvents.update, SpiderEvents.SPIDER_ENTITYTYPE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SpiderEvents.interceptDamage, SpiderEvents.SPIDER_ENTITYTYPE);

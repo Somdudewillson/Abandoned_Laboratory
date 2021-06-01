@@ -283,6 +283,12 @@ export function registerExternalItemDescriptions(): void {
       "# Can reduce item id by 1 to 5" +
       "# Aims for the best item available within that range",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_PILLDISPENSER,
+    "Spawns a random pill" +
+      "#↑ Preferentially spawns pills with a beneficial effect" +
+      "#↓ 48 Hour Energy has very low weight",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

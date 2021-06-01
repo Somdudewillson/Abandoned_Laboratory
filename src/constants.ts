@@ -369,6 +369,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
     CollectibleTypeLab.COLLECTIBLE_CYBERGUPPYSHEAD,
   ],
   [
+    CollectibleType.COLLECTIBLE_DECK_OF_CARDS,
+    CollectibleTypeLab.COLLECTIBLE_CARDDISPENSER,
+  ],
+  [
     CollectibleType.COLLECTIBLE_METRONOME,
     CollectibleTypeLab.COLLECTIBLE_OVERCLOCKEDMETRONOME,
   ],

@@ -131,6 +131,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
     CollectibleType.COLLECTIBLE_KIDNEY_BEAN,
     CollectibleType.COLLECTIBLE_MEGA_BEAN as number,
   ],
+  [
+    CollectibleType.COLLECTIBLE_TELEPORT_2,
+    CollectibleType.COLLECTIBLE_UNDEFINED as number,
+  ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,

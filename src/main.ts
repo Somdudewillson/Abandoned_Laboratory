@@ -147,8 +147,8 @@ function preGameExit(willContinue:boolean) {
 Isaac.DebugString("| Abandoned_Laboratory initializing.");
 Isaac.DebugString("|===================================");
 Isaac.DebugString(`| LABOS v${VERSION} startup initiated`);
-Isaac.DebugString(`|LABOS| Last maintenance visit: ${parseIntChar(VERSION.charAt(0))*97 +
-  parseIntChar(VERSION.charAt(2))*23 +
+Isaac.DebugString(`|LABOS| Last maintenance visit: ${parseIntChar(VERSION.charAt(0))*197 +
+  parseIntChar(VERSION.charAt(2))*53 +
   parseIntChar(VERSION.charAt(4))} days ago`);
 
 // Register callbacks

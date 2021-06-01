@@ -314,6 +314,10 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLab.COLLECTIBLE_CARDDISPENSER,
     "Spawns a random card" + "#↑ Preferentially spawns better cards",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_OVERCLOCKEDMETRONOME,
+    "Gives a random item's effect for the current room",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

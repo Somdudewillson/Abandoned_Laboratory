@@ -57,6 +57,7 @@ import * as EFF_MICROTRANSACTION from "./items/active/upgraded/m/microtransactio
 import * as EFF_NECROVORTEX from "./items/active/upgraded/n/necroVortex";
 
 import * as EFF_OMNIDETONATOR from "./items/active/upgraded/o/omniDetonator";
+import * as EFF_OVERCLOCKEDMETRONOME from "./items/active/upgraded/o/overclockedMetronome";
 
 import * as EFF_PETRIFACTIONVORTEX from "./items/active/upgraded/p/pertifactionVortex";
 import * as EFF_PILLDISPENSER from "./items/active/upgraded/p/pillDispenser";
@@ -241,6 +242,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STEELRAZOR.use, E
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERGUPPYSPAW.use, EFF_CYBERGUPPYSPAW.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERGUPPYSHEAD.use, EFF_CYBERGUPPYSHEAD.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CARDDISPENSER.use, EFF_CARDDISPENSER.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_OVERCLOCKEDMETRONOME.use, EFF_OVERCLOCKEDMETRONOME.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

@@ -442,18 +442,6 @@ export const TearFlag128 = {
   TEAR_LUDOVICO: toTearFlag(127),
 };
 
-export const ACTUAL_PLAYER_TYPES = {
-  ISAAC: Isaac.GetPlayerTypeByName("Isaac"),
-  MAGDALENA: Isaac.GetPlayerTypeByName("Magdalene"),
-  MAGDALENA_B: Isaac.GetPlayerTypeByName("Magdalene", true),
-  JUDAS: Isaac.GetPlayerTypeByName("Judas"),
-  EVE: Isaac.GetPlayerTypeByName("Eve"),
-  THELOST: Isaac.GetPlayerTypeByName("The Lost"),
-  LILITH: Isaac.GetPlayerTypeByName("Lilith"),
-  KEEPER: Isaac.GetPlayerTypeByName("Keeper"),
-  BLUEBABY: Isaac.GetPlayerTypeByName("???"),
-};
-
 export const SHOT_SPEED_MULT = 10;
 
 export function randomCollectible(rand: RNG): number {
@@ -553,4 +541,4 @@ export function getItemUpgrade(item: int, playerType?: int): number {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.6.7";
+export const VERSION = "0.6.8";

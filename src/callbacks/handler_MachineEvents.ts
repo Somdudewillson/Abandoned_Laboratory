@@ -45,11 +45,11 @@ export function preCollide(
 
   const player = collider.ToPlayer()!;
   for (const slot of UPGRADE_SELECTION_ORDER) {
-    if (itemHasUpgrade(player.GetActiveItem(slot), player.SubType)) {
+    if (itemHasUpgrade(player.GetActiveItem(slot), player.GetPlayerType())) {
       const upgradingItem = player.GetActiveItem(slot);
 
       self.GetData().upgrading = upgradingItem;
-      self.GetData().upgradingPlayer = player.SubType;
+      self.GetData().upgradingPlayer = player.GetPlayerType();
       self.GetSprite().Play(UpgradeAnimKey.INITIATE, false);
       player.RemoveCollectible(upgradingItem, true, slot, false);
 

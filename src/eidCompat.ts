@@ -322,6 +322,11 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLab.COLLECTIBLE_ROTTINGHEART,
     "Gives 1 Rotten heart" + "#↑ Spawns 1-5 blue flies",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_EYECANISTER,
+    "Spawns 2 eye familiars" +
+      "#↑ Increases damage from right eye tears by 34%",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

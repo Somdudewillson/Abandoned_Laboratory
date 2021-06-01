@@ -70,6 +70,7 @@ export enum CollectibleTypeLab {
     "Overclocked Metronome",
   ),
   COLLECTIBLE_ROTTINGHEART = Isaac.GetItemIdByName("Rotting Heart"),
+  COLLECTIBLE_EYECANISTER = Isaac.GetItemIdByName("Eye Canister"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -374,6 +375,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
     CollectibleType.COLLECTIBLE_YUCK_HEART,
     CollectibleTypeLab.COLLECTIBLE_ROTTINGHEART,
   ],
+  [
+    CollectibleType.COLLECTIBLE_SCOOPER,
+    CollectibleTypeLab.COLLECTIBLE_EYECANISTER,
+  ],
 ]);
 
 export const enum FireplaceVariant {
@@ -590,4 +595,4 @@ export function getItemUpgrade(item: int, playerType?: int): number {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.7.3";
+export const VERSION = "0.7.4";

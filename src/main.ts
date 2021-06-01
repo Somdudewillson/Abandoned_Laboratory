@@ -41,6 +41,8 @@ import * as EFF_DIGITALFORTUNE from "./items/active/upgraded/d/digitalFortune";
 import * as EFF_DISCOUNTCODE from "./items/active/upgraded/d/discountCode";
 import * as EFF_DIVINITYGENERATOR from "./items/active/upgraded/d/divinityGenerator";
 
+import * as EFF_EYECANISTER from "./items/active/upgraded/e/eyeCanister";
+
 import * as EFF_FORGETMELATER from "./items/active/upgraded/f/forgetMeLater";
 
 import * as EFF_GLOWINGHEART from "./items/active/upgraded/g/glowingHeart";
@@ -245,6 +247,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERGUPPYSHEAD.u
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CARDDISPENSER.use, EFF_CARDDISPENSER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_OVERCLOCKEDMETRONOME.use, EFF_OVERCLOCKEDMETRONOME.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ROTTINGHEART.use, EFF_ROTTINGHEART.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_EYECANISTER.use, EFF_EYECANISTER.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

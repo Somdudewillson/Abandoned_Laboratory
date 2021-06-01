@@ -33,7 +33,10 @@ export function use(
       continue;
     }
     const pickup = entity.ToPickup()!;
-    if (pickup.Variant !== PickupVariant.PICKUP_COLLECTIBLE) {
+    if (
+      pickup.Variant !== PickupVariant.PICKUP_COLLECTIBLE ||
+      pickup.SubType === CollectibleType.COLLECTIBLE_NULL
+    ) {
       continue;
     }
     itemCount++;

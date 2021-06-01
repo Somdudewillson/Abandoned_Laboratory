@@ -1,0 +1,9 @@
+Form Shifter (Active, converts as many consumables as possible into a specified type.  Type dependent on set cycle [bombs->keys->coins->bombs].  Shifting uses less than full charge until cycle resets) [Upgraded form has no charge/timed charge?]
+
+Explosive robot familiar?
+
+Capsule-bases stat-up item.  Some capsule types decay, some don't.
+
+Life/Soul Reactor - temporary stat ups from excess hearts
+
+Phase Shifter (Passive, enemy tears sometimes phase through you and become yours)

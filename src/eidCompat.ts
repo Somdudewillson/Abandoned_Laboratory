@@ -296,6 +296,11 @@ export function registerExternalItemDescriptions(): void {
       "#↓ Removes transformation progress" +
       "# Rerolls within original item pools",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_STEELRAZOR,
+    "Lose 1 full heart, get +2 damage for the room" +
+      "#↑ Damage takes red hearts first",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

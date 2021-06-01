@@ -67,6 +67,7 @@ import * as EFF_RUNICAMPLIFIER from "./items/active/upgraded/r/runicAmplifier";
 import * as EFF_SATANITYGENERATOR from "./items/active/upgraded/s/satanityGenerator";
 import * as EFF_SHADOWDEVICE from "./items/active/upgraded/s/shadowDevice";
 import * as EFF_SILVERNICKEL from "./items/active/upgraded/s/silverNickel";
+import * as EFF_STEELRAZOR from "./items/active/upgraded/s/steelRazor";
 import * as EFF_STRAIGHTENEDPENNY from "./items/active/upgraded/s/straightenedPenny";
 import * as EFF_SUMMARIZEDBIBLE from "./items/active/upgraded/s/summarizedBible";
 import * as EFF_SYNTHETICSKIN from "./items/active/upgraded/s/syntheticSkin";
@@ -232,6 +233,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLUMORGAN.use, EF
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DECREMENTDICE.use, EFF_DECREMENTDICE.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PILLDISPENSER.use, EFF_PILLDISPENSER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AMPLIFIEDD4.use, EFF_AMPLIFIEDD4.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STEELRAZOR.use, EFF_STEELRAZOR.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

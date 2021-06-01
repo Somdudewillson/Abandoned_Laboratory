@@ -54,6 +54,7 @@
 	<active description="Artificial Evil" gfx="upgraded\s\satanitygenerator.png" maxcharges="4" name="Satanity Generator" hidden="true"/>
 	<active description="Automatic Barrier... Sometimes" gfx="upgraded\s\shadowdevice.png" maxcharges="6" name="Shadow Device" hidden="true"/>
 	<active description="Flip a Coin" gfx="upgraded\s\silvernickel.png" maxcharges="1" name="Silver Nickel" hidden="true"/>
+	<active description="Feel my pain" gfx="upgraded\s\steelrazor.png" maxcharges="0" name="Steel Razor" hidden="true"/>
 	<active description="75/25" gfx="upgraded\s\straightenedpenny.png" maxcharges="4" name="Straightened Penny" hidden="true"/>
 	<active description="Temporary Flight" gfx="upgraded\s\summarizedbible.png" maxcharges="2" name="Summarized Bible" hidden="true"/>
 	<active description="Artificial desires fulfilled" gfx="upgraded\s\syntheticskin.png" maxcharges="8" name="Synthetic Skin" hidden="true"/>

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable prettier/prettier */
 // Define imports
-import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE } from "./constants";
+import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE, CollectibleTypeLab } from "./constants";
 import * as SaveUtil from "./saveData";
 // ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
@@ -261,5 +261,6 @@ for (let i=1;i<CollectibleType.NUM_COLLECTIBLES;i++) {
 Isaac.DebugString("|LABOS| Automated enhancement device check complete."+
 `  Availability: ${itemsWithUpgrade}/${items}`+
 ` (${Math.round((itemsWithUpgrade/items)*100*100)/100}%)`);
+Isaac.DebugString(`|LABOS| Total registered items: ${Math.floor(Object.entries(CollectibleTypeLab).length/2)}`);
 Isaac.DebugString("|LABOS| Startup complete");
 Isaac.DebugString("====================================");

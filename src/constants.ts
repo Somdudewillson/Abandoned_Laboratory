@@ -553,4 +553,4 @@ export function getItemUpgrade(item: int, playerType?: int): number {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.6.6";
+export const VERSION = "0.6.7";

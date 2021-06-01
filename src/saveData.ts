@@ -123,13 +123,13 @@ export function deserialize(data: string, isContinued: boolean): void {
     SAVE_DATA.set(key, decoded[key]);
   }
 
-  for (let p = 0; p < 4; p++) {
+  /* for (let p = 0; p < 4; p++) {
     const player = Isaac.GetPlayer(p);
     if (player == null) {
       continue;
     }
     PLAYER_HASHES.set(GetPtrHash(player), p);
-  }
+  } */
 
   if (!isContinued) {
     wipePerRun();
@@ -137,6 +137,10 @@ export function deserialize(data: string, isContinued: boolean): void {
 }
 
 // General util functions
+
+export function initPlayer(player: EntityPlayer): void {
+  PLAYER_HASHES.set(GetPtrHash(player), player.Index);
+}
 
 function playerHashToEnum(hash: int): SaveRoot {
   switch (PLAYER_HASHES.get(hash)) {

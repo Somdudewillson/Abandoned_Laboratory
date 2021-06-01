@@ -334,6 +334,10 @@ export function registerExternalItemDescriptions(): void {
       "# A shopkeeper is spawned" +
       "#↑ 10% chance to spawn a restock machine",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_ESSENCESPLITTER,
+    `Takes 1 red heart container and spawns a {{Collectible${CollectibleType.COLLECTIBLE_CUBE_OF_MEAT}}} & {{Collectible${CollectibleType.COLLECTIBLE_BALL_OF_BANDAGES}}}`,
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

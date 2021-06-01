@@ -43,6 +43,7 @@
 	<active description="Mass Petrifaction" gfx="upgraded\p\petrifactionvortex.png" maxcharges="600" chargetype="timed" name="Petrifaction Vortex" hidden="true"/>
 	<active description="Enhanced Pill Mimic" gfx="upgraded\p\pillmachine.png" maxcharges="5" name="Pill Machine" hidden="true"/>
 	<active description="Safer Last Resort" gfx="upgraded\p\pland.png" maxcharges="0" name="Plan D" hidden="true"/>
+	<active description="Play time!!" gfx="upgraded\p\plumorgan.png" maxcharges="3" name="Plum Organ" hidden="true"/>
 	<active description="Reshape Obstacles" gfx="upgraded\p\portableterraformer.png" maxcharges="3" name="Portable Terraformer" hidden="true"/>
 
 	<active description="Enhanced Rune Mimic" gfx="upgraded\r\runicamplifier.png" maxcharges="5" name="Runic Amplifier" hidden="true"/>

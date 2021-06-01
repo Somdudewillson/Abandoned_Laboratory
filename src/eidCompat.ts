@@ -273,6 +273,10 @@ export function registerExternalItemDescriptions(): void {
       "# Poisons nearby enemies" +
       "# Generates a rock wave along the current look direction",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_PLUMORGAN,
+    "Summons 2 friendly Baby Plums for 10 seconds.",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

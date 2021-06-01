@@ -23,6 +23,7 @@ import * as EFF_BLOODSIPHON from "./items/active/upgraded/b/bloodSiphon";
 import * as EFF_BOMBDISPENSER from "./items/active/upgraded/b/bombDispenser";
 import * as EFF_BOOSTEDBEAN from "./items/active/upgraded/b/boostedBean";
 
+import * as EFF_CARDDISPENSER from "./items/active/upgraded/c/cardDispenser";
 import * as EFF_CartographersTome from "./items/active/upgraded/c/cartographersTome";
 import * as EFF_CHESTOFSIN from "./items/active/upgraded/c/chestOfSin";
 import * as EFF_CHRONALVORTEX from "./items/active/upgraded/c/chronalVortex";
@@ -239,6 +240,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AMPLIFIEDD4.use, 
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STEELRAZOR.use, EFF_STEELRAZOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERGUPPYSPAW.use, EFF_CYBERGUPPYSPAW.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERGUPPYSHEAD.use, EFF_CYBERGUPPYSHEAD.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CARDDISPENSER.use, EFF_CARDDISPENSER.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

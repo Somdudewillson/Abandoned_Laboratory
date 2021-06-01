@@ -65,6 +65,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_STEELRAZOR = Isaac.GetItemIdByName("Steel Razor"),
   COLLECTIBLE_CYBERGUPPYSPAW = Isaac.GetItemIdByName("Cyber Guppy's Paw"),
   COLLECTIBLE_CYBERGUPPYSHEAD = Isaac.GetItemIdByName("Cyber Guppy's Head"),
+  COLLECTIBLE_CARDDISPENSER = Isaac.GetItemIdByName("Card Dispenser"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -577,4 +578,4 @@ export function getItemUpgrade(item: int, playerType?: int): number {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.6.16";
+export const VERSION = "0.7.1";

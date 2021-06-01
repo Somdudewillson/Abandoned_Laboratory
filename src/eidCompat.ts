@@ -310,6 +310,10 @@ export function registerExternalItemDescriptions(): void {
     "Spawns 0-2 blue flies for each enemy present, 4-6 for each boss" +
       "# If there are no enemies, spawns 4-6 blue flies",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_CARDDISPENSER,
+    "Spawns a random card" + "#↑ Preferentially spawns better cards",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

@@ -10,6 +10,7 @@
 	<active description="Reusable Bomb Supply" gfx="upgraded\b\bombdispenser.png" maxcharges="180" chargetype="timed" name="Bomb Dispenser" hidden="true"/>
 	<active description="Faster giga fart!" gfx="upgraded\b\boostedbean.png" maxcharges="1" name="Boosted Bean" hidden="true"/>
 
+	<active description="Better card generator" gfx="upgraded\c\carddispenser.png" maxcharges="6" name="Card Dispenser" hidden="true"/>
 	<active description="Tome of Mapping" gfx="upgraded\c\cartographerstome.png" maxcharges="12" name="Cartographer's Tome" hidden="true"/>
 	<active description="Reusable Item Generator" gfx="upgraded\c\chestofsin.png" maxcharges="7" name="Chest of Sin" hidden="true"/>
 	<active description="Mass Slow" gfx="upgraded\c\chronalvortex.png" maxcharges="420" chargetype="timed" name="Chronal Vortex" hidden="true"/>

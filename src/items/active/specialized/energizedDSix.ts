@@ -1,5 +1,5 @@
 import { CollectibleTypeLab } from "../../../constants";
-import { chargeEffect } from "../../../utils";
+import { chargeEffect, isBetter } from "../../../utils";
 
 const REROLL_SIM_COUNT = 5;
 const CHARGE_COST_PER_ITEM = 2;
@@ -80,41 +80,4 @@ export function use(
   }
 
   return { Discharge: false, Remove: false, ShowAnim: true };
-}
-
-function isBetter(
-  rand: RNG,
-  current: Readonly<ItemConfigItem>,
-  other: Readonly<ItemConfigItem>,
-): boolean {
-  if (current.IsNull()) {
-    return true;
-  }
-  if (other.IsNull()) {
-    return false;
-  }
-
-  let curPoints: int = 0;
-  let otherPoints: int = 0;
-
-  curPoints += current.Quality * 10;
-  otherPoints += other.Quality * 10;
-
-  if (current.Special) {
-    curPoints += 1000;
-  }
-  if (other.Special) {
-    otherPoints += 1000;
-  }
-
-  curPoints += current.DevilPrice * 5;
-  otherPoints += other.DevilPrice * 5;
-
-  otherPoints += rand.RandomFloat() * 15;
-
-  if (otherPoints > curPoints) {
-    return true;
-  }
-
-  return false;
 }

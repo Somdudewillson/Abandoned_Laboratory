@@ -16,6 +16,7 @@
 	<active description="There might be flies..." gfx="upgraded\c\cornypoop.png" maxcharges="360" chargetype="timed" name="Corny Poop" hidden="true"/>
 	<active description="Fake Your Death" gfx="upgraded\c\counterfeitdeathcertificate.png" maxcharges="0" name="Counterfeit Death Certificate" hidden="true"/>
 	<active description="Explore every other side" gfx="upgraded\c\crimsonkey.png" maxcharges="4" name="Crimson Key" hidden="true"/>
+	<active description="Smart reusable fly hive" gfx="upgraded\c\cyberguppyshead.png" maxcharges="1" name="Cyber Guppy's Head" hidden="true"/>
 	<active description="Efficient soul converter" gfx="upgraded\c\cyberguppyspaw.png" maxcharges="0" name="Cyber Guppy's Paw" hidden="true"/>
 	<active description="I'm a big boy now!" gfx="upgraded\c\cybermush.png" maxcharges="6" name="Cyber Mush" hidden="true"/>
 

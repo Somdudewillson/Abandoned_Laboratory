@@ -29,6 +29,7 @@ import * as EFF_CHRONALVORTEX from "./items/active/upgraded/c/chronalVortex";
 import * as EFF_CORNYPOOP from "./items/active/upgraded/c/cornyPoop";
 import * as EFF_COUNTERFEITDEATHCERTIFICATE from "./items/active/upgraded/c/counterfeitDeathCertificate";
 import * as EFF_CRIMSONKEY from "./items/active/upgraded/c/crimsonKey";
+import * as EFF_CYBERGUPPYSHEAD from "./items/active/upgraded/c/cyberGuppysHead";
 import * as EFF_CYBERGUPPYSPAW from "./items/active/upgraded/c/cyberGuppysPaw";
 import * as EFF_CYBERMUSH from "./items/active/upgraded/c/cyberMush";
 
@@ -236,6 +237,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PILLDISPENSER.use
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AMPLIFIEDD4.use, EFF_AMPLIFIEDD4.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STEELRAZOR.use, EFF_STEELRAZOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERGUPPYSPAW.use, EFF_CYBERGUPPYSPAW.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERGUPPYSHEAD.use, EFF_CYBERGUPPYSHEAD.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

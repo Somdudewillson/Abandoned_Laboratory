@@ -305,6 +305,11 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLab.COLLECTIBLE_CYBERGUPPYSPAW,
     "Convert 1 red heart container into {{SoulHeart}}{{SoulHeart}}{{SoulHeart}}{{SoulHeart}}{{HalfSoulHeart}}",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_CYBERGUPPYSHEAD,
+    "Spawns 0-2 blue flies for each enemy present, 4-6 for each boss" +
+      "# If there are no enemies, spawns 4-6 blue flies",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

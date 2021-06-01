@@ -289,6 +289,13 @@ export function registerExternalItemDescriptions(): void {
       "#↑ Preferentially spawns pills with a beneficial effect" +
       "#↓ 48 Hour Energy has very low weight",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_AMPLIFIEDD4,
+    "Randomizes player items" +
+      "#↑ Does not deplete item pools" +
+      "#↓ Removes transformation progress" +
+      "# Rerolls within original item pools",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

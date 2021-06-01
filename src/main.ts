@@ -12,6 +12,7 @@ import * as SpiderEvents from "./callbacks/handler_SpiderEvents";
 import * as MicrodroneEvents from "./callbacks/handler_MicrodroneEvents";
 // ===== import item code =====
 // --- Normal Upgraded Actives ---
+import * as EFF_AMPLIFIEDD4 from "./items/active/upgraded/a/amplifiedD4";
 import * as EFF_AnarchistsEBook from "./items/active/upgraded/a/anarchistsEBook";
 import * as EFF_ARTIFICIALSOUL from "./items/active/upgraded/a/artificialSoul";
 
@@ -230,6 +231,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BOOSTEDBEAN.use, 
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLUMORGAN.use, EFF_PLUMORGAN.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DECREMENTDICE.use, EFF_DECREMENTDICE.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PILLDISPENSER.use, EFF_PILLDISPENSER.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AMPLIFIEDD4.use, EFF_AMPLIFIEDD4.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

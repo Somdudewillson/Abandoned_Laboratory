@@ -318,6 +318,10 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLab.COLLECTIBLE_OVERCLOCKEDMETRONOME,
     "Gives a random item's effect for the current room",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_ROTTINGHEART,
+    "Gives 1 Rotten heart" + "#↑ Spawns 1-5 blue flies",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

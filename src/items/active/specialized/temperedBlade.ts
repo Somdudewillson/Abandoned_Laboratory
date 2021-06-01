@@ -31,6 +31,14 @@ export function use(
     CollectibleType.COLLECTIBLE_NECRONOMICON,
     UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER,
   );
+  Isaac.Spawn(
+    EntityType.ENTITY_FAMILIAR,
+    FamiliarVariant.DEAD_BIRD,
+    0,
+    player.Position,
+    Vector.Zero,
+    player,
+  );
 
   return true;
 }

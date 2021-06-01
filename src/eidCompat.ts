@@ -327,6 +327,13 @@ export function registerExternalItemDescriptions(): void {
     "Spawns 2 eye familiars" +
       "#↑ Increases damage from right eye tears by 34%",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_BOXSHOP,
+    "Spawns a shop in the current room" +
+      "# 2-4 shop items are spawned" +
+      "# A shopkeeper is spawned" +
+      "#↑ 10% chance to spawn a restock machine",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

@@ -9,6 +9,7 @@
 	<active description="Even More Blood!!" gfx="upgraded\b\bloodsiphon.png" maxcharges="480" chargetype="timed" name="Blood Siphon" hidden="true"/>
 	<active description="Reusable Bomb Supply" gfx="upgraded\b\bombdispenser.png" maxcharges="180" chargetype="timed" name="Bomb Dispenser" hidden="true"/>
 	<active description="Faster giga fart!" gfx="upgraded\b\boostedbean.png" maxcharges="1" name="Boosted Bean" hidden="true"/>
+	<active description="Shop in a Box" gfx="upgraded\b\boxshop.png" maxcharges="10" name="Box Shop" hidden="true"/>
 
 	<active description="Better card generator" gfx="upgraded\c\carddispenser.png" maxcharges="6" name="Card Dispenser" hidden="true"/>
 	<active description="Tome of Mapping" gfx="upgraded\c\cartographerstome.png" maxcharges="12" name="Cartographer's Tome" hidden="true"/>

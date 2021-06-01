@@ -442,6 +442,18 @@ export const TearFlag128 = {
   TEAR_LUDOVICO: toTearFlag(127),
 };
 
+export const ACTUAL_PLAYER_TYPES = {
+  ISAAC: Isaac.GetPlayerTypeByName("Isaac"),
+  MAGDALENA: Isaac.GetPlayerTypeByName("Magdalene"),
+  MAGDALENA_B: Isaac.GetPlayerTypeByName("Magdalene", true),
+  JUDAS: Isaac.GetPlayerTypeByName("Judas"),
+  EVE: Isaac.GetPlayerTypeByName("Eve"),
+  THELOST: Isaac.GetPlayerTypeByName("The Lost"),
+  LILITH: Isaac.GetPlayerTypeByName("Lilith"),
+  KEEPER: Isaac.GetPlayerTypeByName("Keeper"),
+  BLUEBABY: Isaac.GetPlayerTypeByName("???"),
+};
+
 export const SHOT_SPEED_MULT = 10;
 
 export function randomCollectible(rand: RNG): number {
@@ -483,25 +495,49 @@ export function itemHasUpgrade(item: int, playerType?: int): boolean {
   }
 }
 
-export function getItemUpgrade(item: int, playerType: int): number {
+export function getItemUpgrade(item: int, playerType?: int): number {
   switch (playerType) {
     case PlayerType.PLAYER_ISAAC:
-      return CollectibleTypeLab.COLLECTIBLE_ENERGIZEDD6;
+      if (item === CollectibleType.COLLECTIBLE_D6) {
+        return CollectibleTypeLab.COLLECTIBLE_ENERGIZEDD6;
+      }
+      break;
     case PlayerType.PLAYER_MAGDALENA:
     case PlayerType.PLAYER_MAGDALENA_B:
-      return CollectibleTypeLab.COLLECTIBLE_RECONSTRUCTIVEHEART;
+      if (item === CollectibleType.COLLECTIBLE_YUM_HEART) {
+        return CollectibleTypeLab.COLLECTIBLE_RECONSTRUCTIVEHEART;
+      }
+      break;
     case PlayerType.PLAYER_JUDAS:
-      return CollectibleTypeLab.COLLECTIBLE_SIGILOFBELIAL;
+      if (item === CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL) {
+        return CollectibleTypeLab.COLLECTIBLE_SIGILOFBELIAL;
+      }
+      break;
     case PlayerType.PLAYER_EVE:
-      return CollectibleTypeLab.COLLECTIBLE_TEMPEREDBLADE;
+      if (item === CollectibleType.COLLECTIBLE_RAZOR_BLADE) {
+        return CollectibleTypeLab.COLLECTIBLE_TEMPEREDBLADE;
+      }
+      break;
     case PlayerType.PLAYER_THELOST:
-      return CollectibleTypeLab.COLLECTIBLE_STABILIZEDETERNALD6;
+      if (item === CollectibleType.COLLECTIBLE_ETERNAL_D6) {
+        return CollectibleTypeLab.COLLECTIBLE_STABILIZEDETERNALD6;
+      }
+      break;
     case PlayerType.PLAYER_LILITH:
-      return CollectibleTypeLab.COLLECTIBLE_CRATEOFFRIENDS;
+      if (item === CollectibleType.COLLECTIBLE_BOX_OF_FRIENDS) {
+        return CollectibleTypeLab.COLLECTIBLE_CRATEOFFRIENDS;
+      }
+      break;
     case PlayerType.PLAYER_KEEPER:
-      return CollectibleTypeLab.COLLECTIBLE_GOLDENNICKEL;
+      if (item === CollectibleType.COLLECTIBLE_WOODEN_NICKEL) {
+        return CollectibleTypeLab.COLLECTIBLE_GOLDENNICKEL;
+      }
+      break;
     case PlayerType.PLAYER_XXX:
-      return CollectibleTypeLab.COLLECTIBLE_CHAOSPOOP;
+      if (item === CollectibleType.COLLECTIBLE_POOP) {
+        return CollectibleTypeLab.COLLECTIBLE_CHAOSPOOP;
+      }
+      break;
     default:
       break;
   }

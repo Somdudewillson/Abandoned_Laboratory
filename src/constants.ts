@@ -9,7 +9,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_CHESTOFSIN = Isaac.GetItemIdByName("Chest of Sin"),
   COLLECTIBLE_RUNICAMPLIFIER = Isaac.GetItemIdByName("Runic Amplifier"),
   COLLECTIBLE_GLOWINGHEART = Isaac.GetItemIdByName("Glowing Heart"),
-  COLLECTIBLE_PILLMACHINE = Isaac.GetItemIdByName("Pill Machine"),
+  COLLECTIBLE_PILLMACHINE = Isaac.GetItemIdByName("Pill Replicator"),
   COLLECTIBLE_JAROFHEADS = Isaac.GetItemIdByName("Jar of Heads"),
   COLLECTIBLE_SILVERNICKEL = Isaac.GetItemIdByName("Silver Nickel"),
   COLLECTIBLE_METALFEATHER = Isaac.GetItemIdByName("Metal Feather"),

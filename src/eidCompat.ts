@@ -277,6 +277,12 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLab.COLLECTIBLE_PLUMORGAN,
     "Summons 2 friendly Baby Plums for 10 seconds.",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_DECREMENTDICE,
+    "Rerolls all collectibles by reducing their item id" +
+      "# Can reduce item id by 1 to 5" +
+      "# Aims for the best item available within that range",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

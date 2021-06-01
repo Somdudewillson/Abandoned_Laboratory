@@ -74,7 +74,7 @@ export function update(self: EntityNPC): boolean | null {
 
   // State toggle from INITIATING to PROCESSING
   if (self.GetSprite().IsFinished(UpgradeAnimKey.INITIATE)) {
-    Isaac.DebugString("INITIATING -> PROCESSING");
+    // Isaac.DebugString("INITIATING -> PROCESSING");
 
     self.GetSprite().Play(UpgradeAnimKey.WIGGLE, false);
     self.GetData().processTime =
@@ -94,7 +94,7 @@ export function update(self: EntityNPC): boolean | null {
     curProcessTime != null &&
     curProcessTime <= 0
   ) {
-    Isaac.DebugString("PROCESSING -> DISPENSE");
+    // Isaac.DebugString("PROCESSING -> DISPENSE");
 
     self.GetSprite().Play(UpgradeAnimKey.PRIZE, false);
     self.GetData().timeout = 30;
@@ -104,7 +104,7 @@ export function update(self: EntityNPC): boolean | null {
 
   // State toggle from DISPENSE to IDLE
   if (self.GetSprite().IsFinished(UpgradeAnimKey.PRIZE)) {
-    Isaac.DebugString("DISPENSE -> IDLE");
+    // Isaac.DebugString("DISPENSE -> IDLE");
 
     self.GetSprite().Play(UpgradeAnimKey.IDLE, false);
     self.GetData().timeout = 30;

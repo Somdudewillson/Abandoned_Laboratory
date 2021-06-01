@@ -301,6 +301,10 @@ export function registerExternalItemDescriptions(): void {
     "Lose 1 full heart, get +2 damage for the room" +
       "#↑ Damage takes red hearts first",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_CYBERGUPPYSPAW,
+    "Convert 1 red heart container into {{SoulHeart}}{{SoulHeart}}{{SoulHeart}}{{SoulHeart}}{{HalfSoulHeart}}",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

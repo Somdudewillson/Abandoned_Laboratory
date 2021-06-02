@@ -78,6 +78,10 @@ import * as EFF_ROTTINGHEART from "./items/active/upgraded/r/rottingHeart";
 import * as EFF_RUNICAMPLIFIER from "./items/active/upgraded/r/runicAmplifier";
 
 import * as EFF_SATANITYGENERATOR from "./items/active/upgraded/s/satanityGenerator";
+import * as EFF_SCROLLOFAGGRESSION from "./items/active/upgraded/s/scrollOfAggression";
+import * as EFF_SCROLLOFBLASTS from "./items/active/upgraded/s/scrollOfBlasts";
+import * as EFF_SCROLLOFBLOOD from "./items/active/upgraded/s/scrollOfBlood";
+import * as EFF_SCROLLOFUTILITY from "./items/active/upgraded/s/scrollOfUtility";
 import * as EFF_SHADOWDEVICE from "./items/active/upgraded/s/shadowDevice";
 import * as EFF_SHAPEDCHARGEVEST from "./items/active/upgraded/s/shapedChargeVest";
 import * as EFF_SILVERNICKEL from "./items/active/upgraded/s/silverNickel";
@@ -271,6 +275,10 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULREACTOR.use, 
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, EFF_SOULREACTOR.prePickupCollide, PickupVariant.PICKUP_HEART);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RESEALEDBOX.use, EFF_RESEALEDBOX.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_UNIVERSALKEY.use, EFF_UNIVERSALKEY.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFAGGRESSION.use, EFF_SCROLLOFAGGRESSION.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFBLOOD.use, EFF_SCROLLOFBLOOD.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFBLASTS.use, EFF_SCROLLOFBLASTS.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFUTILITY.use, EFF_SCROLLOFUTILITY.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

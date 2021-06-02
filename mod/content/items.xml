@@ -64,6 +64,10 @@
 	<active description="Enhanced Rune Mimic" gfx="upgraded\r\runicamplifier.png" maxcharges="5" name="Runic Amplifier" hidden="true"/>
 
 	<active description="Artificial Evil" gfx="upgraded\s\satanitygenerator.png" maxcharges="4" name="Satanity Generator" hidden="true"/>
+	<active description="It's a Mystery" gfx="upgraded\s\scrollofaggression.png" maxcharges="2" name="Scroll of Aggression" hidden="true"/>
+	<active description="It's a Mystery" gfx="upgraded\s\scrollofblasts.png" maxcharges="3" name="Scroll of Blasts" hidden="true"/>
+	<active description="It's a Mystery" gfx="upgraded\s\scrollofblood.png" maxcharges="3" name="Scroll of Blood" hidden="true"/>
+	<active description="It's a Mystery" gfx="upgraded\s\scrollofutility.png" maxcharges="4" name="Scroll of Utility" hidden="true"/>
 	<active description="Automatic Barrier... Sometimes" gfx="upgraded\s\shadowdevice.png" maxcharges="6" name="Shadow Device" hidden="true"/>
 	<active description="Become the bomb! (Safely)" gfx="upgraded\s\shapedchargevest.png" maxcharges="390" chargetype="timed" name="Shaped Charge Vest" hidden="true"/>
 	<active description="Flip a Coin" gfx="upgraded\s\silvernickel.png" maxcharges="1" name="Silver Nickel" hidden="true"/>

@@ -372,6 +372,22 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_UNIVERSALKEY,
     "Opens most doors" + "#↑ Opens all chests" + "#↑ Opens all key blocks",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFAGGRESSION,
+    "Triggers the effect of a random active item useful against enemies",
+  );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLOOD,
+    "Triggers the effect of a random active item that relates to damage",
+  );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLASTS,
+    "Triggers the effect of a random active item that causes an explosion",
+  );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFUTILITY,
+    "Triggers the effect of a random active item that can generate something useful",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

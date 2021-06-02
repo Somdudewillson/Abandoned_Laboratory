@@ -87,6 +87,12 @@ export enum CollectibleTypeLabUpgrade {
   COLLECTIBLE_SOULREACTOR = Isaac.GetItemIdByName("Soul Reactor"),
   COLLECTIBLE_RESEALEDBOX = Isaac.GetItemIdByName("Resealed Box"),
   COLLECTIBLE_UNIVERSALKEY = Isaac.GetItemIdByName("Universal Key"),
+  COLLECTIBLE_SCROLLOFAGGRESSION = Isaac.GetItemIdByName(
+    "Scroll of Aggression",
+  ),
+  COLLECTIBLE_SCROLLOFBLOOD = Isaac.GetItemIdByName("Scroll of Blood"),
+  COLLECTIBLE_SCROLLOFBLASTS = Isaac.GetItemIdByName("Scroll of Blasts"),
+  COLLECTIBLE_SCROLLOFUTILITY = Isaac.GetItemIdByName("Scroll of Utility"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -103,7 +109,7 @@ export enum CollectibleTypeLabUpgrade {
   COLLECTIBLE_TEMPEREDBLADE = Isaac.GetItemIdByName("Tempered Blade"),
 }
 
-export const CollectibleUpgrade: Map<CollectibleType, number[]> = new Map([
+export const CollectibleUpgrade: Map<number, number[]> = new Map([
   // =====Vanilla -> Vanilla Upgrades
   [
     CollectibleType.COLLECTIBLE_BUTTER_BEAN,
@@ -459,6 +465,47 @@ export const CollectibleUpgrade: Map<CollectibleType, number[]> = new Map([
     CollectibleType.COLLECTIBLE_DADS_KEY,
     [CollectibleTypeLabUpgrade.COLLECTIBLE_UNIVERSALKEY],
   ],
+  [
+    CollectibleType.COLLECTIBLE_DEAD_SEA_SCROLLS,
+    [
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFAGGRESSION,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLOOD,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLASTS,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFUTILITY,
+    ],
+  ],
+  [
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFAGGRESSION as number,
+    [
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLOOD,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLASTS,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFUTILITY,
+    ],
+  ],
+  [
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLOOD as number,
+    [
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFAGGRESSION,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLASTS,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFUTILITY,
+    ],
+  ],
+  [
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLASTS as number,
+    [
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFAGGRESSION,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLOOD,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFUTILITY,
+    ],
+  ],
+  [
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFUTILITY as number,
+    [
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFAGGRESSION,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLOOD,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFBLASTS,
+    ],
+  ],
 ]);
 
 export const enum FireplaceVariant {
@@ -700,8 +747,8 @@ export function getItemUpgrade(
   }
 
   if (CollectibleUpgrade.has(item)) {
-    const options = CollectibleUpgrade.get(item)!;
-    return options[rand.RandomInt(options.length - 1)];
+    const upgradeOptions = CollectibleUpgrade.get(item)!;
+    return upgradeOptions[rand.RandomInt(upgradeOptions.length)];
   }
 
   return CollectibleType.COLLECTIBLE_NULL;
@@ -721,4 +768,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.9.0";
+export const VERSION = "0.9.2";

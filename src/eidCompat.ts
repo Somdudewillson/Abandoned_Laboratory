@@ -400,6 +400,10 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_MRYOU,
     "Summons a controllable ghost that can perform various tasks depending on what it targets",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_TOXICVAT,
+    "Creates a large pool of creep that does 8 times player damage",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

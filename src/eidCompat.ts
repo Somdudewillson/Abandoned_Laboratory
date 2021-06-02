@@ -388,6 +388,14 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_SCROLLOFUTILITY,
     "Triggers the effect of a random active item that can generate something useful",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_INACTIONREPLAY,
+    "Turns the player into Man-Pac for 6 seconds" +
+      "#↑ Invulnerability" +
+      "#↑ Mass fear" +
+      "#↑ 40 contact damage/sec" +
+      "#↑ Heal {{HalfHeart}} per 2 enemies killed",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

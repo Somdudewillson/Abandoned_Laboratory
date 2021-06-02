@@ -152,9 +152,9 @@ Isaac.DebugString("| Abandoned_Laboratory initializing.");
 Isaac.DebugString("|===================================");
 Isaac.DebugString(`| LABOS v${VERSION} startup initiated`);
 const versionSplit = VERSION.split(".")
-Isaac.DebugString(`|LABOS| Last maintenance visit: ${extMath.parseInt(versionSplit[0])*197 +
+Isaac.DebugString(`|LABOS| Last maintenance visit: ${Math.floor(extMath.parseInt(versionSplit[0])*197 +
   extMath.parseInt(versionSplit[1])*53 +
-  extMath.parseInt(versionSplit[2])} days ago`);
+  extMath.parseInt(versionSplit[2]))} days ago`);
 
 // Register callbacks
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted);

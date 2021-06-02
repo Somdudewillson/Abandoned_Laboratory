@@ -1,4 +1,5 @@
 import { CollectibleTypeLab, SHOT_SPEED_MULT } from "../../../../constants";
+import { directionToVector } from "../../../../utils";
 
 const TEAR_COUNT: int = 10;
 const FIRE_CONE: float = 75;
@@ -16,7 +17,10 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
-  const aimDirection = player.GetLastDirection().Rotated(-(FIRE_CONE / 2));
+  let aimDirection = player.GetLastDirection().Rotated(-(FIRE_CONE / 2));
+  if (aimDirection.LengthSquared() < 0.1) {
+    aimDirection = directionToVector(player.GetHeadDirection());
+  }
   const hasCarBattery = player.HasCollectible(
     CollectibleType.COLLECTIBLE_CAR_BATTERY,
   );

@@ -119,6 +119,7 @@ export function update(self: EntityNPC): boolean | null {
       getItemUpgrade(
         self.GetData().upgrading as number,
         self.GetData().upgradingPlayer as number,
+        true,
       ),
       true,
     );

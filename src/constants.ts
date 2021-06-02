@@ -1,3 +1,4 @@
+import { getGlobalData, saveGlobalData, SaveType } from "./saveData";
 import { toTearFlag } from "./utils";
 
 export enum CollectibleTypeLab {
@@ -558,7 +559,22 @@ export function randomCollectible(rand: RNG): number {
   return enumEntries[randomIndex][1] as number;
 }
 
+const UPGRADE_BLACKLIST_KEY = "upgrade_blacklist";
+
 export function itemHasUpgrade(item: int, playerType?: int): boolean {
+  const blacklistData = getGlobalData(
+    SaveType.PER_RUN,
+    UPGRADE_BLACKLIST_KEY,
+  ) as null | int[];
+
+  if (
+    isSingleUpgrade(item) &&
+    blacklistData != null &&
+    blacklistData.includes(item)
+  ) {
+    return false;
+  }
+
   if (CollectibleUpgrade.has(item)) {
     return true;
   }
@@ -586,7 +602,25 @@ export function itemHasUpgrade(item: int, playerType?: int): boolean {
   }
 }
 
-export function getItemUpgrade(item: int, playerType?: int): number {
+export function getItemUpgrade(
+  item: int,
+  playerType?: int,
+  deplete = false,
+): number {
+  if (deplete && isSingleUpgrade(item)) {
+    const blacklistData = getGlobalData(
+      SaveType.PER_RUN,
+      UPGRADE_BLACKLIST_KEY,
+    ) as null | int[];
+
+    if (blacklistData == null) {
+      saveGlobalData(SaveType.PER_RUN, UPGRADE_BLACKLIST_KEY, [item]);
+    } else if (!blacklistData.includes(item)) {
+      blacklistData.push(item);
+      saveGlobalData(SaveType.PER_RUN, UPGRADE_BLACKLIST_KEY, blacklistData);
+    }
+  }
+
   switch (playerType) {
     case PlayerType.PLAYER_ISAAC:
       if (item === CollectibleType.COLLECTIBLE_D6) {
@@ -640,8 +674,18 @@ export function getItemUpgrade(item: int, playerType?: int): number {
   return CollectibleType.COLLECTIBLE_NULL;
 }
 
+export function isSingleUpgrade(item: int): boolean {
+  if (
+    item === CollectibleType.COLLECTIBLE_DIPLOPIA ||
+    item === CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE
+  ) {
+    return true;
+  }
+  return false;
+}
+
 // Per-Build Constants
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.7.13";
+export const VERSION = "0.8.0";

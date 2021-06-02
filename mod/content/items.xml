@@ -66,6 +66,7 @@
 	<active description="Become the bomb! (Safely)" gfx="upgraded\s\shapedchargevest.png" maxcharges="390" chargetype="timed" name="Shaped Charge Vest" hidden="true"/>
 	<active description="Flip a Coin" gfx="upgraded\s\silvernickel.png" maxcharges="1" name="Silver Nickel" hidden="true"/>
 	<active description="Reusable soul protection" gfx="upgraded\s\soulgenerator.png" maxcharges="4" name="Soul Generator" hidden="true"/>
+	<active description="Soul Item Fabricator" gfx="upgraded\s\soulreactor.png" maxcharges="16" chargetype="special" initcharge="0" name="Soul Reactor" hidden="true"/>
 	<active description="Feel my pain" gfx="upgraded\s\steelrazor.png" maxcharges="0" name="Steel Razor" hidden="true"/>
 	<active description="75/25" gfx="upgraded\s\straightenedpenny.png" maxcharges="4" name="Straightened Penny" hidden="true"/>
 	<active description="Temporary Flight" gfx="upgraded\s\summarizedbible.png" maxcharges="2" name="Summarized Bible" hidden="true"/>

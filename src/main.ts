@@ -81,6 +81,7 @@ import * as EFF_SHADOWDEVICE from "./items/active/upgraded/s/shadowDevice";
 import * as EFF_SHAPEDCHARGEVEST from "./items/active/upgraded/s/shapedChargeVest";
 import * as EFF_SILVERNICKEL from "./items/active/upgraded/s/silverNickel";
 import * as EFF_SOULGENERATOR from "./items/active/upgraded/s/soulGenerator";
+import * as EFF_SOULREACTOR from "./items/active/upgraded/s/soulReactor";
 import * as EFF_STEELRAZOR from "./items/active/upgraded/s/steelRazor";
 import * as EFF_STRAIGHTENEDPENNY from "./items/active/upgraded/s/straightenedPenny";
 import * as EFF_SUMMARIZEDBIBLE from "./items/active/upgraded/s/summarizedBible";
@@ -261,6 +262,8 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TELEPORT4.use, EF
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULGENERATOR.use, EFF_SOULGENERATOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PETROGLYPHOFBELIAL.use, EFF_PETROGLYPHOFBELIAL.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHAPEDCHARGEVEST.use, EFF_SHAPEDCHARGEVEST.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULREACTOR.use, EFF_SOULREACTOR.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, EFF_SOULREACTOR.prePickupCollide, PickupVariant.PICKUP_HEART);
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

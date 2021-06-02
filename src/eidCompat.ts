@@ -359,6 +359,11 @@ export function registerExternalItemDescriptions(): void {
     "Causes a 185 damage explosion on the player" +
       "#↑ Explosion does not damage player",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_SOULREACTOR,
+    "Spawns {{SoulHeart}}{{SoulHeart}} and 1 Angel Room item" +
+      "#↓ Can only be charged by soul/black heart pickups",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

@@ -51,6 +51,7 @@
 	<active description="Waggles a finger" gfx="upgraded\o\overclockedmetronome.png" maxcharges="1200" chargetype="timed" name="Overclocked Metronome" hidden="true"/>
 
 	<active description="Mass Petrifaction" gfx="upgraded\p\petrifactionvortex.png" maxcharges="600" chargetype="timed" name="Petrifaction Vortex" hidden="true"/>
+	<active description="Temporary Evil Up" gfx="upgraded\p\petroglyphofbelial.png" maxcharges="4" name="Petroglyph of Belial" hidden="true"/>
 	<active description="Better pill generator" gfx="upgraded\p\pilldispenser.png" maxcharges="6" name="Pill Dispenser" hidden="true"/>
 	<active description="Enhanced Pill Mimic" gfx="upgraded\p\pillmachine.png" maxcharges="5" name="Pill Replicator" hidden="true"/>
 	<active description="Safer Last Resort" gfx="upgraded\p\pland.png" maxcharges="0" name="Plan D" hidden="true"/>

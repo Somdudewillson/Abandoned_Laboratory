@@ -349,6 +349,11 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLab.COLLECTIBLE_SOULGENERATOR,
     "Gives {{SoulHeart}}{{SoulHeart}}",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_PETROGLYPHOFBELIAL,
+    "Gives +4 DMG for the room" +
+      "#↑ Gives up to 1 full black heart if at less than 2 hearts",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

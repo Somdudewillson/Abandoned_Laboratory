@@ -64,6 +64,7 @@ import * as EFF_OMNIDETONATOR from "./items/active/upgraded/o/omniDetonator";
 import * as EFF_OVERCLOCKEDMETRONOME from "./items/active/upgraded/o/overclockedMetronome";
 
 import * as EFF_PETRIFACTIONVORTEX from "./items/active/upgraded/p/pertifactionVortex";
+import * as EFF_PETROGLYPHOFBELIAL from "./items/active/upgraded/p/petroglyphOfBelial";
 import * as EFF_PILLDISPENSER from "./items/active/upgraded/p/pillDispenser";
 import * as EFF_PILLMACHINE from "./items/active/upgraded/p/pillMachine";
 import * as EFF_PLAND from "./items/active/upgraded/p/planD";
@@ -256,6 +257,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BOXSHOP.use, EFF_
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ESSENCESPLITTER.use, EFF_ESSENCESPLITTER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TELEPORT4.use, EFF_TELEPORT4.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULGENERATOR.use, EFF_SOULGENERATOR.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PETROGLYPHOFBELIAL.use, EFF_PETROGLYPHOFBELIAL.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

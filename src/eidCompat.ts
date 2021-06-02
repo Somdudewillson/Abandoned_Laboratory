@@ -396,6 +396,10 @@ export function registerExternalItemDescriptions(): void {
       "#↑ 40 contact damage/sec" +
       "#↑ Heal {{HalfHeart}} per 2 enemies killed",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_MRYOU,
+    "Summons a controllable ghost that can perform various tasks depending on what it targets",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

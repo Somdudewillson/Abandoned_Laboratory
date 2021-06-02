@@ -3,6 +3,8 @@
 // Define imports
 import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE, CollectibleTypeLab } from "./constants";
 import * as SaveUtil from "./saveData";
+import * as extMath from "./extMath";
+import { registerExternalItemDescriptions } from "./eidCompat";
 // ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
 // --- Entities ---
@@ -105,8 +107,6 @@ import * as EFF_CRATEOFFRIENDS from "./items/active/specialized/crateOfFriends";
 import * as EFF_CHAOSPOOP from "./items/active/specialized/chaosPoop";
 import * as EFF_SIGILOFBELIAL from "./items/active/specialized/sigilOfBelial";
 import * as EFF_TEMPEREDBLADE from "./items/active/specialized/temperedBlade";
-import { registerExternalItemDescriptions } from "./eidCompat";
-import { parseIntChar } from "./extMath";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
@@ -150,9 +150,10 @@ function preGameExit(willContinue:boolean) {
 Isaac.DebugString("| Abandoned_Laboratory initializing.");
 Isaac.DebugString("|===================================");
 Isaac.DebugString(`| LABOS v${VERSION} startup initiated`);
-Isaac.DebugString(`|LABOS| Last maintenance visit: ${parseIntChar(VERSION.charAt(0))*197 +
-  parseIntChar(VERSION.charAt(2))*53 +
-  parseIntChar(VERSION.charAt(4))} days ago`);
+const versionSplit = VERSION.split(".")
+Isaac.DebugString(`|LABOS| Last maintenance visit: ${extMath.parseInt(versionSplit[0])*197 +
+  extMath.parseInt(versionSplit[1])*53 +
+  extMath.parseInt(versionSplit[2])} days ago`);
 
 // Register callbacks
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted);

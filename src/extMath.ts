@@ -76,6 +76,23 @@ export function sign(n: float): int {
   return 0;
 }
 
+export function parseInt(val: string): int {
+  let out = 0;
+
+  let signMul = 1;
+  if (val.charAt(0) === "-") {
+    signMul = -1;
+  }
+
+  for (let i = signMul === 1 ? 0 : 1; i < val.length; i++) {
+    out +=
+      parseIntChar(val.charAt(i)) *
+      10 ** (val.length - i - (signMul === 1 ? 1 : 0));
+  }
+
+  return out * signMul;
+}
+
 export function parseIntChar(char: string): int {
   switch (char) {
     default:

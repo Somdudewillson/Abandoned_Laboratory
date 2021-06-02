@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable prettier/prettier */
 // Define imports
-import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE, CollectibleTypeLabUpgrade } from "./constants";
+import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE, CollectibleTypeLabUpgrade, CollectibleTypeLabUtility } from "./constants";
 import * as SaveUtil from "./saveData";
 import * as extMath from "./extMath";
 import { registerExternalItemDescriptions } from "./eidCompat";
@@ -109,6 +109,8 @@ import * as EFF_CRATEOFFRIENDS from "./items/active/specialized/crateOfFriends";
 import * as EFF_CHAOSPOOP from "./items/active/specialized/chaosPoop";
 import * as EFF_SIGILOFBELIAL from "./items/active/specialized/sigilOfBelial";
 import * as EFF_TEMPEREDBLADE from "./items/active/specialized/temperedBlade";
+// --- Utility Actives ---
+import * as EFF_NONE from "./items/active/utility/noEffect";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
@@ -277,6 +279,9 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, EFF_CRATEOFF
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CHAOSPOOP.use, EFF_CHAOSPOOP.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SIGILOFBELIAL.use, EFF_SIGILOFBELIAL.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDBLADE.use, EFF_TEMPEREDBLADE.ownType());
+
+// --- Utility Items ---
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NONE.use, CollectibleTypeLabUtility.COLLECTIBLE_DISCHARGEDBATTERY);
 
 let itemsWithUpgrade = 0;
 let items = 0;

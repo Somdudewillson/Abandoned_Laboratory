@@ -1,6 +1,10 @@
 import { getGlobalData, saveGlobalData, SaveType } from "./saveData";
 import { toTearFlag } from "./utils";
 
+export enum CollectibleTypeLabUtility {
+  COLLECTIBLE_DISCHARGEDBATTERY = Isaac.GetItemIdByName("Discharged Battery"),
+}
+
 export enum CollectibleTypeLabUpgrade {
   // --- Normal Upgraded Actives ---
   COLLECTIBLE_DIGITALCARD = Isaac.GetItemIdByName("Digital Card"),

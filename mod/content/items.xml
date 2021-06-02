@@ -1,4 +1,5 @@
 <items gfxroot="gfx/items/" version="1">
+	<!--General Upgrades-->
 	<active description="Reroll into something else" gfx="upgraded\a\amplifiedd4.png" maxcharges="3" name="Amplified D4" hidden="true"/>
 	<active description="Summon Targeted Bombs" gfx="upgraded\a\anarchistsebook.png" maxcharges="4" name="Anarchist's E-Book" hidden="true"/>
 	<active description="Artificial Fates" gfx="upgraded\a\artificialsoul.png" maxcharges="100" chargetype="special" initcharge="0" name="Artificial Soul" hidden="true"/>
@@ -86,7 +87,7 @@
 
 	<active description="Ctrl+Z" gfx="upgraded\z\zkey.png" maxcharges="300" chargetype="special" name="Z Key" hidden="true"/>
 
-
+	<!--Specialized Upgrades-->
 	<active description="Flip a Coin" gfx="upgraded\specialized\goldennickel.png" maxcharges="200" chargetype="timed" name="Golden Nickel" hidden="true"/>
 	<active description="Active Reusable Regeneration" gfx="upgraded\specialized\reconstructiveheart.png" maxcharges="4" name="Reconstructive Heart" hidden="true"/>
 	<active description="Stabilized Destiny Alteration" gfx="upgraded\specialized\stabilizedeternald6.png" maxcharges="3" name="Stabilized Eternal D6" hidden="true"/>
@@ -95,4 +96,8 @@
 	<active description="Plop?!" gfx="upgraded\specialized\chaospoop.png" maxcharges="1" name="Chaos Poop" hidden="true"/>
 	<active description="Semi-Temporary DMG up" gfx="upgraded\specialized\sigilofbelial.png" maxcharges="3" name="Sigil of Belial" hidden="true"/>
 	<active description="Feel my pain" gfx="upgraded\specialized\temperedblade.png" maxcharges="0" name="Tempered Blade" hidden="true"/>
+
+
+	<!--Special-Use Items-->
+	<active description="Recharge it and return" gfx="utility\dischargedbattery.png" maxcharges="5" initcharge="1" name="Discharged Battery" hidden="true"/>
 </items>

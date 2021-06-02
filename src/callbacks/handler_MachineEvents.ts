@@ -1,9 +1,11 @@
 import {
+  CollectibleTypeLabUtility,
   getItemUpgrade,
   itemHasUpgrade,
   LabMachineVariant,
   UNBALANCED,
 } from "../constants";
+import { getGlobalData, saveGlobalData, SaveType } from "../saveData";
 import { playSound, spawnPickup } from "../utils";
 
 export const enum MachineEntityType {
@@ -25,7 +27,10 @@ const enum UpgradeAnimKey {
   INITIATE = "Initiate",
   WIGGLE = "Wiggle",
   PRIZE = "Prize",
+  READY = "Ready",
 }
+const CHARGE_SAVE_KEY = "upgrade_machine_charged";
+const BATT_SAVE_KEY = "upgrade_machine_batt";
 
 export function preCollide(
   self: EntityNPC,
@@ -43,7 +48,42 @@ export function preCollide(
     return null;
   }
 
+  const isCharged = getGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY) as
+    | boolean
+    | null;
+  const hasBatt = getGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY) as
+    | boolean
+    | null;
   const player = collider.ToPlayer()!;
+  if (isCharged) {
+    return tryAcceptItem(player, self);
+  }
+
+  if (tryAcceptBattery(player)) {
+    saveGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY, true);
+    saveGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY, true);
+    self.GetSprite().Play(UpgradeAnimKey.READY, true);
+    self.GetData().timeout = 15;
+
+    return null;
+  }
+  if (hasBatt == null || hasBatt) {
+    saveGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY, false);
+    spawnPickup(
+      self.Position.add(Vector(0, 25)),
+      self.GetDropRNG(),
+      PickupVariant.PICKUP_COLLECTIBLE,
+      CollectibleTypeLabUtility.COLLECTIBLE_DISCHARGEDBATTERY,
+      true,
+    );
+    self.PlaySound(SoundEffect.SOUND_BATTERYDISCHARGE, 1, 0, false, 1);
+    self.GetData().timeout = 15;
+  }
+
+  return null;
+}
+
+function tryAcceptItem(player: EntityPlayer, self: EntityNPC): boolean | null {
   for (const slot of UPGRADE_SELECTION_ORDER) {
     if (itemHasUpgrade(player.GetActiveItem(slot), player.GetPlayerType())) {
       const upgradingItem = player.GetActiveItem(slot);
@@ -65,6 +105,34 @@ export function preCollide(
   self.GetData().timeout = 2 * 30;
 
   return null;
+}
+
+function tryAcceptBattery(player: EntityPlayer): boolean {
+  if (
+    !player.HasCollectible(
+      CollectibleTypeLabUtility.COLLECTIBLE_DISCHARGEDBATTERY,
+    )
+  ) {
+    return false;
+  }
+
+  for (const slot of UPGRADE_SELECTION_ORDER) {
+    if (
+      player.GetActiveItem(slot) ===
+        CollectibleTypeLabUtility.COLLECTIBLE_DISCHARGEDBATTERY &&
+      player.GetActiveCharge(slot) >= 5
+    ) {
+      player.RemoveCollectible(
+        CollectibleTypeLabUtility.COLLECTIBLE_DISCHARGEDBATTERY,
+        true,
+        slot,
+      );
+
+      return true;
+    }
+  }
+
+  return false;
 }
 
 export function update(self: EntityNPC): boolean | null {
@@ -126,6 +194,7 @@ export function update(self: EntityNPC): boolean | null {
 
     playSound(SoundEffect.SOUND_SLOTSPAWN);
 
+    saveGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY, false);
     self.GetData().upgrading = null;
     self.GetData().upgradingPlayer = null;
   }
@@ -171,7 +240,7 @@ export function trySpawn(room: Room, floor: Level): void {
           room.GetBottomRightPos().X * 0.75,
           room.GetTopLeftPos().Y + 10,
         );
-        Isaac.Spawn(
+        const machineEnt = Isaac.Spawn(
           MachineEntityType.UPGRADEMACHINE,
           MachineEntityVariant.UPGRADEMACHINE,
           0,
@@ -179,6 +248,22 @@ export function trySpawn(room: Room, floor: Level): void {
           Vector.Zero,
           null,
         );
+
+        const isCharged = getGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY) as
+          | boolean
+          | null;
+        if (isCharged == null) {
+          saveGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY, false);
+        } else if (isCharged) {
+          machineEnt.GetSprite().Play(UpgradeAnimKey.READY, true);
+        }
+
+        const hasBatt = getGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY) as
+          | boolean
+          | null;
+        if (hasBatt == null) {
+          saveGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY, true);
+        }
       }
       break;
   }

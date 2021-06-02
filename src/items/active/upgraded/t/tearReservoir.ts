@@ -49,7 +49,7 @@ export function postTear(tear: EntityTear): void {
   for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
     if (player.GetActiveItem(s) === ownType()) {
       player.SetActiveCharge(Math.min(player.GetActiveCharge(s) + 1, 6), s);
-      playSound(SoundEffect.SOUND_BATTERYCHARGE);
+      playSound(SoundEffect.SOUND_BATTERYCHARGE, 0.1);
     }
   }
 }

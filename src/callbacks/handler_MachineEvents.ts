@@ -185,6 +185,7 @@ export function update(self: EntityNPC): boolean | null {
       self.GetDropRNG(),
       PickupVariant.PICKUP_COLLECTIBLE,
       getItemUpgrade(
+        self.GetDropRNG(),
         self.GetData().upgrading as number,
         self.GetData().upgradingPlayer as number,
         true,

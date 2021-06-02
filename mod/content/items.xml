@@ -63,6 +63,7 @@
 
 	<active description="Artificial Evil" gfx="upgraded\s\satanitygenerator.png" maxcharges="4" name="Satanity Generator" hidden="true"/>
 	<active description="Automatic Barrier... Sometimes" gfx="upgraded\s\shadowdevice.png" maxcharges="6" name="Shadow Device" hidden="true"/>
+	<active description="Become the bomb! (Safely)" gfx="upgraded\s\shapedchargevest.png" maxcharges="390" chargetype="timed" name="Shaped Charge Vest" hidden="true"/>
 	<active description="Flip a Coin" gfx="upgraded\s\silvernickel.png" maxcharges="1" name="Silver Nickel" hidden="true"/>
 	<active description="Reusable soul protection" gfx="upgraded\s\soulgenerator.png" maxcharges="4" name="Soul Generator" hidden="true"/>
 	<active description="Feel my pain" gfx="upgraded\s\steelrazor.png" maxcharges="0" name="Steel Razor" hidden="true"/>

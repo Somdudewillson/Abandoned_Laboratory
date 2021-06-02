@@ -338,6 +338,13 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLab.COLLECTIBLE_ESSENCESPLITTER,
     `Takes 1 red heart container and spawns a {{Collectible${CollectibleType.COLLECTIBLE_CUBE_OF_MEAT}}} & {{Collectible${CollectibleType.COLLECTIBLE_BALL_OF_BANDAGES}}}`,
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_TELEPORT4,
+    "Teleports the player" +
+      "# Teleports to the Ultra Secret room on first use" +
+      "# Teleports to I AM ERROR room on second use" +
+      "# Resets on floor transition",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

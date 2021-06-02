@@ -57,6 +57,8 @@ import * as EFF_ILLUSORYRAZOR from "./items/active/upgraded/i/illusoryRazor";
 
 import * as EFF_JAROFHEADS from "./items/active/upgraded/j/jarOfHeads";
 
+import * as EFF_LAZERBLAST from "./items/active/upgraded/l/lazerBlast";
+
 import * as EFF_MATTERREARRANGER from "./items/active/upgraded/m/matterRearranger";
 import * as EFF_METALFEATHER from "./items/active/upgraded/m/metalFeather";
 import * as EFF_MICROTRANSACTION from "./items/active/upgraded/m/microtransaction";
@@ -285,6 +287,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFUTILITY.u
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_INACTIONREPLAY.use, EFF_INACTIONREPLAY.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MRYOU.use, EFF_MRYOU.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TOXICVAT.use, EFF_TOXICVAT.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_LAZERBLAST.use, EFF_LAZERBLAST.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

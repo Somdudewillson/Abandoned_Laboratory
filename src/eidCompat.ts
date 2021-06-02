@@ -404,6 +404,10 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_TOXICVAT,
     "Creates a large pool of creep that does 8 times player damage",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_LAZERBLAST,
+    "Fires a beam which does 2x player damage/tick",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

@@ -96,6 +96,7 @@ export enum CollectibleTypeLabUpgrade {
   COLLECTIBLE_INACTIONREPLAY = Isaac.GetItemIdByName("Inaction Replay"),
   COLLECTIBLE_MRYOU = Isaac.GetItemIdByName("Mr. You"),
   COLLECTIBLE_TOXICVAT = Isaac.GetItemIdByName("Toxic Vat"),
+  COLLECTIBLE_LAZERBLAST = Isaac.GetItemIdByName("Lazer Blast"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -533,6 +534,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_FREE_LEMONADE,
     [CollectibleTypeLabUpgrade.COLLECTIBLE_TOXICVAT],
   ],
+  [
+    CollectibleType.COLLECTIBLE_SHOOP_DA_WHOOP,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_LAZERBLAST],
+  ],
 ]);
 
 export const enum FireplaceVariant {
@@ -648,6 +653,17 @@ export const TearFlag128 = {
   TEAR_GOLDEN_BOMB: toTearFlag(125),
   TEAR_FAST_BOMB: toTearFlag(126),
   TEAR_LUDOVICO: toTearFlag(127),
+};
+
+export const LaserSubType = {
+  /** A regular straight laser. */
+  LASER_REGULAR: 0,
+  /** A ring laser that does not move with its `parent` and ignores `timeout`. */
+  LASER_STATICRING: 1,
+  /** A pair of rings that shrink down on their spawn position. Does not move with `parent`. Shrink time dictated by `timeout`. */
+  LASER_TARGETRINGS: 2,
+  /** A ring laser that moves with its `parent` and respects `timeout`. Lacks fade-out anim. */
+  LASER_SHARPRING: 3,
 };
 
 export const SHOT_SPEED_MULT = 10;
@@ -795,4 +811,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.9.6";
+export const VERSION = "0.9.7";

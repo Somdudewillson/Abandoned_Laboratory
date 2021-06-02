@@ -154,6 +154,14 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
     CollectibleType.COLLECTIBLE_TELEPORT_2,
     CollectibleType.COLLECTIBLE_UNDEFINED as number,
   ],
+  [
+    CollectibleType.COLLECTIBLE_TELEPATHY_BOOK,
+    CollectibleType.COLLECTIBLE_SPOON_BENDER as number,
+  ],
+  [
+    CollectibleType.COLLECTIBLE_SULFUR,
+    CollectibleType.COLLECTIBLE_BRIMSTONE as number,
+  ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,
@@ -636,4 +644,4 @@ export function getItemUpgrade(item: int, playerType?: int): number {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.7.11";
+export const VERSION = "0.7.13";

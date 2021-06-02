@@ -80,6 +80,8 @@
 	<active description="Mass Terror" gfx="upgraded\t\terrorvortex.png" maxcharges="600" chargetype="timed" name="Terror Vortex" hidden="true"/>
 	<active description="Decaying double item vision" gfx="upgraded\t\triplopia.png" maxcharges="0" name="Triplopia" hidden="true"/>
 
+	<active description="Opens all locks" gfx="upgraded\u\universalkey.png" maxcharges="2" name="Universal Key" hidden="true"/>
+
 	<active description="Jams Sometimes" gfx="upgraded\v\vendingmachine.png" maxcharges="0" name="Vending Machine" hidden="true"/>
 
 	<active description="Reusable Tear Wave" gfx="upgraded\w\wavecannon.png" maxcharges="660" chargetype="timed" name="Wave Cannon" hidden="true"/>

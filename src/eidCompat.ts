@@ -368,6 +368,10 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_RESEALEDBOX,
     `Triggers {{Collectible${CollectibleType.COLLECTIBLE_BLUE_BOX}}} effect`,
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_UNIVERSALKEY,
+    "Opens most doors" + "#↑ Opens all chests" + "#↑ Opens all key blocks",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

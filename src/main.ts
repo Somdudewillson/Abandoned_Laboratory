@@ -94,6 +94,8 @@ import * as EFF_TEMPEREDGLASSCANNON from "./items/active/upgraded/t/temperedGlas
 import * as EFF_TERRORVORTEX from "./items/active/upgraded/t/terrorVortex";
 import * as EFF_TRIPLOPIA from "./items/active/upgraded/t/triplopia";
 
+import * as EFF_UNIVERSALKEY from "./items/active/upgraded/u/universalKey";
+
 import * as EFF_VENDINGMACHINE from "./items/active/upgraded/v/vendingMachine";
 
 import * as EFF_WAVECANNON from "./items/active/upgraded/w/waveCannon";
@@ -268,6 +270,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHAPEDCHARGEVEST.
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULREACTOR.use, EFF_SOULREACTOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, EFF_SOULREACTOR.prePickupCollide, PickupVariant.PICKUP_HEART);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RESEALEDBOX.use, EFF_RESEALEDBOX.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_UNIVERSALKEY.use, EFF_UNIVERSALKEY.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

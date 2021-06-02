@@ -103,361 +103,361 @@ export enum CollectibleTypeLabUpgrade {
   COLLECTIBLE_TEMPEREDBLADE = Isaac.GetItemIdByName("Tempered Blade"),
 }
 
-export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
+export const CollectibleUpgrade: Map<CollectibleType, number[]> = new Map([
   // =====Vanilla -> Vanilla Upgrades
   [
     CollectibleType.COLLECTIBLE_BUTTER_BEAN,
-    CollectibleType.COLLECTIBLE_WAIT_WHAT as number,
+    [CollectibleType.COLLECTIBLE_WAIT_WHAT as number],
   ],
   [
     CollectibleType.COLLECTIBLE_TELEPORT,
-    CollectibleType.COLLECTIBLE_TELEPORT_2 as number,
+    [CollectibleType.COLLECTIBLE_TELEPORT_2 as number],
   ],
   [
     CollectibleType.COLLECTIBLE_LEMON_MISHAP,
-    CollectibleType.COLLECTIBLE_FREE_LEMONADE as number,
+    [CollectibleType.COLLECTIBLE_FREE_LEMONADE as number],
   ],
   [
     CollectibleType.COLLECTIBLE_SCISSORS,
-    CollectibleType.COLLECTIBLE_PINKING_SHEARS as number,
+    [CollectibleType.COLLECTIBLE_PINKING_SHEARS as number],
   ],
   [
     CollectibleType.COLLECTIBLE_UNICORN_STUMP,
-    CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN as number,
+    [CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN as number],
   ],
   [
     CollectibleType.COLLECTIBLE_PONY,
-    CollectibleType.COLLECTIBLE_WHITE_PONY as number,
+    [CollectibleType.COLLECTIBLE_WHITE_PONY as number],
   ],
   [
     CollectibleType.COLLECTIBLE_BEAN,
-    CollectibleType.COLLECTIBLE_MEGA_BEAN as number,
+    [CollectibleType.COLLECTIBLE_MEGA_BEAN as number],
   ],
   [
     CollectibleType.COLLECTIBLE_MOVING_BOX,
-    CollectibleType.COLLECTIBLE_BLUE_BOX as number,
+    [CollectibleType.COLLECTIBLE_BLUE_BOX as number],
   ],
   [
     CollectibleType.COLLECTIBLE_D6,
-    CollectibleType.COLLECTIBLE_ETERNAL_D6 as number,
+    [CollectibleType.COLLECTIBLE_ETERNAL_D6 as number],
   ],
   [
     CollectibleType.COLLECTIBLE_ETERNAL_D6,
-    CollectibleType.COLLECTIBLE_D6 as number,
+    [CollectibleType.COLLECTIBLE_D6 as number],
   ],
   [
     CollectibleType.COLLECTIBLE_RED_CANDLE,
-    CollectibleType.COLLECTIBLE_CANDLE as number,
+    [CollectibleType.COLLECTIBLE_CANDLE as number],
   ],
   [
     CollectibleType.COLLECTIBLE_CANDLE,
-    CollectibleType.COLLECTIBLE_RED_CANDLE as number,
+    [CollectibleType.COLLECTIBLE_RED_CANDLE as number],
   ],
   [
     CollectibleType.COLLECTIBLE_KIDNEY_BEAN,
-    CollectibleType.COLLECTIBLE_MEGA_BEAN as number,
+    [CollectibleType.COLLECTIBLE_MEGA_BEAN as number],
   ],
   [
     CollectibleType.COLLECTIBLE_TELEPORT_2,
-    CollectibleType.COLLECTIBLE_UNDEFINED as number,
+    [CollectibleType.COLLECTIBLE_UNDEFINED as number],
   ],
   [
     CollectibleType.COLLECTIBLE_TELEPATHY_BOOK,
-    CollectibleType.COLLECTIBLE_SPOON_BENDER as number,
+    [CollectibleType.COLLECTIBLE_SPOON_BENDER as number],
   ],
   [
     CollectibleType.COLLECTIBLE_SULFUR,
-    CollectibleType.COLLECTIBLE_BRIMSTONE as number,
+    [CollectibleType.COLLECTIBLE_BRIMSTONE as number],
   ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_DIGITALCARD,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_DIGITALCARD],
   ],
   [
     CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_CARTOGRAPHERTOME,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_CARTOGRAPHERTOME],
   ],
   [
     CollectibleType.COLLECTIBLE_ANARCHIST_COOKBOOK,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_ANARCHISTEBOOK,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_ANARCHISTEBOOK],
   ],
   [
     CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_SHADOWDEVICE,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_SHADOWDEVICE],
   ],
   [
     CollectibleType.COLLECTIBLE_BOOK_OF_SIN,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_CHESTOFSIN,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_CHESTOFSIN],
   ],
   [
     CollectibleType.COLLECTIBLE_CLEAR_RUNE,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_RUNICAMPLIFIER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_RUNICAMPLIFIER],
   ],
   [
     CollectibleType.COLLECTIBLE_YUM_HEART,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_GLOWINGHEART,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_GLOWINGHEART],
   ],
   [
     CollectibleType.COLLECTIBLE_PLACEBO,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_PILLMACHINE,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_PILLMACHINE],
   ],
   [
     CollectibleType.COLLECTIBLE_BOBS_ROTTEN_HEAD,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_JAROFHEADS,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_JAROFHEADS],
   ],
   [
     CollectibleType.COLLECTIBLE_WOODEN_NICKEL,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_SILVERNICKEL,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_SILVERNICKEL],
   ],
   [
     CollectibleType.COLLECTIBLE_CRACK_THE_SKY,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_METALFEATHER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_METALFEATHER],
   ],
   [
     CollectibleType.COLLECTIBLE_BOX_OF_SPIDERS,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_BIGBOXOFSPIDERS,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_BIGBOXOFSPIDERS],
   ],
   [
     CollectibleType.COLLECTIBLE_MR_BOOM,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_BOMBDISPENSER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_BOMBDISPENSER],
   ],
   [
     CollectibleType.COLLECTIBLE_D20,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_MATTERREARRANGER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_MATTERREARRANGER],
   ],
   [
     CollectibleType.COLLECTIBLE_FORGET_ME_NOW,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_FORGETMELATER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_FORGETMELATER],
   ],
   [
     CollectibleType.COLLECTIBLE_BLOOD_RIGHTS,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_BLOODSAW,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_BLOODSAW],
   ],
   [
     CollectibleType.COLLECTIBLE_PRAYER_CARD,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_DIVINITYGENERATOR,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_DIVINITYGENERATOR],
   ],
   [
     CollectibleType.COLLECTIBLE_SATANIC_BIBLE,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_SATANITYGENERATOR,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_SATANITYGENERATOR],
   ],
   [
     CollectibleType.COLLECTIBLE_GLASS_CANNON,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_TEMPEREDGLASSCANNON,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_TEMPEREDGLASSCANNON],
   ],
   [
     CollectibleType.COLLECTIBLE_BROKEN_GLASS_CANNON,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_TEMPEREDGLASSCANNON,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_TEMPEREDGLASSCANNON],
   ],
   [
     CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_ZKEY,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_ZKEY],
   ],
   [
     CollectibleType.COLLECTIBLE_MAGIC_SKIN,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_SYNTHETICSKIN,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_SYNTHETICSKIN],
   ],
   [
     CollectibleType.COLLECTIBLE_PAUSE,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_PAUSE2,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_PAUSE2],
   ],
   [
     CollectibleType.COLLECTIBLE_SHARP_STRAW,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_BLOODSIPHON,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_BLOODSIPHON],
   ],
   [
     CollectibleType.COLLECTIBLE_EDENS_SOUL,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_ARTIFICIALSOUL,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_ARTIFICIALSOUL],
   ],
-  [CollectibleType.COLLECTIBLE_D1, CollectibleTypeLabUpgrade.COLLECTIBLE_D2],
+  [CollectibleType.COLLECTIBLE_D1, [CollectibleTypeLabUpgrade.COLLECTIBLE_D2]],
   [
     CollectibleType.COLLECTIBLE_MYSTERY_GIFT,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_WEEKLYGIFT,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_WEEKLYGIFT],
   ],
   [
     CollectibleType.COLLECTIBLE_COUPON,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_DISCOUNTCODE,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_DISCOUNTCODE],
   ],
   [
     CollectibleType.COLLECTIBLE_DULL_RAZOR,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_ILLUSORYRAZOR,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_ILLUSORYRAZOR],
   ],
   [
     CollectibleType.COLLECTIBLE_D12,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_PORTABLETERRAFORMER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_PORTABLETERRAFORMER],
   ],
   [
     CollectibleType.COLLECTIBLE_ISAACS_TEARS,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_TEARRESERVOIR,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_TEARRESERVOIR],
   ],
   [
     CollectibleType.COLLECTIBLE_TAMMYS_HEAD,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_WAVECANNON,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_WAVECANNON],
   ],
   [
     CollectibleType.COLLECTIBLE_MOMS_PAD,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_TERRORVORTEX,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_TERRORVORTEX],
   ],
   [
     CollectibleType.COLLECTIBLE_MOMS_BRA,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_PETRIFACTIONVORTEX,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_PETRIFACTIONVORTEX],
   ],
   [
     CollectibleType.COLLECTIBLE_SPIDER_BUTT,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_WEBBEDVORTEX,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_WEBBEDVORTEX],
   ],
   [
     CollectibleType.COLLECTIBLE_HOURGLASS,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_CHRONALVORTEX,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_CHRONALVORTEX],
   ],
   [
     CollectibleType.COLLECTIBLE_NECRONOMICON,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_NECROVORTEX,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_NECROVORTEX],
   ],
   [
     CollectibleType.COLLECTIBLE_MAGIC_FINGERS,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_MICROTRANSACTION,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_MICROTRANSACTION],
   ],
   [
     CollectibleType.COLLECTIBLE_MEGA_MUSH,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_CYBERMUSH,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_CYBERMUSH],
   ],
   [
     CollectibleType.COLLECTIBLE_PLAN_C,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_PLAND,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_PLAND],
   ],
   [
     CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_COUNTERFEITDEATHCERTIFICATE,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_COUNTERFEITDEATHCERTIFICATE],
   ],
   [
     CollectibleType.COLLECTIBLE_CROOKED_PENNY,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_STRAIGHTENEDPENNY,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_STRAIGHTENEDPENNY],
   ],
   [
     CollectibleType.COLLECTIBLE_RED_KEY,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_CRIMSONKEY,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_CRIMSONKEY],
   ],
   [
     CollectibleType.COLLECTIBLE_FORTUNE_COOKIE,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_DIGITALFORTUNE,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_DIGITALFORTUNE],
   ],
   [
     CollectibleType.COLLECTIBLE_PORTABLE_SLOT,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_VENDINGMACHINE,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_VENDINGMACHINE],
   ],
   [
     CollectibleType.COLLECTIBLE_IV_BAG,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_BLOODALCHEMIZER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_BLOODALCHEMIZER],
   ],
   [
     CollectibleType.COLLECTIBLE_BIBLE,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_SUMMARIZEDBIBLE,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_SUMMARIZEDBIBLE],
   ],
   [
     CollectibleType.COLLECTIBLE_POOP,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_CORNYPOOP,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_CORNYPOOP],
   ],
   [
     CollectibleType.COLLECTIBLE_DIPLOPIA,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_TRIPLOPIA,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_TRIPLOPIA],
   ],
   [
     CollectibleType.COLLECTIBLE_TEAR_DETONATOR,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_OMNIDETONATOR,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_OMNIDETONATOR],
   ],
   [
     CollectibleType.COLLECTIBLE_REMOTE_DETONATOR,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_OMNIDETONATOR,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_OMNIDETONATOR],
   ],
   [
     CollectibleType.COLLECTIBLE_MEGA_BEAN,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_BOOSTEDBEAN,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_BOOSTEDBEAN],
   ],
   [
     CollectibleType.COLLECTIBLE_PLUM_FLUTE,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_PLUMORGAN,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_PLUMORGAN],
   ],
   [
     CollectibleType.COLLECTIBLE_SPINDOWN_DICE,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_DECREMENTDICE,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_DECREMENTDICE],
   ],
   [
     CollectibleType.COLLECTIBLE_MOMS_BOTTLE_OF_PILLS,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_PILLDISPENSER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_PILLDISPENSER],
   ],
   [
     CollectibleType.COLLECTIBLE_D4,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_AMPLIFIEDD4,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_AMPLIFIEDD4],
   ],
   [
     CollectibleType.COLLECTIBLE_RAZOR_BLADE,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_STEELRAZOR,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_STEELRAZOR],
   ],
   [
     CollectibleType.COLLECTIBLE_GUPPYS_PAW,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_CYBERGUPPYSPAW,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_CYBERGUPPYSPAW],
   ],
   [
     CollectibleType.COLLECTIBLE_GUPPYS_HEAD,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_CYBERGUPPYSHEAD,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_CYBERGUPPYSHEAD],
   ],
   [
     CollectibleType.COLLECTIBLE_DECK_OF_CARDS,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_CARDDISPENSER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_CARDDISPENSER],
   ],
   [
     CollectibleType.COLLECTIBLE_METRONOME,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_OVERCLOCKEDMETRONOME,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_OVERCLOCKEDMETRONOME],
   ],
   [
     CollectibleType.COLLECTIBLE_YUCK_HEART,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_ROTTINGHEART,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_ROTTINGHEART],
   ],
   [
     CollectibleType.COLLECTIBLE_SCOOPER,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_EYECANISTER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_EYECANISTER],
   ],
   [
     CollectibleType.COLLECTIBLE_KEEPERS_BOX,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_BOXSHOP,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_BOXSHOP],
   ],
   [
     CollectibleType.COLLECTIBLE_POTATO_PEELER,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_ESSENCESPLITTER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_ESSENCESPLITTER],
   ],
   [
     CollectibleType.COLLECTIBLE_UNDEFINED,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_TELEPORT4,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_TELEPORT4],
   ],
   [
     CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_SOULGENERATOR,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_SOULGENERATOR],
   ],
   [
     CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_PETROGLYPHOFBELIAL,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_PETROGLYPHOFBELIAL],
   ],
   [
     CollectibleType.COLLECTIBLE_KAMIKAZE,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_SHAPEDCHARGEVEST,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_SHAPEDCHARGEVEST],
   ],
   [
     CollectibleType.COLLECTIBLE_ALABASTER_BOX,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_SOULREACTOR,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_SOULREACTOR],
   ],
   [
     CollectibleType.COLLECTIBLE_BREATH_OF_LIFE,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_ILLUSORYRAZOR,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_ILLUSORYRAZOR],
   ],
   [
     CollectibleType.COLLECTIBLE_BLUE_BOX,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_RESEALEDBOX,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_RESEALEDBOX],
   ],
   [
     CollectibleType.COLLECTIBLE_DADS_KEY,
-    CollectibleTypeLabUpgrade.COLLECTIBLE_UNIVERSALKEY,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_UNIVERSALKEY],
   ],
 ]);
 
@@ -634,6 +634,7 @@ export function itemHasUpgrade(item: int, playerType?: int): boolean {
 }
 
 export function getItemUpgrade(
+  rand: RNG,
   item: int,
   playerType?: int,
   deplete = false,
@@ -699,7 +700,8 @@ export function getItemUpgrade(
   }
 
   if (CollectibleUpgrade.has(item)) {
-    return CollectibleUpgrade.get(item)!;
+    const options = CollectibleUpgrade.get(item)!;
+    return options[rand.RandomInt(options.length - 1)];
   }
 
   return CollectibleType.COLLECTIBLE_NULL;
@@ -719,4 +721,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.8.2";
+export const VERSION = "0.9.0";

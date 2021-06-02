@@ -1,7 +1,7 @@
 import { CollectibleTypeLab } from "../../../../constants";
 import { playSound } from "../../../../utils";
 
-const DAMAGE_AMOUNT = 9999999;
+const DAMAGE_AMOUNT = 999999999;
 
 export function ownType(): number {
   return CollectibleTypeLab.COLLECTIBLE_PLAND as number;

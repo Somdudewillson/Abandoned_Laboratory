@@ -345,6 +345,10 @@ export function registerExternalItemDescriptions(): void {
       "# Teleports to I AM ERROR room on second use" +
       "# Resets on floor transition",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_SOULGENERATOR,
+    "Gives {{SoulHeart}}{{SoulHeart}}",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

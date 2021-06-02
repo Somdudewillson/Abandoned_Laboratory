@@ -74,6 +74,7 @@ export enum CollectibleTypeLab {
   COLLECTIBLE_BOXSHOP = Isaac.GetItemIdByName("Box Shop"),
   COLLECTIBLE_ESSENCESPLITTER = Isaac.GetItemIdByName("Essence Splitter"),
   COLLECTIBLE_TELEPORT4 = Isaac.GetItemIdByName("Teleport -4.0"),
+  COLLECTIBLE_SOULGENERATOR = Isaac.GetItemIdByName("Soul Generator"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -398,6 +399,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
     CollectibleType.COLLECTIBLE_UNDEFINED,
     CollectibleTypeLab.COLLECTIBLE_TELEPORT4,
   ],
+  [
+    CollectibleType.COLLECTIBLE_BOOK_OF_REVELATIONS,
+    CollectibleTypeLab.COLLECTIBLE_SOULGENERATOR,
+  ],
 ]);
 
 export const enum FireplaceVariant {
@@ -614,4 +619,4 @@ export function getItemUpgrade(item: int, playerType?: int): number {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.7.7";
+export const VERSION = "0.7.8";

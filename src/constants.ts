@@ -175,6 +175,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_SULFUR,
     [CollectibleType.COLLECTIBLE_BRIMSTONE as number],
   ],
+  [
+    CollectibleType.COLLECTIBLE_BROWN_NUGGET,
+    [CollectibleType.COLLECTIBLE_SPRINKLER as number],
+  ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,

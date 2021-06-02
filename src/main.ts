@@ -73,6 +73,7 @@ import * as EFF_PLAND from "./items/active/upgraded/p/planD";
 import * as EFF_PLUMORGAN from "./items/active/upgraded/p/plumOrgan";
 import * as EFF_PORTABLETERRAFORMER from "./items/active/upgraded/p/portableTerraformer";
 
+import * as EFF_RESEALEDBOX from "./items/active/upgraded/r/resealedBox";
 import * as EFF_ROTTINGHEART from "./items/active/upgraded/r/rottingHeart";
 import * as EFF_RUNICAMPLIFIER from "./items/active/upgraded/r/runicAmplifier";
 
@@ -266,6 +267,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PETROGLYPHOFBELIA
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHAPEDCHARGEVEST.use, EFF_SHAPEDCHARGEVEST.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULREACTOR.use, EFF_SOULREACTOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, EFF_SOULREACTOR.prePickupCollide, PickupVariant.PICKUP_HEART);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RESEALEDBOX.use, EFF_RESEALEDBOX.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

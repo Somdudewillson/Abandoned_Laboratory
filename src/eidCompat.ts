@@ -364,6 +364,10 @@ export function registerExternalItemDescriptions(): void {
     "Spawns {{SoulHeart}}{{SoulHeart}} and 1 Angel Room item" +
       "#↓ Can only be charged by soul/black heart pickups",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_RESEALEDBOX,
+    `Triggers {{Collectible${CollectibleType.COLLECTIBLE_BLUE_BOX}}} effect`,
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

@@ -354,6 +354,11 @@ export function registerExternalItemDescriptions(): void {
     "Gives +4 DMG for the room" +
       "#↑ Gives up to 1 full black heart if at less than 2 hearts",
   );
+  EID.addCollectible(
+    CollectibleTypeLab.COLLECTIBLE_SHAPEDCHARGEVEST,
+    "Causes a 185 damage explosion on the player" +
+      "#↑ Explosion does not damage player",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

@@ -1,4 +1,4 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import * as extMath from "../../../../extMath";
 
 const BASE_MAX_CHARGE = Isaac.GetItemConfig().GetCollectible(
@@ -8,7 +8,7 @@ const MAX_CHARGE_ODDS = 0.75;
 const MIN_CHARGE_ODDS = 0.25;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_SHADOWDEVICE as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_SHADOWDEVICE as number;
 }
 
 export function use(

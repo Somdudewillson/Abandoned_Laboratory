@@ -1,4 +1,4 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { numberOfSetBits } from "../../../../extMath";
 import * as SaveUtil from "../../../../saveData";
 import { SaveType } from "../../../../saveData";
@@ -8,7 +8,7 @@ const KEY_VISITED_ROOMS = "artificial_soul_visited";
 const KEY_USED = "artificial_soul_used";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_ARTIFICIALSOUL as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_ARTIFICIALSOUL as number;
 }
 
 export function use(

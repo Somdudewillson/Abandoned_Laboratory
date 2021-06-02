@@ -1,4 +1,4 @@
-import { CollectibleTypeLab } from "../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../constants";
 import * as extMath from "../../../extMath";
 import * as SaveUtil from "../../../saveData";
 import { SaveType } from "../../../saveData";
@@ -8,7 +8,7 @@ export const KEY_NICKEL_HEARTS = "nickel_hearts";
 const NICKEL_HEALTH_CAP: int = 3;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_GOLDENNICKEL as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_GOLDENNICKEL as number;
 }
 
 export function use(

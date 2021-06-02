@@ -1,8 +1,8 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { chargeEffect } from "../../../../utils";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_CRIMSONKEY as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_CRIMSONKEY as number;
 }
 
 export function use(

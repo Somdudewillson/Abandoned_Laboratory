@@ -1,5 +1,5 @@
 // TODO: Maybe make the matter rearranger able to generate pills/cards?
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import * as extMath from "../../../../extMath";
 import { getCoinVal, spawnPickup } from "../../../../utils";
 
@@ -157,7 +157,7 @@ const BASE_PICKUP_WEIGHTS = new Map([
 ]);
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_MATTERREARRANGER as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_MATTERREARRANGER as number;
 }
 
 export function use(

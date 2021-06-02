@@ -1,8 +1,8 @@
-import { CollectibleTypeLab } from "../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../constants";
 import { randomInt } from "../../../extMath";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_CHAOSPOOP as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_CHAOSPOOP as number;
 }
 
 const POOP_TABLE = [

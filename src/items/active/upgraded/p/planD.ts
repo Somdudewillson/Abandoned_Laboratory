@@ -1,10 +1,10 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { playSound } from "../../../../utils";
 
 const DAMAGE_AMOUNT = 999999999;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_PLAND as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_PLAND as number;
 }
 
 export function use(

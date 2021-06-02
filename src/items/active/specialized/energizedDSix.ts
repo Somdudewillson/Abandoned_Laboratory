@@ -1,11 +1,11 @@
-import { CollectibleTypeLab } from "../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../constants";
 import { chargeEffect, isBetter } from "../../../utils";
 
 const REROLL_SIM_COUNT = 5;
 const CHARGE_COST_PER_ITEM = 2;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_ENERGIZEDD6 as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_ENERGIZEDD6 as number;
 }
 
 export function use(

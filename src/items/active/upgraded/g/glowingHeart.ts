@@ -1,11 +1,11 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { spawnCoins } from "../../../../utils";
 
 const HEALTH_POINTS: int = 5;
 const SOUL_COST: int = 3;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_GLOWINGHEART as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_GLOWINGHEART as number;
 }
 
 export function use(

@@ -1,9 +1,9 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { tanh } from "../../../../extMath";
 import { chargeEffect, spawnPickup } from "../../../../utils";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_WEEKLYGIFT as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_WEEKLYGIFT as number;
 }
 
 export function use(

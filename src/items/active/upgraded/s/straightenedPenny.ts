@@ -1,8 +1,8 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { spawnPickup } from "../../../../utils";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_STRAIGHTENEDPENNY as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_STRAIGHTENEDPENNY as number;
 }
 
 export function use(

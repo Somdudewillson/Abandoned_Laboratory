@@ -1,4 +1,4 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { randomInt } from "../../../../extMath";
 import { spawnPickup } from "../../../../utils";
 
@@ -57,7 +57,7 @@ const PILL_EFF_RANKING = new Map<PillEffect, int>([
 ]);
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_PILLDISPENSER as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_PILLDISPENSER as number;
 }
 
 export function use(

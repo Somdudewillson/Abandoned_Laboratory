@@ -1,7 +1,7 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_BOMBDISPENSER as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_BOMBDISPENSER as number;
 }
 
 export function use(

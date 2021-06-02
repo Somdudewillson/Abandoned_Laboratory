@@ -1,9 +1,9 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import * as extMath from "../../../../extMath";
 import { spawnCoins } from "../../../../utils";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_SILVERNICKEL as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_SILVERNICKEL as number;
 }
 
 export function use(

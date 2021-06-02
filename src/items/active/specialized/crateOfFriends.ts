@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { CollectibleTypeLab } from "../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../constants";
 import { hasFlag } from "../../../utils";
 
 const FRIEND_ITEMS: Set<int> = new Set<int>();
 const REPLICATE_CHANCE: float = 0.05;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_CRATEOFFRIENDS as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_CRATEOFFRIENDS as number;
 }
 
 export function use(

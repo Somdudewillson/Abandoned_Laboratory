@@ -1,9 +1,9 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { randomInt } from "../../../../extMath";
 import { playSound, spawnCoins } from "../../../../utils";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_BLOODALCHEMIZER as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_BLOODALCHEMIZER as number;
 }
 
 export function use(

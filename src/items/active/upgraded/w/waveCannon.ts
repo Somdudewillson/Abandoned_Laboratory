@@ -1,4 +1,7 @@
-import { CollectibleTypeLab, SHOT_SPEED_MULT } from "../../../../constants";
+import {
+  CollectibleTypeLabUpgrade,
+  SHOT_SPEED_MULT,
+} from "../../../../constants";
 import { directionToVector } from "../../../../utils";
 
 const TEAR_COUNT: int = 10;
@@ -6,7 +9,7 @@ const FIRE_CONE: float = 75;
 const TEAR_ANGLE_INTERVAL: float = FIRE_CONE / (TEAR_COUNT - 1);
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_WAVECANNON as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_WAVECANNON as number;
 }
 
 export function use(

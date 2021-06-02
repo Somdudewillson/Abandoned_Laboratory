@@ -1,8 +1,8 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { randomInt } from "../../../../extMath";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_MICROTRANSACTION as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_MICROTRANSACTION as number;
 }
 
 export function use(

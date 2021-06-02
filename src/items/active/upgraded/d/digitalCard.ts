@@ -1,4 +1,4 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import * as extMath from "../../../../extMath";
 import {
   getCoinVal,
@@ -8,7 +8,7 @@ import {
 } from "../../../../utils";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_DIGITALCARD as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_DIGITALCARD as number;
 }
 
 export function use(

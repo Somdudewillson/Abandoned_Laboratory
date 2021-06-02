@@ -1,4 +1,7 @@
-import { CollectibleTypeLab, SHOT_SPEED_MULT } from "../../../../constants";
+import {
+  CollectibleTypeLabUpgrade,
+  SHOT_SPEED_MULT,
+} from "../../../../constants";
 
 const TEAR_COUNT: int = 6;
 const FIRE_CONE: float = 360;
@@ -7,7 +10,7 @@ const TEAR_ANGLE_INTERVAL: float = FIRE_CONE / TEAR_COUNT;
 const TEAR_COOLDOWN = 12 * 30;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_OMNIDETONATOR as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_OMNIDETONATOR as number;
 }
 
 export function use(

@@ -1,4 +1,4 @@
-import { CollectibleTypeLab } from "../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../constants";
 import { playSound } from "../../../utils";
 import { healPlayer } from "../upgraded/g/glowingHeart";
 
@@ -6,7 +6,7 @@ const HEALTH_POINTS: int = 7;
 const SOUL_COST: int = 3;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_RECONSTRUCTIVEHEART as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_RECONSTRUCTIVEHEART as number;
 }
 
 export function use(

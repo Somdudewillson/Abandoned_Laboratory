@@ -1,7 +1,7 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_DISCOUNTCODE as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_DISCOUNTCODE as number;
 }
 
 export function use(

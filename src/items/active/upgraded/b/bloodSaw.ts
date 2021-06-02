@@ -1,9 +1,9 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 
 const BASE_DAMAGE: int = 80;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_BLOODSAW as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_BLOODSAW as number;
 }
 
 export function use(

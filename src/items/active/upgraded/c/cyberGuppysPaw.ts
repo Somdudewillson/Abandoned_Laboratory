@@ -1,7 +1,7 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_CYBERGUPPYSPAW as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_CYBERGUPPYSPAW as number;
 }
 
 export function use(

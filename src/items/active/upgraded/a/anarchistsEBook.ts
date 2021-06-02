@@ -1,11 +1,14 @@
-import { CollectibleTypeLab, FireplaceVariant } from "../../../../constants";
+import {
+  CollectibleTypeLabUpgrade,
+  FireplaceVariant,
+} from "../../../../constants";
 import * as extMath from "../../../../extMath";
 import { spawnPickupCluster } from "../../../../utils";
 
 const BOMB_COUNT = 6;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_ANARCHISTEBOOK as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_ANARCHISTEBOOK as number;
 }
 
 export function use(

@@ -1,9 +1,9 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { randomInt } from "../../../../extMath";
 import { spawnPickup } from "../../../../utils";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_BOXSHOP as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_BOXSHOP as number;
 }
 
 export function use(

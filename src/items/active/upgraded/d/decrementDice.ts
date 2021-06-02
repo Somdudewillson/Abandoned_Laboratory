@@ -1,10 +1,10 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { isBetter } from "../../../../utils";
 
 const DECREMENT_SIM_COUNT = 5;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_DECREMENTDICE as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_DECREMENTDICE as number;
 }
 
 export function use(

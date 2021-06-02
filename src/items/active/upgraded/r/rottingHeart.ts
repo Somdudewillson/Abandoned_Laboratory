@@ -1,8 +1,8 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { randomInt } from "../../../../extMath";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_ROTTINGHEART as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_ROTTINGHEART as number;
 }
 
 export function use(

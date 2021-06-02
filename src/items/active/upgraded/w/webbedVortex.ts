@@ -1,8 +1,8 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { randRound } from "../../../../extMath";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_WEBBEDVORTEX as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_WEBBEDVORTEX as number;
 }
 
 export function use(

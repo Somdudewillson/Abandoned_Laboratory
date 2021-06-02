@@ -1,8 +1,8 @@
-import { CollectibleTypeLab } from "../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../constants";
 import { tanh } from "../../../extMath";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_SIGILOFBELIAL as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_SIGILOFBELIAL as number;
 }
 
 export function use(

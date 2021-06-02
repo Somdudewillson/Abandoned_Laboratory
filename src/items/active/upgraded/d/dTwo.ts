@@ -1,9 +1,9 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { shuffleArray } from "../../../../extMath";
 import { spawnPickup } from "../../../../utils";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_D2 as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_D2 as number;
 }
 
 export function use(

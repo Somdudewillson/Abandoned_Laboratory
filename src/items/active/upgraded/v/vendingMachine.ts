@@ -1,4 +1,4 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { randomInt, tanh } from "../../../../extMath";
 import {
   playSound,
@@ -8,7 +8,7 @@ import {
 } from "../../../../utils";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_VENDINGMACHINE as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_VENDINGMACHINE as number;
 }
 
 export function use(

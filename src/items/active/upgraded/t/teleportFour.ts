@@ -1,10 +1,10 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { getGlobalData, saveGlobalData, SaveType } from "../../../../saveData";
 
 const SAVE_KEY = "teleport4_ultra";
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_TELEPORT4 as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_TELEPORT4 as number;
 }
 
 export function use(

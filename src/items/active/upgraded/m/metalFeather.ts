@@ -1,10 +1,10 @@
-import { CollectibleTypeLab } from "../../../../constants";
+import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import * as extMath from "../../../../extMath";
 
 const BEAM_COUNT: int = 7;
 
 export function ownType(): number {
-  return CollectibleTypeLab.COLLECTIBLE_METALFEATHER as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_METALFEATHER as number;
 }
 
 export function use(

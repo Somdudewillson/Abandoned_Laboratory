@@ -445,6 +445,10 @@ export const CollectibleUpgrade: Map<CollectibleType, number> = new Map([
     CollectibleType.COLLECTIBLE_ALABASTER_BOX,
     CollectibleTypeLabUpgrade.COLLECTIBLE_SOULREACTOR,
   ],
+  [
+    CollectibleType.COLLECTIBLE_BREATH_OF_LIFE,
+    CollectibleTypeLabUpgrade.COLLECTIBLE_ILLUSORYRAZOR,
+  ],
 ]);
 
 export const enum FireplaceVariant {

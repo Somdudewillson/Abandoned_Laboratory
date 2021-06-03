@@ -408,6 +408,12 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_LAZERBLAST,
     "Fires a beam which does 2x player damage/tick",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_ALARMTRIGGER,
+    "Respawns the current room's enemies" +
+      "#↓ 10% chance to work on boss rooms" +
+      "#↓ 20% chance to work on miniboss rooms",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

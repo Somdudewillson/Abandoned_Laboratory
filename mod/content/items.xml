@@ -17,6 +17,7 @@
 	<active description="Tome of Mapping" gfx="upgraded\c\cartographerstome.png" maxcharges="5" name="Cartographer's Tome" hidden="true"/>
 	<active description="Reusable Item Generator" gfx="upgraded\c\chestofsin.png" maxcharges="7" name="Chest of Sin" hidden="true"/>
 	<active description="Mass Slow" gfx="upgraded\c\chronalvortex.png" maxcharges="420" chargetype="timed" name="Chronal Vortex" hidden="true"/>
+	<active description="Cloned Decoys" gfx="upgraded\c\clonevat.png" maxcharges="420" chargetype="timed" name="Clone Vat" hidden="true"/>
 	<active description="There might be flies..." gfx="upgraded\c\cornypoop.png" maxcharges="360" chargetype="timed" name="Corny Poop" hidden="true"/>
 	<active description="Fake Your Death" gfx="upgraded\c\counterfeitdeathcertificate.png" maxcharges="0" name="Counterfeit Death Certificate" hidden="true"/>
 	<active description="Explore every other side" gfx="upgraded\c\crimsonkey.png" maxcharges="4" name="Crimson Key" hidden="true"/>

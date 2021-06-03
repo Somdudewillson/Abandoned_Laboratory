@@ -451,6 +451,11 @@ export function registerExternalItemDescriptions(): void {
     "Sacrifices up to 2 familiars and spawns a Devil item for each" +
       "# Converts all friendly spiders and flies into coins",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_CLONEVAT,
+    "Spawns a decoy Isaac, which draws the attention of all enemies" +
+      "#↑ The decoy explodes after 5 seconds for 185 damage",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

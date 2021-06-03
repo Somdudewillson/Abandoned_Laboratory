@@ -467,6 +467,12 @@ export function registerExternalItemDescriptions(): void {
       "# All consecutive uses spawn a trapdoor to the next floor" +
       "#↑ Discharges only 4 bars on first use/floor",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_TEMPEREDSHEARS,
+    "Separates character's head and body for the current room" +
+      "# Player controls head, which gains flight" +
+      "# Body automatically chases down enemies to deal 82.5 contact damage/sec",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

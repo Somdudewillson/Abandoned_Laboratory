@@ -97,6 +97,7 @@
 	<active description="Accumulated Tears" gfx="upgraded\t\tearreservoir.png" maxcharges="6" chargetype="special" initcharge="0" name="Tear Reservoir" hidden="true"/>
 	<active description="Index out of bounds" gfx="upgraded\t\teleport4.png" maxcharges="6" name="Teleport -4.0" hidden="true"/>
 	<active description="Reinforced Glass" gfx="upgraded\t\temperedglasscannon.png" maxcharges="480" chargetype="timed" name="Tempered Glass Cannon" hidden="true"/>
+	<active description="Cut and run" gfx="upgraded\t\temperedshears.png" maxcharges="2" name="Tempered Shears" hidden="true"/>
 	<active description="Mass Terror" gfx="upgraded\t\terrorvortex.png" maxcharges="600" chargetype="timed" name="Terror Vortex" hidden="true"/>
 	<active description="Unsafe for others" gfx="upgraded\t\toxicvat.png" maxcharges="450" chargetype="timed" name="Toxic Vat" hidden="true"/>
 	<active description="Decaying double item vision" gfx="upgraded\t\triplopia.png" maxcharges="0" name="Triplopia" hidden="true"/>

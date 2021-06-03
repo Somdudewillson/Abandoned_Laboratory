@@ -113,6 +113,7 @@ import * as EFF_SYNTHETICSKIN from "./items/active/upgraded/s/syntheticSkin";
 import * as EFF_TEARRESERVOIR from "./items/active/upgraded/t/tearReservoir";
 import * as EFF_TELEPORT4 from "./items/active/upgraded/t/teleportFour";
 import * as EFF_TEMPEREDGLASSCANNON from "./items/active/upgraded/t/temperedGlassCannon";
+import * as EFF_TEMPEREDSHEARS from "./items/active/upgraded/t/temperedShears";
 import * as EFF_TERRORVORTEX from "./items/active/upgraded/t/terrorVortex";
 import * as EFF_TOXICVAT from "./items/active/upgraded/t/toxicVat";
 import * as EFF_TRIPLOPIA from "./items/active/upgraded/t/triplopia";
@@ -316,6 +317,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SACRIFICEREACTOR.
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CLONEVAT.use, EFF_CLONEVAT.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DEMONICNAIL.use, EFF_DEMONICNAIL.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AUGER.use, EFF_AUGER.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDSHEARS.use, EFF_TEMPEREDSHEARS.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

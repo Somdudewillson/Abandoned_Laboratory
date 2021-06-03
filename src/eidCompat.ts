@@ -226,8 +226,8 @@ export function registerExternalItemDescriptions(): void {
   );
   EID.addCollectible(
     CollectibleTypeLabUpgrade.COLLECTIBLE_DIGITALFORTUNE,
-    "Has a Luck-based chance to do nothing or spawn 1-2 {{SoulHeart}}, a {{Card}}, or a {{Trinket}}" +
-      "#↑ Treats negative Luck as 0 Luck",
+    "Spawns 1-2 {{SoulHeart}}, a {{Card}}, or a {{Trinket}}" +
+      "#↑ Reveals the full map",
   );
   EID.addCollectible(
     CollectibleTypeLabUpgrade.COLLECTIBLE_VENDINGMACHINE,

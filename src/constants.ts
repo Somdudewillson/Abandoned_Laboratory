@@ -578,6 +578,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_SACRIFICIAL_ALTAR,
     [CollectibleTypeLabUpgrade.COLLECTIBLE_SACRIFICEREACTOR],
   ],
+  [
+    CollectibleType.COLLECTIBLE_CRYSTAL_BALL,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_DIGITALFORTUNE],
+  ],
 ]);
 
 export const enum FireplaceVariant {
@@ -851,4 +855,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.10.4";
+export const VERSION = "0.10.5";

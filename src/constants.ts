@@ -198,6 +198,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_MY_LITTLE_UNICORN,
     [CollectibleType.COLLECTIBLE_GAMEKID as number],
   ],
+  [
+    CollectibleType.COLLECTIBLE_MONSTROS_TOOTH,
+    [CollectibleType.COLLECTIBLE_DOCTORS_REMOTE as number],
+  ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,
@@ -870,4 +874,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.10.8";
+export const VERSION = "0.10.9";

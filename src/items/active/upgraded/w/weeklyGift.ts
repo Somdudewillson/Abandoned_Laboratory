@@ -55,21 +55,11 @@ export function use(
   return true;
 }
 
-export function postLevel(): void {
-  for (let p = 0; p < Game().GetNumPlayers(); p++) {
-    const player = Isaac.GetPlayer(p);
-    if (player == null) {
-      continue;
-    }
-
-    if (!player.HasCollectible(ownType())) {
-      continue;
-    }
-    for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
-      if (player.GetActiveItem(s) === ownType()) {
-        player.SetActiveCharge(1, s);
-        chargeEffect(player.Position);
-      }
-    }
-  }
+export function postLevel(
+  player: EntityPlayer,
+  slot: ActiveSlot,
+  _level: Level,
+): void {
+  player.SetActiveCharge(1, slot);
+  chargeEffect(player.Position);
 }

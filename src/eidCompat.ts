@@ -430,6 +430,13 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_FRIENDSEARCHER,
     "Spawns a random friendly monster that mimics your movements and attacks",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_DOUBLESIDEDERASER,
+    "Fires an eraser in the current fire direction" +
+      "# Erases the first enemy it hits for the rest of the run" +
+      "# Deals 15 damage to bosses, if fatal they are erased" +
+      "# 2 uses per floor",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

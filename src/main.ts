@@ -7,6 +7,7 @@ import * as extMath from "./extMath";
 import { registerExternalItemDescriptions } from "./eidCompat";
 // ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
+import * as PostLevelHandler from "./callbacks/handler_PostNewLevel";
 // --- Entities ---
 import * as MachineEvents from "./callbacks/handler_MachineEvents";
 import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_MachineEvents";
@@ -45,6 +46,7 @@ import * as EFF_DigitalCard from "./items/active/upgraded/d/digitalCard";
 import * as EFF_DIGITALFORTUNE from "./items/active/upgraded/d/digitalFortune";
 import * as EFF_DISCOUNTCODE from "./items/active/upgraded/d/discountCode";
 import * as EFF_DIVINITYGENERATOR from "./items/active/upgraded/d/divinityGenerator";
+import * as EFF_DOUBLESIDEDERASER from "./items/active/upgraded/d/doubleSidedEraser";
 
 import * as EFF_ESSENCESPLITTER from "./items/active/upgraded/e/essenceSplitter";
 import * as EFF_EYECANISTER from "./items/active/upgraded/e/eyeCanister";
@@ -184,6 +186,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, SaveUtil.wipePe
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, SaveUtil.wipePerRoom);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SaveUtil.initPlayer);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PostRoomHandler.postRoom);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PostLevelHandler.postLevel);
 
 Isaac.DebugString("|LABOS| Boot initialization complete");
 
@@ -236,7 +239,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ARTIFICIALSOUL.us
 PostRoomHandler.addPlayerListener(EFF_ARTIFICIALSOUL.postRoom);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_D2.use, EFF_D2.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WEEKLYGIFT.use, EFF_WEEKLYGIFT.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, EFF_WEEKLYGIFT.postLevel);
+PostLevelHandler.addSlotListener(EFF_WEEKLYGIFT.postLevel, EFF_WEEKLYGIFT.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DISCOUNTCODE.use, EFF_DISCOUNTCODE.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_DISCOUNTCODE.postRoom);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ILLUSORYRAZOR.use, EFF_ILLUSORYRAZOR.ownType());
@@ -299,6 +302,8 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ALARMTRIGGER.use,
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_KINETICIMPACTOR.use, EFF_KINETICIMPACTOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ITEMFABRICATOR.use, EFF_ITEMFABRICATOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_FRIENDSEARCHER.use, EFF_FRIENDSEARCHER.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DOUBLESIDEDERASER.use, EFF_DOUBLESIDEDERASER.ownType());
+PostLevelHandler.addSlotListener(EFF_DOUBLESIDEDERASER.postLevel, EFF_DOUBLESIDEDERASER.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

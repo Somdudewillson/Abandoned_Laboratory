@@ -101,6 +101,7 @@ export enum CollectibleTypeLabUpgrade {
   COLLECTIBLE_KINETICIMPACTOR = Isaac.GetItemIdByName("Kinetic Impactor"),
   COLLECTIBLE_ITEMFABRICATOR = Isaac.GetItemIdByName("Item Fabricator"),
   COLLECTIBLE_FRIENDSEARCHER = Isaac.GetItemIdByName("Friend Searcher"),
+  COLLECTIBLE_DOUBLESIDEDERASER = Isaac.GetItemIdByName("Double-Sided Eraser"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -558,6 +559,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_FRIEND_FINDER,
     [CollectibleTypeLabUpgrade.COLLECTIBLE_FRIENDSEARCHER],
   ],
+  [
+    CollectibleType.COLLECTIBLE_ERASER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_DOUBLESIDEDERASER],
+  ],
 ]);
 
 export const enum FireplaceVariant {
@@ -831,4 +836,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.9.11";
+export const VERSION = "0.10.1";

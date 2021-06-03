@@ -30,6 +30,7 @@
 	<active description="Useful Reusable Fortunes" gfx="upgraded\d\digitalfortune.png" maxcharges="2" name="Digital Fortune" hidden="true"/>
 	<active description="Discount or gift?" gfx="upgraded\d\discountcode.png" maxcharges="5" name="Discount Code" hidden="true"/>
 	<active description="Artificial Eternity" gfx="upgraded\d\divinitygenerator.png" maxcharges="4" name="Divinity Generator" hidden="true"/>
+	<active description="Two uses!" gfx="upgraded\d\doublesidederaser.png" maxcharges="1" chargetype="special" name="Double-Sided Eraser" hidden="true"/>
 
 	<active description="Shear your Soul" gfx="upgraded\e\essencesplitter.png" maxcharges="0" name="Essence Splitter" hidden="true"/>
 	<active description="Plop!" gfx="upgraded\e\eyecanister.png" maxcharges="2" name="Eye Canister" hidden="true"/>

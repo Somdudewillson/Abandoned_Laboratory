@@ -41,6 +41,7 @@
 
 	<active description="False Pain" gfx="upgraded\i\illusoryrazor.png" maxcharges="300" chargetype="timed" name="Illusory Razor" hidden="true"/>
 	<active description="Frequent Man-Pac" gfx="upgraded\i\inactionreplay.png" maxcharges="2" name="Inaction Replay" hidden="true"/>
+	<active description="Fragile Item Fabricator" gfx="upgraded\i\itemfabricator.png" maxcharges="4" name="Item Fabricator" hidden="true"/>
 
 	<active description="Reusable Ranged Bombs" gfx="upgraded\j\jarofheads.png" maxcharges="180" chargetype="timed" name="Jar of Heads" hidden="true"/>
 

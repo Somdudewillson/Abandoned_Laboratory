@@ -419,6 +419,13 @@ export function registerExternalItemDescriptions(): void {
     "Spawns a stationary turret that fires rock waves at enemies" +
       "#↑ Also targets tinted/super-secret rocks",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_ITEMFABRICATOR,
+    "Spawns an item wisp orbital" +
+      "#↑ Item wisps gives their item's effect" +
+      "#↑ Item wisps deal damage and absorb tears" +
+      "#↓ Item wisps can be destroyed",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

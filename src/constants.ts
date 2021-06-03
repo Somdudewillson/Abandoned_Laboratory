@@ -202,6 +202,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_MONSTROS_TOOTH,
     [CollectibleType.COLLECTIBLE_DOCTORS_REMOTE as number],
   ],
+  [
+    CollectibleType.COLLECTIBLE_DATAMINER,
+    [CollectibleType.COLLECTIBLE_NOTCHED_AXE as number],
+  ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,

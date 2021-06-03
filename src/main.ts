@@ -82,6 +82,7 @@ import * as EFF_PETROGLYPHOFBELIAL from "./items/active/upgraded/p/petroglyphOfB
 import * as EFF_PILLDISPENSER from "./items/active/upgraded/p/pillDispenser";
 import * as EFF_PILLMACHINE from "./items/active/upgraded/p/pillMachine";
 import * as EFF_PLAND from "./items/active/upgraded/p/planD";
+import * as EFF_PLATEDRAZOR from "./items/active/upgraded/p/platedRazor";
 import * as EFF_PLUMORGAN from "./items/active/upgraded/p/plumOrgan";
 import * as EFF_PORTABLETERRAFORMER from "./items/active/upgraded/p/portableTerraformer";
 
@@ -306,6 +307,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_FRIENDSEARCHER.us
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DOUBLESIDEDERASER.use, EFF_DOUBLESIDEDERASER.ownType());
 PostLevelHandler.addSlotListener(EFF_DOUBLESIDEDERASER.postLevel, EFF_DOUBLESIDEDERASER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STRIKEDESIGNATOR.use, EFF_STRIKEDESIGNATOR.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLATEDRAZOR.use, EFF_PLATEDRAZOR.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

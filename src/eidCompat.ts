@@ -442,6 +442,10 @@ export function registerExternalItemDescriptions(): void {
     "Launches 7 rocket strikes at random enemies, weighted by health" +
       "#↑ Can also target tinted/super-secret rocks and secret rooms",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_PLATEDRAZOR,
+    "Consumes 3 coins and gives +1.2 damage for the room",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

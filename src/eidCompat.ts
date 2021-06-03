@@ -461,6 +461,12 @@ export function registerExternalItemDescriptions(): void {
     "Gives half a Black Heart, +2 damage, -0.18 speed and the ability to destroy obstacles" +
       `#↑ Gives {{Collectible${CollectibleType.COLLECTIBLE_BRIMSTONE}}}`,
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_AUGER,
+    "Spawns a ladder to the crawlspace with the first use on a floor" +
+      "# All consecutive uses spawn a trapdoor to the next floor" +
+      "#↑ Discharges only 4 bars on first use/floor",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

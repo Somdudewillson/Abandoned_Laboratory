@@ -20,6 +20,7 @@ import * as EFF_ALARMTRIGGER from "./items/active/upgraded/a/alarmTrigger";
 import * as EFF_AMPLIFIEDD4 from "./items/active/upgraded/a/amplifiedD4";
 import * as EFF_AnarchistsEBook from "./items/active/upgraded/a/anarchistsEBook";
 import * as EFF_ARTIFICIALSOUL from "./items/active/upgraded/a/artificialSoul";
+import * as EFF_AUGER from "./items/active/upgraded/a/auger";
 
 import * as EFF_BIGBOXOFSPIDERS from "./items/active/upgraded/b/bigBoxOfSpiders";
 import * as EFF_BLOODALCHEMIZER from "./items/active/upgraded/b/bloodAlchemizer";
@@ -314,6 +315,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLATEDRAZOR.use, 
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SACRIFICEREACTOR.use, EFF_SACRIFICEREACTOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CLONEVAT.use, EFF_CLONEVAT.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DEMONICNAIL.use, EFF_DEMONICNAIL.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AUGER.use, EFF_AUGER.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

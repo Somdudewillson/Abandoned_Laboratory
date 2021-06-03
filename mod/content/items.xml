@@ -4,6 +4,7 @@
 	<active description="Reroll into something else" gfx="upgraded\a\amplifiedd4.png" maxcharges="3" name="Amplified D4" hidden="true"/>
 	<active description="Summon Targeted Bombs" gfx="upgraded\a\anarchistsebook.png" maxcharges="4" name="Anarchist's E-Book" hidden="true"/>
 	<active description="Artificial Fates" gfx="upgraded\a\artificialsoul.png" maxcharges="100" chargetype="special" initcharge="0" name="Artificial Soul" hidden="true"/>
+	<active description="Dig Down" gfx="upgraded\a\auger.png" maxcharges="6" name="Auger" hidden="true"/>
 
 	<active description="It's a big box of spiders" gfx="upgraded\b\bigboxofspiders.png" maxcharges="2" name="Big Box of Spiders" hidden="true"/>
 	<active description="Blood to Gold" gfx="upgraded\b\bloodalchemizer.png" maxcharges="0" name="Blood Alchemizer" hidden="true"/>

@@ -414,6 +414,11 @@ export function registerExternalItemDescriptions(): void {
       "#↓ 10% chance to work on boss rooms" +
       "#↓ 20% chance to work on miniboss rooms",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_KINETICIMPACTOR,
+    "Spawns a stationary turret that fires rock waves at enemies" +
+      "#↑ Also targets tinted/super-secret rocks",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

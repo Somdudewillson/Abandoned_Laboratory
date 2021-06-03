@@ -12,6 +12,7 @@ import * as MachineEvents from "./callbacks/handler_MachineEvents";
 import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_MachineEvents";
 import * as SpiderEvents from "./callbacks/handler_SpiderEvents";
 import * as MicrodroneEvents from "./callbacks/handler_MicrodroneEvents";
+import * as EffectEvents from "./callbacks/handler_EffectEvents";
 // ===== import item code =====
 // --- Normal Upgraded Actives ---
 import * as EFF_ALARMTRIGGER from "./items/active/upgraded/a/alarmTrigger";
@@ -57,6 +58,8 @@ import * as EFF_INACTIONREPLAY from "./items/active/upgraded/i/inactionReplay";
 import * as EFF_ILLUSORYRAZOR from "./items/active/upgraded/i/illusoryRazor";
 
 import * as EFF_JAROFHEADS from "./items/active/upgraded/j/jarOfHeads";
+
+import * as EFF_KINETICIMPACTOR from "./items/active/upgraded/k/kineticImpactor";
 
 import * as EFF_LAZERBLAST from "./items/active/upgraded/l/lazerBlast";
 
@@ -192,6 +195,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, SpiderEvents.up
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SpiderEvents.interceptDamage, SpiderEvents.SPIDER_ENTITYTYPE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MicrodroneEvents.update, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, MicrodroneEvents.interceptDamage, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EffectEvents.update, EffectEvents.EffectEntityVariant.STATICEFFECT);
 
 Isaac.DebugString("|LABOS| Automata scan complete — All units present");
 
@@ -290,6 +294,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MRYOU.use, EFF_MR
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TOXICVAT.use, EFF_TOXICVAT.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_LAZERBLAST.use, EFF_LAZERBLAST.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ALARMTRIGGER.use, EFF_ALARMTRIGGER.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_KINETICIMPACTOR.use, EFF_KINETICIMPACTOR.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

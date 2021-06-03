@@ -26,7 +26,7 @@
 	<active description="I'm a big boy now!" gfx="upgraded\c\cybermush.png" maxcharges="6" name="Cyber Mush" hidden="true"/>
 
 	<active description="-[1..5]" gfx="upgraded\d\decrementdice.png" maxcharges="5" name="Decrement Dice" hidden="true"/>
-	<active description="Powerful temporary demon form" gfx="upgraded\d\demonicnail.png" maxcharges="6" name="Demonic Nail" hidden="true"/>
+	<active description="Powerful temporary demon form" gfx="upgraded\d\demonicnail.png" maxcharges="5" name="Demonic Nail" hidden="true"/>
 	<active description="What will they be?" gfx="upgraded\d\d2.png" maxcharges="3" name="D2" hidden="true"/>
 	<active description="Enhanced Card Mimic" gfx="upgraded\d\digitalcard.png" maxcharges="5" name="Digital Card" hidden="true"/>
 	<active description="Useful Reusable Fortunes" gfx="upgraded\d\digitalfortune.png" maxcharges="5" name="Digital Fortune" hidden="true"/>

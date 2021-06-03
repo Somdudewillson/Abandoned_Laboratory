@@ -456,6 +456,11 @@ export function registerExternalItemDescriptions(): void {
     "Spawns a decoy Isaac, which draws the attention of all enemies" +
       "#↑ The decoy explodes after 5 seconds for 185 damage",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_DEMONICNAIL,
+    "Gives half a Black Heart, +2 damage, -0.18 speed and the ability to destroy obstacles" +
+      `#↑ Gives {{Collectible${CollectibleType.COLLECTIBLE_BRIMSTONE}}}`,
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

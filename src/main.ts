@@ -42,6 +42,7 @@ import * as EFF_CYBERGUPPYSPAW from "./items/active/upgraded/c/cyberGuppysPaw";
 import * as EFF_CYBERMUSH from "./items/active/upgraded/c/cyberMush";
 
 import * as EFF_DECREMENTDICE from "./items/active/upgraded/d/decrementDice";
+import * as EFF_DEMONICNAIL from "./items/active/upgraded/d/demonicNail";
 import * as EFF_D2 from "./items/active/upgraded/d/dTwo";
 import * as EFF_DigitalCard from "./items/active/upgraded/d/digitalCard";
 import * as EFF_DIGITALFORTUNE from "./items/active/upgraded/d/digitalFortune";
@@ -312,6 +313,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STRIKEDESIGNATOR.
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLATEDRAZOR.use, EFF_PLATEDRAZOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SACRIFICEREACTOR.use, EFF_SACRIFICEREACTOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CLONEVAT.use, EFF_CLONEVAT.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DEMONICNAIL.use, EFF_DEMONICNAIL.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

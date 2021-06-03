@@ -426,6 +426,10 @@ export function registerExternalItemDescriptions(): void {
       "#↑ Item wisps deal damage and absorb tears" +
       "#↓ Item wisps can be destroyed",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_FRIENDSEARCHER,
+    "Spawns a random friendly monster that mimics your movements and attacks",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

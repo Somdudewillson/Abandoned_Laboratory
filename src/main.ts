@@ -50,6 +50,7 @@ import * as EFF_ESSENCESPLITTER from "./items/active/upgraded/e/essenceSplitter"
 import * as EFF_EYECANISTER from "./items/active/upgraded/e/eyeCanister";
 
 import * as EFF_FORGETMELATER from "./items/active/upgraded/f/forgetMeLater";
+import * as EFF_FRIENDSEARCHER from "./items/active/upgraded/f/friendSearcher";
 
 import * as EFF_GLOWINGHEART from "./items/active/upgraded/g/glowingHeart";
 import * as EFF_PAUSE2 from "./items/active/upgraded/p/pauseTwo";
@@ -297,6 +298,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_LAZERBLAST.use, E
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ALARMTRIGGER.use, EFF_ALARMTRIGGER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_KINETICIMPACTOR.use, EFF_KINETICIMPACTOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ITEMFABRICATOR.use, EFF_ITEMFABRICATOR.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_FRIENDSEARCHER.use, EFF_FRIENDSEARCHER.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

@@ -35,6 +35,7 @@
 	<active description="Plop!" gfx="upgraded\e\eyecanister.png" maxcharges="2" name="Eye Canister" hidden="true"/>
 
 	<active description="I won't remember..." gfx="upgraded\f\forgetmelater.png" maxcharges="30" chargetype="special" name="Forget Me Later" hidden="true"/>
+	<active description="More Friends!" gfx="upgraded\f\friendsearcher.png" maxcharges="1" name="Friend Searcher" hidden="true"/>
 
 	<active description="Reusable Regeneration" gfx="upgraded\g\glowingheart.png" maxcharges="4" name="Glowing Heart" hidden="true"/>
 	<active description="Stop!!" gfx="upgraded\g\goldenpause.png" maxcharges="120" chargetype="timed" name="Pause 2.0" hidden="true"/>

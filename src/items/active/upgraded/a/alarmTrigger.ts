@@ -13,7 +13,6 @@ export function use(
   _CustomVarData: int,
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
   const room = Game().GetRoom();
-
   if (!room.IsClear()) {
     return false;
   }

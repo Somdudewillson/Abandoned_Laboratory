@@ -446,6 +446,11 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_PLATEDRAZOR,
     "Consumes 3 coins and gives +1.2 damage for the room",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SACRIFICEREACTOR,
+    "Sacrifices up to 2 familiars and spawns a Devil item for each" +
+      "# Converts all friendly spiders and flies into coins",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

@@ -90,6 +90,7 @@ import * as EFF_RESEALEDBOX from "./items/active/upgraded/r/resealedBox";
 import * as EFF_ROTTINGHEART from "./items/active/upgraded/r/rottingHeart";
 import * as EFF_RUNICAMPLIFIER from "./items/active/upgraded/r/runicAmplifier";
 
+import * as EFF_SACRIFICEREACTOR from "./items/active/upgraded/s/sacrificeReactor";
 import * as EFF_SATANITYGENERATOR from "./items/active/upgraded/s/satanityGenerator";
 import * as EFF_SCROLLOFAGGRESSION from "./items/active/upgraded/s/scrollOfAggression";
 import * as EFF_SCROLLOFBLASTS from "./items/active/upgraded/s/scrollOfBlasts";
@@ -308,6 +309,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DOUBLESIDEDERASER
 PostLevelHandler.addSlotListener(EFF_DOUBLESIDEDERASER.postLevel, EFF_DOUBLESIDEDERASER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STRIKEDESIGNATOR.use, EFF_STRIKEDESIGNATOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLATEDRAZOR.use, EFF_PLATEDRAZOR.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SACRIFICEREACTOR.use, EFF_SACRIFICEREACTOR.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

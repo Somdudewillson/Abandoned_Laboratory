@@ -437,6 +437,11 @@ export function registerExternalItemDescriptions(): void {
       "# Deals 15 damage to bosses, if fatal they are erased" +
       "# 2 uses per floor",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_STRIKEDESIGNATOR,
+    "Launches 7 rocket strikes at random enemies, weighted by health" +
+      "#↑ Can also target tinted/super-secret rocks and secret rooms",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

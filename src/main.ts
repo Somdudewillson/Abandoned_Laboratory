@@ -101,6 +101,7 @@ import * as EFF_SOULGENERATOR from "./items/active/upgraded/s/soulGenerator";
 import * as EFF_SOULREACTOR from "./items/active/upgraded/s/soulReactor";
 import * as EFF_STEELRAZOR from "./items/active/upgraded/s/steelRazor";
 import * as EFF_STRAIGHTENEDPENNY from "./items/active/upgraded/s/straightenedPenny";
+import * as EFF_STRIKEDESIGNATOR from "./items/active/upgraded/s/strikeDesignator";
 import * as EFF_SUMMARIZEDBIBLE from "./items/active/upgraded/s/summarizedBible";
 import * as EFF_SYNTHETICSKIN from "./items/active/upgraded/s/syntheticSkin";
 
@@ -304,6 +305,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ITEMFABRICATOR.us
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_FRIENDSEARCHER.use, EFF_FRIENDSEARCHER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DOUBLESIDEDERASER.use, EFF_DOUBLESIDEDERASER.ownType());
 PostLevelHandler.addSlotListener(EFF_DOUBLESIDEDERASER.postLevel, EFF_DOUBLESIDEDERASER.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STRIKEDESIGNATOR.use, EFF_STRIKEDESIGNATOR.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

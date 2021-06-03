@@ -85,6 +85,7 @@
 	<active description="Soul Item Fabricator" gfx="upgraded\s\soulreactor.png" maxcharges="16" chargetype="special" initcharge="0" name="Soul Reactor" hidden="true"/>
 	<active description="Feel my pain" gfx="upgraded\s\steelrazor.png" maxcharges="0" name="Steel Razor" hidden="true"/>
 	<active description="75/25" gfx="upgraded\s\straightenedpenny.png" maxcharges="4" name="Straightened Penny" hidden="true"/>
+	<active description="Reusable air strikes" gfx="upgraded\s\strikedesignator.png" maxcharges="4" name="Strike Designator" hidden="true"/>
 	<active description="Temporary Flight" gfx="upgraded\s\summarizedbible.png" maxcharges="2" name="Summarized Bible" hidden="true"/>
 	<active description="Artificial desires fulfilled" gfx="upgraded\s\syntheticskin.png" maxcharges="8" name="Synthetic Skin" hidden="true"/>
 

@@ -2,6 +2,7 @@ const queuedEffects = new Map<
   int,
   {
     itemID: number;
+    slot: number;
     data: number;
     callback: (player: EntityPlayer, direction: Vector, data: number) => void;
   }
@@ -20,6 +21,24 @@ export function postUpdate(
   const playerHash = GetPtrHash(player);
   if (!queuedEffects.has(playerHash)) {
     return;
+  }
+
+  const thrownData = queuedEffects.get(playerHash)!;
+  const itemConfig = Isaac.GetItemConfig();
+  if (!player.IsHoldingItem()) {
+    const maxCharge = itemConfig.GetCollectible(thrownData.itemID).MaxCharges;
+    const newCharge = player.GetActiveCharge(thrownData.slot) + maxCharge;
+
+    player.SetActiveCharge(
+      Math.min(
+        newCharge,
+        player.HasCollectible(CollectibleType.COLLECTIBLE_BATTERY)
+          ? maxCharge * 2
+          : maxCharge,
+      ),
+      thrownData.slot,
+    );
+    queuedEffects.delete(playerHash);
   }
 
   let dir = Vector.Zero;
@@ -45,8 +64,6 @@ export function postUpdate(
   } else {
     return;
   }
-
-  const thrownData = queuedEffects.get(playerHash)!;
   thrownData.callback.call(null, player, dir, thrownData.data);
   player.AnimateCollectible(
     thrownData.itemID,
@@ -58,6 +75,7 @@ export function postUpdate(
 export function queueThrowable(
   player: EntityPlayer,
   id: number,
+  activeSlot: number,
   callback: (player: EntityPlayer, direction: Vector, data: number) => void,
   throwableData = 0,
 ): void {
@@ -66,6 +84,11 @@ export function queueThrowable(
   if (queuedEffects.has(playerHash)) {
     Isaac.DebugString("[Abandoned Lab] WARN | Overwriting queued throwable!");
   }
-  queuedEffects.set(playerHash, { itemID: id, data: throwableData, callback });
+  queuedEffects.set(playerHash, {
+    itemID: id,
+    slot: activeSlot,
+    data: throwableData,
+    callback,
+  });
   player.AnimateCollectible(id, HeldCollectibleAnimKeys.LIFTITEM);
 }

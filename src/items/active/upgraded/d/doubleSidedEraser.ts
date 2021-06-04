@@ -38,7 +38,7 @@ export function use(
   Isaac.DebugString(`uses: ${uses}`);
 
   if (uses == null || uses > 1) {
-    queueThrowable(player, ownType(), doThrow, 1);
+    queueThrowable(player, ownType(), ActiveSlot, doThrow, 1);
     Isaac.DebugString("Recharging...");
 
     savePlayerData(
@@ -50,7 +50,7 @@ export function use(
     return { Discharge: false, Remove: false, ShowAnim: false };
   }
 
-  queueThrowable(player, ownType(), doThrow, 2);
+  queueThrowable(player, ownType(), ActiveSlot, doThrow, 2);
   Isaac.DebugString("Discharging...");
   savePlayerData(
     EntityRef(player),

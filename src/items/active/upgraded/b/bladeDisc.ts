@@ -14,10 +14,10 @@ export function use(
   _rand: RNG,
   player: EntityPlayer,
   _UseFlags: int,
-  _ActiveSlot: int,
+  ActiveSlot: int,
   _CustomVarData: int,
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
-  queueThrowable(player, ownType(), doThrow);
+  queueThrowable(player, ownType(), ActiveSlot, doThrow);
 
   return { Discharge: true, Remove: false, ShowAnim: false };
 }

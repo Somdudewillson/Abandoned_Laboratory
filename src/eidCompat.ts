@@ -490,6 +490,10 @@ export function registerExternalItemDescriptions(): void {
     "Fires a cone of 4 brimstone lasers for 0.5 sec" +
       "#↑ Each beam does 11 damage/tick",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SUMMARIZEDMONSTERMANUAL,
+    "Spawns a random familiar for the current floor",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

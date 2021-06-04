@@ -111,6 +111,7 @@ import * as EFF_STEELRAZOR from "./items/active/upgraded/s/steelRazor";
 import * as EFF_STRAIGHTENEDPENNY from "./items/active/upgraded/s/straightenedPenny";
 import * as EFF_STRIKEDESIGNATOR from "./items/active/upgraded/s/strikeDesignator";
 import * as EFF_SUMMARIZEDBIBLE from "./items/active/upgraded/s/summarizedBible";
+import * as EFF_SUMMARIZEDMONSTERMANUAL from "./items/active/upgraded/s/summarizedMonsterManual";
 import * as EFF_SYNTHETICSKIN from "./items/active/upgraded/s/syntheticSkin";
 
 import * as EFF_TEARRESERVOIR from "./items/active/upgraded/t/tearReservoir";
@@ -324,6 +325,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDSHEARS.us
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLADEDISC.use, EFF_BLADEDISC.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENFLUSH.use, EFF_GOLDENFLUSH.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BRIMSTONECANNON.use, EFF_BRIMSTONECANNON.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUMMARIZEDMONSTERMANUAL.use, EFF_SUMMARIZEDMONSTERMANUAL.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

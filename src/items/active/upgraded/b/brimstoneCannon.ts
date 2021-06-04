@@ -1,4 +1,5 @@
 import { CollectibleTypeLabUpgrade, LaserSubType } from "../../../../constants";
+import { sign } from "../../../../extMath";
 import { directionToDegrees } from "../../../../utils";
 
 const BEAM_COUNT: int = 4;
@@ -24,6 +25,8 @@ export function use(
   );
 
   for (let i = 0; i < (hasCarBattery ? BEAM_COUNT * 2 : BEAM_COUNT); i++) {
+    const curInterval =
+      i * (hasCarBattery ? TEAR_ANGLE_INTERVAL / 2 : TEAR_ANGLE_INTERVAL);
     const lazer = Isaac.Spawn(
       EntityType.ENTITY_LASER,
       LaserVariant.THICK_RED,
@@ -36,11 +39,14 @@ export function use(
     lazer.ParentOffset = Vector(0, -25);
     lazer.DepthOffset = 100;
     lazer.Parent = player;
-    lazer.AngleDegrees =
-      startDegrees +
-      i * (hasCarBattery ? TEAR_ANGLE_INTERVAL / 2 : TEAR_ANGLE_INTERVAL);
+    lazer.AngleDegrees = startDegrees + curInterval;
     lazer.SetTimeout(30);
     lazer.CollisionDamage = 11;
+    lazer.IsActiveRotating = true;
+
+    lazer.RotationSpd = sign(FIRE_CONE - curInterval * 2);
+    lazer.RotationDelay = 6;
+    lazer.RotationDegrees = FIRE_CONE - curInterval * 2;
   }
 
   return true;

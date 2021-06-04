@@ -43,6 +43,7 @@
 	<active description="More Friends!" gfx="upgraded\f\friendsearcher.png" maxcharges="1" name="Friend Searcher" hidden="true"/>
 
 	<active description="Reusable Regeneration" gfx="upgraded\g\glowingheart.png" maxcharges="4" name="Glowing Heart" hidden="true"/>
+	<active description="..." gfx="upgraded\g\goldenflush.png" maxcharges="2" name="Golden Flush" hidden="true"/>
 	<active description="Stop!!" gfx="upgraded\g\goldenpause.png" maxcharges="120" chargetype="timed" name="Pause 2.0" hidden="true"/>
 
 	<active description="False Pain" gfx="upgraded\i\illusoryrazor.png" maxcharges="300" chargetype="timed" name="Illusory Razor" hidden="true"/>

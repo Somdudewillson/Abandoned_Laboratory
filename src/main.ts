@@ -59,6 +59,7 @@ import * as EFF_FORGETMELATER from "./items/active/upgraded/f/forgetMeLater";
 import * as EFF_FRIENDSEARCHER from "./items/active/upgraded/f/friendSearcher";
 
 import * as EFF_GLOWINGHEART from "./items/active/upgraded/g/glowingHeart";
+import * as EFF_GOLDENFLUSH from "./items/active/upgraded/g/goldenFlush";
 import * as EFF_PAUSE2 from "./items/active/upgraded/p/pauseTwo";
 
 import * as EFF_INACTIONREPLAY from "./items/active/upgraded/i/inactionReplay";
@@ -320,6 +321,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DEMONICNAIL.use, 
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AUGER.use, EFF_AUGER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDSHEARS.use, EFF_TEMPEREDSHEARS.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLADEDISC.use, EFF_BLADEDISC.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENFLUSH.use, EFF_GOLDENFLUSH.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

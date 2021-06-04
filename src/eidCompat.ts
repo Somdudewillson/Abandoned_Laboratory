@@ -480,6 +480,11 @@ export function registerExternalItemDescriptions(): void {
       "#↑ Deals 3x player damage/tick" +
       "#↑ Picks up item pedestals and pickups",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_GOLDENFLUSH,
+    "Turns all non-boss monsters in the room into poop" +
+      "#↑ Instantly kills poop-themed bosses",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

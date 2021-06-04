@@ -36,9 +36,7 @@ export function use(
   return true;
 }
 
-export function postRoom(): void {
-  const room = Game().GetRoom();
-
+export function postRoom(room: Room, _level: Level): void {
   let hasChargedDiscount = false;
   for (let p = 0; p < Game().GetNumPlayers(); p++) {
     const player = Isaac.GetPlayer(p);

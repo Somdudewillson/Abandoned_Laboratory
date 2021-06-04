@@ -24,7 +24,8 @@ export function use(
 
 export function doThrow(
   player: EntityPlayer,
-  direction: Vector,
+  directionVector: Vector,
+  _direction: Direction,
   _data: number,
 ): void {
   const newDisc = Isaac.Spawn(
@@ -32,7 +33,7 @@ export function doThrow(
     LabEffectEntityVariant,
     EffectEntitySubtype.BLADEDISC,
     player.Position,
-    direction.Resized(25),
+    directionVector.Resized(25),
     player,
   );
 

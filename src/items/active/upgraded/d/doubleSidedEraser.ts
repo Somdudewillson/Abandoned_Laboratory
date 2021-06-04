@@ -72,7 +72,8 @@ export function postLevel(
 
 export function doThrow(
   player: EntityPlayer,
-  direction: Vector,
+  directionVector: Vector,
+  _direction: Direction,
   data: number,
 ): void {
   const eraser = Isaac.Spawn(
@@ -80,7 +81,7 @@ export function doThrow(
     TearVariant.ERASER,
     0,
     player.Position,
-    direction.Resized(15),
+    directionVector.Resized(15),
     player,
   );
   if (data === 1) {

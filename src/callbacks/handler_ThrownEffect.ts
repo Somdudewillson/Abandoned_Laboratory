@@ -4,7 +4,12 @@ const queuedEffects = new Map<
     itemID: number;
     slot: number;
     data: number;
-    callback: (player: EntityPlayer, direction: Vector, data: number) => void;
+    callback: (
+      player: EntityPlayer,
+      directionVector: Vector,
+      direction: Direction,
+      data: number,
+    ) => void;
   }
 >();
 
@@ -41,30 +46,35 @@ export function postUpdate(
     queuedEffects.delete(playerHash);
   }
 
-  let dir = Vector.Zero;
+  let dirVec = Vector.Zero;
+  let dir = Direction.NO_DIRECTION;
   if (
     Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
   ) {
-    dir = Vector(0, 1);
+    dirVec = Vector(0, 1);
+    dir = Direction.DOWN;
   } else if (
     Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
   ) {
-    dir = Vector(-1, 0);
+    dirVec = Vector(-1, 0);
+    dir = Direction.LEFT;
   } else if (
     Input.IsActionPressed(
       ButtonAction.ACTION_SHOOTRIGHT,
       player.ControllerIndex,
     )
   ) {
-    dir = Vector(1, 0);
+    dirVec = Vector(1, 0);
+    dir = Direction.RIGHT;
   } else if (
     Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
   ) {
-    dir = Vector(0, -1);
+    dirVec = Vector(0, -1);
+    dir = Direction.UP;
   } else {
     return;
   }
-  thrownData.callback.call(null, player, dir, thrownData.data);
+  thrownData.callback.call(null, player, dirVec, dir, thrownData.data);
   player.AnimateCollectible(
     thrownData.itemID,
     HeldCollectibleAnimKeys.HIDEITEM,
@@ -76,7 +86,12 @@ export function queueThrowable(
   player: EntityPlayer,
   id: number,
   activeSlot: number,
-  callback: (player: EntityPlayer, direction: Vector, data: number) => void,
+  callback: (
+    player: EntityPlayer,
+    directionVector: Vector,
+    direction: Direction,
+    data: number,
+  ) => void,
   throwableData = 0,
 ): void {
   const playerHash = GetPtrHash(player);

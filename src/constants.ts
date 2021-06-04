@@ -926,6 +926,15 @@ export function itemHasUpgrade(item: int, playerType?: int): boolean {
     return true;
   }
 
+  // Special Cases
+  switch (item) {
+    case CollectibleType.COLLECTIBLE_WHITE_PONY:
+      return true;
+    default:
+      break;
+  }
+
+  // Specialized Upgrades
   switch (playerType) {
     case PlayerType.PLAYER_ISAAC:
       return item === CollectibleType.COLLECTIBLE_D6;
@@ -945,8 +954,10 @@ export function itemHasUpgrade(item: int, playerType?: int): boolean {
     case PlayerType.PLAYER_XXX:
       return item === CollectibleType.COLLECTIBLE_POOP;
     default:
-      return false;
+      break;
   }
+
+  return false;
 }
 
 export function getItemUpgrade(
@@ -1020,6 +1031,18 @@ export function getItemUpgrade(
     return [upgradeOptions[rand.RandomInt(upgradeOptions.length)]];
   }
 
+  // Special Cases
+  switch (item) {
+    case CollectibleType.COLLECTIBLE_WHITE_PONY:
+      return [
+        CollectibleType.COLLECTIBLE_HOLY_GRAIL,
+        CollectibleType.COLLECTIBLE_MARS,
+        CollectibleTypeLabUpgrade.COLLECTIBLE_METALFEATHER,
+      ];
+    default:
+      break;
+  }
+
   return [CollectibleType.COLLECTIBLE_NULL];
 }
 
@@ -1038,4 +1061,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.13.0";
+export const VERSION = "0.13.1";

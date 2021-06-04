@@ -81,7 +81,7 @@ import * as EFF_KINETICIMPACTOR from "./items/active/upgraded/k/kineticImpactor"
 import * as EFF_LAZERBLAST from "./items/active/upgraded/l/lazerBlast";
 
 import * as EFF_MATTERREARRANGER from "./items/active/upgraded/m/matterRearranger";
-import * as EFF_MEGABLACKHOLE from "./items/active/upgraded/m/megaBlackHole";
+import * as EFF_SINGULARITYGENERATOR from "./items/active/upgraded/s/singularityGenerator";
 import * as EFF_METALFEATHER from "./items/active/upgraded/m/metalFeather";
 import * as EFF_MICROTRANSACTION from "./items/active/upgraded/m/microtransaction";
 import * as EFF_MOTHEROFBOMBS from "./items/active/upgraded/m/motherOfBombs";
@@ -351,7 +351,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDMEGABLAS
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUPERHEATEDSMELTER.use, EFF_SUPERHEATEDSMELTER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MOTHEROFBOMBS.use, EFF_MOTHEROFBOMBS.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDDELIRIOUS.use, EFF_ENERGIZEDDELIRIOUS.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MEGABLACKHOLE.use, EFF_MEGABLACKHOLE.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SINGULARITYGENERATOR.use, EFF_SINGULARITYGENERATOR.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

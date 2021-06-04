@@ -556,8 +556,11 @@ export function registerExternalItemDescriptions(): void {
     "Spawns Delirium as a random friendly boss",
   );
   EID.addCollectible(
-    CollectibleTypeLabUpgrade.COLLECTIBLE_MEGABLACKHOLE,
-    "Throws a black hole on the ground which sucks in and damages enemies",
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SINGULARITYGENERATOR,
+    "Places a black hole generator, which lasts 20 seconds" +
+      "#↑ Pulls in most entities other than players and player tears" +
+      "#↑ Deals high damage to entities" +
+      "#!!! When it despawns, it will cause a large explosion that can hurt the player",
   );
 
   // =====Upgraded Starting Items=====

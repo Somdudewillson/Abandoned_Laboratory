@@ -27,4 +27,6 @@
     </entity>
     <entity name="Blade Disc" anm2path="1000.579_bladedisc.anm2" id="1000" variant="579" subtype="13" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="16" friction="1" numGridCollisionPoints="0" shadowSize="20" stageHP="0">
     </entity>
+    <entity name="Singularity Generator" anm2path="1000.579_singularitygenerator.anm2" id="1000" variant="579" subtype="14" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="14" friction="0" numGridCollisionPoints="0" shadowSize="27" stageHP="0">
+    </entity>
 </entities>

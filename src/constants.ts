@@ -231,7 +231,13 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
   ],
   [
     CollectibleType.COLLECTIBLE_DATAMINER,
-    [CollectibleType.COLLECTIBLE_NOTCHED_AXE as number],
+    [
+      CollectibleType.COLLECTIBLE_NOTCHED_AXE as number,
+      CollectibleType.COLLECTIBLE_NOTCHED_AXE as number,
+      CollectibleType.COLLECTIBLE_NOTCHED_AXE as number,
+      CollectibleType.COLLECTIBLE_NOTCHED_AXE as number,
+      CollectibleType.COLLECTIBLE_TMTRAINER as number,
+    ],
   ],
   [
     CollectibleType.COLLECTIBLE_JAR_OF_FLIES,

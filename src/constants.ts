@@ -285,6 +285,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_JAR_OF_WISPS,
     [CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES as number],
   ],
+  [
+    CollectibleType.COLLECTIBLE_URN_OF_SOULS,
+    [CollectibleType.COLLECTIBLE_JAR_OF_WISPS as number],
+  ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,

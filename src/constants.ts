@@ -253,6 +253,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_R_KEY,
     [CollectibleType.COLLECTIBLE_GENESIS as number],
   ],
+  [
+    CollectibleType.COLLECTIBLE_DECAP_ATTACK,
+    [CollectibleType.COLLECTIBLE_PINKING_SHEARS as number],
+  ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,

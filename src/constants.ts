@@ -954,7 +954,7 @@ export function getItemUpgrade(
   item: int,
   playerType?: int,
   deplete = false,
-): number {
+): number[] {
   if (deplete && isSingleUpgrade(item)) {
     const blacklistData = getGlobalData(
       SaveType.PER_RUN,
@@ -972,43 +972,43 @@ export function getItemUpgrade(
   switch (playerType) {
     case PlayerType.PLAYER_ISAAC:
       if (item === CollectibleType.COLLECTIBLE_D6) {
-        return CollectibleTypeLabUpgrade.COLLECTIBLE_ENERGIZEDD6;
+        return [CollectibleTypeLabUpgrade.COLLECTIBLE_ENERGIZEDD6];
       }
       break;
     case PlayerType.PLAYER_MAGDALENA:
     case PlayerType.PLAYER_MAGDALENA_B:
       if (item === CollectibleType.COLLECTIBLE_YUM_HEART) {
-        return CollectibleTypeLabUpgrade.COLLECTIBLE_RECONSTRUCTIVEHEART;
+        return [CollectibleTypeLabUpgrade.COLLECTIBLE_RECONSTRUCTIVEHEART];
       }
       break;
     case PlayerType.PLAYER_JUDAS:
       if (item === CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL) {
-        return CollectibleTypeLabUpgrade.COLLECTIBLE_SIGILOFBELIAL;
+        return [CollectibleTypeLabUpgrade.COLLECTIBLE_SIGILOFBELIAL];
       }
       break;
     case PlayerType.PLAYER_EVE:
       if (item === CollectibleType.COLLECTIBLE_RAZOR_BLADE) {
-        return CollectibleTypeLabUpgrade.COLLECTIBLE_TEMPEREDBLADE;
+        return [CollectibleTypeLabUpgrade.COLLECTIBLE_TEMPEREDBLADE];
       }
       break;
     case PlayerType.PLAYER_THELOST:
       if (item === CollectibleType.COLLECTIBLE_ETERNAL_D6) {
-        return CollectibleTypeLabUpgrade.COLLECTIBLE_STABILIZEDETERNALD6;
+        return [CollectibleTypeLabUpgrade.COLLECTIBLE_STABILIZEDETERNALD6];
       }
       break;
     case PlayerType.PLAYER_LILITH:
       if (item === CollectibleType.COLLECTIBLE_BOX_OF_FRIENDS) {
-        return CollectibleTypeLabUpgrade.COLLECTIBLE_CRATEOFFRIENDS;
+        return [CollectibleTypeLabUpgrade.COLLECTIBLE_CRATEOFFRIENDS];
       }
       break;
     case PlayerType.PLAYER_KEEPER:
       if (item === CollectibleType.COLLECTIBLE_WOODEN_NICKEL) {
-        return CollectibleTypeLabUpgrade.COLLECTIBLE_GOLDENNICKEL;
+        return [CollectibleTypeLabUpgrade.COLLECTIBLE_GOLDENNICKEL];
       }
       break;
     case PlayerType.PLAYER_XXX:
       if (item === CollectibleType.COLLECTIBLE_POOP) {
-        return CollectibleTypeLabUpgrade.COLLECTIBLE_CHAOSPOOP;
+        return [CollectibleTypeLabUpgrade.COLLECTIBLE_CHAOSPOOP];
       }
       break;
     default:
@@ -1017,10 +1017,10 @@ export function getItemUpgrade(
 
   if (CollectibleUpgrade.has(item)) {
     const upgradeOptions = CollectibleUpgrade.get(item)!;
-    return upgradeOptions[rand.RandomInt(upgradeOptions.length)];
+    return [upgradeOptions[rand.RandomInt(upgradeOptions.length)]];
   }
 
-  return CollectibleType.COLLECTIBLE_NULL;
+  return [CollectibleType.COLLECTIBLE_NULL];
 }
 
 export function isSingleUpgrade(item: int): boolean {
@@ -1038,4 +1038,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.12.6";
+export const VERSION = "0.13.0";

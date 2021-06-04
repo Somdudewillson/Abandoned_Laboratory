@@ -180,18 +180,21 @@ export function update(self: EntityNPC): boolean | null {
 
   // Dispense product
   if (self.GetSprite().IsEventTriggered(UpgradeAnimKey.PRIZE)) {
-    spawnPickup(
-      self.Position.add(Vector(0, 25)),
+    const outputs = getItemUpgrade(
       self.GetDropRNG(),
-      PickupVariant.PICKUP_COLLECTIBLE,
-      getItemUpgrade(
-        self.GetDropRNG(),
-        self.GetData().upgrading as number,
-        self.GetData().upgradingPlayer as number,
-        true,
-      ),
+      self.GetData().upgrading as number,
+      self.GetData().upgradingPlayer as number,
       true,
     );
+    for (const output of outputs) {
+      spawnPickup(
+        self.Position.add(Vector(0, 25)),
+        self.GetDropRNG(),
+        PickupVariant.PICKUP_COLLECTIBLE,
+        output,
+        true,
+      );
+    }
 
     playSound(SoundEffect.SOUND_SLOTSPAWN);
 

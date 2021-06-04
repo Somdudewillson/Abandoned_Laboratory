@@ -531,6 +531,12 @@ export function registerExternalItemDescriptions(): void {
   );
   EID.addCollectible(
     CollectibleTypeLabUpgrade.COLLECTIBLE_BLUEFRIENDSBOX,
+    "Fires a massive laser for 15 seconds" +
+      "#↑ Persists between rooms" +
+      "# Pushes player back while active",
+  );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_ENERGIZEDMEGABLAST,
     "Duplicates familiars for the current room" +
       `#↑ If no familiars are present, spawns {{Collectible${CollectibleType.COLLECTIBLE_DEMON_BABY}}}` +
       "#↑ Spawns 4-8 blue spiders and 2-4 blue flies",

@@ -57,6 +57,7 @@ import * as EFF_DISCOUNTCODE from "./items/active/upgraded/d/discountCode";
 import * as EFF_DIVINITYGENERATOR from "./items/active/upgraded/d/divinityGenerator";
 import * as EFF_DOUBLESIDEDERASER from "./items/active/upgraded/d/doubleSidedEraser";
 
+import * as EFF_ENERGIZEDMEGABLAST from "./items/active/upgraded/e/energizedMegaSatansBreath";
 import * as EFF_ESSENCESPLITTER from "./items/active/upgraded/e/essenceSplitter";
 import * as EFF_EYECANISTER from "./items/active/upgraded/e/eyeCanister";
 
@@ -342,6 +343,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ACCELERATEDD10.us
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AMPLIFIEDD8.use, EFF_AMPLIFIEDD8.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_POWEREDD100.use, EFF_POWEREDD100.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLUEFRIENDSBOX.use, EFF_BLUEFRIENDSBOX.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDMEGABLAST.use, EFF_ENERGIZEDMEGABLAST.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

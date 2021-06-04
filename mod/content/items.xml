@@ -41,6 +41,7 @@
 	<active description="Artificial Eternity" gfx="upgraded\d\divinitygenerator.png" maxcharges="4" name="Divinity Generator" hidden="true"/>
 	<active description="Two uses!" gfx="upgraded\d\doublesidederaser.png" maxcharges="1" chargetype="special" name="Double-Sided Eraser" hidden="true"/>
 
+	<active description="Laser breath" gfx="upgraded\e\energizedmegasatansbreath.png" maxcharges="8" name="Energized Mega Satan's Breath" hidden="true"/>
 	<active description="Shear your Soul" gfx="upgraded\e\essencesplitter.png" maxcharges="0" name="Essence Splitter" hidden="true"/>
 	<active description="Plop!" gfx="upgraded\e\eyecanister.png" maxcharges="2" name="Eye Canister" hidden="true"/>
 

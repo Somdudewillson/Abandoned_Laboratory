@@ -1,5 +1,6 @@
 <items gfxroot="gfx/items/" version="1">
 	<!--General Upgrades-->
+	<active description="Reroll enemies" gfx="upgraded\a\acceleratedd10.png" maxcharges="360" chargetype="timed" name="Accelerated D10" hidden="true"/>
 	<active description="Fight again" gfx="upgraded\a\alarmtrigger.png" maxcharges="2" name="Alarm Trigger" hidden="true"/>
 	<active description="Reroll into something else" gfx="upgraded\a\amplifiedd4.png" maxcharges="3" name="Amplified D4" hidden="true"/>
 	<active description="Summon Targeted Bombs" gfx="upgraded\a\anarchistsebook.png" maxcharges="4" name="Anarchist's E-Book" hidden="true"/>

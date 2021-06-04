@@ -510,6 +510,11 @@ export function registerExternalItemDescriptions(): void {
     "Throws a key, which can deal damage, destroy obstacles, and open doors" +
       "#↑ While held, all enemies have a 20% chance to drop a key",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_ACCELERATEDD10,
+    "Rerolls monsters" +
+      "# Monsters are rerolled to other monsters with similar health",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

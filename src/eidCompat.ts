@@ -500,6 +500,11 @@ export function registerExternalItemDescriptions(): void {
       "#↑ If none are present, spawns 2 blue flies or spiders" +
       "# Converts pickups to blue flies or spiders",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SOULJAR,
+    "Spawns {{SoulHeart}}{{SoulHeart}}{{SoulHeart}}{{SoulHeart}}" +
+      "#↓ Can only be charged by red heart pickups",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

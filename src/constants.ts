@@ -116,6 +116,7 @@ export enum CollectibleTypeLabUpgrade {
     "Summarized Monster Manual",
   ),
   COLLECTIBLE_COMPOSTBIN = Isaac.GetItemIdByName("Compost Bin"),
+  COLLECTIBLE_SOULJAR = Isaac.GetItemIdByName("Soul Jar"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -637,6 +638,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_COMPOST,
     [CollectibleTypeLabUpgrade.COLLECTIBLE_COMPOSTBIN],
   ],
+  [
+    CollectibleType.COLLECTIBLE_THE_JAR,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_SOULJAR],
+  ],
 ]);
 
 export const enum FireplaceVariant {
@@ -910,4 +915,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.10.15";
+export const VERSION = "0.10.16";

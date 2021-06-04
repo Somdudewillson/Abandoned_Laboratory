@@ -1,6 +1,6 @@
 import {
   EffectEntitySubtype,
-  EffectEntityVariant,
+  LabEffectEntityVariant,
 } from "../../../../callbacks/handler_EffectEvents";
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
 
@@ -18,7 +18,7 @@ export function use(
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
   Isaac.Spawn(
     EntityType.ENTITY_EFFECT,
-    EffectEntityVariant.STATICEFFECT,
+    LabEffectEntityVariant,
     EffectEntitySubtype.KINETICIMPACTOR,
     player.Position,
     Vector.Zero,

@@ -519,6 +519,16 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_AMPLIFIEDD8,
     "Randomly increases one of Luck, Range, Speed, Tears, Health, or Shot Speed",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_POWEREDD100,
+    `Triggers the effects of {{Collectible${CollectibleTypeLabUpgrade.COLLECTIBLE_D2}}},` +
+      `{{Collectible${CollectibleType.COLLECTIBLE_D6}}},` +
+      `{{Collectible${CollectibleTypeLabUpgrade.COLLECTIBLE_ALARMTRIGGER}}},` +
+      `{{Collectible${CollectibleTypeLabUpgrade.COLLECTIBLE_AMPLIFIEDD8}}},` +
+      `{{Collectible${CollectibleType.COLLECTIBLE_D10}}},` +
+      `{{Collectible${CollectibleTypeLabUpgrade.COLLECTIBLE_PORTABLETERRAFORMER}}}, and` +
+      `{{Collectible${CollectibleTypeLabUpgrade.COLLECTIBLE_MATTERREARRANGER}}}`,
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

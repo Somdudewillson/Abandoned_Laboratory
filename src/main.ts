@@ -95,6 +95,7 @@ import * as EFF_PLAND from "./items/active/upgraded/p/planD";
 import * as EFF_PLATEDRAZOR from "./items/active/upgraded/p/platedRazor";
 import * as EFF_PLUMORGAN from "./items/active/upgraded/p/plumOrgan";
 import * as EFF_PORTABLETERRAFORMER from "./items/active/upgraded/p/portableTerraformer";
+import * as EFF_POWEREDD100 from "./items/active/upgraded/p/poweredD100";
 
 import * as EFF_RESEALEDBOX from "./items/active/upgraded/r/resealedBox";
 import * as EFF_ROTTINGHEART from "./items/active/upgraded/r/rottingHeart";
@@ -338,6 +339,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENSHARPKEY.us
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_DEATH, EFF_GOLDENSHARPKEY.postDeath);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ACCELERATEDD10.use, EFF_ACCELERATEDD10.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AMPLIFIEDD8.use, EFF_AMPLIFIEDD8.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_POWEREDD100.use, EFF_POWEREDD100.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

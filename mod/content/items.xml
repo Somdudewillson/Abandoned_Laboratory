@@ -65,6 +65,7 @@
 	<active description="BYYYARRRRMMM!" gfx="upgraded\l\lazerblast.png" maxcharges="600" chargetype="timed" name="Lazer Blast" hidden="true"/>
 
 	<active description="Alter the Basics" gfx="upgraded\m\matterrearranger.png" maxcharges="5" name="Matter Rearranger" hidden="true"/>
+	<active description="Nothing can escape" gfx="upgraded\m\megablackhole.png" maxcharges="300" chargetype="timed" name="Mega Black Hole" hidden="true"/>
 	<active description="Fracture the Sky" gfx="upgraded\m\metalfeather.png" maxcharges="3" name="Metal Feather" hidden="true"/>
 	<active description="Pay to win" gfx="upgraded\m\microtransaction.png" maxcharges="0" name="Microtransaction" hidden="true"/>
 	<active description="BOOOOOOOOOM!" gfx="upgraded\m\motherofbombs.png" maxcharges="0" name="Mother of Bombs" hidden="true"/>

@@ -555,6 +555,10 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_ENERGIZEDDELIRIOUS,
     "Spawns Delirium as a random friendly boss",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_MEGABLACKHOLE,
+    "Throws a black hole on the ground which sucks in and damages enemies",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

@@ -515,6 +515,10 @@ export function registerExternalItemDescriptions(): void {
     "Rerolls monsters" +
       "# Monsters are rerolled to other monsters with similar health",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_AMPLIFIEDD8,
+    "Randomly increases one of Luck, Range, Speed, Tears, Health, or Shot Speed",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

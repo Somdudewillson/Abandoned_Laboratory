@@ -277,6 +277,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_ABYSS,
     [CollectibleType.COLLECTIBLE_VOID as number],
   ],
+  [
+    CollectibleType.COLLECTIBLE_HOW_TO_JUMP,
+    [CollectibleType.COLLECTIBLE_PONY as number],
+  ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,

@@ -545,6 +545,12 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_SUPERHEATEDSMELTER,
     "Destroys current trinkets and applies double their effect permanently",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_MOTHEROFBOMBS,
+    "Damages all enemies and destroys all obstacles for the entire floor" +
+      "#↑ Spawns 10-25 bombs" +
+      `# Turns into {{Collectible${CollectibleType.COLLECTIBLE_MAMA_MEGA}}} on use`,
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

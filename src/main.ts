@@ -82,6 +82,7 @@ import * as EFF_LAZERBLAST from "./items/active/upgraded/l/lazerBlast";
 import * as EFF_MATTERREARRANGER from "./items/active/upgraded/m/matterRearranger";
 import * as EFF_METALFEATHER from "./items/active/upgraded/m/metalFeather";
 import * as EFF_MICROTRANSACTION from "./items/active/upgraded/m/microtransaction";
+import * as EFF_MOTHEROFBOMBS from "./items/active/upgraded/m/motherOfBombs";
 import * as EFF_MRYOU from "./items/active/upgraded/m/mrYou";
 
 import * as EFF_NECROVORTEX from "./items/active/upgraded/n/necroVortex";
@@ -346,6 +347,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_POWEREDD100.use, 
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLUEFRIENDSBOX.use, EFF_BLUEFRIENDSBOX.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDMEGABLAST.use, EFF_ENERGIZEDMEGABLAST.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUPERHEATEDSMELTER.use, EFF_SUPERHEATEDSMELTER.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MOTHEROFBOMBS.use, EFF_MOTHEROFBOMBS.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

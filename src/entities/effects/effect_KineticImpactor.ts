@@ -34,12 +34,13 @@ export function update(self: EntityEffect): void {
 
   // Perform attacks
   if (sprite.IsEventTriggered(KineticImpactorAnimKey.EVENT_STRIKE)) {
-    doShockwave(self);
     const entities = Isaac.GetRoomEntities();
     shuffleArray(entities);
 
     // Fire light attacks at random enemies, tinted/super-secret rocks, or secret rooms
     if (sprite.GetAnimation() === KineticImpactorAnimKey.ATTACK_FAST) {
+      doShockwave(self, 3);
+
       let attackCount = 0;
       for (const entity of entities) {
         if (entity == null) {
@@ -87,6 +88,7 @@ export function update(self: EntityEffect): void {
       (self.GetData().attacksRemaining as number)--;
     } else {
       // Fire heavy attacks at random bosses
+      doShockwave(self, 6);
 
       for (const entity of entities) {
         if (entity == null) {
@@ -173,7 +175,7 @@ function doSlowAttack(target: Entity, self: EntityEffect): void {
   }
 }
 
-function doShockwave(self: EntityEffect, sizeMul = 1): void {
+function doShockwave(self: EntityEffect, sizeMul: int): void {
   Isaac.Spawn(
     EntityType.ENTITY_EFFECT,
     EffectVariant.RIPPLE_POOF,
@@ -181,7 +183,7 @@ function doShockwave(self: EntityEffect, sizeMul = 1): void {
     self.Position,
     Vector.Zero,
     self,
-  ).Size *= 3 * sizeMul;
+  ).Size *= sizeMul;
 }
 
 function targetsPresent(room: Room): boolean {

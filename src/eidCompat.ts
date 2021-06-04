@@ -571,6 +571,14 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_SHARPENEDMEATCLEAVER,
     "Splits all enemies into four smaller versions of themselves with much less health",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_OMNIJAR,
+    "Spawns pickups based on the number of times used" +
+      "# First use spawns {{Coin}}s, {{Bomb}}s, {{Key}}s, and {{Heart}}s" +
+      "# Second use spawns {{SoulHeart}}s, a {{Pill}}, {{Card}}, {{GoldenKey}}, and a {{GoldenBomb}}" +
+      "# Third use spawns many {{Coin}}s, giga bombs, blue spiders/flies, friendly dips, and an item" +
+      "# Cycles back to the beginning after the third",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

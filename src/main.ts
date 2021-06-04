@@ -92,6 +92,7 @@ import * as EFF_MRYOU from "./items/active/upgraded/m/mrYou";
 import * as EFF_NECROVORTEX from "./items/active/upgraded/n/necroVortex";
 
 import * as EFF_OMNIDETONATOR from "./items/active/upgraded/o/omniDetonator";
+import * as EFF_OMNIJAR from "./items/active/upgraded/o/omniJar";
 import * as EFF_OVERCLOCKEDMETRONOME from "./items/active/upgraded/o/overclockedMetronome";
 
 import * as EFF_PETRIFACTIONVORTEX from "./items/active/upgraded/p/pertifactionVortex";
@@ -362,6 +363,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SPRINKLERS.use, E
 PostUpdateHandler.addSlotListener(EFF_SPRINKLERS.tick, EFF_SPRINKLERS.ownType());
 PreCleanHandler.addSlotListener(EFF_SPRINKLERS.preClean,EFF_SPRINKLERS.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHARPENEDMEATCLEAVER.use, EFF_SHARPENEDMEATCLEAVER.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_OMNIJAR.use, EFF_OMNIJAR.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

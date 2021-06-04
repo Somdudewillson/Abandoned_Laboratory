@@ -73,6 +73,7 @@
 	<active description="Mass Damage" gfx="upgraded\n\necrovortex.png" maxcharges="600" chargetype="timed" name="Necro Vortex" hidden="true"/>
 
 	<active description="Remote tear and bomb detonation!" gfx="upgraded\o\omnidetonator.png" maxcharges="0" name="Omni Detonator" hidden="true"/>
+	<active description="Anything is possible" gfx="upgraded\o\omnijar.png" maxcharges="12" name="Omni Jar" hidden="true"/>
 	<active description="Waggles a finger" gfx="upgraded\o\overclockedmetronome.png" maxcharges="1200" chargetype="timed" name="Overclocked Metronome" hidden="true"/>
 
 	<active description="Mass Petrifaction" gfx="upgraded\p\petrifactionvortex.png" maxcharges="600" chargetype="timed" name="Petrifaction Vortex" hidden="true"/>

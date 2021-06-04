@@ -567,6 +567,10 @@ export function registerExternalItemDescriptions(): void {
     "Spawns a sprinkler that rotates and fires tears" +
       "#↑ Recharges itself twice within the room it was used",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SHARPENEDMEATCLEAVER,
+    "Splits all enemies into four smaller versions of themselves with much less health",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

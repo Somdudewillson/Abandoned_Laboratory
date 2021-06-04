@@ -116,6 +116,7 @@ import * as EFF_SCROLLOFBLOOD from "./items/active/upgraded/s/scrollOfBlood";
 import * as EFF_SCROLLOFUTILITY from "./items/active/upgraded/s/scrollOfUtility";
 import * as EFF_SHADOWDEVICE from "./items/active/upgraded/s/shadowDevice";
 import * as EFF_SHAPEDCHARGEVEST from "./items/active/upgraded/s/shapedChargeVest";
+import * as EFF_SHARPENEDMEATCLEAVER from "./items/active/upgraded/s/sharpenedMeatCleaver";
 import * as EFF_SILVERNICKEL from "./items/active/upgraded/s/silverNickel";
 import * as EFF_SOULGENERATOR from "./items/active/upgraded/s/soulGenerator";
 import * as EFF_SOULJAR from "./items/active/upgraded/s/soulJar";
@@ -360,6 +361,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SINGULARITYGENERA
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SPRINKLERS.use, EFF_SPRINKLERS.ownType());
 PostUpdateHandler.addSlotListener(EFF_SPRINKLERS.tick, EFF_SPRINKLERS.ownType());
 PreCleanHandler.addSlotListener(EFF_SPRINKLERS.preClean,EFF_SPRINKLERS.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHARPENEDMEATCLEAVER.use, EFF_SHARPENEDMEATCLEAVER.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

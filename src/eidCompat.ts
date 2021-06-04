@@ -551,6 +551,10 @@ export function registerExternalItemDescriptions(): void {
       "#↑ Spawns 10-25 bombs" +
       `# Turns into {{Collectible${CollectibleType.COLLECTIBLE_MAMA_MEGA}}} on use`,
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_ENERGIZEDDELIRIOUS,
+    "Spawns Delirium as a random friendly boss",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

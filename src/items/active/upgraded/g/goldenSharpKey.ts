@@ -21,31 +21,27 @@ export function use(
   return true;
 }
 
-export function postDeath(dying: EntityNPC): void {
+export function postDeath(
+  npc: EntityNPC,
+  _player: EntityPlayer,
+  _slot: ActiveSlot,
+  _room: Room,
+  _level: Level,
+): void {
   if (
-    !dying.IsEnemy() ||
-    dying.HasEntityFlags(EntityFlag.FLAG_NO_TARGET) ||
-    dying.HasEntityFlags(EntityFlag.FLAG_NO_REWARD)
+    !npc.IsEnemy() ||
+    npc.HasEntityFlags(EntityFlag.FLAG_NO_TARGET) ||
+    npc.HasEntityFlags(EntityFlag.FLAG_NO_REWARD)
   ) {
     return;
   }
 
-  for (let s = 0; s < Game().GetNumPlayers(); s++) {
-    const player = Isaac.GetPlayer(s);
-    if (player == null) {
-      return;
-    }
-
-    if (player.HasCollectible(ownType())) {
-      if (dying.GetDropRNG().RandomFloat() < 0.2) {
-        spawnPickup(
-          dying.Position,
-          dying.GetDropRNG(),
-          PickupVariant.PICKUP_KEY,
-          KeySubType.KEY_NORMAL,
-        );
-      }
-      return;
-    }
+  if (npc.GetDropRNG().RandomFloat() < 0.2) {
+    spawnPickup(
+      npc.Position,
+      npc.GetDropRNG(),
+      PickupVariant.PICKUP_KEY,
+      KeySubType.KEY_NORMAL,
+    );
   }
 }

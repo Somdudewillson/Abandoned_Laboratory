@@ -131,6 +131,7 @@ export enum CollectibleTypeLabUpgrade {
   COLLECTIBLE_SINGULARITYGENERATOR = Isaac.GetItemIdByName(
     "Singularity Generator",
   ),
+  COLLECTIBLE_SPRINKLERS = Isaac.GetItemIdByName("Sprinklers"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -700,6 +701,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_BLACK_HOLE,
     [CollectibleTypeLabUpgrade.COLLECTIBLE_SINGULARITYGENERATOR],
   ],
+  [
+    CollectibleType.COLLECTIBLE_SPRINKLER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_SPRINKLERS],
+  ],
 ]);
 
 export const enum FireplaceVariant {
@@ -974,4 +979,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.11.0";
+export const VERSION = "0.12.1";

@@ -8,6 +8,8 @@ import { registerExternalItemDescriptions } from "./eidCompat";
 // ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
 import * as PostLevelHandler from "./callbacks/handler_PostNewLevel";
+import * as PostUpdateHandler from "./callbacks/handler_PostUpdateEvents";
+import * as PreCleanHandler from "./callbacks/handler_CleanAward";
 // --- Entities ---
 import * as MachineEvents from "./callbacks/handler_MachineEvents";
 import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_MachineEvents";
@@ -118,6 +120,7 @@ import * as EFF_SILVERNICKEL from "./items/active/upgraded/s/silverNickel";
 import * as EFF_SOULGENERATOR from "./items/active/upgraded/s/soulGenerator";
 import * as EFF_SOULJAR from "./items/active/upgraded/s/soulJar";
 import * as EFF_SOULREACTOR from "./items/active/upgraded/s/soulReactor";
+import * as EFF_SPRINKLERS from "./items/active/upgraded/s/sprinklers";
 import * as EFF_STEELRAZOR from "./items/active/upgraded/s/steelRazor";
 import * as EFF_STRAIGHTENEDPENNY from "./items/active/upgraded/s/straightenedPenny";
 import * as EFF_STRIKEDESIGNATOR from "./items/active/upgraded/s/strikeDesignator";
@@ -210,6 +213,8 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, SaveUtil.wipePer
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SaveUtil.initPlayer);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PostRoomHandler.postRoom);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PostLevelHandler.postLevel);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_UPDATE, PostUpdateHandler.postUpdate);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, PreCleanHandler.preClean);
 
 Isaac.DebugString("|LABOS| Boot initialization complete");
 
@@ -245,13 +250,13 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BIGBOXOFSPIDERS.u
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BOMBDISPENSER.use, EFF_BOMBDISPENSER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MATTERREARRANGER.use, EFF_MATTERREARRANGER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_FORGETMELATER.use, EFF_FORGETMELATER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, EFF_FORGETMELATER.preClean);
+PreCleanHandler.addSlotListener(EFF_FORGETMELATER.preClean,EFF_FORGETMELATER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLOODSAW.use, EFF_BLOODSAW.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DIVINITYGENERATOR.use, EFF_DIVINITYGENERATOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SATANITYGENERATOR.use, EFF_SATANITYGENERATOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDGLASSCANNON.use, EFF_TEMPEREDGLASSCANNON.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ZKEY.use, EFF_ZKEY.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_UPDATE, EFF_ZKEY.tick);
+PostUpdateHandler.addSlotListener(EFF_ZKEY.tick, EFF_ZKEY.ownType());
 // ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_ZKEY.postRoom);
 PostRoomHandler.addPlayerListener(EFF_ZKEY.postRoom);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SYNTHETICSKIN.use, EFF_SYNTHETICSKIN.ownType());
@@ -264,7 +269,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_D2.use, EFF_D2.ow
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WEEKLYGIFT.use, EFF_WEEKLYGIFT.ownType());
 PostLevelHandler.addSlotListener(EFF_WEEKLYGIFT.postLevel, EFF_WEEKLYGIFT.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DISCOUNTCODE.use, EFF_DISCOUNTCODE.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_DISCOUNTCODE.postRoom);
+PostRoomHandler.addRoomListener(EFF_DISCOUNTCODE.postRoom);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ILLUSORYRAZOR.use, EFF_ILLUSORYRAZOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTABLETERRAFORMER.use, EFF_PORTABLETERRAFORMER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEARRESERVOIR.use, EFF_TEARRESERVOIR.ownType());
@@ -352,12 +357,15 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUPERHEATEDSMELTE
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MOTHEROFBOMBS.use, EFF_MOTHEROFBOMBS.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDDELIRIOUS.use, EFF_ENERGIZEDDELIRIOUS.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SINGULARITYGENERATOR.use, EFF_SINGULARITYGENERATOR.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SPRINKLERS.use, EFF_SPRINKLERS.ownType());
+PostUpdateHandler.addSlotListener(EFF_SPRINKLERS.tick, EFF_SPRINKLERS.ownType());
+PreCleanHandler.addSlotListener(EFF_SPRINKLERS.preClean,EFF_SPRINKLERS.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EFF_GOLDENNICKEL.interceptDamage, EntityType.ENTITY_PLAYER);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RECONSTRUCTIVEHEART.use, EFF_RECONSTRUCTIVEHEART.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, EFF_RECONSTRUCTIVEHEART.preClean);
+PreCleanHandler.addSlotListener(EFF_RECONSTRUCTIVEHEART.preClean,EFF_RECONSTRUCTIVEHEART.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STABILIZEDETERNALD6.use, EFF_STABILIZEDETERNALD6.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDD6.use, EFF_ENERGIZEDD6.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CRATEOFFRIENDS.use, EFF_CRATEOFFRIENDS.ownType());

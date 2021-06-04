@@ -562,6 +562,11 @@ export function registerExternalItemDescriptions(): void {
       "#↑ Deals high damage to entities" +
       "#!!! When it despawns, it will cause a large explosion that can hurt the player",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SPRINKLERS,
+    "Spawns a sprinkler that rotates and fires tears" +
+      "#↑ Recharges itself twice within the room it was used",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

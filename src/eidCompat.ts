@@ -505,6 +505,11 @@ export function registerExternalItemDescriptions(): void {
     "Spawns {{SoulHeart}}{{SoulHeart}}{{SoulHeart}}{{SoulHeart}}" +
       "#↓ Can only be charged by red heart pickups",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_GOLDENSHARPKEY,
+    "Throws a key, which can deal damage, destroy obstacles, and open doors" +
+      "#↑ While held, all enemies have a 20% chance to drop a key",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

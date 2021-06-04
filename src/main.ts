@@ -63,6 +63,7 @@ import * as EFF_FRIENDSEARCHER from "./items/active/upgraded/f/friendSearcher";
 import * as EFF_GLOWINGHEART from "./items/active/upgraded/g/glowingHeart";
 import * as EFF_GOLDENFLUSH from "./items/active/upgraded/g/goldenFlush";
 import * as EFF_PAUSE2 from "./items/active/upgraded/p/pauseTwo";
+import * as EFF_GOLDENSHARPKEY from "./items/active/upgraded/g/goldenSharpKey";
 
 import * as EFF_INACTIONREPLAY from "./items/active/upgraded/i/inactionReplay";
 import * as EFF_ILLUSORYRAZOR from "./items/active/upgraded/i/illusoryRazor";
@@ -331,6 +332,8 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUMMARIZEDMONSTER
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_COMPOSTBIN.use, EFF_COMPOSTBIN.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULJAR.use, EFF_SOULJAR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, EFF_SOULJAR.prePickupCollide, PickupVariant.PICKUP_HEART);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENSHARPKEY.use, EFF_GOLDENSHARPKEY.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_DEATH, EFF_GOLDENSHARPKEY.postDeath);
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

@@ -85,6 +85,7 @@
 	<active description="Pain from Gain" gfx="upgraded\p\platedrazor.png" maxcharges="0" name="Plated Razor" hidden="true"/>
 	<active description="Play time!!" gfx="upgraded\p\plumorgan.png" maxcharges="3" name="Plum Organ" hidden="true"/>
 	<active description="Reshape Obstacles" gfx="upgraded\p\portableterraformer.png" maxcharges="3" name="Portable Terraformer" hidden="true"/>
+	<active description="Endless Allies" gfx="upgraded\p\portalgenerator.png" maxcharges="12" name="Portal Generator" hidden="true"/>
 	<active description="REEROLLLLL!" gfx="upgraded\p\poweredd100.png" maxcharges="6" name="Powered D100" hidden="true"/>
 
 	<active description="Sealed Again" gfx="upgraded\r\resealedbox.png" maxcharges="12" initcharge="6" name="Resealed Box" hidden="true"/>

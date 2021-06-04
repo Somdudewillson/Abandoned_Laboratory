@@ -586,6 +586,11 @@ export function registerExternalItemDescriptions(): void {
       "#↑ Ghosts home in on enemies" +
       "#↑ Ghost explosions don't hurt players",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_PORTALGENERATOR,
+    "Splits a permanently-charmed Lil Portal" +
+      "#↑ Spawns various friendly enemies",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

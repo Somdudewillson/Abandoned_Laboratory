@@ -105,6 +105,7 @@ import * as EFF_PLAND from "./items/active/upgraded/p/planD";
 import * as EFF_PLATEDRAZOR from "./items/active/upgraded/p/platedRazor";
 import * as EFF_PLUMORGAN from "./items/active/upgraded/p/plumOrgan";
 import * as EFF_PORTABLETERRAFORMER from "./items/active/upgraded/p/portableTerraformer";
+import * as EFF_PORTALGENERATOR from "./items/active/upgraded/p/portalGenerator";
 import * as EFF_POWEREDD100 from "./items/active/upgraded/p/poweredD100";
 
 import * as EFF_RESEALEDBOX from "./items/active/upgraded/r/resealedBox";
@@ -369,6 +370,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHARPENEDMEATCLEA
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_OMNIJAR.use, EFF_OMNIJAR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ABIEXSPIRAVIT.use, EFF_ABIEXSPIRAVIT.ownType());
 PostNPCDeathHandler.addSlotListener(EFF_ABIEXSPIRAVIT.postDeath, EFF_ABIEXSPIRAVIT.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTALGENERATOR.use, EFF_PORTALGENERATOR.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

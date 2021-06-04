@@ -2,8 +2,8 @@ import {
   EffectEntitySubtype,
   LabEffectEntityVariant,
 } from "../../../../callbacks/handler_EffectEvents";
+import { queueThrowable } from "../../../../callbacks/handler_ThrownEffect";
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import { directionToVector } from "../../../../utils";
 
 export function ownType(): number {
   return CollectibleTypeLabUpgrade.COLLECTIBLE_BLADEDISC as number;
@@ -17,23 +17,26 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
-  let fireDir = player.GetLastDirection();
-  if (fireDir.LengthSquared() < 1) {
-    fireDir = directionToVector(player.GetHeadDirection());
-  }
+  queueThrowable(player, ownType(), doThrow);
 
+  return { Discharge: true, Remove: false, ShowAnim: false };
+}
+
+export function doThrow(
+  player: EntityPlayer,
+  direction: Vector,
+  _data: number,
+): void {
   const newDisc = Isaac.Spawn(
     EntityType.ENTITY_EFFECT,
     LabEffectEntityVariant,
     EffectEntitySubtype.BLADEDISC,
     player.Position,
-    fireDir.Resized(25),
+    direction.Resized(25),
     player,
   );
 
   newDisc.Parent = player;
   newDisc.CollisionDamage = player.Damage * 3;
   newDisc.DepthOffset = 25;
-
-  return true;
 }

@@ -136,6 +136,7 @@ export enum CollectibleTypeLabUpgrade {
     "Sharpened Meat Cleaver",
   ),
   COLLECTIBLE_OMNIJAR = Isaac.GetItemIdByName("Omni Jar"),
+  COLLECTIBLE_ABIEXSPIRAVIT = Isaac.GetItemIdByName("Abi Exspiravit"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -731,6 +732,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_EVERYTHING_JAR,
     [CollectibleTypeLabUpgrade.COLLECTIBLE_OMNIJAR],
   ],
+  [
+    CollectibleType.COLLECTIBLE_VADE_RETRO,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_ABIEXSPIRAVIT],
+  ],
 ]);
 
 export const enum FireplaceVariant {
@@ -1005,4 +1010,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.12.4";
+export const VERSION = "0.12.5";

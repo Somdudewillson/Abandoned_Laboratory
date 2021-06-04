@@ -579,6 +579,13 @@ export function registerExternalItemDescriptions(): void {
       "# Third use spawns many {{Coin}}s, giga bombs, blue spiders/flies, friendly dips, and an item" +
       "# Cycles back to the beginning after the third",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_ABIEXSPIRAVIT,
+    "Enemies spawn ghosts on death while held" +
+      "#↑ Detonates ghosts, for 5+8% of the max health it had in life" +
+      "#↑ Ghosts home in on enemies" +
+      "#↑ Ghost explosions don't hurt players",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

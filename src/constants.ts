@@ -125,6 +125,7 @@ export enum CollectibleTypeLabUpgrade {
   COLLECTIBLE_ENERGIZEDMEGABLAST = Isaac.GetItemIdByName(
     "Energized Mega Satan's Breath",
   ),
+  COLLECTIBLE_SUPERHEATEDSMELTER = Isaac.GetItemIdByName("Superheated Smelter"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -678,6 +679,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_MEGA_BLAST,
     [CollectibleTypeLabUpgrade.COLLECTIBLE_ENERGIZEDMEGABLAST],
   ],
+  [
+    CollectibleType.COLLECTIBLE_SMELTER,
+    [CollectibleTypeLabUpgrade.COLLECTIBLE_SUPERHEATEDSMELTER],
+  ],
 ]);
 
 export const enum FireplaceVariant {
@@ -951,4 +956,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.10.22";
+export const VERSION = "0.10.23";

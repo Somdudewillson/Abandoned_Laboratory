@@ -104,6 +104,7 @@
 	<active description="Reusable air strikes" gfx="upgraded\s\strikedesignator.png" maxcharges="4" name="Strike Designator" hidden="true"/>
 	<active description="Temporary Flight" gfx="upgraded\s\summarizedbible.png" maxcharges="2" name="Summarized Bible" hidden="true"/>
 	<active description="Temporary buddy generator" gfx="upgraded\s\summarizedmonstermanual.png" maxcharges="3" name="Summarized Monster Manual" hidden="true"/>
+	<active description="Trinket melter!" gfx="upgraded\s\superheatedsmelter.png" maxcharges="4" name="Superheated Smelter" hidden="true"/>
 	<active description="Artificial desires fulfilled" gfx="upgraded\s\syntheticskin.png" maxcharges="8" name="Synthetic Skin" hidden="true"/>
 
 	<active description="Accumulated Tears" gfx="upgraded\t\tearreservoir.png" maxcharges="6" chargetype="special" initcharge="0" name="Tear Reservoir" hidden="true"/>

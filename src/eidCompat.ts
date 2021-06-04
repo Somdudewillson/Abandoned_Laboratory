@@ -541,6 +541,10 @@ export function registerExternalItemDescriptions(): void {
       `#↑ If no familiars are present, spawns {{Collectible${CollectibleType.COLLECTIBLE_DEMON_BABY}}}` +
       "#↑ Spawns 4-8 blue spiders and 2-4 blue flies",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SUPERHEATEDSMELTER,
+    "Destroys current trinkets and applies double their effect permanently",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

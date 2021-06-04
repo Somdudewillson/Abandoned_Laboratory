@@ -485,6 +485,11 @@ export function registerExternalItemDescriptions(): void {
     "Turns all non-boss monsters in the room into poop" +
       "#↑ Instantly kills poop-themed bosses",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_BRIMSTONECANNON,
+    "Fires a cone of 4 brimstone lasers for 0.5 sec" +
+      "#↑ Each beam does 11 damage/tick",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

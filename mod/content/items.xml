@@ -14,6 +14,7 @@
 	<active description="Reusable Bomb Supply" gfx="upgraded\b\bombdispenser.png" maxcharges="180" chargetype="timed" name="Bomb Dispenser" hidden="true"/>
 	<active description="Faster giga fart!" gfx="upgraded\b\boostedbean.png" maxcharges="1" name="Boosted Bean" hidden="true"/>
 	<active description="Shop in a Box" gfx="upgraded\b\boxshop.png" maxcharges="10" name="Box Shop" hidden="true"/>
+	<active description="Directed Quad Laser" gfx="upgraded\b\brimstonecannon.png" maxcharges="2" name="Brimstone Cannon" hidden="true"/>
 
 	<active description="Better card generator" gfx="upgraded\c\carddispenser.png" maxcharges="6" name="Card Dispenser" hidden="true"/>
 	<active description="Tome of Mapping" gfx="upgraded\c\cartographerstome.png" maxcharges="5" name="Cartographer's Tome" hidden="true"/>

@@ -27,7 +27,6 @@ export function use(
       break;
     // -----Pills with no amp-----
     case PillEffect.PILLEFFECT_PHEROMONES: // Pheromones
-    case PillEffect.PILLEFFECT_AMNESIA: // Amnesia
     case PillEffect.PILLEFFECT_PERCS: // Percs!
     case PillEffect.PILLEFFECT_ADDICTED: // Addicted!
     case PillEffect.PILLEFFECT_GULP: // Gulp!
@@ -92,6 +91,16 @@ export function use(
       break;
     default:
       return false;
+    case PillEffect.PILLEFFECT_AMNESIA: {
+      // Amnesia
+      const level = Game().GetLevel();
+      if ((level.GetCurses() & LevelCurse.CURSE_OF_THE_LOST) > 0) {
+        level.RemoveCurses(LevelCurse.CURSE_OF_THE_LOST);
+      } else {
+        player.UsePill(currentPillEffect, currentPillColor);
+      }
+      break;
+    }
   }
 
   return true;

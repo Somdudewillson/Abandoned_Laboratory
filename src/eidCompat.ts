@@ -473,6 +473,13 @@ export function registerExternalItemDescriptions(): void {
       "# Player controls head, which gains flight" +
       "# Body automatically chases down enemies to deal 82.5 contact damage/sec",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_BLADEDISC,
+    "Launches a ricocheting blade disc" +
+      "# Lasts for 15 bounces" +
+      "#↑ Deals 3x player damage/tick" +
+      "#↑ Picks up item pedestals and pickups",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

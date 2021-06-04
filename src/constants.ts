@@ -234,6 +234,14 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_JAR_OF_FLIES,
     [CollectibleType.COLLECTIBLE_GUPPYS_HEAD as number],
   ],
+  [
+    CollectibleType.COLLECTIBLE_GENESIS,
+    [CollectibleType.COLLECTIBLE_R_KEY as number],
+  ],
+  [
+    CollectibleType.COLLECTIBLE_R_KEY,
+    [CollectibleType.COLLECTIBLE_GENESIS as number],
+  ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,
@@ -979,4 +987,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.12.1";
+export const VERSION = "0.12.2";

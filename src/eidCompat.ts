@@ -529,6 +529,12 @@ export function registerExternalItemDescriptions(): void {
       `{{Collectible${CollectibleTypeLabUpgrade.COLLECTIBLE_PORTABLETERRAFORMER}}}, and` +
       `{{Collectible${CollectibleTypeLabUpgrade.COLLECTIBLE_MATTERREARRANGER}}}`,
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_BLUEFRIENDSBOX,
+    "Duplicates familiars for the current room" +
+      `#↑ If no familiars are present, spawns {{Collectible${CollectibleType.COLLECTIBLE_DEMON_BABY}}}` +
+      "#↑ Spawns 4-8 blue spiders and 2-4 blue flies",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

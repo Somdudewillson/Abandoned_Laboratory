@@ -29,6 +29,7 @@ import * as EFF_BLADEDISC from "./items/active/upgraded/b/bladeDisc";
 import * as EFF_BLOODALCHEMIZER from "./items/active/upgraded/b/bloodAlchemizer";
 import * as EFF_BLOODSAW from "./items/active/upgraded/b/bloodSaw";
 import * as EFF_BLOODSIPHON from "./items/active/upgraded/b/bloodSiphon";
+import * as EFF_BLUEFRIENDSBOX from "./items/active/upgraded/b/blueFriendsBox";
 import * as EFF_BOMBDISPENSER from "./items/active/upgraded/b/bombDispenser";
 import * as EFF_BOOSTEDBEAN from "./items/active/upgraded/b/boostedBean";
 import * as EFF_BOXSHOP from "./items/active/upgraded/b/boxShop";
@@ -340,6 +341,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_DEATH, EFF_GOLDENSHARP
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ACCELERATEDD10.use, EFF_ACCELERATEDD10.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AMPLIFIEDD8.use, EFF_AMPLIFIEDD8.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_POWEREDD100.use, EFF_POWEREDD100.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLUEFRIENDSBOX.use, EFF_BLUEFRIENDSBOX.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

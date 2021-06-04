@@ -13,6 +13,7 @@
 	<active description="Blood to Gold" gfx="upgraded\b\bloodalchemizer.png" maxcharges="0" name="Blood Alchemizer" hidden="true"/>
 	<active description="Powered by Sacrifice" gfx="upgraded\b\bloodsaw.png" maxcharges="0" name="Blood Saw" hidden="true"/>
 	<active description="Even More Blood!!" gfx="upgraded\b\bloodsiphon.png" maxcharges="480" chargetype="timed" name="Blood Siphon" hidden="true"/>
+	<active description="Double your friends+" gfx="upgraded\b\bluefriendsbox.png" maxcharges="2" name="Blue Friends' Box" hidden="true"/>
 	<active description="Reusable Bomb Supply" gfx="upgraded\b\bombdispenser.png" maxcharges="180" chargetype="timed" name="Bomb Dispenser" hidden="true"/>
 	<active description="Faster giga fart!" gfx="upgraded\b\boostedbean.png" maxcharges="1" name="Boosted Bean" hidden="true"/>
 	<active description="Shop in a Box" gfx="upgraded\b\boxshop.png" maxcharges="10" name="Box Shop" hidden="true"/>

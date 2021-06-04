@@ -361,3 +361,24 @@ export function isBetter(
 
   return false;
 }
+
+export function checkLine(
+  room: Room,
+  position1: Vector,
+  position2: Vector,
+  lineCheckMode: LineCheckMode,
+  gridPathThreshold?: number | undefined,
+  ignoreWalls?: boolean | undefined,
+  ignoreCrushable?: boolean | undefined,
+): { clear: boolean; collidePos: Vector } {
+  const [isClear, endPos] = room.CheckLine(
+    position1,
+    position2,
+    lineCheckMode,
+    gridPathThreshold,
+    ignoreWalls,
+    ignoreCrushable,
+  );
+
+  return { clear: isClear, collidePos: endPos };
+}

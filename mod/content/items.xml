@@ -7,6 +7,7 @@
 	<active description="Dig Down" gfx="upgraded\a\auger.png" maxcharges="6" name="Auger" hidden="true"/>
 
 	<active description="It's a big box of spiders" gfx="upgraded\b\bigboxofspiders.png" maxcharges="2" name="Big Box of Spiders" hidden="true"/>
+	<active description="Slice and Ricochet" gfx="upgraded\b\bladedisc.png" maxcharges="240" chargetype="timed" name="Blade Disc" hidden="true"/>
 	<active description="Blood to Gold" gfx="upgraded\b\bloodalchemizer.png" maxcharges="0" name="Blood Alchemizer" hidden="true"/>
 	<active description="Powered by Sacrifice" gfx="upgraded\b\bloodsaw.png" maxcharges="0" name="Blood Saw" hidden="true"/>
 	<active description="Even More Blood!!" gfx="upgraded\b\bloodsiphon.png" maxcharges="480" chargetype="timed" name="Blood Siphon" hidden="true"/>

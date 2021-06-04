@@ -118,3 +118,11 @@ export function parseIntChar(char: string): int {
       return 9;
   }
 }
+
+/** Convert a `Vector` to the nearest of `(1,0)`,`(-1,0)`,`(0,1)`,`(0,-1)` */
+export function cardinalized(inVec: Vector): Vector {
+  if (Math.abs(inVec.X) > Math.abs(inVec.Y)) {
+    return Vector(1 * sign(inVec.X), 0);
+  }
+  return Vector(0, 1 * sign(inVec.Y));
+}

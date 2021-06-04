@@ -23,6 +23,7 @@ import * as EFF_ARTIFICIALSOUL from "./items/active/upgraded/a/artificialSoul";
 import * as EFF_AUGER from "./items/active/upgraded/a/auger";
 
 import * as EFF_BIGBOXOFSPIDERS from "./items/active/upgraded/b/bigBoxOfSpiders";
+import * as EFF_BLADEDISC from "./items/active/upgraded/b/bladeDisc";
 import * as EFF_BLOODALCHEMIZER from "./items/active/upgraded/b/bloodAlchemizer";
 import * as EFF_BLOODSAW from "./items/active/upgraded/b/bloodSaw";
 import * as EFF_BLOODSIPHON from "./items/active/upgraded/b/bloodSiphon";
@@ -207,7 +208,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, SpiderEvents.up
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SpiderEvents.interceptDamage, SpiderEvents.SPIDER_ENTITYTYPE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MicrodroneEvents.update, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, MicrodroneEvents.interceptDamage, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EffectEvents.update, EffectEvents.EffectEntityVariant.STATICEFFECT);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EffectEvents.update, EffectEvents.LabEffectEntityVariant);
 
 Isaac.DebugString("|LABOS| Automata scan complete — All units present");
 
@@ -318,6 +319,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CLONEVAT.use, EFF
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DEMONICNAIL.use, EFF_DEMONICNAIL.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AUGER.use, EFF_AUGER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDSHEARS.use, EFF_TEMPEREDSHEARS.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLADEDISC.use, EFF_BLADEDISC.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

@@ -215,6 +215,10 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_DATAMINER,
     [CollectibleType.COLLECTIBLE_NOTCHED_AXE as number],
   ],
+  [
+    CollectibleType.COLLECTIBLE_JAR_OF_FLIES,
+    [CollectibleType.COLLECTIBLE_GUPPYS_HEAD as number],
+  ],
   // =====New Upgraded Items=====
   [
     CollectibleType.COLLECTIBLE_BLANK_CARD,

@@ -19,30 +19,41 @@ export function use(
 ): boolean {
   healPlayer(player, rand, HEALTH_POINTS, SOUL_COST);
 
-  let i = 0;
-  let otherPlayer = Isaac.GetPlayer(i);
-  while (otherPlayer != null && i < 5) {
-    if (i !== player.Index) {
+  for (let p = 0; p < Game().GetNumPlayers(); p++) {
+    const otherPlayer = Isaac.GetPlayer(p);
+    if (otherPlayer == null) {
+      continue;
+    }
+
+    if (p !== player.Index) {
       healPlayer(otherPlayer, rand, Math.ceil(HEALTH_POINTS / 2), SOUL_COST);
     }
-    otherPlayer = Isaac.GetPlayer(++i);
   }
   return true;
 }
 
-export function preClean(rand: RNG, _SpawnPosition: Vector): boolean | null {
+export function preClean(
+  rand: RNG,
+  _spawnPosition: Vector,
+  player: EntityPlayer,
+  _slot: ActiveSlot,
+  _room: Room,
+  _level: Level,
+): boolean | null {
   if (rand.RandomFloat() < 0.2) {
-    let i = 0;
-    let player = Isaac.GetPlayer(i);
-    while (player != null && i < 5) {
+    for (let p = 0; p < Game().GetNumPlayers(); p++) {
+      const otherPlayer = Isaac.GetPlayer(p);
+      if (otherPlayer == null) {
+        continue;
+      }
+
       playSound(SoundEffect.SOUND_HEARTIN);
 
-      if (player.HasCollectible(ownType())) {
-        healPlayer(player, rand, Math.ceil(HEALTH_POINTS / 4), SOUL_COST);
+      if (p === player.Index) {
+        healPlayer(otherPlayer, rand, Math.ceil(HEALTH_POINTS / 4), SOUL_COST);
       } else {
-        healPlayer(player, rand, Math.ceil(HEALTH_POINTS / 8), SOUL_COST);
+        healPlayer(otherPlayer, rand, Math.ceil(HEALTH_POINTS / 8), SOUL_COST);
       }
-      player = Isaac.GetPlayer(++i);
     }
   }
   return null;

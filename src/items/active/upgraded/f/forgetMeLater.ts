@@ -21,40 +21,31 @@ export function use(
   return true;
 }
 
-export function preClean(_rand: RNG, _SpawnPosition: Vector): boolean | null {
-  const room: Room = Game().GetRoom();
-
-  let player = Isaac.GetPlayer(0);
-  let p = 0;
-  while (player != null && p < 4) {
-    if (player.HasCollectible(ownType(), true)) {
-      let charges = 1;
-      if (
-        room.GetRoomShape() === RoomShape.ROOMSHAPE_2x2 ||
-        room.GetRoomShape() === RoomShape.ROOMSHAPE_LTL ||
-        room.GetRoomShape() === RoomShape.ROOMSHAPE_LTR ||
-        room.GetRoomShape() === RoomShape.ROOMSHAPE_LBL ||
-        room.GetRoomShape() === RoomShape.ROOMSHAPE_LBR
-      ) {
-        charges = 2;
-      }
-
-      for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
-        if (player.GetActiveItem(s) !== ownType()) {
-          continue;
-        }
-        while (charges > 0) {
-          if (player.GetActiveCharge(s) < 30) {
-            player.SetActiveCharge(player.GetActiveCharge(s) + 1, s);
-            charges--;
-            playSound(SoundEffect.SOUND_BATTERYCHARGE);
-          } else {
-            break;
-          }
-        }
-      }
-    }
-    player = Isaac.GetPlayer(++p);
+export function preClean(
+  _rand: RNG,
+  _spawnPosition: Vector,
+  player: EntityPlayer,
+  slot: ActiveSlot,
+  room: Room,
+  _level: Level,
+): void {
+  let charges = 1;
+  if (
+    room.GetRoomShape() === RoomShape.ROOMSHAPE_2x2 ||
+    room.GetRoomShape() === RoomShape.ROOMSHAPE_LTL ||
+    room.GetRoomShape() === RoomShape.ROOMSHAPE_LTR ||
+    room.GetRoomShape() === RoomShape.ROOMSHAPE_LBL ||
+    room.GetRoomShape() === RoomShape.ROOMSHAPE_LBR
+  ) {
+    charges = 2;
   }
-  return null;
+  while (charges > 0) {
+    if (player.GetActiveCharge(slot) < 30) {
+      player.SetActiveCharge(player.GetActiveCharge(slot) + 1, slot);
+      charges--;
+      playSound(SoundEffect.SOUND_BATTERYCHARGE);
+    } else {
+      break;
+    }
+  }
 }

@@ -494,6 +494,12 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_SUMMARIZEDMONSTERMANUAL,
     "Spawns a random familiar for the current floor",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_COMPOSTBIN,
+    "Quadruples current blue flies and spiders" +
+      "#↑ If none are present, spawns 2 blue flies or spiders" +
+      "# Converts pickups to blue flies or spiders",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

@@ -37,6 +37,7 @@ import * as EFF_CartographersTome from "./items/active/upgraded/c/cartographersT
 import * as EFF_CHESTOFSIN from "./items/active/upgraded/c/chestOfSin";
 import * as EFF_CHRONALVORTEX from "./items/active/upgraded/c/chronalVortex";
 import * as EFF_CLONEVAT from "./items/active/upgraded/c/cloneVat";
+import * as EFF_COMPOSTBIN from "./items/active/upgraded/c/compostBin";
 import * as EFF_CORNYPOOP from "./items/active/upgraded/c/cornyPoop";
 import * as EFF_COUNTERFEITDEATHCERTIFICATE from "./items/active/upgraded/c/counterfeitDeathCertificate";
 import * as EFF_CRIMSONKEY from "./items/active/upgraded/c/crimsonKey";
@@ -326,6 +327,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLADEDISC.use, EF
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENFLUSH.use, EFF_GOLDENFLUSH.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BRIMSTONECANNON.use, EFF_BRIMSTONECANNON.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUMMARIZEDMONSTERMANUAL.use, EFF_SUMMARIZEDMONSTERMANUAL.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_COMPOSTBIN.use, EFF_COMPOSTBIN.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

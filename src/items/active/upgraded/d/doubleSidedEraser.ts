@@ -1,3 +1,4 @@
+import { queueThrowable } from "../../../../callbacks/handler_ThrownEffect";
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { getPlayerData, savePlayerData, SaveType } from "../../../../saveData";
 import { chargeEffect } from "../../../../utils";
@@ -20,14 +21,14 @@ export function use(
     CollectibleType.COLLECTIBLE_ERASER,
     UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER,
   ); */
-  Isaac.Spawn(
+  /* Isaac.Spawn(
     EntityType.ENTITY_TEAR,
     TearVariant.ERASER,
     0,
     player.Position,
     player.GetLastDirection().Resized(5),
     player,
-  );
+  ); */
 
   const uses = getPlayerData(
     EntityRef(player),
@@ -37,6 +38,7 @@ export function use(
   Isaac.DebugString(`uses: ${uses}`);
 
   if (uses == null || uses > 1) {
+    queueThrowable(player, ownType(), doThrow, 1);
     Isaac.DebugString("Recharging...");
 
     savePlayerData(
@@ -45,9 +47,10 @@ export function use(
       ERASER_SAVE_KEY + ActiveSlot.toString(),
       1,
     );
-    return { Discharge: false, Remove: false, ShowAnim: true };
+    return { Discharge: false, Remove: false, ShowAnim: false };
   }
 
+  queueThrowable(player, ownType(), doThrow, 2);
   Isaac.DebugString("Discharging...");
   savePlayerData(
     EntityRef(player),
@@ -55,7 +58,7 @@ export function use(
     ERASER_SAVE_KEY + ActiveSlot.toString(),
     0,
   );
-  return true;
+  return { Discharge: true, Remove: false, ShowAnim: false };
 }
 
 export function postLevel(
@@ -65,4 +68,22 @@ export function postLevel(
 ): void {
   player.SetActiveCharge(1, slot);
   chargeEffect(player.Position);
+}
+
+export function doThrow(
+  player: EntityPlayer,
+  direction: Vector,
+  data: number,
+): void {
+  const eraser = Isaac.Spawn(
+    EntityType.ENTITY_TEAR,
+    TearVariant.ERASER,
+    0,
+    player.Position,
+    direction.Resized(15),
+    player,
+  );
+  if (data === 1) {
+    eraser.SetColor(Color(0.189, 0.415, 0.762), -1, 1);
+  }
 }

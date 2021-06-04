@@ -11,6 +11,7 @@ import * as PostLevelHandler from "./callbacks/handler_PostNewLevel";
 import * as PostUpdateHandler from "./callbacks/handler_PostUpdateEvents";
 import * as PreCleanHandler from "./callbacks/handler_CleanAward";
 import * as PostNPCDeathHandler from "./callbacks/handler_PostNPCDeath";
+import * as ThrownHandler from "./callbacks/handler_ThrownEffect";
 // --- Entities ---
 import * as MachineEvents from "./callbacks/handler_MachineEvents";
 import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_MachineEvents";
@@ -221,6 +222,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PostLevelHandle
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_UPDATE, PostUpdateHandler.postUpdate);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, PreCleanHandler.preClean);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_DEATH, PostNPCDeathHandler.postDeath);
+PostUpdateHandler.addPlayerListener(ThrownHandler.postUpdate);
 
 Isaac.DebugString("|LABOS| Boot initialization complete");
 

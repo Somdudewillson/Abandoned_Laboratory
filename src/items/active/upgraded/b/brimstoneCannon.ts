@@ -1,3 +1,4 @@
+import { queueThrowable } from "../../../../callbacks/handler_ThrownEffect";
 import { CollectibleTypeLabUpgrade, LaserSubType } from "../../../../constants";
 import { sign } from "../../../../extMath";
 import { directionToDegrees } from "../../../../utils";
@@ -15,11 +16,21 @@ export function use(
   _rand: RNG,
   player: EntityPlayer,
   _UseFlags: int,
-  _ActiveSlot: int,
+  ActiveSlot: int,
   _CustomVarData: int,
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
-  const startDegrees =
-    directionToDegrees(player.GetHeadDirection()) - FIRE_CONE / 2;
+  queueThrowable(player, ownType(), ActiveSlot, doFire);
+
+  return { Discharge: true, Remove: false, ShowAnim: false };
+}
+
+export function doFire(
+  player: EntityPlayer,
+  _directionVector: Vector,
+  direction: Direction,
+  _data: number,
+): void {
+  const startDegrees = directionToDegrees(direction) - FIRE_CONE / 2;
   const hasCarBattery = player.HasCollectible(
     CollectibleType.COLLECTIBLE_CAR_BATTERY,
   );
@@ -48,6 +59,4 @@ export function use(
     lazer.RotationDelay = 6;
     lazer.RotationDegrees = FIRE_CONE - curInterval * 2;
   }
-
-  return true;
 }

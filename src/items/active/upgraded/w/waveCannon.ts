@@ -1,3 +1,4 @@
+import { queueThrowable } from "../../../../callbacks/handler_ThrownEffect";
 import {
   CollectibleTypeLabUpgrade,
   SHOT_SPEED_MULT,
@@ -17,10 +18,21 @@ export function use(
   _rand: RNG,
   player: EntityPlayer,
   _UseFlags: int,
-  _ActiveSlot: int,
+  ActiveSlot: int,
   _CustomVarData: int,
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
-  let aimDirection = player.GetLastDirection().Rotated(-(FIRE_CONE / 2));
+  queueThrowable(player, ownType(), ActiveSlot, doFire);
+
+  return { Discharge: true, Remove: false, ShowAnim: false };
+}
+
+export function doFire(
+  player: EntityPlayer,
+  directionVector: Vector,
+  _direction: Direction,
+  _data: number,
+): void {
+  let aimDirection = directionVector.Rotated(-(FIRE_CONE / 2));
   if (aimDirection.LengthSquared() < 0.1) {
     aimDirection = directionToVector(player.GetHeadDirection());
   }
@@ -76,6 +88,4 @@ export function use(
     firedTear.AddTearFlags(TearFlags.TEAR_SPECTRAL);
     firedTear.AddTearFlags(TearFlags.TEAR_HYDROBOUNCE);
   }
-
-  return true;
 }

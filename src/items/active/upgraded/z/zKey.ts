@@ -22,31 +22,21 @@ export function use(
   return true;
 }
 
-export function tick(): void {
-  if (Game().GetRoom().IsClear()) {
+export function tick(
+  player: EntityPlayer,
+  slot: ActiveSlot,
+  room: Room,
+  _level: Level,
+): void {
+  if (room.IsClear()) {
     return;
   }
 
-  for (let p = 0; p < Game().GetNumPlayers(); p++) {
-    const player = Isaac.GetPlayer(p);
-    if (player == null) {
-      continue;
+  if (player.GetActiveCharge(slot) < 300) {
+    if (player.GetActiveCharge(slot) === 299) {
+      chargeEffect(player.Position);
     }
-    if (!player.HasCollectible(ownType())) {
-      continue;
-    }
-
-    for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
-      if (
-        player.GetActiveItem(s) === ownType() &&
-        player.GetActiveCharge(s) < 300
-      ) {
-        if (player.GetActiveCharge(s) === 299) {
-          chargeEffect(player.Position);
-        }
-        player.SetActiveCharge(player.GetActiveCharge(s) + 1, s);
-      }
-    }
+    player.SetActiveCharge(player.GetActiveCharge(slot) + 1, slot);
   }
 }
 

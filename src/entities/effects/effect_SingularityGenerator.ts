@@ -60,7 +60,7 @@ export function update(self: EntityEffect): void {
 }
 
 function doDie(self: EntityEffect): void {
-  const entities = Isaac.GetRoomEntities();
+  const entities = Isaac.FindInRadius(self.Position, 250);
 
   Game().BombExplosionEffects(
     self.Position,
@@ -74,24 +74,7 @@ function doDie(self: EntityEffect): void {
   );
 
   for (const entity of entities) {
-    if (
-      !(
-        entity.Type === EntityType.ENTITY_TEAR ||
-        entity.Type === EntityType.ENTITY_PROJECTILE
-      )
-    ) {
-      continue;
-    }
-    if (
-      entity.Parent != null &&
-      entity.Parent.Type !== EntityType.ENTITY_PLAYER
-    ) {
-      continue;
-    }
-    if (
-      entity.SpawnerEntity != null &&
-      entity.SpawnerEntity.Type !== EntityType.ENTITY_PLAYER
-    ) {
+    if (entity.Type !== EntityType.ENTITY_PROJECTILE) {
       continue;
     }
 
@@ -135,7 +118,7 @@ function implodeObstacles(
       ) {
         spawnDebris(1, rand, gridEntity);
       } else if (gridEntity.GetType() === GridEntityType.GRID_DOOR) {
-        gridEntity.ToDoor()!.TryBlowOpen(true);
+        gridEntity.ToDoor()!.TryBlowOpen(true, self);
       }
       continue;
     }

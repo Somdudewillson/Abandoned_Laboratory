@@ -605,6 +605,10 @@ export function registerExternalItemDescriptions(): void {
       "#↑ Recharges if ball is picked up" +
       "#↑ Can capture bosses at <15% health",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_ENERGIZEDCONVERTER,
+    "Converts {{HalfSoulHeart}} into {{Heart}}",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

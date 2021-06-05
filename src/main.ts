@@ -62,6 +62,7 @@ import * as EFF_DISCOUNTCODE from "./items/active/upgraded/d/discountCode";
 import * as EFF_DIVINITYGENERATOR from "./items/active/upgraded/d/divinityGenerator";
 import * as EFF_DOUBLESIDEDERASER from "./items/active/upgraded/d/doubleSidedEraser";
 
+import * as EFF_ENERGIZEDCONVERTER from "./items/active/upgraded/e/energizedConverter";
 import * as EFF_ENERGIZEDDELIRIOUS from "./items/active/upgraded/e/energizedDelirious";
 import * as EFF_ENERGIZEDMEGABLAST from "./items/active/upgraded/e/energizedMegaSatansBreath";
 import * as EFF_ESSENCESPLITTER from "./items/active/upgraded/e/essenceSplitter";
@@ -379,6 +380,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTALGENERATOR.u
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_HEALTHYBALL.use, EFF_HEALTHYBALL.ownType());
 PreCleanHandler.addSlotListener(EFF_HEALTHYBALL.preClean,EFF_HEALTHYBALL.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUPERBALL.use, EFF_SUPERBALL.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDCONVERTER.use, EFF_ENERGIZEDCONVERTER.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

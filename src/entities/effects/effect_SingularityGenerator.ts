@@ -191,9 +191,25 @@ function implodeEntities(self: EntityEffect): void {
       EntityRef(self),
       0,
     );
-    entity.AddVelocity(
-      self.Position.sub(entity.Position).Resized(IMPLOSION_VELOCITY),
-    );
+    const distSq = entity.Position.DistanceSquared(self.Position);
+    if (entity.Type === EntityType.ENTITY_PROJECTILE && distSq <= 5 ** 2) {
+      entity.Remove();
+      continue;
+    }
+
+    let velocityShift = Vector.Zero;
+
+    if (entity.Type === EntityType.ENTITY_PROJECTILE && distSq <= 250 ** 2) {
+      velocityShift = self.Position.sub(entity.Position.add(entity.Velocity));
+      if (velocityShift.LengthSquared() > 5 * 5) {
+        velocityShift.Resize(5);
+      }
+    } else {
+      velocityShift = self.Position.sub(entity.Position).Resized(
+        IMPLOSION_VELOCITY,
+      );
+    }
+    entity.AddVelocity(velocityShift);
   }
 }
 

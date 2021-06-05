@@ -11,10 +11,10 @@ const enum SingularityGeneratorAnimKey {
 const IMPLOSION_DAMAGE = 150;
 const IMPLOSION_SIZE = 1.75;
 
-const GRID_MAX_RADIUS = 600;
+const GRID_MAX_RADIUS = 650;
 
-const GRAVITY_STRENGTH = 5;
-const BASE_GRAVITY_DAMAGE = 2.5;
+const GRAVITY_STRENGTH = 35;
+const BASE_GRAVITY_DAMAGE = 1;
 const IMPLOSION_VELOCITY = 10;
 
 export function update(self: EntityEffect): void {
@@ -116,7 +116,7 @@ function implodeObstacles(
         rand.RandomFloat() < 0.1 &&
         gridEntity.Position.DistanceSquared(self.Position) <= curRadius ** 2
       ) {
-        spawnDebris(1, rand, gridEntity);
+        spawnDebris(1, rand, gridEntity, room);
       } else if (gridEntity.GetType() === GridEntityType.GRID_DOOR) {
         gridEntity.ToDoor()!.TryBlowOpen(true, self);
       }
@@ -124,25 +124,26 @@ function implodeObstacles(
     }
 
     if (gridEntity.Position.DistanceSquared(self.Position) <= curRadius ** 2) {
-      spawnDebris(randomInt(rand, 4, 12), rand, gridEntity);
+      spawnDebris(randomInt(rand, 4, 12), rand, gridEntity, room);
+      if (gridEntity.GetType() === GridEntityType.GRID_ROCKB) {gridEntity.SetType(GridEntityType.GRID_ROCK);}
       gridEntity.Destroy(false);
     }
   }
 }
 
-function spawnDebris(amount: int, rand: RNG, source: GridEntity): void {
+function spawnDebris(amount: int, rand: RNG, source: GridEntity, room:Room): void {
   let debrisVariant = EffectVariant.EFFECT_NULL;
   let colorShift: null | Color = null;
   switch (source.GetType()) {
     case GridEntityType.GRID_ROCK_GOLD:
     case GridEntityType.GRID_ROCK:
-    case GridEntityType.GRID_ROCKB:
     case GridEntityType.GRID_ROCK_ALT:
     case GridEntityType.GRID_ROCK_ALT2:
     case GridEntityType.GRID_ROCK_BOMB:
     case GridEntityType.GRID_ROCK_SPIKED:
     case GridEntityType.GRID_ROCK_SS:
     case GridEntityType.GRID_PILLAR:
+      case GridEntityType.GRID_ROCKB:
       debrisVariant = EffectVariant.ROCK_PARTICLE;
       break;
     case GridEntityType.GRID_ROCKT:
@@ -156,6 +157,7 @@ function spawnDebris(amount: int, rand: RNG, source: GridEntity): void {
       debrisVariant = EffectVariant.WOOD_PARTICLE;
       break;
     case GridEntityType.GRID_WALL:
+      if (room.GetBackdropType() === BackdropType.DARKROOM) {return;}
       debrisVariant = EffectVariant.ROCK_POOF;
       colorShift = Color(1, 1, 1, 0.5);
       break;
@@ -253,7 +255,7 @@ function shouldImplodeEntity(target: Entity): boolean {
 function implosionDamage(self: EntityEffect, target: Entity): float {
   return (
     (GRAVITY_STRENGTH /
-      (self.Position.Distance(target.Position) / (target.IsBoss() ? 5 : 1))) *
-    BASE_GRAVITY_DAMAGE
+      (self.Position.Distance(target.Position) / (target.IsBoss() ? 2 : 1))) *
+    (BASE_GRAVITY_DAMAGE * (target.IsBoss() ? 1.75 : 1))
   );
 }

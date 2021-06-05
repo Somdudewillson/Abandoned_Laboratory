@@ -779,6 +779,35 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
     CollectibleType.COLLECTIBLE_VADE_RETRO,
     [CollectibleTypeLabUpgrade.COLLECTIBLE_ABIEXSPIRAVIT],
   ],
+  [
+    CollectibleType.COLLECTIBLE_FRIEND_BALL,
+    [
+      CollectibleTypeLabUpgrade.COLLECTIBLE_PORTALGENERATOR,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_HEALTHYBALL,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SUPERBALL,
+    ],
+  ],
+  [
+    CollectibleTypeLabUpgrade.COLLECTIBLE_PORTALGENERATOR,
+    [
+      CollectibleTypeLabUpgrade.COLLECTIBLE_HEALTHYBALL,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SUPERBALL,
+    ],
+  ],
+  [
+    CollectibleTypeLabUpgrade.COLLECTIBLE_HEALTHYBALL,
+    [
+      CollectibleTypeLabUpgrade.COLLECTIBLE_PORTALGENERATOR,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_SUPERBALL,
+    ],
+  ],
+  [
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SUPERBALL,
+    [
+      CollectibleTypeLabUpgrade.COLLECTIBLE_HEALTHYBALL,
+      CollectibleTypeLabUpgrade.COLLECTIBLE_PORTALGENERATOR,
+    ],
+  ],
 ]);
 
 export const enum FireplaceVariant {
@@ -1076,4 +1105,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.13.5";
+export const VERSION = "0.13.6";

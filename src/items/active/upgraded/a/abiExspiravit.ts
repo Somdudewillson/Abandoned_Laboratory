@@ -59,6 +59,6 @@ export function postDeath(
   ).ToEffect()!;
   newGhost.Parent = player;
   newGhost.CollisionDamage = npc.MaxHitPoints;
-  newGhost.Size = Math.min(Math.max(0.6, npc.MaxHitPoints / 50), 8);
+  newGhost.Size = Math.min(Math.max(0.6, npc.MaxHitPoints / 100), 5);
   newGhost.SpriteScale = Vector(newGhost.Size, newGhost.Size);
 }

@@ -74,6 +74,7 @@
 	<active description="BOOOOOOOOOM!" gfx="upgraded\m\motherofbombs.png" maxcharges="0" name="Mother of Bombs" hidden="true"/>
 	<active description="Caaan do!" gfx="upgraded\m\mryou.png" maxcharges="1" name="Mr. You" hidden="true"/>
 
+	<active description="A Grave of Undeath" gfx="upgraded\n\necromanticshovel.png" maxcharges="5" name="Necromantic Shovel" hidden="true"/>
 	<active description="Mass Damage" gfx="upgraded\n\necrovortex.png" maxcharges="600" chargetype="timed" name="Necro Vortex" hidden="true"/>
 
 	<active description="Remote tear and bomb detonation!" gfx="upgraded\o\omnidetonator.png" maxcharges="0" name="Omni Detonator" hidden="true"/>

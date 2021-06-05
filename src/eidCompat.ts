@@ -609,6 +609,12 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_ENERGIZEDCONVERTER,
     "Converts {{HalfSoulHeart}} into {{Heart}}",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_NECROMANTICSHOVEL,
+    "Spawns a necromantic grave" +
+      "#↑ Grave spawns a friendly bony variant or bone fly every 15 seconds, up to 5" +
+      "#↑ Each killed enemy contributes to spawning a champion minion",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

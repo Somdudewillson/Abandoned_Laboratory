@@ -95,6 +95,7 @@ import * as EFF_MICROTRANSACTION from "./items/active/upgraded/m/microtransactio
 import * as EFF_MOTHEROFBOMBS from "./items/active/upgraded/m/motherOfBombs";
 import * as EFF_MRYOU from "./items/active/upgraded/m/mrYou";
 
+import * as EFF_NECROMANTICSHOVEL from "./items/active/upgraded/n/necromanticShovel";
 import * as EFF_NECROVORTEX from "./items/active/upgraded/n/necroVortex";
 
 import * as EFF_OMNIDETONATOR from "./items/active/upgraded/o/omniDetonator";
@@ -381,6 +382,8 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_HEALTHYBALL.use, 
 PreCleanHandler.addSlotListener(EFF_HEALTHYBALL.preClean,EFF_HEALTHYBALL.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUPERBALL.use, EFF_SUPERBALL.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDCONVERTER.use, EFF_ENERGIZEDCONVERTER.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NECROMANTICSHOVEL.use, EFF_NECROMANTICSHOVEL.ownType());
+PostNPCDeathHandler.addPlayerListener(EFF_NECROMANTICSHOVEL.postDeath);
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

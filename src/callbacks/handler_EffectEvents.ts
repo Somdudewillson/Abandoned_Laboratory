@@ -2,6 +2,8 @@ import * as EFFECT_BLADEDISC from "../entities/effects/effect_BladeDisc";
 import * as EFFECT_CAPTUREBALL from "../entities/effects/effect_CaptureBall";
 import * as EFFECT_CYBERGHOST from "../entities/effects/effect_CyberGhost";
 import * as EFFECT_KINETICIMPACTOR from "../entities/effects/effect_KineticImpactor";
+import * as EFFECT_NECROGRAVE from "../entities/effects/effect_NecroGrave";
+import * as EFFECT_NECROSOUL from "../entities/effects/effect_NecroSoul";
 import * as EFFECT_SINGULARITYGENERATOR from "../entities/effects/effect_SingularityGenerator";
 
 export const LabEffectEntityVariant = 579;
@@ -13,6 +15,8 @@ export const enum EffectEntitySubtype {
   CYBERGHOST = 15,
   HEALTHYBALL = 16,
   SUPERBALL = 17,
+  NECROGRAVE = 18,
+  NECROSOUL = 19,
 }
 
 export function update(self: EntityEffect): void {
@@ -37,6 +41,12 @@ export function update(self: EntityEffect): void {
     case EffectEntitySubtype.HEALTHYBALL:
     case EffectEntitySubtype.SUPERBALL:
       EFFECT_CAPTUREBALL.update(self);
+      break;
+    case EffectEntitySubtype.NECROGRAVE:
+      EFFECT_NECROGRAVE.update(self);
+      break;
+    case EffectEntitySubtype.NECROSOUL:
+      EFFECT_NECROSOUL.update(self);
       break;
   }
 }

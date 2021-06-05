@@ -1,7 +1,7 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
 
 export function ownType(): number {
-  return CollectibleTypeLabUpgrade.COLLECTIBLE_MOTHEROFBOMBS as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_ENERGIZEDDELIRIOUS as number;
 }
 
 export function use(

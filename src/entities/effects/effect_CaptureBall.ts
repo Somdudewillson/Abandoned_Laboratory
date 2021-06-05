@@ -5,13 +5,17 @@
  *  1: newly caught
  *  2: queued release
  */
-
 import { getPlayerData, savePlayerData, SaveType } from "../../saveData";
 
 const enum TimeoutBallSize {
   EMPTY = 0,
   NEW_CATCH = 1,
   RELEASE = 2,
+}
+
+const enum BallSubType {
+  HEALTHYBALL = 16,
+  SUPERBALL = 17,
 }
 
 export const CAPTURED_ENTITY_SAVE_KEY = "capture_ball_captured";
@@ -66,7 +70,13 @@ function checkPlayerCollision(self: EntityEffect): void {
     self.SpawnerEntity.Position.DistanceSquared(self.Position) <
       COLLISION_RADIUS ** 2
   ) {
-    self.SpawnerEntity.ToPlayer()!.SetActiveCharge(3, self.State);
+    const itemConfig = Isaac.GetItemConfig();
+    const player = self.SpawnerEntity.ToPlayer()!;
+
+    player.SetActiveCharge(
+      itemConfig.GetCollectible(player.GetActiveItem(self.State)).MaxCharges,
+      self.State,
+    );
     self.Remove();
   }
 }
@@ -82,12 +92,35 @@ function checkWallCollision(self: EntityEffect): boolean {
 }
 
 function checkEnemyCollision(self: EntityEffect): void {
-  const entities = Isaac.FindInRadius(self.Position, COLLISION_RADIUS * 3);
-  for (const entity of entities) {
+  // Scan for valid bosses, to avoid accidental capture of non-basses instead
+  let hasValidBoss = false;
+  if (self.SubType === BallSubType.SUPERBALL) {
+    const entities = Isaac.GetRoomEntities();
+    for (const entity of entities) {
+      if (!entity.IsBoss()) {
+        continue;
+      }
+      if (entity.IsDead()) {
+        continue;
+      }
+      if (!canCaptureBoss(self, entity)) {
+        continue;
+      }
+
+      hasValidBoss = true;
+      break;
+    }
+  }
+
+  const nearEntities = Isaac.FindInRadius(self.Position, COLLISION_RADIUS * 3);
+  for (const entity of nearEntities) {
     if (!entity.IsActiveEnemy(false)) {
       continue;
     }
-    if (entity.IsBoss()) {
+    if (entity.IsBoss() && !canCaptureBoss(self, entity)) {
+      continue;
+    }
+    if (!entity.IsBoss() && hasValidBoss) {
       continue;
     }
     if (entity.HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) {
@@ -99,6 +132,41 @@ function checkEnemyCollision(self: EntityEffect): void {
     self.Size = TimeoutBallSize.NEW_CATCH;
     return;
   }
+}
+
+function canCaptureBoss(self: EntityEffect, target: Entity): boolean {
+  if (self.SubType !== BallSubType.SUPERBALL) {
+    Isaac.DebugString("FAIL: Wrong ball subtype");
+    return false;
+  }
+  if (target.HitPoints > target.MaxHitPoints * 1.1) {
+    Isaac.DebugString("FAIL: Too much health");
+    return false;
+  }
+
+  if (
+    target.Type === EntityType.ENTITY_MOM ||
+    target.Type === EntityType.ENTITY_MOMS_HEART ||
+    target.Type === EntityType.ENTITY_MOM_HEAD ||
+    target.Type === EntityType.ENTITY_ISAAC ||
+    target.Type === EntityType.ENTITY_SATAN ||
+    target.Type === EntityType.ENTITY_MEGA_SATAN ||
+    target.Type === EntityType.ENTITY_MEGA_SATAN_2 ||
+    target.Type === EntityType.ENTITY_HUSH ||
+    target.Type === EntityType.ENTITY_HUSH_SKINLESS ||
+    target.Type === EntityType.ENTITY_DELIRIUM ||
+    target.Type === EntityType.ENTITY_DOGMA ||
+    target.Type === EntityType.ENTITY_BEAST ||
+    target.Type === EntityType.ENTITY_THE_LAMB ||
+    target.Type === EntityType.ENTITY_ULTRA_GREED ||
+    target.Type === EntityType.ENTITY_MOTHER ||
+    target.Type === EntityType.ENTITY_MOTHERS_SHADOW
+  ) {
+    Isaac.DebugString("FAIL: Final boss");
+    return false;
+  }
+
+  return true;
 }
 
 function doRelease(self: EntityEffect): void {

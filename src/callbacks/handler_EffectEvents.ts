@@ -12,6 +12,7 @@ export const enum EffectEntitySubtype {
   SINGULARITYGENERATOR = 14,
   CYBERGHOST = 15,
   HEALTHYBALL = 16,
+  SUPERBALL = 17,
 }
 
 export function update(self: EntityEffect): void {
@@ -34,6 +35,7 @@ export function update(self: EntityEffect): void {
       EFFECT_CYBERGHOST.update(self);
       break;
     case EffectEntitySubtype.HEALTHYBALL:
+    case EffectEntitySubtype.SUPERBALL:
       EFFECT_CAPTUREBALL.update(self);
       break;
   }

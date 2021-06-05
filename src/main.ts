@@ -134,6 +134,7 @@ import * as EFF_STRAIGHTENEDPENNY from "./items/active/upgraded/s/straightenedPe
 import * as EFF_STRIKEDESIGNATOR from "./items/active/upgraded/s/strikeDesignator";
 import * as EFF_SUMMARIZEDBIBLE from "./items/active/upgraded/s/summarizedBible";
 import * as EFF_SUMMARIZEDMONSTERMANUAL from "./items/active/upgraded/s/summarizedMonsterManual";
+import * as EFF_SUPERBALL from "./items/active/upgraded/s/superBall";
 import * as EFF_SUPERHEATEDSMELTER from "./items/active/upgraded/s/superheatedSmelter";
 import * as EFF_SYNTHETICSKIN from "./items/active/upgraded/s/syntheticSkin";
 
@@ -377,6 +378,7 @@ PostNPCDeathHandler.addSlotListener(EFF_ABIEXSPIRAVIT.postDeath, EFF_ABIEXSPIRAV
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTALGENERATOR.use, EFF_PORTALGENERATOR.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_HEALTHYBALL.use, EFF_HEALTHYBALL.ownType());
 PreCleanHandler.addSlotListener(EFF_HEALTHYBALL.preClean,EFF_HEALTHYBALL.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUPERBALL.use, EFF_SUPERBALL.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

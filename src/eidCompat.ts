@@ -594,9 +594,16 @@ export function registerExternalItemDescriptions(): void {
   EID.addCollectible(
     CollectibleTypeLabUpgrade.COLLECTIBLE_HEALTHYBALL,
     "Throws a capture ball" +
-      "# Captures the first non-boss enemy, which is released and permanently charmed on next use" +
+      "# Captures the first non-boss enemy it hits, which is released and permanently charmed on next use" +
       "#↑ Recharges if ball is picked up" +
       "#↑ Fully heals all friendly enemies on room clear",
+  );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_SUPERBALL,
+    "Throws a capture ball" +
+      "# Captures the first enemy, which is released and permanently charmed on next use" +
+      "#↑ Recharges if ball is picked up" +
+      "#↑ Can capture bosses at <15% health",
   );
 
   // =====Upgraded Starting Items=====

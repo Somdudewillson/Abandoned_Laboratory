@@ -31,6 +31,8 @@
     </entity>
     <entity name="Cyber Ghost" anm2path="1000.579_cyberghost.anm2" id="1000" variant="579" subtype="15" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="14" friction="1" numGridCollisionPoints="0" shadowSize="10" stageHP="0">
     </entity>
-    <entity name="Healthy Ball" anm2path="1000.579_healthyball.anm2" id="1000" variant="579" subtype="16" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="10" friction="1" numGridCollisionPoints="0" shadowSize="4" stageHP="0">
+    <entity name="Healthy Ball" anm2path="1000.579_healthyball.anm2" id="1000" variant="579" subtype="16" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="10" friction="1" numGridCollisionPoints="0" shadowSize="8" stageHP="0">
+    </entity>
+    <entity name="Super Ball" anm2path="1000.579_superball.anm2" id="1000" variant="579" subtype="17" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="10" friction="1" numGridCollisionPoints="0" shadowSize="12" stageHP="0">
     </entity>
 </entities>

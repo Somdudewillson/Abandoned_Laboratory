@@ -1,7 +1,7 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
 
 export function ownType(): number {
-  return CollectibleTypeLabUpgrade.COLLECTIBLE_STRIKEDESIGNATOR as number;
+  return CollectibleTypeLabUpgrade.COLLECTIBLE_PLATEDRAZOR as number;
 }
 
 export function use(

@@ -14,7 +14,7 @@ const IMPLOSION_SIZE = 1.75;
 const GRID_MAX_RADIUS = 600;
 
 const GRAVITY_STRENGTH = 5;
-const BASE_GRAVITY_DAMAGE = 5;
+const BASE_GRAVITY_DAMAGE = 2.5;
 const IMPLOSION_VELOCITY = 10;
 
 export function update(self: EntityEffect): void {

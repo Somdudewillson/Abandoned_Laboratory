@@ -42,7 +42,7 @@ export function update(self: EntityEffect): void {
 
   // Move toward grave
   const newVelocity = target.Position.sub(self.Position);
-  if (curDistance - ABSORB_DIST > MOVE_SPEED) {
+  if (curDistance > MOVE_SPEED) {
     newVelocity.Resize(MOVE_SPEED);
   }
   self.Velocity = newVelocity;

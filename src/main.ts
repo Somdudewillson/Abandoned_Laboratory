@@ -75,6 +75,8 @@ import * as EFF_GOLDENFLUSH from "./items/active/upgraded/g/goldenFlush";
 import * as EFF_PAUSE2 from "./items/active/upgraded/p/pauseTwo";
 import * as EFF_GOLDENSHARPKEY from "./items/active/upgraded/g/goldenSharpKey";
 
+import * as EFF_HEALTHYBALL from "./items/active/upgraded/h/healthyBall";
+
 import * as EFF_INACTIONREPLAY from "./items/active/upgraded/i/inactionReplay";
 import * as EFF_ILLUSORYRAZOR from "./items/active/upgraded/i/illusoryRazor";
 import * as EFF_ITEMFABRICATOR from "./items/active/upgraded/i/itemFabricator";
@@ -373,6 +375,8 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_OMNIJAR.use, EFF_
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ABIEXSPIRAVIT.use, EFF_ABIEXSPIRAVIT.ownType());
 PostNPCDeathHandler.addSlotListener(EFF_ABIEXSPIRAVIT.postDeath, EFF_ABIEXSPIRAVIT.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTALGENERATOR.use, EFF_PORTALGENERATOR.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_HEALTHYBALL.use, EFF_HEALTHYBALL.ownType());
+PreCleanHandler.addSlotListener(EFF_HEALTHYBALL.preClean,EFF_HEALTHYBALL.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

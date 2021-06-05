@@ -55,6 +55,8 @@
 	<active description="Stop!!" gfx="upgraded\g\goldenpause.png" maxcharges="120" chargetype="timed" name="Pause 2.0" hidden="true"/>
 	<active description="Open your enemies" gfx="upgraded\g\goldensharpkey.png" maxcharges="0" name="Golden Sharp Key" hidden="true"/>
 
+	<active description="Keep your friends healthy!" gfx="upgraded\h\healthyball.png" maxcharges="3" name="Healthy Ball" hidden="true"/>
+
 	<active description="False Pain" gfx="upgraded\i\illusoryrazor.png" maxcharges="300" chargetype="timed" name="Illusory Razor" hidden="true"/>
 	<active description="Frequent Man-Pac" gfx="upgraded\i\inactionreplay.png" maxcharges="2" name="Inaction Replay" hidden="true"/>
 	<active description="Fragile Item Fabricator" gfx="upgraded\i\itemfabricator.png" maxcharges="4" name="Item Fabricator" hidden="true"/>

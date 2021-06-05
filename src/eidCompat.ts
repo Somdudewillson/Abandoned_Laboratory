@@ -591,6 +591,13 @@ export function registerExternalItemDescriptions(): void {
     "Splits a permanently-charmed Lil Portal" +
       "#↑ Spawns various friendly enemies",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_HEALTHYBALL,
+    "Throws a capture ball" +
+      "# Captures the first non-boss enemy, which is released and permanently charmed on next use" +
+      "#↑ Recharges if ball is picked up" +
+      "#↑ Fully heals all friendly enemies on room clear",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

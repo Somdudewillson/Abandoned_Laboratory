@@ -138,6 +138,7 @@ export enum CollectibleTypeLabUpgrade {
   COLLECTIBLE_OMNIJAR = Isaac.GetItemIdByName("Omni Jar"),
   COLLECTIBLE_ABIEXSPIRAVIT = Isaac.GetItemIdByName("Abi Exspiravit"),
   COLLECTIBLE_PORTALGENERATOR = Isaac.GetItemIdByName("Portal Generator"),
+  COLLECTIBLE_HEALTHYBALL = Isaac.GetItemIdByName("Healthy Ball"),
 
   // --- Upgraded Starting Actives ---
   COLLECTIBLE_GOLDENNICKEL = Isaac.GetItemIdByName("Golden Nickel"),
@@ -1074,4 +1075,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = true;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.13.3";
+export const VERSION = "0.13.4";

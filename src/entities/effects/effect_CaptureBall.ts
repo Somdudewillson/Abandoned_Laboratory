@@ -136,11 +136,9 @@ function checkEnemyCollision(self: EntityEffect): void {
 
 function canCaptureBoss(self: EntityEffect, target: Entity): boolean {
   if (self.SubType !== BallSubType.SUPERBALL) {
-    Isaac.DebugString("FAIL: Wrong ball subtype");
     return false;
   }
   if (target.HitPoints > target.MaxHitPoints * 1.1) {
-    Isaac.DebugString("FAIL: Too much health");
     return false;
   }
 
@@ -162,7 +160,6 @@ function canCaptureBoss(self: EntityEffect, target: Entity): boolean {
     target.Type === EntityType.ENTITY_MOTHER ||
     target.Type === EntityType.ENTITY_MOTHERS_SHADOW
   ) {
-    Isaac.DebugString("FAIL: Final boss");
     return false;
   }
 

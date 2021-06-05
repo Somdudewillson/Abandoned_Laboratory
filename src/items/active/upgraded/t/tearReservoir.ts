@@ -21,7 +21,7 @@ export function use(
   ActiveSlot: int,
   _CustomVarData: int,
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
-  queueThrowable(player, ownType(), ActiveSlot, doFire);
+  queueThrowable(player, ownType(), ActiveSlot, doFire, ActiveSlot);
 
   return { Discharge: true, Remove: false, ShowAnim: false };
 }
@@ -50,7 +50,7 @@ export function doFire(
   player: EntityPlayer,
   directionVector: Vector,
   _direction: Direction,
-  _data: number,
+  data: number,
 ): void {
   const aimDirection = directionVector.Rotated(-(FIRE_CONE / 2));
   const hasCarBattery = player.HasCollectible(
@@ -65,4 +65,6 @@ export function doFire(
 
     player.FireTear(player.Position, fireDir, true, true, false, player);
   }
+
+  player.SetActiveCharge(0,data);
 }

@@ -20,7 +20,7 @@ export function use(
   player.UsePill(
     PillEffect.PILLEFFECT_SEE_FOREVER,
     PillColor.PILL_NULL,
-    UseFlag.USE_NOANIM,
+    UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER,
   );
 
   return true;

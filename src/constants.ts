@@ -206,11 +206,11 @@ export const CollectibleUpgrade: Map<number, number[]> = new Map([
   ],
   [
     CollectibleType.COLLECTIBLE_RED_CANDLE,
-    [CollectibleType.COLLECTIBLE_CANDLE as number],
+    [CollectibleType.COLLECTIBLE_URN_OF_SOULS as number],
   ],
   [
     CollectibleType.COLLECTIBLE_CANDLE,
-    [CollectibleType.COLLECTIBLE_RED_CANDLE as number],
+    [CollectibleType.COLLECTIBLE_URN_OF_SOULS as number],
   ],
   [
     CollectibleType.COLLECTIBLE_KIDNEY_BEAN,
@@ -1131,4 +1131,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = false;
 export const DEBUG_SPAWN = true;
 export const UNBALANCED = false;
-export const VERSION = "0.13.10";
+export const VERSION = "0.13.11";

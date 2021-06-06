@@ -16,4 +16,9 @@ VR Maw: The VR Maw has Tech X (Because it looks like a VR Helmet), it can fire t
 ElecTrite: The ElecTrite is a electronic Trite then when landing on the ground after jumping, can fire a laser at Isaac from any direction.
 Chemist: The Chemist can throw up Beakers filled with different kinds of chemicals (creep) that randomizes every shot. <-- boss version as well
 
+Stage notes:
+At a certain depth, secret rooms and super secret rooms can be replaced
 
+  secret room replacements:
+    Synergy room - Offers a choice of 2-5 items which will work well with other items you have
+    Boon room - Offers a choice of 3 items for the current character, 2 vanilla and 1 modded

@@ -138,7 +138,7 @@ function canCaptureBoss(self: EntityEffect, target: Entity): boolean {
   if (self.SubType !== BallSubType.SUPERBALL) {
     return false;
   }
-  if (target.HitPoints > target.MaxHitPoints * 1.1) {
+  if (target.HitPoints > target.MaxHitPoints * 0.15) {
     return false;
   }
 

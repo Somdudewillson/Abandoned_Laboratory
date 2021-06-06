@@ -167,6 +167,7 @@ import * as EFF_CRATEOFFRIENDS from "./items/active/specialized/crateOfFriends";
 import * as EFF_CHAOSPOOP from "./items/active/specialized/chaosPoop";
 import * as EFF_SIGILOFBELIAL from "./items/active/specialized/sigilOfBelial";
 import * as EFF_TEMPEREDBLADE from "./items/active/specialized/temperedBlade";
+import * as EFF_REINFORCEDFABRICATOR from "./items/active/specialized/reinforcedItemFabricator";
 // --- Utility Actives ---
 import * as EFF_NONE from "./items/active/utility/noEffect";
 
@@ -399,6 +400,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, EFF_CRATEOFF
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CHAOSPOOP.use, EFF_CHAOSPOOP.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SIGILOFBELIAL.use, EFF_SIGILOFBELIAL.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDBLADE.use, EFF_TEMPEREDBLADE.ownType());
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_REINFORCEDFABRICATOR.use, EFF_REINFORCEDFABRICATOR.ownType());
 
 // --- Utility Items ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NONE.use, CollectibleTypeLabUtility.COLLECTIBLE_DISCHARGEDBATTERY);

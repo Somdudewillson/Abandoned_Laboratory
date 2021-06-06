@@ -148,6 +148,7 @@
 	<active description="Plop?!" gfx="upgraded\specialized\chaospoop.png" maxcharges="1" name="Chaos Poop" hidden="true"/>
 	<active description="Semi-Temporary DMG up" gfx="upgraded\specialized\sigilofbelial.png" maxcharges="3" name="Sigil of Belial" hidden="true"/>
 	<active description="Feel my pain" gfx="upgraded\specialized\temperedblade.png" maxcharges="0" name="Tempered Blade" hidden="true"/>
+	<active description="Less-Fragile Item Fabricator" gfx="upgraded\specialized\reinforceditemfabricator.png" maxcharges="3" name="Reinforced Item Fabricator" hidden="true"/>
 
 
 	<!--Special-Use Items-->

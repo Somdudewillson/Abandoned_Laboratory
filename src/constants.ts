@@ -157,6 +157,9 @@ export enum CollectibleTypeLabUpgrade {
   COLLECTIBLE_CHAOSPOOP = Isaac.GetItemIdByName("Chaos Poop"),
   COLLECTIBLE_SIGILOFBELIAL = Isaac.GetItemIdByName("Sigil of Belial"),
   COLLECTIBLE_TEMPEREDBLADE = Isaac.GetItemIdByName("Tempered Blade"),
+  COLLECTIBLE_REINFORCEDITEMFABRICATOR = Isaac.GetItemIdByName(
+    "Reinforced Item Fabricator",
+  ),
 }
 
 export const CollectibleUpgrade: Map<number, number[]> = new Map([
@@ -1012,6 +1015,8 @@ export function itemHasUpgrade(item: int, playerType?: int): boolean {
       return item === CollectibleType.COLLECTIBLE_WOODEN_NICKEL;
     case PlayerType.PLAYER_XXX:
       return item === CollectibleType.COLLECTIBLE_POOP;
+    case PlayerType.PLAYER_BETHANY_B:
+      return item === CollectibleType.COLLECTIBLE_LEMEGETON;
     default:
       break;
   }
@@ -1079,6 +1084,11 @@ export function getItemUpgrade(
     case PlayerType.PLAYER_XXX:
       if (item === CollectibleType.COLLECTIBLE_POOP) {
         return [CollectibleTypeLabUpgrade.COLLECTIBLE_CHAOSPOOP];
+      }
+      break;
+    case PlayerType.PLAYER_BETHANY_B:
+      if (item === CollectibleType.COLLECTIBLE_LEMEGETON) {
+        return [CollectibleTypeLabUpgrade.COLLECTIBLE_REINFORCEDITEMFABRICATOR];
       }
       break;
     default:

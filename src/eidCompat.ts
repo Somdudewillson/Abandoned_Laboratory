@@ -676,4 +676,10 @@ export function registerExternalItemDescriptions(): void {
       `#↑ {{Collectible${CollectibleType.COLLECTIBLE_MISSING_PAGE_2}}} adds 40 additional damage` +
       `#↑ {{Trinket${TrinketType.TRINKET_MISSING_PAGE}}} adds 40 additional damage`,
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_REINFORCEDITEMFABRICATOR,
+    "Spawns a random passive item wisp" +
+      "#↓ Wisps can be destroyed" +
+      "#↑ Wisps have triple their normal health (4)",
+  );
 }

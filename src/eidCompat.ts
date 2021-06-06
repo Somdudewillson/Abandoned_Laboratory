@@ -615,6 +615,11 @@ export function registerExternalItemDescriptions(): void {
       "#↑ Grave spawns a friendly bony variant or bone fly every 15 seconds, up to 5" +
       "#↑ Each killed enemy contributes to spawning a champion minion",
   );
+  EID.addCollectible(
+    CollectibleTypeLabUpgrade.COLLECTIBLE_GOLDPLATER,
+    `Converts currently held trinkets into golden versions and becomes {{Collectible${CollectibleType.COLLECTIBLE_MOMS_BOX}}}` +
+      "#↑ If no trinkets are held, spawns 6-10 trinket options",
+  );
 
   // =====Upgraded Starting Items=====
   EID.addCollectible(

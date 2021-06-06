@@ -75,6 +75,7 @@ import * as EFF_GLOWINGHEART from "./items/active/upgraded/g/glowingHeart";
 import * as EFF_GOLDENFLUSH from "./items/active/upgraded/g/goldenFlush";
 import * as EFF_PAUSE2 from "./items/active/upgraded/p/pauseTwo";
 import * as EFF_GOLDENSHARPKEY from "./items/active/upgraded/g/goldenSharpKey";
+import * as EFF_GOLDPLATER from "./items/active/upgraded/g/goldPlater";
 
 import * as EFF_HEALTHYBALL from "./items/active/upgraded/h/healthyBall";
 
@@ -384,6 +385,7 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUPERBALL.use, EF
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDCONVERTER.use, EFF_ENERGIZEDCONVERTER.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NECROMANTICSHOVEL.use, EFF_NECROMANTICSHOVEL.ownType());
 PostNPCDeathHandler.addPlayerListener(EFF_NECROMANTICSHOVEL.postDeath);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDPLATER.use, EFF_GOLDPLATER.ownType());
 
 // --- Upgraded Starting Actives ---
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());

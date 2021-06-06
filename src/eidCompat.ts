@@ -648,7 +648,7 @@ export function registerExternalItemDescriptions(): void {
     CollectibleTypeLabUpgrade.COLLECTIBLE_ENERGIZEDD6,
     "Rerolls all collectibles in the room" +
       "#↑ Each item rerolled consumes only 2 charge bars" +
-      "#↑ Attempts to reroll each item 5 times, keeping the best result",
+      "#↑ Attempts to reroll each item multiple times, keeping the best result",
   );
   EID.addCollectible(
     CollectibleTypeLabUpgrade.COLLECTIBLE_CRATEOFFRIENDS,

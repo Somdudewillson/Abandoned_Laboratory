@@ -96,7 +96,7 @@
 	<active description="Gross!" gfx="upgraded\r\rottingheart.png" maxcharges="5" name="Rotting Heart" hidden="true"/>
 	<active description="Enhanced Rune Mimic" gfx="upgraded\r\runicamplifier.png" maxcharges="5" name="Runic Amplifier" hidden="true"/>
 
-	<active description="It need sacrifice" gfx="upgraded\s\sacrificereactor.png" maxcharges="6" name="Sacrifice Reactor" hidden="true"/>
+	<active description="It needs sacrifice" gfx="upgraded\s\sacrificereactor.png" maxcharges="6" name="Sacrifice Reactor" hidden="true"/>
 	<active description="Artificial Evil" gfx="upgraded\s\satanitygenerator.png" maxcharges="4" name="Satanity Generator" hidden="true"/>
 	<active description="It's an Aggressive Mystery" gfx="upgraded\s\scrollofaggression.png" maxcharges="2" name="Scroll of Aggression" hidden="true"/>
 	<active description="It's an Explosive Mystery" gfx="upgraded\s\scrollofblasts.png" maxcharges="3" name="Scroll of Blasts" hidden="true"/>

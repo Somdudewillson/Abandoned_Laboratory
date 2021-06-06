@@ -1,7 +1,7 @@
 import { CollectibleTypeLabUpgrade } from "../../../constants";
 import { chargeEffect, isBetter } from "../../../utils";
 
-const REROLL_SIM_COUNT = 5;
+const REROLL_SIM_COUNT = 12;
 const CHARGE_COST_PER_ITEM = 2;
 
 export function ownType(): number {

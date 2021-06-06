@@ -130,3 +130,5 @@ dist
 # build files
 mod/main.lua
 mod/metadata.xml
+
+src/for_external/

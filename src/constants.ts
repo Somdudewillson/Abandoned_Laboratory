@@ -1129,6 +1129,6 @@ export function isSingleUpgrade(item: int): boolean {
 
 // Per-Build Constants
 export const DUMP_NOUPGRADE = false;
-export const DEBUG_SPAWN = true;
+export const DEBUG_SPAWN = false;
 export const UNBALANCED = false;
 export const VERSION = "0.13.11";

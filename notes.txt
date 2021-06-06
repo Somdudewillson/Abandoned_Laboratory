@@ -2,7 +2,7 @@ Form Shifter (Active, converts as many consumables as possible into a specified 
 
 Explosive robot familiar?
 
-Capsule-bases stat-up item.  Some capsule types decay, some don't.
+Capsule-based stat-up item.  Some capsule types decay, some don't.
 
 Life/Soul Reactor - temporary stat ups from excess hearts
 
@@ -22,3 +22,11 @@ At a certain depth, secret rooms and super secret rooms can be replaced
   secret room replacements:
     Synergy room - Offers a choice of 2-5 items which will work well with other items you have
     Boon room - Offers a choice of 3 items for the current character, 2 vanilla and 1 modded
+      --Maggie item ideas:
+        * Item that lets the first few red hearts
+      --Maggie/Tainted Maggie item ideas:
+        * Item that makes shots have a chance to drop health that times-out
+      --Tainted Maggie item ideas:
+        * Item that doubles the effect of and sucks in the temporary hearts she spawns
+      --Jacob/Esau item ideas:
+        * Esau becomes AI-piloted

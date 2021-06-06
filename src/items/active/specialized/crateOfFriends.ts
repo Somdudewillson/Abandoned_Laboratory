@@ -34,6 +34,7 @@ export function use(
 }
 
 export function findAllFriendItems(): void {
+  FRIEND_ITEMS.clear();
   const itemConfig = Isaac.GetItemConfig();
 
   const collectibles = itemConfig.GetCollectibles();

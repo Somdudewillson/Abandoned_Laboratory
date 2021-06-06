@@ -15,3 +15,4 @@ ElecTrite: The ElecTrite is a electronic Trite then when landing on the ground a
 Chemist: The Chemist can throw up Beakers filled with different kinds of chemicals (creep) that randomizes every shot. <-- boss version as well
 
 Mom's box idea - choose golden trinket, maybe decay into mom's box?
+  Gold plater that either makes all held items gold or spawns an array of options-grouped trinkets?

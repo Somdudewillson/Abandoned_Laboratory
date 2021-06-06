@@ -13,3 +13,5 @@ Enemy ideas:
 VR Maw: The VR Maw has Tech X (Because it looks like a VR Helmet), it can fire tears with a ring of electricity around them at Isaac
 ElecTrite: The ElecTrite is a electronic Trite then when landing on the ground after jumping, can fire a laser at Isaac from any direction.
 Chemist: The Chemist can throw up Beakers filled with different kinds of chemicals (creep) that randomizes every shot. <-- boss version as well
+
+Mom's box idea - choose golden trinket, maybe decay into mom's box?

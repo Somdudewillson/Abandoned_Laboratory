@@ -5,6 +5,10 @@ export enum CollectibleTypeLabUtility {
   COLLECTIBLE_DISCHARGEDBATTERY = Isaac.GetItemIdByName("Discharged Battery"),
 }
 
+export enum CollectibleTypeLabPassive {
+  COLLECTIBLE_CYBERBOB = Isaac.GetItemIdByName("Cyber Bob"),
+}
+
 export enum CollectibleTypeLabUpgrade {
   // --- Normal Upgraded Actives ---
   COLLECTIBLE_DIGITALCARD = Isaac.GetItemIdByName("Digital Card"),
@@ -1131,4 +1135,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = false;
 export const DEBUG_SPAWN = false;
 export const UNBALANCED = false;
-export const VERSION = "0.13.11";
+export const VERSION = "0.14.0";

@@ -18,6 +18,8 @@ import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_Mac
 import * as SpiderEvents from "./callbacks/handler_SpiderEvents";
 import * as MicrodroneEvents from "./callbacks/handler_MicrodroneEvents";
 import * as EffectEvents from "./callbacks/handler_EffectEvents";
+import * as FamiliarEvents from "./callbacks/handler_FamiliarEvents";
+import * as TearEvents from "./callbacks/handler_TearEvents";
 // ===== import item code =====
 // --- Normal Upgraded Actives ---
 import * as EFF_ABIEXSPIRAVIT from "./items/active/upgraded/a/abiExspiravit";
@@ -171,6 +173,9 @@ import * as EFF_REINFORCEDFABRICATOR from "./items/active/specialized/reinforced
 // --- Utility Actives ---
 import * as EFF_NONE from "./items/active/utility/noEffect";
 
+// --- New Passives ---
+import * as CACHE_CYBERBOB from "./items/passive/cyberBob";
+
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
 const ABANDONED_LABORATORY = RegisterMod("Abandoned_Laboratory", 1);
@@ -243,7 +248,13 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, SpiderEvents.up
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SpiderEvents.interceptDamage, SpiderEvents.SPIDER_ENTITYTYPE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MicrodroneEvents.update, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, MicrodroneEvents.interceptDamage, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
+
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EffectEvents.update, EffectEvents.LabEffectEntityVariant);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, FamiliarEvents.update, FamiliarEvents.LabFamiliarEntityVariant);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, FamiliarEvents.collide, FamiliarEvents.LabFamiliarEntityVariant);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_TEAR_INIT, TearEvents.init, TearEvents.LabTearEntityVariant);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, TearEvents.update, TearEvents.LabTearEntityVariant);
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, TearEvents.collide, TearEvents.LabTearEntityVariant);
 
 Isaac.DebugString("|LABOS| Automata scan complete — All units present");
 
@@ -402,9 +413,6 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SIGILOFBELIAL.use
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDBLADE.use, EFF_TEMPEREDBLADE.ownType());
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_REINFORCEDFABRICATOR.use, EFF_REINFORCEDFABRICATOR.ownType());
 
-// --- Utility Items ---
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NONE.use, CollectibleTypeLabUtility.COLLECTIBLE_DISCHARGEDBATTERY);
-
 let itemsWithUpgrade = 0;
 let items = 0;
 const itemConfig = Isaac.GetItemConfig();
@@ -423,5 +431,14 @@ Isaac.DebugString("|LABOS| Automated enhancement device check complete."+
 `  Availability: ${itemsWithUpgrade}/${items}`+
 ` (${Math.round((itemsWithUpgrade/items)*100*100)/100}%)`);
 Isaac.DebugString(`|LABOS| Total registered upgrade items: ${Math.floor(Object.entries(CollectibleTypeLabUpgrade).length/2)}`);
+
+Isaac.DebugString("|LABOS| Checking item patents...");
+// --- Utility Items ---
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NONE.use, CollectibleTypeLabUtility.COLLECTIBLE_DISCHARGEDBATTERY);
+
+// --- Passive Items ---
+ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, CACHE_CYBERBOB.evalCache, CACHE_CYBERBOB.ownCache());
+Isaac.DebugString("|LABOS| Item patents validated.");
+
 Isaac.DebugString("|LABOS| Startup complete");
 Isaac.DebugString("====================================");

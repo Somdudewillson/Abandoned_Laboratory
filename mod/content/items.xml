@@ -151,6 +151,9 @@
 	<active description="Less-Fragile Item Fabricator" gfx="upgraded\specialized\reinforceditemfabricator.png" maxcharges="3" name="Reinforced Item Fabricator" hidden="true"/>
 
 
+	<!--Passive Items-->
+	<familiar description="Rocket Friend" gfx="new\passive\cyberbob.png" name="Cyber Bob" quality="2" tags="summonable offensive"/>
+
 	<!--Special-Use Items-->
 	<active description="Recharge it and return" gfx="utility\dischargedbattery.png" maxcharges="5" initcharge="1" name="Discharged Battery" hidden="true"/>
 </items>

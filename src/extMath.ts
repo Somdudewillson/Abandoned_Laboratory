@@ -126,3 +126,18 @@ export function cardinalized(inVec: Vector): Vector {
   }
   return Vector(0, 1 * sign(inVec.Y));
 }
+
+/** Convert a `Vector` to the nearest `Direction` */
+export function cardinalizedDirection(inVec: Vector): Direction {
+  if (Math.abs(inVec.X) > Math.abs(inVec.Y)) {
+    if (inVec.X > 0) {
+      return Direction.RIGHT;
+    }
+    return Direction.LEFT;
+  }
+
+  if (inVec.Y > 0) {
+    return Direction.DOWN;
+  }
+  return Direction.UP;
+}

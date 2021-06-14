@@ -4,7 +4,7 @@
 import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE, CollectibleTypeLabUpgrade, CollectibleTypeLabUtility } from "./constants";
 import * as SaveUtil from "./saveData";
 import * as extMath from "./extMath";
-import { registerExternalItemDescriptions } from "./eidCompat";
+import { registerExternalItemDescriptions } from "./compat/eidCompat";
 // ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";
 import * as PostLevelHandler from "./callbacks/handler_PostNewLevel";
@@ -187,6 +187,24 @@ function postGameStarted(isContinued:boolean) {
   }
 
   if (EID !== null) {registerExternalItemDescriptions();}
+  if (StageAPI !== null) {
+    Isaac.DebugString("|LABOS| Stage API detected");
+
+    const stageOverride = {
+      OverrideStage: LevelStage.STAGE1_2,
+      OverrideStageType: StageType.STAGETYPE_WOTL,
+      ReplaceWith: {
+        NormalStage: true,
+        Stage: LevelStage.STAGE2_1,
+        StageType: StageType.STAGETYPE_WOTL,
+      }
+    } as StageOverrideStage;
+    const testStage = StageAPI.CustomStage("TEST", stageOverride);
+    testStage.SetDisplayName("TEST");
+    testStage.Replaces = stageOverride;
+
+    StageAPI.GotoCustomStage(testStage, false, false);
+  }
 
   if (!isContinued && DEBUG_SPAWN) {
     const rand:RNG = RNG();

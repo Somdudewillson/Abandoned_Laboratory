@@ -30,3 +30,4 @@ At a certain depth, secret rooms and super secret rooms can be replaced
         * Item that doubles the effect of and sucks in the temporary hearts she spawns
       --Jacob/Esau item ideas:
         * Esau becomes AI-piloted
+    Rift room - Offers items that are references to other games

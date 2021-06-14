@@ -44,12 +44,23 @@ declare interface CustomStage {
   SetName(name: string): void;
   /** Sets the name displayed to the player */
   SetDisplayName(name: string): void;
+  /** Sets if this is the second half of a stage */
+  SetIsSecondStage(isSecondStage: boolean): void;
+  /** Sets the stage's number */
+  SetStageNumber(num: int): void;
   /** Sets the stage overridden */
   SetReplace(StageOverrideStage: StageOverrideStage): void;
   /** Sets the stage after this one */
   SetNextStage(nextStage: CustomStage): void;
-  /** Sets the `RoomGFX` used by the stage */
-  SetRoomGfx(RoomGfx: RoomGfx): void;
+  /** Sets the `RoomGFX` used by the stage
+   * @param RoomTypes the room types these gfx apply to.
+   *
+   * Can be a string identifier, a `RoomType`, or an array of either.
+   */
+  SetRoomGfx(
+    RoomGfx: RoomGfx,
+    RoomTypes: string | int | string[] | int[],
+  ): void;
   /** Sets the room layouts used by the stage */
   SetRooms(RoomsList: RoomsList): void;
   /** Sets the music used by the stage */
@@ -69,8 +80,6 @@ declare interface CustomStage {
   SetTransitionIcon(icon: Sprite): void;
   /** If this `CustomStage` is, in fact, a stage. */
   IsStage(noAlias: boolean): boolean;
-
-  Replaces: StageOverrideStage;
 }
 
 declare interface GridGfx {

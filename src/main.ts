@@ -175,6 +175,7 @@ import * as EFF_NONE from "./items/active/utility/noEffect";
 
 // --- New Passives ---
 import * as CACHE_CYBERBOB from "./items/passive/cyberBob";
+import { createStages } from "./compat/stageCreation";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
@@ -190,20 +191,7 @@ function postGameStarted(isContinued:boolean) {
   if (StageAPI !== null) {
     Isaac.DebugString("|LABOS| Stage API detected");
 
-    const stageOverride = {
-      OverrideStage: LevelStage.STAGE1_2,
-      OverrideStageType: StageType.STAGETYPE_WOTL,
-      ReplaceWith: {
-        NormalStage: true,
-        Stage: LevelStage.STAGE2_1,
-        StageType: StageType.STAGETYPE_WOTL,
-      }
-    } as StageOverrideStage;
-    const testStage = StageAPI.CustomStage("TEST", stageOverride);
-    testStage.SetDisplayName("TEST");
-    testStage.Replaces = stageOverride;
-
-    StageAPI.GotoCustomStage(testStage, false, false);
+    createStages();
   }
 
   if (!isContinued && DEBUG_SPAWN) {

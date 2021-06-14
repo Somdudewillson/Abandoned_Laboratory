@@ -1,3 +1,4 @@
+import { CollectibleTypeLabPassive } from "../constants";
 import * as FAMILIAR_CYBOB from "../entities/familiars/familiar_Cybob";
 
 export const LabFamiliarEntityVariant = 5045;
@@ -25,5 +26,16 @@ export function collide(
     default:
     case FamiliarEntitySubtype.CYBOB:
       return null;
+  }
+}
+
+export function evalCache(player: EntityPlayer, cacheFlags: CacheFlag): void {
+  if ((cacheFlags & CacheFlag.CACHE_FAMILIARS) <= 0) {
+    return;
+  }
+
+  // update familiars
+  if (player.HasCollectible(CollectibleTypeLabPassive.COLLECTIBLE_CYBERBOB)) {
+    // do stuff
   }
 }

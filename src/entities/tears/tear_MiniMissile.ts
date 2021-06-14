@@ -16,6 +16,16 @@ export function collide(
   _other: Entity,
   _low: boolean,
 ): boolean | null {
+  const entities = Isaac.FindInRadius(self.Position, 15, EntityPartition.ENEMY);
+  for (const entity of entities) {
+    entity.TakeDamage(
+      self.CollisionDamage,
+      DamageFlag.DAMAGE_EXPLOSION,
+      EntityRef(self),
+      0,
+    );
+  }
+
   playSound(SoundEffect.SOUND_EXPLOSION_WEAK, 0.75);
   const newBomb = Isaac.Spawn(
     EntityType.ENTITY_EFFECT,
@@ -26,16 +36,6 @@ export function collide(
     null,
   ).ToEffect()!;
   newBomb.SpriteScale = Vector(0.4, 0.4);
-
-  const entities = Isaac.FindInRadius(self.Position, 15, EntityPartition.ENEMY);
-  for (const entity of entities) {
-    entity.TakeDamage(
-      self.CollisionDamage,
-      DamageFlag.DAMAGE_EXPLOSION,
-      EntityRef(self),
-      0,
-    );
-  }
 
   self.Remove();
   return true;

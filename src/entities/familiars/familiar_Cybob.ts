@@ -112,7 +112,7 @@ export function update(self: EntityFamiliar): void {
     newProjectile.Parent = self.Parent;
     newProjectile.Target = self.Target;
     newProjectile.Height = -30;
-    newProjectile.CollisionDamage = hasBFF ? 15 : 5;
+    newProjectile.CollisionDamage = hasBFF ? 12 : 4;
 
     if (self.State === 2) {
       self.FireCooldown = 3;
@@ -141,6 +141,9 @@ function updateTarget(self: EntityFamiliar, room: Room): void {
         continue;
       }
       if (!entity.IsVulnerableEnemy()) {
+        continue;
+      }
+      if (entity.IsInvincible()) {
         continue;
       }
 

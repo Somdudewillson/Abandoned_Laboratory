@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-concat */
-import { CollectibleTypeLabUpgrade } from "./constants";
+import { CollectibleTypeLabUpgrade } from "../constants";
 
 export function registerExternalItemDescriptions(): void {
   // =====Upgraded Vanilla Items=====

@@ -35,10 +35,13 @@ declare interface RoomsList {
 
 declare interface CustomStage {
   /** Automatically aliases the new stage to the old one, if noSetAlias is not set.
+   *
    * This means that IsStage calls on either will return true if either is active.
+   *
    * STILL NEEDS A UNIQUE NAME. */
   InheritInit(name: string, noSetAlias?: boolean): void;
   /** Sets the internal id
+   *
    * MUST BE UNIQUE
    */
   SetName(name: string): void;
@@ -88,6 +91,7 @@ declare interface GridGfx {
   /** Sets the path to the rock gfx spritesheet */
   SetRocks(filename: string): void;
   /** Sets the path to the pit gfx spritesheet
+   *
    * Alt Pits are used where water pits would be.
    * @param hasExtraFrames controls for situations where the base game would not normally tile pits specially
    */
@@ -97,7 +101,9 @@ declare interface GridGfx {
     hasExtraFrames?: boolean,
   ): void;
   /** Sets the paths to the pit gfx spritesheets
+   *
    * Takes lists of { File, HasExtraFrames }
+   *
    * (see utero override)
    */
   SetPits(

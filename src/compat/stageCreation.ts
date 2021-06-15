@@ -3,13 +3,13 @@ const DefaultShadingPrefix = "stageapi/shading/shading";
 
 const LabBackdrop = StageAPI.BackdropHelper(
   {
-    Walls: ["1", "2", "3"],
+    Walls: ["a", "b", "c"],
     NFloors: ["nfloor"],
     LFloors: ["lfloor"],
     Corners: ["corner"],
   },
   "gfx/backdrop/lab/restored/generic/main_",
-  ".png",
+  "0001.png",
 );
 
 export function createStages(): void {

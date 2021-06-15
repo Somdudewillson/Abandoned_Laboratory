@@ -22,6 +22,7 @@ declare global {
       shadingName: string,
       shadingPrefix: string,
     ): RoomGfx;
+    function GridGfx(): GridGfx;
 
     /** Teleports the player(s) to a specified stage */
     function GotoCustomStage(

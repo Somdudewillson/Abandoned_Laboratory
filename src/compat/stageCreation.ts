@@ -11,30 +11,27 @@ const LabBackdrop = StageAPI.BackdropHelper(
   "gfx/backdrop/lab/restored/generic/main_",
   "0001.png",
 );
+const LabGrid = StageAPI.GridGfx();
+LabGrid.SetRocks("gfx/grid/lab/restored/generic/lab_rocks.png");
 
 export function createStages(): void {
-  const testStage = StageAPI.CustomStage("Lab I");
-  testStage.SetDisplayName("Lab I");
-  testStage.SetIsSecondStage(false);
-  testStage.SetStageNumber(2);
-  /* testStage.SetReplace({
-    OverrideStage: LevelStage.STAGE2_1,
-    OverrideStageType: StageType.STAGETYPE_WOTL,
-    ReplaceWith: testStage,
-  } as StageOverrideStage); */
-  testStage.SetReplace(
+  const lab1Stage = StageAPI.CustomStage("Lab I");
+  lab1Stage.SetDisplayName("Lab I");
+  lab1Stage.SetIsSecondStage(false);
+  lab1Stage.SetStageNumber(2);
+  lab1Stage.SetReplace(
     StageAPI.StageOverride.CatacombsOne as unknown as StageOverrideStage,
   );
 
-  testStage.SetRoomGfx(
+  lab1Stage.SetRoomGfx(
     StageAPI.RoomGfx(
       LabBackdrop,
-      null,
+      LabGrid,
       DefaultShadingName,
       DefaultShadingPrefix,
     ),
     RoomType.ROOM_DEFAULT,
   );
 
-  StageAPI.GotoCustomStage(testStage, false, false);
+  StageAPI.GotoCustomStage(lab1Stage, false, false);
 }

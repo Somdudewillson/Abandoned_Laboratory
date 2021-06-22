@@ -382,3 +382,12 @@ export function checkLine(
 
   return { clear: isClear, collidePos: endPos };
 }
+
+/** Mirror a `Vector` over a horizontal line */
+export function mirrorHorizontal(origin: Vector, lineY: int): Vector {
+  return Vector(origin.X, -(origin.Y - lineY) + lineY);
+}
+/** Mirror a `Vector` over a vertical line */
+export function mirrorVertical(origin: Vector, lineX: int): Vector {
+  return Vector(-(origin.X - lineX) + lineX, origin.Y);
+}

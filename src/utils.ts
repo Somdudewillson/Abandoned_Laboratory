@@ -391,3 +391,7 @@ export function mirrorHorizontal(origin: Vector, lineY: float): Vector {
 export function mirrorVertical(origin: Vector, lineX: float): Vector {
   return Vector(-(origin.X - lineX) + lineX, origin.Y);
 }
+/** Mirror a `Vector` over both a horizontal and a vertical line */
+export function mirrorQuad(origin: Vector, lineX: float, lineY: float): Vector {
+  return Vector(-(origin.X - lineX) + lineX, -(origin.Y - lineY) + lineY);
+}

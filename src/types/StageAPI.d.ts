@@ -1,5 +1,24 @@
 export {};
 
+interface StageAPICallbackParameters {
+  [StageCallback.PRE_ROOM_LAYOUT_CHOOSE]: [
+    callback: (
+      currentRoom: unknown,
+      roomsList: unknown,
+    ) => CustomRoomConfig | null,
+  ];
+  [StageCallback.PRE_SPAWN_GRID]: [
+    callback: (
+      gridData: unknown,
+      gridInformation: unknown,
+      entities: unknown,
+      gridSpawnRNG: RNG,
+    ) => boolean | null,
+  ];
+  [StageCallback.POST_CHANGE_ROOM_GFX]: [callback: () => void];
+  [StageCallback.PRE_STAGEAPI_NEW_ROOM]: [callback: () => void];
+}
+
 declare global {
   /** @noSelf */
   namespace StageAPI {
@@ -7,6 +26,7 @@ declare global {
       CatacombsOne: 1;
       CatacombsTwo: 2;
     };
+
     /** Creates a new custom stage
      * @param name IS NOT OPTIONAL. USED TO IDENTIFY STAGE AND FOR SAVING CURRENT STAGE.  MUST BE UNIQUE.
      * @param noSetReplaces replaces defaults to catacombs one if noSetReplaces is not set.
@@ -22,8 +42,18 @@ declare global {
       shadingName: string,
       shadingPrefix: string,
     ): RoomGfx;
+    function RoomsList(name: string, ...layouts: unknown[]): RoomsList;
     function GridGfx(): GridGfx;
 
+    /** Stores a function and its params in a table indexed by `ID` and sorted by `priority`, where low priority is at the start. */
+    function AddCallback<T extends keyof StageAPICallbackParameters>(
+      modID: Mod,
+      id: T,
+      priority: int,
+      ...args: StageAPICallbackParameters[T]
+    ): void;
+    /** Unregisters all mod callbacks, should be used when a mod loads, useful for luamod. */
+    function UnregisterCallbacks(modID: Mod): void;
     /** Teleports the player(s) to a specified stage */
     function GotoCustomStage(
       CustomStage: CustomStage,

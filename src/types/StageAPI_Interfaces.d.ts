@@ -30,7 +30,7 @@ declare interface RoomGfx {
   shadingPrefix: string;
 }
 declare interface RoomsList {
-  AddRooms(roomfiles: string[]): void;
+  AddRooms(roomfiles: string[] | CustomRoomConfig[]): void;
 }
 
 declare interface CustomStage {

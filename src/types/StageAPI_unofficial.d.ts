@@ -35,3 +35,50 @@ declare interface LuaRoomEntity extends LuaRoomGenericEntity {
     METADATA?: unknown;
   };
 }
+
+// Layout entity enums
+declare const enum LayoutGridType {
+  ROCK = 1000,
+  ROCK_BOMB = 1001,
+  ROCK_SPIKE = 1010,
+  ROCK_GOLD = 1011,
+  MARKED_SKULL = 1008,
+  BLOCK_METAL = 1900,
+  BLOCK_METAL_TALL = 1901,
+  BLOCK_INVISIBLE = 1999,
+  BLOCK_KEY = 4000,
+  PIT = 3000,
+  TNT = 1300,
+  TNT_PUSHABLE = 292,
+  SPIKES = 1930,
+  SPIKES_ON_OFF = 1931,
+  COBWEB = 1940,
+  BUTTON = 4500,
+}
+
+declare const enum LayoutRockSubtype {
+  NORMAL = 0,
+  NON_REPLACEABLE = 1,
+}
+
+declare const enum LayoutSpikesOnOffVariant {
+  NORMAL = 0,
+  DOWN_1_FIFTH = 1,
+  DOWN_2_FIFTHS = 2,
+  DOWN_3_FIFTHS = 3,
+  DOWN_4_FIFTHS = 4,
+  DOWN_5_FIFTHS = 5,
+  UP_1_FIFTH = 6,
+  UP_2_FIFTHS = 7,
+  UP_3_FIFTHS = 8,
+  UP_4_FIFTHS = 9,
+  UP_5_FIFTHS = 10,
+}
+
+declare const enum LayoutButtonVariant {
+  ROOM_CLEAR = 0,
+  REWARD = 1,
+  GREED = 2,
+  KILL = 9,
+  RAIL = 3,
+}

@@ -383,6 +383,102 @@ export function checkLine(
   return { clear: isClear, collidePos: endPos };
 }
 
+export const enum SymmetryType {
+  NONE,
+  /** Mirrored over a horizontal line */
+  HORIZONTAL,
+  /** Mirrored over a vertical line */
+  VERTICAL,
+  /** Both vertical and horizontal symmetry */
+  QUAD,
+  /** Diagonal top-left to bottom-right */
+  DIAGONAl_LR,
+  /** Diagonal top-right to bottom-left */
+  DIAGONAl_RL,
+}
+
+export function getMirroredPos(
+  shape: RoomShape,
+  symmetry: SymmetryType,
+  pos: Vector,
+): Vector[] {
+  const mirrorPos = [Vector(pos.X, pos.Y)];
+
+  switch (symmetry) {
+    default:
+    case SymmetryType.NONE:
+      return mirrorPos;
+    case SymmetryType.HORIZONTAL:
+      switch (shape) {
+        default:
+        case RoomShape.ROOMSHAPE_1x1:
+        case RoomShape.ROOMSHAPE_IH:
+        case RoomShape.ROOMSHAPE_IV:
+        case RoomShape.ROOMSHAPE_2x1:
+        case RoomShape.ROOMSHAPE_IIH:
+          mirrorPos[0] = mirrorHorizontal(pos, 3);
+          break;
+        case RoomShape.ROOMSHAPE_1x2:
+        case RoomShape.ROOMSHAPE_IIV:
+        case RoomShape.ROOMSHAPE_2x2:
+        case RoomShape.ROOMSHAPE_LTL:
+        case RoomShape.ROOMSHAPE_LTR:
+        case RoomShape.ROOMSHAPE_LBL:
+        case RoomShape.ROOMSHAPE_LBR:
+          mirrorPos[0] = mirrorHorizontal(pos, 6.5);
+          break;
+      }
+      break;
+    case SymmetryType.VERTICAL:
+      switch (shape) {
+        default:
+        case RoomShape.ROOMSHAPE_1x1:
+        case RoomShape.ROOMSHAPE_IH:
+        case RoomShape.ROOMSHAPE_IV:
+        case RoomShape.ROOMSHAPE_1x2:
+        case RoomShape.ROOMSHAPE_IIV:
+          mirrorPos[0] = mirrorVertical(pos, 6);
+          break;
+        case RoomShape.ROOMSHAPE_2x1:
+        case RoomShape.ROOMSHAPE_IIH:
+        case RoomShape.ROOMSHAPE_2x2:
+        case RoomShape.ROOMSHAPE_LTL:
+        case RoomShape.ROOMSHAPE_LTR:
+        case RoomShape.ROOMSHAPE_LBL:
+        case RoomShape.ROOMSHAPE_LBR:
+          mirrorPos[0] = mirrorVertical(pos, 12.5);
+          break;
+      }
+      break;
+    case SymmetryType.QUAD:
+      switch (shape) {
+        default:
+        case RoomShape.ROOMSHAPE_1x1:
+        case RoomShape.ROOMSHAPE_IH:
+        case RoomShape.ROOMSHAPE_IV:
+        case RoomShape.ROOMSHAPE_2x1:
+        case RoomShape.ROOMSHAPE_IIH:
+          mirrorPos[0] = mirrorHorizontal(pos, 3);
+          mirrorPos[1] = mirrorVertical(mirrorPos[0], 6);
+          mirrorPos[2] = mirrorVertical(pos, 6);
+          break;
+        case RoomShape.ROOMSHAPE_1x2:
+        case RoomShape.ROOMSHAPE_IIV:
+        case RoomShape.ROOMSHAPE_2x2:
+        case RoomShape.ROOMSHAPE_LTL:
+        case RoomShape.ROOMSHAPE_LTR:
+        case RoomShape.ROOMSHAPE_LBL:
+        case RoomShape.ROOMSHAPE_LBR:
+          mirrorPos[0] = mirrorHorizontal(pos, 6.5);
+          mirrorPos[1] = mirrorVertical(mirrorPos[0], 12.5);
+          mirrorPos[2] = mirrorVertical(pos, 12.5);
+          break;
+      }
+      break;
+  }
+
+  return mirrorPos;
+}
 /** Mirror a `Vector` over a horizontal line */
 export function mirrorHorizontal(origin: Vector, lineY: float): Vector {
   return Vector(origin.X, -(origin.Y - lineY) + lineY);
@@ -394,4 +490,354 @@ export function mirrorVertical(origin: Vector, lineX: float): Vector {
 /** Mirror a `Vector` over both a horizontal and a vertical line */
 export function mirrorQuad(origin: Vector, lineX: float, lineY: float): Vector {
   return Vector(-(origin.X - lineX) + lineX, -(origin.Y - lineY) + lineY);
+}
+
+/** Convert world position `Vector` to grid position. */
+export function worldToGridPos(worldPos: Vector): Vector {
+  return Vector(worldPos.X / 40 - 2, worldPos.Y / 40 - 4);
+}
+/** Get the grid position of a `DoorSlot` in a room of the given `RoomShape` */
+export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
+  switch (shape) {
+    default:
+    case RoomShape.ROOMSHAPE_1x1:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(-1, 3);
+        case DoorSlot.UP0:
+          return Vector(6, -1);
+        case DoorSlot.RIGHT0:
+          return Vector(13, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 7);
+        case DoorSlot.LEFT1:
+          return Vector(-1, 10);
+        case DoorSlot.UP1:
+          return Vector(4, 0);
+        case DoorSlot.RIGHT1:
+          return Vector(13, 10);
+        case DoorSlot.DOWN1:
+          return Vector(4, 8);
+      }
+    case RoomShape.ROOMSHAPE_IH:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(-1, 3);
+        case DoorSlot.UP0:
+          return Vector(6, 2);
+        case DoorSlot.RIGHT0:
+          return Vector(13, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 4);
+        case DoorSlot.LEFT1:
+          return Vector(-1, 10);
+        case DoorSlot.UP1:
+          return Vector(4, 3);
+        case DoorSlot.RIGHT1:
+          return Vector(13, 10);
+        case DoorSlot.DOWN1:
+          return Vector(4, 5);
+      }
+    case RoomShape.ROOMSHAPE_IV:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(3, 3);
+        case DoorSlot.UP0:
+          return Vector(6, -1);
+        case DoorSlot.RIGHT0:
+          return Vector(9, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 7);
+        case DoorSlot.LEFT1:
+          return Vector(3, 10);
+        case DoorSlot.UP1:
+          return Vector(4, 0);
+        case DoorSlot.RIGHT1:
+          return Vector(9, 10);
+        case DoorSlot.DOWN1:
+          return Vector(4, 8);
+      }
+    case RoomShape.ROOMSHAPE_1x2:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(-1, 3);
+        case DoorSlot.UP0:
+          return Vector(6, -1);
+        case DoorSlot.RIGHT0:
+          return Vector(13, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 14);
+        case DoorSlot.LEFT1:
+          return Vector(-1, 10);
+        case DoorSlot.UP1:
+          return Vector(4, 0);
+        case DoorSlot.RIGHT1:
+          return Vector(13, 10);
+        case DoorSlot.DOWN1:
+          return Vector(4, 15);
+      }
+    case RoomShape.ROOMSHAPE_IIV:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(3, 3);
+        case DoorSlot.UP0:
+          return Vector(6, -1);
+        case DoorSlot.RIGHT0:
+          return Vector(9, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 14);
+        case DoorSlot.LEFT1:
+          return Vector(3, 10);
+        case DoorSlot.UP1:
+          return Vector(4, 0);
+        case DoorSlot.RIGHT1:
+          return Vector(9, 10);
+        case DoorSlot.DOWN1:
+          return Vector(4, 15);
+      }
+    case RoomShape.ROOMSHAPE_2x1:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(-1, 3);
+        case DoorSlot.UP0:
+          return Vector(6, -1);
+        case DoorSlot.RIGHT0:
+          return Vector(26, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 7);
+        case DoorSlot.LEFT1:
+          return Vector(-1, 10);
+        case DoorSlot.UP1:
+          return Vector(19, -1);
+        case DoorSlot.RIGHT1:
+          return Vector(26, 10);
+        case DoorSlot.DOWN1:
+          return Vector(19, 7);
+      }
+    case RoomShape.ROOMSHAPE_IIH:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(-1, 3);
+        case DoorSlot.UP0:
+          return Vector(6, 2);
+        case DoorSlot.RIGHT0:
+          return Vector(26, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 4);
+        case DoorSlot.LEFT1:
+          return Vector(-1, 10);
+        case DoorSlot.UP1:
+          return Vector(19, 2);
+        case DoorSlot.RIGHT1:
+          return Vector(26, 10);
+        case DoorSlot.DOWN1:
+          return Vector(19, 4);
+      }
+    case RoomShape.ROOMSHAPE_2x2:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(-1, 3);
+        case DoorSlot.UP0:
+          return Vector(6, -1);
+        case DoorSlot.RIGHT0:
+          return Vector(26, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 14);
+        case DoorSlot.LEFT1:
+          return Vector(-1, 10);
+        case DoorSlot.UP1:
+          return Vector(19, -1);
+        case DoorSlot.RIGHT1:
+          return Vector(26, 10);
+        case DoorSlot.DOWN1:
+          return Vector(19, 14);
+      }
+    case RoomShape.ROOMSHAPE_LTL:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(12, 3);
+        case DoorSlot.UP0:
+          return Vector(6, 6);
+        case DoorSlot.RIGHT0:
+          return Vector(26, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 14);
+        case DoorSlot.LEFT1:
+          return Vector(-1, 10);
+        case DoorSlot.UP1:
+          return Vector(19, -1);
+        case DoorSlot.RIGHT1:
+          return Vector(26, 10);
+        case DoorSlot.DOWN1:
+          return Vector(19, 14);
+      }
+    case RoomShape.ROOMSHAPE_LTR:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(-1, 3);
+        case DoorSlot.UP0:
+          return Vector(6, -1);
+        case DoorSlot.RIGHT0:
+          return Vector(13, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 14);
+        case DoorSlot.LEFT1:
+          return Vector(-1, 10);
+        case DoorSlot.UP1:
+          return Vector(19, 6);
+        case DoorSlot.RIGHT1:
+          return Vector(26, 10);
+        case DoorSlot.DOWN1:
+          return Vector(19, 14);
+      }
+    case RoomShape.ROOMSHAPE_LBL:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(-1, 3);
+        case DoorSlot.UP0:
+          return Vector(6, -1);
+        case DoorSlot.RIGHT0:
+          return Vector(26, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 7);
+        case DoorSlot.LEFT1:
+          return Vector(12, 10);
+        case DoorSlot.UP1:
+          return Vector(19, -1);
+        case DoorSlot.RIGHT1:
+          return Vector(26, 10);
+        case DoorSlot.DOWN1:
+          return Vector(19, 14);
+      }
+    case RoomShape.ROOMSHAPE_LBR:
+      switch (slot) {
+        default:
+          Isaac.DebugString("Invalid DoorSlot!");
+          return Vector.Zero;
+
+        case DoorSlot.LEFT0:
+          return Vector(-1, 3);
+        case DoorSlot.UP0:
+          return Vector(6, -1);
+        case DoorSlot.RIGHT0:
+          return Vector(26, 3);
+        case DoorSlot.DOWN0:
+          return Vector(6, 14);
+        case DoorSlot.LEFT1:
+          return Vector(-1, 10);
+        case DoorSlot.UP1:
+          return Vector(19, -1);
+        case DoorSlot.RIGHT1:
+          return Vector(13, 10);
+        case DoorSlot.DOWN1:
+          return Vector(19, 7);
+      }
+  }
+}
+/** Get all `DoorSlot`s that are valid for a given `RoomShape` */
+export function getValidSlots(shape: RoomShape): DoorSlot[] {
+  switch (shape) {
+    default:
+    case RoomShape.ROOMSHAPE_1x1:
+      return [DoorSlot.LEFT0, DoorSlot.UP0, DoorSlot.RIGHT0, DoorSlot.DOWN0];
+    case RoomShape.ROOMSHAPE_IH:
+    case RoomShape.ROOMSHAPE_IIH:
+      return [DoorSlot.LEFT0, DoorSlot.RIGHT0];
+    case RoomShape.ROOMSHAPE_IV:
+    case RoomShape.ROOMSHAPE_IIV:
+      return [DoorSlot.UP0, DoorSlot.DOWN0];
+    case RoomShape.ROOMSHAPE_1x2:
+      return [
+        DoorSlot.LEFT0,
+        DoorSlot.UP0,
+        DoorSlot.RIGHT0,
+        DoorSlot.DOWN0,
+        DoorSlot.LEFT1,
+        DoorSlot.RIGHT1,
+      ];
+    case RoomShape.ROOMSHAPE_2x1:
+      return [
+        DoorSlot.LEFT0,
+        DoorSlot.UP0,
+        DoorSlot.RIGHT0,
+        DoorSlot.DOWN0,
+        DoorSlot.UP1,
+        DoorSlot.DOWN1,
+      ];
+    case RoomShape.ROOMSHAPE_2x2:
+    case RoomShape.ROOMSHAPE_LTL:
+    case RoomShape.ROOMSHAPE_LTR:
+    case RoomShape.ROOMSHAPE_LBL:
+    case RoomShape.ROOMSHAPE_LBR:
+      return [
+        DoorSlot.LEFT0,
+        DoorSlot.UP0,
+        DoorSlot.RIGHT0,
+        DoorSlot.DOWN0,
+        DoorSlot.LEFT1,
+        DoorSlot.UP1,
+        DoorSlot.RIGHT1,
+        DoorSlot.DOWN1,
+      ];
+  }
+}
+/** Test if a grid position is actually in the given `RoomShape` */
+export function isValidGridPos(pos: Vector, shape: RoomShape): boolean {
+  if (pos.X < 0 || pos.Y < 0) {
+    return false;
+  }
+
+  switch (shape) {
+    default:
+    case RoomShape.ROOMSHAPE_1x1:
+      if (pos.X > 12) {
+        return false;
+      }
+  }
+
+  return true;
 }

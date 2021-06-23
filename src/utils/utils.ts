@@ -461,20 +461,28 @@ export function getMirroredPos(
         case RoomShape.ROOMSHAPE_1x1:
         case RoomShape.ROOMSHAPE_IH:
         case RoomShape.ROOMSHAPE_IV:
-        case RoomShape.ROOMSHAPE_2x1:
-        case RoomShape.ROOMSHAPE_IIH:
           mirrorPos[start] = mirrorHorizontal(pos, 3);
           mirrorPos[start + 1] = mirrorVertical(mirrorPos[start], 6);
           mirrorPos[start + 2] = mirrorVertical(pos, 6);
           break;
+        case RoomShape.ROOMSHAPE_2x1:
+        case RoomShape.ROOMSHAPE_IIH:
+          mirrorPos[start] = mirrorHorizontal(pos, 3);
+          mirrorPos[start + 1] = mirrorVertical(mirrorPos[start], 12.5);
+          mirrorPos[start + 2] = mirrorVertical(pos, 12.5);
+          break;
         case RoomShape.ROOMSHAPE_1x2:
         case RoomShape.ROOMSHAPE_IIV:
+          mirrorPos[start] = mirrorHorizontal(pos, 6.5);
+          mirrorPos[start + 1] = mirrorVertical(mirrorPos[start], 6);
+          mirrorPos[start + 2] = mirrorVertical(pos, 6);
+          break;
         case RoomShape.ROOMSHAPE_2x2:
         case RoomShape.ROOMSHAPE_LTL:
         case RoomShape.ROOMSHAPE_LTR:
         case RoomShape.ROOMSHAPE_LBL:
         case RoomShape.ROOMSHAPE_LBR:
-          mirrorPos[start + 0] = mirrorHorizontal(pos, 6.5);
+          mirrorPos[start] = mirrorHorizontal(pos, 6.5);
           mirrorPos[start + 1] = mirrorVertical(mirrorPos[start], 12.5);
           mirrorPos[start + 2] = mirrorVertical(pos, 12.5);
           break;

@@ -918,3 +918,51 @@ export function isValidGridPos(pos: Vector, shape: RoomShape): boolean {
 
   return true;
 }
+/** Get a `RoomShape`'s layout size. This is **NOT** the size of the `RoomShape`'s actual contents! */
+export function getRoomShapeSize(shape: RoomShape): Vector {
+  switch (shape) {
+    default:
+    case RoomShape.ROOMSHAPE_1x1:
+    case RoomShape.ROOMSHAPE_IH:
+    case RoomShape.ROOMSHAPE_IV:
+      return Vector(13, 7);
+    case RoomShape.ROOMSHAPE_1x2:
+    case RoomShape.ROOMSHAPE_IIV:
+      return Vector(13, 14);
+    case RoomShape.ROOMSHAPE_2x1:
+    case RoomShape.ROOMSHAPE_IIH:
+      return Vector(26, 7);
+    case RoomShape.ROOMSHAPE_2x2:
+    case RoomShape.ROOMSHAPE_LTL:
+    case RoomShape.ROOMSHAPE_LTR:
+    case RoomShape.ROOMSHAPE_LBL:
+    case RoomShape.ROOMSHAPE_LBR:
+      return Vector(26, 14);
+  }
+}
+/** Get the size of a `RoomShape`'s internal space.  Note that this is a bounding box. */
+export function getRoomShapeBounds(shape: RoomShape): Vector {
+  switch (shape) {
+    default:
+    case RoomShape.ROOMSHAPE_1x1:
+      return Vector(13, 7);
+    case RoomShape.ROOMSHAPE_IH:
+      return Vector(13, 3);
+    case RoomShape.ROOMSHAPE_IV:
+      return Vector(5, 7);
+    case RoomShape.ROOMSHAPE_1x2:
+      return Vector(13, 14);
+    case RoomShape.ROOMSHAPE_IIV:
+      return Vector(5, 14);
+    case RoomShape.ROOMSHAPE_2x1:
+      return Vector(26, 7);
+    case RoomShape.ROOMSHAPE_IIH:
+      return Vector(26, 3);
+    case RoomShape.ROOMSHAPE_2x2:
+    case RoomShape.ROOMSHAPE_LTL:
+    case RoomShape.ROOMSHAPE_LTR:
+    case RoomShape.ROOMSHAPE_LBL:
+    case RoomShape.ROOMSHAPE_LBR:
+      return Vector(26, 14);
+  }
+}

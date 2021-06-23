@@ -1,3 +1,4 @@
+import { isGridPassable } from "../../types/StageAPI_helpers";
 import {
   expandVector,
   findAStarPath,
@@ -110,7 +111,7 @@ export class AccessValidator {
         }
       } else {
         const spawnEntity = entity as LuaRoomEntity;
-        if (spawnEntity[1].TYPE >= 1000) {
+        if (!isGridPassable(spawnEntity[1].TYPE)) {
           this.blockingEntities.add(
             flattenVector(Vector(spawnEntity.GRIDX, spawnEntity.GRIDY)),
           );

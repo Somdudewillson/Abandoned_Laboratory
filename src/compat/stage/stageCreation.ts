@@ -1,3 +1,4 @@
+import { getSubsets } from "../../utils/extMath";
 import { getValidSlots } from "../../utils/utils";
 import { generateRoom } from "./layoutGen";
 
@@ -36,13 +37,58 @@ export function createStages(): void {
     RoomType.ROOM_DEFAULT,
   );
   const lab1Rooms = StageAPI.RoomsList("lab1Rooms");
-  const rand = RNG();
+  // Generate Rooms
+  let totalRooms = 0;
   for (let shape = 1; shape < RoomShape.NUM_ROOMSHAPES; shape++) {
-    for (let i = 0; i < 5; i++) {
-      lab1Rooms.AddRooms([generateRoom(rand, shape, getValidSlots(shape))]);
-    }
+    const desiredCount = shape === RoomShape.ROOMSHAPE_1x1 ? 5 : 1;
+    totalRooms += getDoorSets(shape).length * desiredCount;
   }
+  const rand = RNG();
+  let generatedRooms = 0;
+  const startTime = Isaac.GetTime();
+  for (let shape = 1; shape < RoomShape.NUM_ROOMSHAPES; shape++) {
+    const doorSets = getDoorSets(shape);
+
+    for (const doorSet of doorSets) {
+      const desiredCount = shape === RoomShape.ROOMSHAPE_1x1 ? 5 : 1;
+      for (let count = 0; count < desiredCount; count++) {
+        lab1Rooms.AddRooms([generateRoom(rand, shape, doorSet)]);
+        generatedRooms++;
+      }
+    }
+    const elapsedTime = Isaac.GetTime() - startTime;
+    const remainingTime =
+      elapsedTime / (generatedRooms / totalRooms) - elapsedTime;
+    Isaac.DebugString(
+      `Generated ${generatedRooms}/${totalRooms} rooms in [${
+        elapsedTime / 1000
+      } s]. ETA [${remainingTime / 1000} s]`,
+    );
+  }
+
   lab1Stage.SetRooms(lab1Rooms);
 
   StageAPI.GotoCustomStage(lab1Stage, false, false);
+}
+
+function getDoorSets(shape: RoomShape): DoorSlot[][] {
+  let min = 2;
+  const max = 3;
+  switch (shape) {
+    default:
+      break;
+    case RoomShape.ROOMSHAPE_1x1:
+    case RoomShape.ROOMSHAPE_IH:
+    case RoomShape.ROOMSHAPE_IV:
+      min = 1;
+      break;
+  }
+
+  const validSlots = getValidSlots(shape);
+  const doorSets = getSubsets(validSlots, min, max);
+  if (validSlots.length > max) {
+    doorSets.push(validSlots);
+  }
+
+  return doorSets;
 }

@@ -66,3 +66,17 @@ export function findAStarPath(
   // Open set is empty but goal was never reached
   return false;
 }
+
+// Distance functions, provided for convenience
+export function manhattanDist(current: Vector, goal: Vector): number {
+  return Math.abs(current.X - goal.X) + Math.abs(current.Y - goal.Y);
+}
+export function chebyshevDist(current: Vector, goal: Vector): number {
+  return Math.max(Math.abs(current.X - goal.X), Math.abs(current.Y - goal.Y));
+}
+export function euclideanDistSq(current: Vector, goal: Vector): number {
+  return current.DistanceSquared(goal);
+}
+export function euclideanDist(current: Vector, goal: Vector): number {
+  return current.Distance(goal);
+}

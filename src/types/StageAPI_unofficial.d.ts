@@ -39,6 +39,7 @@ declare interface LuaRoomEntity extends LuaRoomGenericEntity {
 // Layout entity enums
 declare const enum LayoutGridType {
   ROCK = 1000,
+  ROCK_ALT = 1002,
   ROCK_BOMB = 1001,
   ROCK_SPIKE = 1010,
   ROCK_GOLD = 1011,
@@ -54,6 +55,19 @@ declare const enum LayoutGridType {
   SPIKES_ON_OFF = 1931,
   COBWEB = 1940,
   BUTTON = 4500,
+  POOP = 1500,
+  POOP_CORNY = 1495,
+  POOP_RED = 1490,
+  POOP_GOLD = 1496,
+  POOP_RAINBOW = 1494,
+  POOP_BLACK = 1497,
+  POOP_HOLY = 1498,
+  POOP_CHARMING = 1501,
+  GRAVITY = 10000,
+  PITFALL = 291,
+  PROP_A = 10,
+  PROP_B = 20,
+  PROP_C = 30,
 }
 
 declare const enum LayoutRockSubtype {
@@ -81,4 +95,26 @@ declare const enum LayoutButtonVariant {
   GREED = 2,
   KILL = 9,
   RAIL = 3,
+}
+
+declare const enum LayoutPoopSubtype {
+  NORMAL = 0,
+  NON_REPLACEABLE = 1,
+}
+declare const enum LayoutCornyPoopSubtype {
+  NORMAL = 0,
+  NON_REPLACEABLE = 1,
+}
+
+declare const enum LayoutPitfallVariant {
+  NORMAL = 0,
+  SUCTION = 1,
+  TELEPORT = 2,
+}
+
+declare const enum PickupRandomGroupVariant {
+  NOT_CHEST_ITEM = 1,
+  NOT_ITEM = 2,
+  NOT_CHEST_ITEM_COIN = 3,
+  NOT_CHEST_ITEM_TRINKET = 4,
 }

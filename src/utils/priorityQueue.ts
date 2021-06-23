@@ -5,6 +5,7 @@ interface Node<T> {
 
 export class MinPriorityQueue<T> {
   heap: Array<Node<T>> = [];
+  heapSet = new Set<T>();
 
   // -----Tree Navigation Methods-----
   private static parent(index: int): int {
@@ -46,8 +47,13 @@ export class MinPriorityQueue<T> {
     return this.heap.length;
   }
 
+  has(item: T): boolean {
+    return this.heapSet.has(item);
+  }
+
   insert(item: T, itemPriority: number): void {
     this.heap.push({ priority: itemPriority, value: item });
+    this.heapSet.add(item);
 
     let curIndex = this.size() - 1;
     while (curIndex > 0) {
@@ -66,6 +72,7 @@ export class MinPriorityQueue<T> {
 
     this.swap(0, this.heap.length - 1);
     const item = this.heap.pop()!;
+    this.heapSet.delete(item.value);
 
     let current = 0;
     while (this.hasLeft(current)) {

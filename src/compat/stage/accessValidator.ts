@@ -127,7 +127,7 @@ export class AccessValidator {
     return true;
   }
 
-  getNeighbors(current: FlatVector): Vector[] {
+  getNeighbors(current: FlatVector, goal: FlatVector): Vector[] {
     const currentVec = expandVector(current);
     const possibleNeighbors = [
       Vector(currentVec.X + 1, currentVec.Y),
@@ -153,8 +153,9 @@ export class AccessValidator {
     const neighbors: Vector[] = [];
     for (let i = 0; i < possibleNeighbors.length; i++) {
       if (
-        isValidGridPos(possibleNeighbors[i], this.shape) &&
-        !this.blockingEntities.has(flatPossibleNeighbors[i])
+        current === goal ||
+        (isValidGridPos(possibleNeighbors[i], this.shape) &&
+          !this.blockingEntities.has(flatPossibleNeighbors[i]))
       ) {
         neighbors.push(possibleNeighbors[i]);
       }

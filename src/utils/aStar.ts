@@ -30,7 +30,7 @@ export function findAStarPath(
   startVec: Vector,
   goalVec: Vector,
   heuristic: (current: Vector, goal: Vector) => number,
-  getNeighbors: (current: FlatVector) => Vector[],
+  getNeighbors: (current: FlatVector, goal: FlatVector) => Vector[],
 ): Vector[] | false {
   const start = flattenVector(startVec);
   const goal = flattenVector(goalVec);
@@ -62,7 +62,7 @@ export function findAStarPath(
     const currentVec = expandVector(current);
 
     const currentGScore = gScore.get(current)!;
-    for (const neighbor of getNeighbors(current)) {
+    for (const neighbor of getNeighbors(current, goal)) {
       const flatNeighbor = flattenVector(neighbor);
 
       // neighborGScore is the distance from start to the neighbor through current

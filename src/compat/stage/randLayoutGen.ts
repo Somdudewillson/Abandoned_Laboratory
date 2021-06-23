@@ -1,10 +1,10 @@
-import { randomInt, shuffleArray } from "../../utils/extMath";
 import {
   initCustomRoom,
   makeLuaDoor,
   makeLuaEntity,
   mirrorLuaEntity,
 } from "../../types/StageAPI_helpers";
+import { randomInt, shuffleArray } from "../../utils/extMath";
 import {
   getMirroredPos,
   getRoomShapeSize,
@@ -14,6 +14,17 @@ import {
   SymmetryType,
 } from "../../utils/utils";
 import { AccessValidator } from "./accessValidator";
+
+const SymmetryTable = [
+  SymmetryType.NONE,
+  SymmetryType.HORIZONTAL,
+  SymmetryType.HORIZONTAL,
+  SymmetryType.VERTICAL,
+  SymmetryType.VERTICAL,
+  SymmetryType.QUAD,
+  SymmetryType.QUAD,
+  SymmetryType.QUAD,
+];
 
 function getValidSpots(
   shape: RoomShape,
@@ -54,18 +65,47 @@ function getValidSpots(
       switch (symmetry) {
         default:
         case SymmetryType.HORIZONTAL:
-          if (posOption.Y <= yMax / 2) {
-            optionsMirrored.push(posOption);
+          switch (shape) {
+            default:
+              if (posOption.Y <= yMax / 2) {
+                optionsMirrored.push(posOption);
+              }
+              break;
+            case RoomShape.ROOMSHAPE_LTL:
+            case RoomShape.ROOMSHAPE_LTR:
+              if (posOption.Y >= yMax / 2) {
+                optionsMirrored.push(posOption);
+              }
+              break;
           }
           break;
         case SymmetryType.VERTICAL:
-          if (posOption.X <= xMax / 2) {
-            optionsMirrored.push(posOption);
+          switch (shape) {
+            default:
+              if (posOption.X <= xMax / 2) {
+                optionsMirrored.push(posOption);
+              }
+              break;
+            case RoomShape.ROOMSHAPE_LTL:
+            case RoomShape.ROOMSHAPE_LBL:
+              if (posOption.X >= xMax / 2) {
+                optionsMirrored.push(posOption);
+              }
+              break;
           }
           break;
         case SymmetryType.QUAD:
-          if (posOption.Y <= yMax / 2 && posOption.X <= xMax / 2) {
-            optionsMirrored.push(posOption);
+          switch (shape) {
+            default:
+              if (posOption.Y <= yMax / 2 && posOption.X <= xMax / 2) {
+                optionsMirrored.push(posOption);
+              }
+              break;
+            case RoomShape.ROOMSHAPE_LTL:
+              if (posOption.Y >= yMax / 2 && posOption.X >= xMax / 2) {
+                optionsMirrored.push(posOption);
+              }
+              break;
           }
           break;
       }
@@ -85,6 +125,7 @@ export function genRandObstacles(
 ): CustomRoomConfig {
   const roomValidator = new AccessValidator(shape);
   const roomSize = getRoomShapeSize(shape);
+  const symmetry = SymmetryTable[rand.RandomInt(SymmetryTable.length)];
   const newRoom = initCustomRoom(
     RoomType.ROOM_DEFAULT,
     0,
@@ -115,26 +156,28 @@ export function genRandObstacles(
   }
 
   // Add some random rocks
-  const spots = getValidSpots(shape, presentDoors, SymmetryType.QUAD);
-  const rocksAmt = randomInt(rand, 1, Math.round(spots.length * 0.75));
-  Isaac.DebugString(`Attempting to place ${rocksAmt} rocks.`);
+  const spots = getValidSpots(shape, presentDoors, symmetry);
+  const rocksAmt = randomInt(
+    rand,
+    Math.ceil(spots.length * 0.05),
+    Math.round(spots.length * 0.75),
+  );
+  // Isaac.DebugString(`Attempting to place ${rocksAmt} rocks.`);
   shuffleArray(spots, rand);
   for (let count = 0; count < rocksAmt; count++) {
     if (spots.length === 0) {
-      Isaac.DebugString("Out of places to put rocks!");
+      // Isaac.DebugString("Out of places to put rocks!");
       break;
     }
     const newRockPos = spots.pop()!;
-    Isaac.DebugString(
-      `Attempting to place quad mirrored rock at [${newRockPos}].`,
-    );
+    // Isaac.DebugString(`Attempting to place rock at [${newRockPos}].`);
     if (
       !roomValidator.isAccessible(
         newRoom,
-        getMirroredPos(shape, SymmetryType.QUAD, newRockPos, true),
+        getMirroredPos(shape, symmetry, newRockPos, true),
       )
     ) {
-      Isaac.DebugString("Attempt failed - would block path.");
+      // Isaac.DebugString("Attempt failed - would block path.");
       count--;
       continue;
     }
@@ -143,7 +186,7 @@ export function genRandObstacles(
       newRoom,
       index,
       shape,
-      SymmetryType.QUAD,
+      symmetry,
       makeLuaEntity(
         newRockPos,
         LayoutGridType.ROCK,

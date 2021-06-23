@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../constants";
-import { chargeEffect, isBetter } from "../../../utils";
+import { chargeEffect, isBetter } from "../../../utils/utils";
 
 const REROLL_SIM_COUNT = 12;
 const CHARGE_COST_PER_ITEM = 2;

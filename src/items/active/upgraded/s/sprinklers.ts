@@ -1,6 +1,6 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { getPlayerData, savePlayerData, SaveType } from "../../../../saveData";
-import { chargeEffect } from "../../../../utils";
+import { chargeEffect } from "../../../../utils/utils";
 
 const SAVE_KEY_USES = "sprinklers_use_count";
 const USES = 3;

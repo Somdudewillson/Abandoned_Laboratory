@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import { spawnCoins } from "../../../../utils";
+import { spawnCoins } from "../../../../utils/utils";
 
 const HEALTH_POINTS: int = 5;
 const SOUL_COST: int = 3;

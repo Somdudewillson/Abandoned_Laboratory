@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import { playSound } from "../../../../utils";
+import { playSound } from "../../../../utils/utils";
 
 export function ownType(): number {
   return CollectibleTypeLabUpgrade.COLLECTIBLE_PLUMORGAN as number;

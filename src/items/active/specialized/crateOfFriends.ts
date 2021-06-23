@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { CollectibleTypeLabUpgrade } from "../../../constants";
-import { hasFlag } from "../../../utils";
+import { hasFlag } from "../../../utils/utils";
 
 const FRIEND_ITEMS: Set<int> = new Set<int>();
 const REPLICATE_CHANCE: float = 0.05;

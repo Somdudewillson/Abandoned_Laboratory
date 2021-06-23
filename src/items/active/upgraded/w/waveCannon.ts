@@ -3,7 +3,7 @@ import {
   CollectibleTypeLabUpgrade,
   SHOT_SPEED_MULT,
 } from "../../../../constants";
-import { directionToVector } from "../../../../utils";
+import { directionToVector } from "../../../../utils/utils";
 
 const TEAR_COUNT: int = 10;
 const FIRE_CONE: float = 75;

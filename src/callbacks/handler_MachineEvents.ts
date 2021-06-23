@@ -6,7 +6,7 @@ import {
   UNBALANCED,
 } from "../constants";
 import { getGlobalData, saveGlobalData, SaveType } from "../saveData";
-import { playSound, spawnPickup } from "../utils";
+import { playSound, spawnPickup } from "../utils/utils";
 
 export const enum MachineEntityType {
   UPGRADEMACHINE = 60,

@@ -1,6 +1,6 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { randomInt } from "../../../../extMath";
-import { spawnPickup } from "../../../../utils";
+import { spawnPickup } from "../../../../utils/utils";
 
 const CARD_BUCKETS = new Map<int, int[]>([
   [

@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import { playSound, spawnHearts } from "../../../../utils";
+import { playSound, spawnHearts } from "../../../../utils/utils";
 
 export function ownType(): number {
   return CollectibleTypeLabUpgrade.COLLECTIBLE_SOULJAR as number;

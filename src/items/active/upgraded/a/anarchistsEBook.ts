@@ -3,7 +3,7 @@ import {
   FireplaceVariant,
 } from "../../../../constants";
 import * as extMath from "../../../../extMath";
-import { spawnPickupCluster } from "../../../../utils";
+import { spawnPickupCluster } from "../../../../utils/utils";
 
 const BOMB_COUNT = 6;
 

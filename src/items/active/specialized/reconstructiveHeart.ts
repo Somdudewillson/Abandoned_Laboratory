@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../constants";
-import { playSound } from "../../../utils";
+import { playSound } from "../../../utils/utils";
 import { healPlayer } from "../upgraded/g/glowingHeart";
 
 const HEALTH_POINTS: int = 7;

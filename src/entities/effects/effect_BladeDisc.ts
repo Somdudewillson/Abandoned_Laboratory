@@ -1,5 +1,5 @@
 import { cardinalized, shuffleArray } from "../../extMath";
-import { checkLine, spawnPickup } from "../../utils";
+import { checkLine, spawnPickup } from "../../utils/utils";
 
 const MAX_BOUNCES = 15;
 const SPEED = 25;

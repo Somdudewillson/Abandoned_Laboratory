@@ -5,7 +5,7 @@ import {
   makeLuaEntity,
   mirrorLuaEntity,
 } from "../../types/StageAPI_helpers";
-import { getSlotGridPos, getValidSlots, SymmetryType } from "../../utils";
+import { getSlotGridPos, getValidSlots, SymmetryType } from "../../utils/utils";
 
 export function generateRoom(
   rand: RNG,

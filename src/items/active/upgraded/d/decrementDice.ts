@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import { isBetter } from "../../../../utils";
+import { isBetter } from "../../../../utils/utils";
 
 const DECREMENT_SIM_COUNT = 5;
 

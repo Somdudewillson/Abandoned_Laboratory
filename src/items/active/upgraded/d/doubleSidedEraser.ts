@@ -1,7 +1,7 @@
 import { queueThrowable } from "../../../../callbacks/handler_ThrownEffect";
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { getPlayerData, savePlayerData, SaveType } from "../../../../saveData";
-import { chargeEffect } from "../../../../utils";
+import { chargeEffect } from "../../../../utils/utils";
 
 const ERASER_SAVE_KEY = "eraser_uses_";
 

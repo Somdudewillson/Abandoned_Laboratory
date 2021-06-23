@@ -1,6 +1,6 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { randomInt } from "../../../../extMath";
-import { spawnPickup } from "../../../../utils";
+import { spawnPickup } from "../../../../utils/utils";
 
 const PILL_EFF_RANKING = new Map<PillEffect, int>([
   [PillEffect.PILLEFFECT_BAD_GAS, 1],

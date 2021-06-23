@@ -1,6 +1,6 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import * as extMath from "../../../../extMath";
-import { spawnPickupCluster } from "../../../../utils";
+import { spawnPickupCluster } from "../../../../utils/utils";
 
 export function ownType(): number {
   return CollectibleTypeLabUpgrade.COLLECTIBLE_MOTHEROFBOMBS as number;

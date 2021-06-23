@@ -1,6 +1,6 @@
 import { queueThrowable } from "../../../../callbacks/handler_ThrownEffect";
 import { CollectibleTypeLabUpgrade, LaserSubType } from "../../../../constants";
-import { directionToDegrees } from "../../../../utils";
+import { directionToDegrees } from "../../../../utils/utils";
 
 export function ownType(): number {
   return CollectibleTypeLabUpgrade.COLLECTIBLE_LAZERBLAST as number;

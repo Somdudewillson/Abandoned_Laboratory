@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import { playSound } from "../../../../utils";
+import { playSound } from "../../../../utils/utils";
 
 const DAMAGE_AMOUNT = 999999999;
 

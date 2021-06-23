@@ -1,7 +1,7 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { randomInt } from "../../../../extMath";
 import { getPlayerData, savePlayerData, SaveType } from "../../../../saveData";
-import { spawnCoins, spawnPickup, spawnPickupCluster } from "../../../../utils";
+import { spawnCoins, spawnPickup, spawnPickupCluster } from "../../../../utils/utils";
 
 const SAVE_KEY_USES = "omnijar_uses";
 

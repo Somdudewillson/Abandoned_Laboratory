@@ -1,4 +1,4 @@
-import { getMirroredPos, SymmetryType } from "../utils";
+import { getMirroredPos, SymmetryType } from "../utils/utils";
 
 export function makeLuaDoor(
   gridPos: Vector,

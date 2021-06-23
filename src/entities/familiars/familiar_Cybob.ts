@@ -3,7 +3,7 @@ import {
   TearEntitySubtype,
 } from "../../callbacks/handler_TearEvents";
 import { cardinalizedDirection } from "../../extMath";
-import { checkLine, directionToVector } from "../../utils";
+import { checkLine, directionToVector } from "../../utils/utils";
 
 const enum CybobAnimKey {
   FLY_RIGHT = "FlyRight",

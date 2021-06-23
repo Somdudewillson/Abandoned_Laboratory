@@ -3,7 +3,7 @@ import {
   CollectibleTypeLabUpgrade,
   SHOT_SPEED_MULT,
 } from "../../../../constants";
-import { playSound } from "../../../../utils";
+import { playSound } from "../../../../utils/utils";
 
 const TEAR_COUNT: int = 7;
 const FIRE_CONE: float = 35;

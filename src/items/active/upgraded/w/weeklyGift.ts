@@ -1,6 +1,6 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
 import { tanh } from "../../../../extMath";
-import { chargeEffect, spawnPickup } from "../../../../utils";
+import { chargeEffect, spawnPickup } from "../../../../utils/utils";
 
 export function ownType(): number {
   return CollectibleTypeLabUpgrade.COLLECTIBLE_WEEKLYGIFT as number;

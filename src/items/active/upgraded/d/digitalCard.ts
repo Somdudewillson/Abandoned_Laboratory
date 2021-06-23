@@ -5,7 +5,7 @@ import {
   spawnCoins,
   spawnHearts,
   spawnPickupCluster,
-} from "../../../../utils";
+} from "../../../../utils/utils";
 
 export function ownType(): number {
   return CollectibleTypeLabUpgrade.COLLECTIBLE_DIGITALCARD as number;

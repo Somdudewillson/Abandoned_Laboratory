@@ -1,4 +1,4 @@
-import { playSound } from "../../utils";
+import { playSound } from "../../utils/utils";
 
 export function update(self: EntityTear): void {
   const targetDir =

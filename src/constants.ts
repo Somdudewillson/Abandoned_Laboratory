@@ -1,5 +1,5 @@
 import { getGlobalData, saveGlobalData, SaveType } from "./saveData";
-import { toTearFlag } from "./utils";
+import { toTearFlag } from "./utils/utils";
 
 export enum CollectibleTypeLabUtility {
   COLLECTIBLE_DISCHARGEDBATTERY = Isaac.GetItemIdByName("Discharged Battery"),

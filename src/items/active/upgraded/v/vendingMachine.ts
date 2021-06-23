@@ -5,7 +5,7 @@ import {
   spawnCoins,
   spawnHearts,
   spawnPickup,
-} from "../../../../utils";
+} from "../../../../utils/utils";
 
 export function ownType(): number {
   return CollectibleTypeLabUpgrade.COLLECTIBLE_VENDINGMACHINE as number;

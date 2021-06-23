@@ -16,11 +16,13 @@ import {
 import { AccessValidator } from "./accessValidator";
 
 const SymmetryTable = [
-  SymmetryType.NONE,
+  SymmetryType.HORIZONTAL,
   SymmetryType.HORIZONTAL,
   SymmetryType.HORIZONTAL,
   SymmetryType.VERTICAL,
   SymmetryType.VERTICAL,
+  SymmetryType.VERTICAL,
+  SymmetryType.QUAD,
   SymmetryType.QUAD,
   SymmetryType.QUAD,
   SymmetryType.QUAD,

@@ -97,3 +97,42 @@ export function mirrorLuaEntity(
   }
   return index;
 }
+
+// Layout Grid Metadata
+export function isGridPassable(type: LayoutGridType, flying = false): boolean {
+  switch (type) {
+    default:
+    case LayoutGridType.POOP:
+    case LayoutGridType.POOP_BLACK:
+    case LayoutGridType.POOP_CHARMING:
+    case LayoutGridType.POOP_CORNY:
+    case LayoutGridType.POOP_GOLD:
+    case LayoutGridType.POOP_HOLY:
+    case LayoutGridType.POOP_RAINBOW:
+    case LayoutGridType.POOP_RED:
+    case LayoutGridType.PROP_A:
+    case LayoutGridType.PROP_B:
+    case LayoutGridType.PROP_C:
+    case LayoutGridType.TNT:
+    case LayoutGridType.TNT_PUSHABLE:
+    case LayoutGridType.SPIKES_ON_OFF:
+    case LayoutGridType.COBWEB:
+    case LayoutGridType.BUTTON:
+    case LayoutGridType.GRAVITY:
+      return true;
+    case LayoutGridType.ROCK:
+    case LayoutGridType.ROCK_ALT:
+    case LayoutGridType.ROCK_BOMB:
+    case LayoutGridType.ROCK_SPIKE:
+    case LayoutGridType.ROCK_GOLD:
+    case LayoutGridType.MARKED_SKULL:
+    case LayoutGridType.PIT:
+    case LayoutGridType.SPIKES:
+    case LayoutGridType.PITFALL:
+      return flying;
+    case LayoutGridType.BLOCK_KEY:
+    case LayoutGridType.BLOCK_METAL_TALL:
+    case LayoutGridType.BLOCK_INVISIBLE:
+      return false;
+  }
+}

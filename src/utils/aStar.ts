@@ -1,13 +1,23 @@
+import { parseInt } from "../extMath";
 import { MinPriorityQueue } from "./priorityQueue";
 
+export type FlatVector = string;
+export function flattenVector(inVec: Vector): FlatVector {
+  return `${inVec.X},${inVec.Y}`;
+}
+export function expandVector(inVec: FlatVector): Vector {
+  const splitVals = inVec.split(",", 2);
+  return Vector(parseInt(splitVals[0]), parseInt(splitVals[1]));
+}
+
 function reconstructPath(
-  cameFrom: Map<Vector, Vector>,
-  current: Vector,
+  cameFrom: Map<FlatVector, FlatVector>,
+  current: FlatVector,
 ): Vector[] {
-  const fullPath = [current];
+  const fullPath = [expandVector(current)];
   while (cameFrom.has(current)) {
     current = cameFrom.get(current)!;
-    fullPath.push(current);
+    fullPath.push(expandVector(current));
   }
 
   return fullPath;
@@ -17,28 +27,31 @@ function reconstructPath(
  * @param heuristic `heuristic(current, goal)` estimates the distance between current and goal.
  * */
 export function findAStarPath(
-  start: Vector,
-  goal: Vector,
+  startVec: Vector,
+  goalVec: Vector,
   heuristic: (current: Vector, goal: Vector) => number,
-  getNeighbors: (current: Vector) => Vector[],
+  getNeighbors: (current: FlatVector) => Vector[],
 ): Vector[] | false {
+  const start = flattenVector(startVec);
+  const goal = flattenVector(goalVec);
+
   // The set of discovered nodes that may need to be (re-)expanded.
   // Initially, only the start node is known.
   // This is usually implemented as a min-heap or priority queue rather than a hash-set.
-  const openSet = new MinPriorityQueue<Vector>();
+  const openSet = new MinPriorityQueue<FlatVector>();
 
   // For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from start
   // to n currently known.
-  const cameFrom = new Map<Vector, Vector>();
+  const cameFrom = new Map<FlatVector, FlatVector>();
 
   // For node n, gScore[n] is the cost of the cheapest path from start to n currently known.
-  const gScore = new Map<Vector, number>();
+  const gScore = new Map<FlatVector, number>();
   gScore.set(start, math.maxinteger);
 
   // For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our current best guess as to
   // how short a path from start to finish can be if it goes through n.
-  const fScore = new Map<Vector, number>();
-  fScore.set(start, heuristic(start, goal));
+  const fScore = new Map<FlatVector, number>();
+  fScore.set(start, heuristic(startVec, goalVec));
 
   while (!openSet.isEmpty()) {
     // This operation can occur in O(1) time if openSet is a min-heap or a priority queue
@@ -46,18 +59,24 @@ export function findAStarPath(
     if (current === goal) {
       return reconstructPath(cameFrom, current);
     }
+    const currentVec = expandVector(current);
 
     const currentGScore = gScore.get(current)!;
     for (const neighbor of getNeighbors(current)) {
+      const flatNeighbor = flattenVector(neighbor);
+
       // neighborGScore is the distance from start to the neighbor through current
-      const neighborGScore = currentGScore + heuristic(current, neighbor);
-      if (!gScore.has(neighbor) || neighborGScore < gScore.get(neighbor)!) {
+      const neighborGScore = currentGScore + heuristic(currentVec, neighbor);
+      if (
+        !gScore.has(flatNeighbor) ||
+        neighborGScore < gScore.get(flatNeighbor)!
+      ) {
         // This path to neighbor is better than any previous one. Record it!
-        cameFrom.set(neighbor, current);
-        gScore.set(neighbor, neighborGScore);
-        fScore.set(neighbor, neighborGScore + heuristic(neighbor, goal));
-        if (!openSet.has(neighbor)) {
-          openSet.insert(neighbor, neighborGScore);
+        cameFrom.set(flatNeighbor, current);
+        gScore.set(flatNeighbor, neighborGScore);
+        fScore.set(flatNeighbor, neighborGScore + heuristic(neighbor, goalVec));
+        if (!openSet.has(flatNeighbor)) {
+          openSet.insert(flatNeighbor, neighborGScore);
         }
       }
     }

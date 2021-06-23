@@ -1,4 +1,4 @@
-import * as extMath from "../extMath";
+import * as extMath from "../utils/extMath";
 import { directionToVector } from "../utils/utils";
 
 export const MICRODRONE_ENTITYTYPE = 18;

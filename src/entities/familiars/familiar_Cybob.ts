@@ -2,7 +2,7 @@ import {
   LabTearEntityVariant,
   TearEntitySubtype,
 } from "../../callbacks/handler_TearEvents";
-import { cardinalizedDirection } from "../../extMath";
+import { cardinalizedDirection } from "../../utils/extMath";
 import { checkLine, directionToVector } from "../../utils/utils";
 
 const enum CybobAnimKey {

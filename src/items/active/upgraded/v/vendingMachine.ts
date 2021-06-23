@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import { randomInt, tanh } from "../../../../extMath";
+import { randomInt, tanh } from "../../../../utils/extMath";
 import {
   playSound,
   spawnCoins,

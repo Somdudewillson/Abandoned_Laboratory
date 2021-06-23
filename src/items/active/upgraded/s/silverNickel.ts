@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import * as extMath from "../../../../extMath";
+import * as extMath from "../../../../utils/extMath";
 import { spawnCoins } from "../../../../utils/utils";
 
 export function ownType(): number {

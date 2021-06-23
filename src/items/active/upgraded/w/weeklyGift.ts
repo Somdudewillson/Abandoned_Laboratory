@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import { tanh } from "../../../../extMath";
+import { tanh } from "../../../../utils/extMath";
 import { chargeEffect, spawnPickup } from "../../../../utils/utils";
 
 export function ownType(): number {

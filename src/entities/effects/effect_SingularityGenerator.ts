@@ -1,4 +1,4 @@
-import { randomInt, randomOnCircle } from "../../extMath";
+import { randomInt, randomOnCircle } from "../../utils/extMath";
 
 const enum SingularityGeneratorAnimKey {
   STARTUP = "Startup",
@@ -125,13 +125,20 @@ function implodeObstacles(
 
     if (gridEntity.Position.DistanceSquared(self.Position) <= curRadius ** 2) {
       spawnDebris(randomInt(rand, 4, 12), rand, gridEntity, room);
-      if (gridEntity.GetType() === GridEntityType.GRID_ROCKB) {gridEntity.SetType(GridEntityType.GRID_ROCK);}
+      if (gridEntity.GetType() === GridEntityType.GRID_ROCKB) {
+        gridEntity.SetType(GridEntityType.GRID_ROCK);
+      }
       gridEntity.Destroy(false);
     }
   }
 }
 
-function spawnDebris(amount: int, rand: RNG, source: GridEntity, room:Room): void {
+function spawnDebris(
+  amount: int,
+  rand: RNG,
+  source: GridEntity,
+  room: Room,
+): void {
   let debrisVariant = EffectVariant.EFFECT_NULL;
   let colorShift: null | Color = null;
   switch (source.GetType()) {
@@ -143,7 +150,7 @@ function spawnDebris(amount: int, rand: RNG, source: GridEntity, room:Room): voi
     case GridEntityType.GRID_ROCK_SPIKED:
     case GridEntityType.GRID_ROCK_SS:
     case GridEntityType.GRID_PILLAR:
-      case GridEntityType.GRID_ROCKB:
+    case GridEntityType.GRID_ROCKB:
       debrisVariant = EffectVariant.ROCK_PARTICLE;
       break;
     case GridEntityType.GRID_ROCKT:
@@ -157,7 +164,9 @@ function spawnDebris(amount: int, rand: RNG, source: GridEntity, room:Room): voi
       debrisVariant = EffectVariant.WOOD_PARTICLE;
       break;
     case GridEntityType.GRID_WALL:
-      if (room.GetBackdropType() === BackdropType.DARKROOM) {return;}
+      if (room.GetBackdropType() === BackdropType.DARKROOM) {
+        return;
+      }
       debrisVariant = EffectVariant.ROCK_POOF;
       colorShift = Color(1, 1, 1, 0.5);
       break;

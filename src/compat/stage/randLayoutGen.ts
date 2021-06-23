@@ -1,4 +1,4 @@
-import { randomInt, shuffleArray } from "../../extMath";
+import { randomInt, shuffleArray } from "../../utils/extMath";
 import {
   initCustomRoom,
   makeLuaDoor,

@@ -1,4 +1,4 @@
-import { cardinalized, shuffleArray } from "../../extMath";
+import { cardinalized, shuffleArray } from "../../utils/extMath";
 import { checkLine, spawnPickup } from "../../utils/utils";
 
 const MAX_BOUNCES = 15;

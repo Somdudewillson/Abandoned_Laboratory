@@ -1,6 +1,6 @@
 import { queueThrowable } from "../../../../callbacks/handler_ThrownEffect";
 import { CollectibleTypeLabUpgrade, LaserSubType } from "../../../../constants";
-import { sign } from "../../../../extMath";
+import { sign } from "../../../../utils/extMath";
 import { directionToDegrees } from "../../../../utils/utils";
 
 const BEAM_COUNT: int = 4;

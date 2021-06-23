@@ -1,7 +1,7 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import { numberOfSetBits } from "../../../../extMath";
 import * as SaveUtil from "../../../../saveData";
 import { SaveType } from "../../../../saveData";
+import { numberOfSetBits } from "../../../../utils/extMath";
 import { chargeEffect } from "../../../../utils/utils";
 
 const KEY_VISITED_ROOMS = "artificial_soul_visited";

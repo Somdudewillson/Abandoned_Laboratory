@@ -2,7 +2,7 @@ import {
   CollectibleTypeLabUpgrade,
   FireplaceVariant,
 } from "../../../../constants";
-import * as extMath from "../../../../extMath";
+import * as extMath from "../../../../utils/extMath";
 import { spawnPickupCluster } from "../../../../utils/utils";
 
 const BOMB_COUNT = 6;

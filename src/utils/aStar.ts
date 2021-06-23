@@ -1,4 +1,4 @@
-import { parseFloat } from "../extMath";
+import { parseFloat } from "./extMath";
 import { MinPriorityQueue } from "./priorityQueue";
 
 export type FlatVector = string;

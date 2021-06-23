@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import * as extMath from "../../../../extMath";
+import * as extMath from "../../../../utils/extMath";
 
 const BASE_MAX_CHARGE = Isaac.GetItemConfig().GetCollectible(
   ownType(),

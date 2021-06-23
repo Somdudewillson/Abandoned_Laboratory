@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import * as extMath from "../../../../extMath";
+import * as extMath from "../../../../utils/extMath";
 import {
   getCoinVal,
   spawnCoins,

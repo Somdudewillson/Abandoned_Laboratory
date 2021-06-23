@@ -2,8 +2,12 @@ import {
   CollectibleTypeLabUpgrade,
   FireplaceVariant,
 } from "../../../../constants";
-import * as extMath from "../../../../extMath";
-import { spawnCoins, spawnHearts, spawnPickupCluster } from "../../../../utils/utils";
+import * as extMath from "../../../../utils/extMath";
+import {
+  spawnCoins,
+  spawnHearts,
+  spawnPickupCluster,
+} from "../../../../utils/utils";
 
 export function ownType(): number {
   return CollectibleTypeLabUpgrade.COLLECTIBLE_RUNICAMPLIFIER as number;

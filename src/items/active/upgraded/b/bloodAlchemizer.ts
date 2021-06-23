@@ -1,5 +1,5 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import { randomInt } from "../../../../extMath";
+import { randomInt } from "../../../../utils/extMath";
 import { playSound, spawnCoins } from "../../../../utils/utils";
 
 export function ownType(): number {

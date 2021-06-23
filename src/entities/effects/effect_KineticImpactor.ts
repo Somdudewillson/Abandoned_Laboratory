@@ -1,4 +1,4 @@
-import { shuffleArray } from "../../extMath";
+import { shuffleArray } from "../../utils/extMath";
 
 const enum KineticImpactorAnimKey {
   IDLE = "Idle",

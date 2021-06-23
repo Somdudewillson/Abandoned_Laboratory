@@ -3,7 +3,7 @@
 // Define imports
 import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE, CollectibleTypeLabUpgrade, CollectibleTypeLabUtility } from "./constants";
 import * as SaveUtil from "./saveData";
-import * as extMath from "./extMath";
+import * as extMath from "./utils/extMath";
 import { registerExternalItemDescriptions } from "./compat/eidCompat";
 // ===== import event handlers =====
 import * as PostRoomHandler from "./callbacks/handler_PostNewRoom";

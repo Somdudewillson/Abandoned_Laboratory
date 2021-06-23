@@ -1,6 +1,10 @@
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import { randomInt } from "../../../../extMath";
-import { spawnCoins, spawnPickup, spawnPickupCluster } from "../../../../utils/utils";
+import { randomInt } from "../../../../utils/extMath";
+import {
+  spawnCoins,
+  spawnPickup,
+  spawnPickupCluster,
+} from "../../../../utils/utils";
 
 export function ownType(): number {
   return CollectibleTypeLabUpgrade.COLLECTIBLE_PORTABLETERRAFORMER as number;

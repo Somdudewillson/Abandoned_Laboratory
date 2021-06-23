@@ -1,6 +1,6 @@
 // TODO: Maybe make the matter rearranger able to generate pills/cards?
 import { CollectibleTypeLabUpgrade } from "../../../../constants";
-import * as extMath from "../../../../extMath";
+import * as extMath from "../../../../utils/extMath";
 import { getCoinVal, spawnPickup } from "../../../../utils/utils";
 
 const VALUE_MULT: float = 1;

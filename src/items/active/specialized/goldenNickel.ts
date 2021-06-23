@@ -1,7 +1,7 @@
 import { CollectibleTypeLabUpgrade } from "../../../constants";
-import * as extMath from "../../../extMath";
 import * as SaveUtil from "../../../saveData";
 import { SaveType } from "../../../saveData";
+import * as extMath from "../../../utils/extMath";
 import { spawnCoins } from "../../../utils/utils";
 
 export const KEY_NICKEL_HEARTS = "nickel_hearts";

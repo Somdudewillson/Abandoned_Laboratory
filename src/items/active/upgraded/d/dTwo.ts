@@ -19,7 +19,7 @@ export function use(
   for (let i = 0; i < entities.Size; i++) {
     indexes.push(i);
   }
-  shuffleArray(indexes);
+  shuffleArray(indexes, rand);
 
   for (let i = 0; i < indexes.length; i++) {
     const entity = entities.Get(indexes[i]);

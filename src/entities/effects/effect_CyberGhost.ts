@@ -69,7 +69,7 @@ function doSeek(self: EntityEffect): void {
   if (targetCount <= 0) {
     if (self.Target == null) {
       const entities = Isaac.GetRoomEntities();
-      shuffleArray(entities);
+      shuffleArray(entities, self.GetDropRNG());
       for (const entity of entities) {
         if (!entity.IsActiveEnemy(false)) {
           continue;

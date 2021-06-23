@@ -35,7 +35,7 @@ export function update(self: EntityEffect): void {
   // Perform attacks
   if (sprite.IsEventTriggered(KineticImpactorAnimKey.EVENT_STRIKE)) {
     const entities = Isaac.GetRoomEntities();
-    shuffleArray(entities);
+    shuffleArray(entities, self.GetDropRNG());
 
     // Fire light attacks at random enemies, tinted/super-secret rocks, or secret rooms
     if (sprite.GetAnimation() === KineticImpactorAnimKey.ATTACK_FAST) {

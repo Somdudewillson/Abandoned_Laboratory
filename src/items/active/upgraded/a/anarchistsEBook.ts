@@ -78,7 +78,7 @@ export function use(
 
   // Shuffle all targets
   if (targets.length > 0) {
-    extMath.shuffleArray(targets);
+    extMath.shuffleArray(targets, rand);
   }
 
   for (let s = 0; s < BOMB_COUNT; s++) {

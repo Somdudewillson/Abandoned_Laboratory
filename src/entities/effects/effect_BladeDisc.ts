@@ -39,7 +39,7 @@ function doBounce(bouncePos: Vector, self: EntityEffect, room: Room): boolean {
     .Resized(SPEED);
 
   const entities = Isaac.GetRoomEntities();
-  shuffleArray(entities);
+  shuffleArray(entities, self.GetDropRNG());
 
   for (const entity of entities) {
     // Verify that it's either an active enemy or a pickup

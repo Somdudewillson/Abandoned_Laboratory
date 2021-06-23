@@ -2,9 +2,9 @@
  * Simple in-place shuffle algorithm.
  * @param array The array to be shuffled.
  */
-export function shuffleArray<Type>(array: Type[]): void {
+export function shuffleArray<Type>(array: Type[], rand: RNG): void {
   for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(rand.RandomFloat() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
 }

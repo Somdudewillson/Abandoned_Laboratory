@@ -34,7 +34,7 @@ export function findAStarPath(
 ): Vector[] | false {
   const start = flattenVector(startVec);
   const goal = flattenVector(goalVec);
-  Isaac.DebugString(`\tPathing Initiated from (${start}) to (${goal}).`);
+  Isaac.DebugString(`\tPathing initiated from (${start}) to (${goal}).`);
 
   // The set of discovered nodes that may need to be (re-)expanded.
   // Initially, only the start node is known.

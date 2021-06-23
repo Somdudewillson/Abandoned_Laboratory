@@ -124,14 +124,18 @@ export class AccessValidator {
       const flatDoorPair = flattenDoorPair(doorPair);
 
       if (this.currentPaths.has(flatDoorPair)) {
+        Isaac.DebugString(`Preexisting path found for [${flatDoorPair}].`);
         let clear = true;
         for (const pathPos of this.currentPaths.get(flatDoorPair)!) {
           if (this.blockingEntities.has(pathPos)) {
+            Isaac.DebugString("Path invalid.");
+            this.currentPaths.delete(flatDoorPair);
             clear = false;
             break;
           }
         }
         if (clear) {
+          Isaac.DebugString("Path valid.");
           continue;
         }
       }
@@ -157,9 +161,6 @@ export class AccessValidator {
 
   getNeighbors(current: FlatVector, goal: FlatVector): Vector[] {
     const currentVec = expandVector(current);
-    Isaac.DebugString(
-      `\t\tFetching neighbors of [${currentVec}] aka (${current})`,
-    );
     const possibleNeighbors = [
       Vector(currentVec.X + 1, currentVec.Y),
       Vector(currentVec.X, currentVec.Y + 1),

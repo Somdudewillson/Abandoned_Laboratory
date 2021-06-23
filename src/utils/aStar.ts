@@ -25,12 +25,14 @@ function reconstructPath(
 
 /** A* Pathfinder
  * @param heuristic `heuristic(current, goal)` estimates the distance between current and goal.
+ * @param epsilon static weighting factor-must be >1, higher values trade accuracy for speed.
  * */
 export function findAStarPath(
   startVec: Vector,
   goalVec: Vector,
   heuristic: (current: Vector, goal: Vector) => number,
   getNeighbors: (current: FlatVector, goal: FlatVector) => Vector[],
+  epsilon = 1,
 ): Vector[] | false {
   const start = flattenVector(startVec);
   const goal = flattenVector(goalVec);
@@ -40,7 +42,7 @@ export function findAStarPath(
   // Initially, only the start node is known.
   // This is usually implemented as a min-heap or priority queue rather than a hash-set.
   const openSet = new MinPriorityQueue<FlatVector>();
-  openSet.insert(start, heuristic(startVec, goalVec));
+  openSet.insert(start, epsilon * heuristic(startVec, goalVec));
 
   // For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from start
   // to n currently known.
@@ -53,7 +55,7 @@ export function findAStarPath(
   // For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our current best guess as to
   // how short a path from start to finish can be if it goes through n.
   const fScore = new Map<FlatVector, number>();
-  fScore.set(start, heuristic(startVec, goalVec));
+  fScore.set(start, epsilon * heuristic(startVec, goalVec));
 
   while (!openSet.isEmpty()) {
     // This operation can occur in O(1) time if openSet is a min-heap or a priority queue
@@ -69,7 +71,8 @@ export function findAStarPath(
       const flatNeighbor = flattenVector(neighbor);
 
       // neighborGScore is the distance from start to the neighbor through current
-      const neighborGScore = currentGScore + heuristic(currentVec, neighbor);
+      const neighborGScore =
+        currentGScore + epsilon * heuristic(currentVec, neighbor);
       if (
         !gScore.has(flatNeighbor) ||
         neighborGScore < gScore.get(flatNeighbor)!
@@ -77,7 +80,10 @@ export function findAStarPath(
         // This path to neighbor is better than any previous one. Record it!
         cameFrom.set(flatNeighbor, current);
         gScore.set(flatNeighbor, neighborGScore);
-        fScore.set(flatNeighbor, neighborGScore + heuristic(neighbor, goalVec));
+        fScore.set(
+          flatNeighbor,
+          neighborGScore + epsilon * heuristic(neighbor, goalVec),
+        );
         if (!openSet.has(flatNeighbor)) {
           openSet.insert(flatNeighbor, neighborGScore);
         }

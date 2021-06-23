@@ -71,8 +71,7 @@ export function findAStarPath(
       const flatNeighbor = flattenVector(neighbor);
 
       // neighborGScore is the distance from start to the neighbor through current
-      const neighborGScore =
-        currentGScore + epsilon * heuristic(currentVec, neighbor);
+      const neighborGScore = currentGScore + heuristic(currentVec, neighbor);
       if (
         !gScore.has(flatNeighbor) ||
         neighborGScore < gScore.get(flatNeighbor)!

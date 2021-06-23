@@ -175,7 +175,7 @@ import * as EFF_NONE from "./items/active/utility/noEffect";
 
 // --- New Passives ---
 import * as CACHE_CYBERBOB from "./items/passive/cyberBob";
-import { createStages } from "./compat/stageCreation";
+import * as STAGE_CREATION from "./compat/stage/stageCreation";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
@@ -191,7 +191,7 @@ function postGameStarted(isContinued:boolean) {
   if (StageAPI !== null) {
     Isaac.DebugString("|LABOS| Stage API detected");
 
-    createStages();
+    STAGE_CREATION.createStages();
   }
 
   if (!isContinued && DEBUG_SPAWN) {
@@ -241,6 +241,10 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_UPDATE, PostUpdateHandler.
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, PreCleanHandler.preClean);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_DEATH, PostNPCDeathHandler.postDeath);
 PostUpdateHandler.addPlayerListener(ThrownHandler.postUpdate);
+
+StageAPI.UnregisterCallbacks(ABANDONED_LABORATORY);
+// ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, LAYOUT_GEN.dumpRoomPos);
+// StageAPI.AddCallback(ABANDONED_LABORATORY, StageCallback.PRE_ROOM_LAYOUT_CHOOSE, 0, STAGE_CREATION.preRoom);
 
 Isaac.DebugString("|LABOS| Boot initialization complete");
 

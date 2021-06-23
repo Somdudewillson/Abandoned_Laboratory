@@ -119,6 +119,36 @@ export function parseIntChar(char: string): int {
   }
 }
 
+export function parseFloat(val: string): float {
+  let out = 0;
+  let postDecimal = false;
+  let decimalDist = -1;
+
+  let signMul = 1;
+  if (val.charAt(0) === "-") {
+    signMul = -1;
+  }
+
+  for (let i = signMul === 1 ? 0 : 1; i < val.length; i++) {
+    const char = val.charAt(i);
+    if (char === ".") {
+      postDecimal = true;
+      decimalDist = 1;
+      continue;
+    }
+
+    if (!postDecimal) {
+      out *= 10;
+      out += parseIntChar(val.charAt(i));
+    } else {
+      out += parseIntChar(val.charAt(i)) * 10 ** -decimalDist;
+      decimalDist++;
+    }
+  }
+
+  return out * signMul;
+}
+
 /** Convert a `Vector` to the nearest of `(1,0)`,`(-1,0)`,`(0,1)`,`(0,-1)` */
 export function cardinalized(inVec: Vector): Vector {
   if (Math.abs(inVec.X) > Math.abs(inVec.Y)) {

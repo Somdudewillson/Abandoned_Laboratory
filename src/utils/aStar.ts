@@ -1,4 +1,4 @@
-import { parseInt } from "../extMath";
+import { parseFloat } from "../extMath";
 import { MinPriorityQueue } from "./priorityQueue";
 
 export type FlatVector = string;
@@ -7,7 +7,7 @@ export function flattenVector(inVec: Vector): FlatVector {
 }
 export function expandVector(inVec: FlatVector): Vector {
   const splitVals = inVec.split(",", 2);
-  return Vector(parseInt(splitVals[0]), parseInt(splitVals[1]));
+  return Vector(parseFloat(splitVals[0]), parseFloat(splitVals[1]));
 }
 
 function reconstructPath(
@@ -34,11 +34,13 @@ export function findAStarPath(
 ): Vector[] | false {
   const start = flattenVector(startVec);
   const goal = flattenVector(goalVec);
+  Isaac.DebugString(`\tPathing Initiated from (${start}) to (${goal}).`);
 
   // The set of discovered nodes that may need to be (re-)expanded.
   // Initially, only the start node is known.
   // This is usually implemented as a min-heap or priority queue rather than a hash-set.
   const openSet = new MinPriorityQueue<FlatVector>();
+  openSet.insert(start, heuristic(startVec, goalVec));
 
   // For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from start
   // to n currently known.
@@ -57,6 +59,7 @@ export function findAStarPath(
     // This operation can occur in O(1) time if openSet is a min-heap or a priority queue
     const current = openSet.pop()!;
     if (current === goal) {
+      Isaac.DebugString("\tPath to goal found.");
       return reconstructPath(cameFrom, current);
     }
     const currentVec = expandVector(current);
@@ -83,6 +86,7 @@ export function findAStarPath(
   }
 
   // Open set is empty but goal was never reached
+  Isaac.DebugString("\tNo path to goal found.");
   return false;
 }
 

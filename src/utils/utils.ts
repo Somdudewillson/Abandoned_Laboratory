@@ -401,8 +401,13 @@ export function getMirroredPos(
   shape: RoomShape,
   symmetry: SymmetryType,
   pos: Vector,
+  includeInitial = false,
 ): Vector[] {
   const mirrorPos = [Vector(pos.X, pos.Y)];
+  let start = 0;
+  if (includeInitial) {
+    start = 1;
+  }
 
   switch (symmetry) {
     default:
@@ -416,7 +421,7 @@ export function getMirroredPos(
         case RoomShape.ROOMSHAPE_IV:
         case RoomShape.ROOMSHAPE_2x1:
         case RoomShape.ROOMSHAPE_IIH:
-          mirrorPos[0] = mirrorHorizontal(pos, 3);
+          mirrorPos[start] = mirrorHorizontal(pos, 3);
           break;
         case RoomShape.ROOMSHAPE_1x2:
         case RoomShape.ROOMSHAPE_IIV:
@@ -425,7 +430,7 @@ export function getMirroredPos(
         case RoomShape.ROOMSHAPE_LTR:
         case RoomShape.ROOMSHAPE_LBL:
         case RoomShape.ROOMSHAPE_LBR:
-          mirrorPos[0] = mirrorHorizontal(pos, 6.5);
+          mirrorPos[start] = mirrorHorizontal(pos, 6.5);
           break;
       }
       break;
@@ -437,7 +442,7 @@ export function getMirroredPos(
         case RoomShape.ROOMSHAPE_IV:
         case RoomShape.ROOMSHAPE_1x2:
         case RoomShape.ROOMSHAPE_IIV:
-          mirrorPos[0] = mirrorVertical(pos, 6);
+          mirrorPos[start] = mirrorVertical(pos, 6);
           break;
         case RoomShape.ROOMSHAPE_2x1:
         case RoomShape.ROOMSHAPE_IIH:
@@ -446,7 +451,7 @@ export function getMirroredPos(
         case RoomShape.ROOMSHAPE_LTR:
         case RoomShape.ROOMSHAPE_LBL:
         case RoomShape.ROOMSHAPE_LBR:
-          mirrorPos[0] = mirrorVertical(pos, 12.5);
+          mirrorPos[start] = mirrorVertical(pos, 12.5);
           break;
       }
       break;
@@ -458,9 +463,9 @@ export function getMirroredPos(
         case RoomShape.ROOMSHAPE_IV:
         case RoomShape.ROOMSHAPE_2x1:
         case RoomShape.ROOMSHAPE_IIH:
-          mirrorPos[0] = mirrorHorizontal(pos, 3);
-          mirrorPos[1] = mirrorVertical(mirrorPos[0], 6);
-          mirrorPos[2] = mirrorVertical(pos, 6);
+          mirrorPos[start] = mirrorHorizontal(pos, 3);
+          mirrorPos[start + 1] = mirrorVertical(mirrorPos[start], 6);
+          mirrorPos[start + 2] = mirrorVertical(pos, 6);
           break;
         case RoomShape.ROOMSHAPE_1x2:
         case RoomShape.ROOMSHAPE_IIV:
@@ -469,9 +474,9 @@ export function getMirroredPos(
         case RoomShape.ROOMSHAPE_LTR:
         case RoomShape.ROOMSHAPE_LBL:
         case RoomShape.ROOMSHAPE_LBR:
-          mirrorPos[0] = mirrorHorizontal(pos, 6.5);
-          mirrorPos[1] = mirrorVertical(mirrorPos[0], 12.5);
-          mirrorPos[2] = mirrorVertical(pos, 12.5);
+          mirrorPos[start + 0] = mirrorHorizontal(pos, 6.5);
+          mirrorPos[start + 1] = mirrorVertical(mirrorPos[start], 12.5);
+          mirrorPos[start + 2] = mirrorVertical(pos, 12.5);
           break;
       }
       break;
@@ -503,7 +508,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_1x1:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:
@@ -526,7 +531,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_IH:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:
@@ -549,7 +554,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_IV:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:
@@ -572,7 +577,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_1x2:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:
@@ -595,7 +600,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_IIV:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:
@@ -618,7 +623,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_2x1:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:
@@ -641,7 +646,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_IIH:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:
@@ -664,7 +669,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_2x2:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:
@@ -687,7 +692,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_LTL:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:
@@ -710,7 +715,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_LTR:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:
@@ -733,7 +738,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_LBL:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:
@@ -756,7 +761,7 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_LBR:
       switch (slot) {
         default:
-          Isaac.DebugString("Invalid DoorSlot!");
+          Isaac.DebugString(`Invalid DoorSlot [${slot}]!`);
           return Vector.Zero;
 
         case DoorSlot.LEFT0:

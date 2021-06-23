@@ -7,12 +7,20 @@ import {
 } from "../../utils/aStar";
 import { getSlotGridPos, isValidGridPos } from "../../utils/utils";
 
+type FlatDoorPair = string;
+function flattenDoorPair(doorPair: {
+  start: DoorSlot;
+  end: DoorSlot;
+}): FlatDoorPair {
+  return `${doorPair.start}->${doorPair.end}`;
+}
+
 export class AccessValidator {
-  shape: RoomShape;
-  currentPaths = new Map<int, Vector[]>();
-  doors: DoorSlot[] = [];
-  blockingEntities = new Set<FlatVector>();
-  walls: Set<FlatVector>;
+  private shape: RoomShape;
+  currentPaths = new Map<FlatDoorPair, FlatVector[]>();
+  private doors: DoorSlot[] = [];
+  private blockingEntities = new Set<FlatVector>();
+  private walls: Set<FlatVector>;
   constructor(shape: RoomShape) {
     this.shape = shape;
     this.walls = new Set<FlatVector>();
@@ -68,23 +76,28 @@ export class AccessValidator {
     }
   }
 
-  private static getPermutations(doors: DoorSlot[]): int[] {
-    const out: int[] = [];
+  private static getPermutations(
+    doors: DoorSlot[],
+  ): Array<{ start: DoorSlot; end: DoorSlot }> {
+    const out: Array<{ start: DoorSlot; end: DoorSlot }> = [];
 
-    let start = 0;
-    while (start + 1 < doors.length) {
-      for (let end = start + 1; end < doors.length; end++) {
-        out.push(doors[start] * 10 + doors[end]);
+    let origin = 0;
+    while (origin + 1 < doors.length) {
+      for (let goal = origin + 1; goal < doors.length; goal++) {
+        out.push({ start: doors[origin], end: doors[goal] });
       }
-      start++;
+      origin++;
     }
 
     return out;
   }
 
-  isAccessible(room: CustomRoomConfig): boolean {
+  isAccessible(room: CustomRoomConfig, newObstructions: Vector[]): boolean {
     this.doors = [];
     this.blockingEntities.clear();
+    for (const obstruction of newObstructions) {
+      this.blockingEntities.add(flattenVector(obstruction));
+    }
 
     // Get room entity data
     let i = 1;
@@ -108,20 +121,35 @@ export class AccessValidator {
 
     // Test each path
     for (const doorPair of AccessValidator.getPermutations(this.doors)) {
-      const start = Math.floor(doorPair / 10);
-      const end = Math.round(doorPair - start);
+      const flatDoorPair = flattenDoorPair(doorPair);
 
-      // TODO: remember & use pre-existing paths.
-      if (
-        findAStarPath(
-          getSlotGridPos(start, this.shape),
-          getSlotGridPos(end, this.shape),
-          manhattanDist,
-          this.getNeighbors.bind(this),
-        ) === false
-      ) {
+      if (this.currentPaths.has(flatDoorPair)) {
+        let clear = true;
+        for (const pathPos of this.currentPaths.get(flatDoorPair)!) {
+          if (this.blockingEntities.has(pathPos)) {
+            clear = false;
+            break;
+          }
+        }
+        if (clear) {
+          continue;
+        }
+      }
+
+      const pathingResult = findAStarPath(
+        getSlotGridPos(doorPair.start, this.shape),
+        getSlotGridPos(doorPair.end, this.shape),
+        manhattanDist,
+        this.getNeighbors.bind(this),
+      );
+      if (pathingResult === false) {
         return false;
       }
+      const flatResult: FlatVector[] = [];
+      for (let r = 0; r < pathingResult.length; r++) {
+        flatResult.push(flattenVector(pathingResult[r]));
+      }
+      this.currentPaths.set(flatDoorPair, flatResult);
     }
 
     return true;
@@ -129,37 +157,93 @@ export class AccessValidator {
 
   getNeighbors(current: FlatVector, goal: FlatVector): Vector[] {
     const currentVec = expandVector(current);
+    Isaac.DebugString(
+      `\t\tFetching neighbors of [${currentVec}] aka (${current})`,
+    );
     const possibleNeighbors = [
       Vector(currentVec.X + 1, currentVec.Y),
-      Vector(currentVec.X + 1, currentVec.Y + 1),
       Vector(currentVec.X, currentVec.Y + 1),
-      Vector(currentVec.X - 1, currentVec.Y + 1),
       Vector(currentVec.X - 1, currentVec.Y),
-      Vector(currentVec.X - 1, currentVec.Y - 1),
       Vector(currentVec.X, currentVec.Y - 1),
-      Vector(currentVec.X + 1, currentVec.Y - 1),
     ];
     const flatPossibleNeighbors = [
       flattenVector(possibleNeighbors[0]!),
       flattenVector(possibleNeighbors[1]!),
       flattenVector(possibleNeighbors[2]!),
       flattenVector(possibleNeighbors[3]!),
-      flattenVector(possibleNeighbors[4]!),
-      flattenVector(possibleNeighbors[5]!),
-      flattenVector(possibleNeighbors[6]!),
-      flattenVector(possibleNeighbors[7]!),
     ];
 
     const neighbors: Vector[] = [];
     for (let i = 0; i < possibleNeighbors.length; i++) {
       if (
-        current === goal ||
+        flatPossibleNeighbors[i] === goal ||
         (isValidGridPos(possibleNeighbors[i], this.shape) &&
+          !this.walls.has(flatPossibleNeighbors[i]) &&
           !this.blockingEntities.has(flatPossibleNeighbors[i]))
       ) {
         neighbors.push(possibleNeighbors[i]);
       }
     }
+
+    // Debug Logging
+    /*
+    const doorPos = new Set<FlatVector>();
+    for (const door of this.doors) {
+      doorPos.add(flattenVector(getSlotGridPos(door, this.shape)));
+    }
+    const pathPos = new Set<FlatVector>();
+    for (const pathStep of path) {
+      pathPos.add(flattenVector(pathStep));
+    }
+    const flatNeighbors = new Set<FlatVector>();
+    for (const neighbor of neighbors) {
+      flatNeighbors.add(flattenVector(neighbor));
+    }
+    for (let y = -1; y < 15; y++) {
+      let line = "";
+      let nonEmpty = false;
+
+      for (let x = -1; x < 27; x++) {
+        const drawPos = flattenVector(Vector(x, y));
+        if (drawPos === current) {
+          line += "X";
+          nonEmpty = true;
+        } else if (drawPos === goal) {
+          line += "G";
+          nonEmpty = true;
+        } else if (flatNeighbors.has(drawPos)) {
+          if (pathPos.has(drawPos)) {
+            line += "@";
+          } else {
+            line += "N";
+          }
+          nonEmpty = true;
+        } else if (doorPos.has(drawPos)) {
+          if (pathPos.has(drawPos)) {
+            line += "O";
+          } else {
+            line += "H";
+          }
+          nonEmpty = true;
+        } else if (this.walls.has(drawPos)) {
+          line += "+";
+          nonEmpty = true;
+        } else if (this.blockingEntities.has(drawPos)) {
+          line += "#";
+          nonEmpty = true;
+        } else if (pathPos.has(drawPos)) {
+          line += "@";
+          nonEmpty = true;
+        } else {
+          line += " ";
+        }
+      }
+      if (nonEmpty) {
+        Isaac.DebugString(line.trimEnd());
+      } else {
+        break;
+      }
+    } */
 
     return neighbors;
   }

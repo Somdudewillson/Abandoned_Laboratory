@@ -172,19 +172,26 @@ export function cardinalizedDirection(inVec: Vector): Direction {
   return Direction.UP;
 }
 
-export function getSubsets<Type>(values: Type[]): Type[][] {
+export function getSubsets<Type>(
+  values: Type[],
+  min = 0,
+  max = math.maxinteger,
+): Type[][] {
   const result: Type[][] = [];
 
-  for (let i = 1; i < 1 << values.length; i++) {
+  const shiftedLimit = 1 << values.length;
+  for (let i = 1; i < shiftedLimit; i++) {
     const subset = [];
 
     for (let j = 0; j < values.length; j++) {
-      if (i & (1 << j)) {
+      if ((i & (1 << j)) > 0) {
         subset.push(values[j]);
       }
     }
 
-    result.push(subset);
+    if (subset.length >= min && subset.length <= max) {
+      result.push(subset);
+    }
   }
 
   return result;

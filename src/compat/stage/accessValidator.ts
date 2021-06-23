@@ -6,7 +6,11 @@ import {
   FlatVector,
   manhattanDist,
 } from "../../utils/aStar";
-import { getSlotGridPos, isValidGridPos } from "../../utils/utils";
+import {
+  getRoomShapeBounds,
+  getSlotGridPos,
+  isValidGridPos,
+} from "../../utils/utils";
 
 type FlatDoorPair = string;
 function flattenDoorPair(doorPair: {
@@ -29,7 +33,74 @@ export class AccessValidator {
     switch (shape) {
       default:
       case RoomShape.ROOMSHAPE_1x1:
-        AccessValidator.addWallBox(this.walls, Vector(-1, -1), 15, 9);
+      case RoomShape.ROOMSHAPE_IH:
+      case RoomShape.ROOMSHAPE_IV:
+      case RoomShape.ROOMSHAPE_1x2:
+      case RoomShape.ROOMSHAPE_IIV:
+      case RoomShape.ROOMSHAPE_2x1:
+      case RoomShape.ROOMSHAPE_IIH:
+      case RoomShape.ROOMSHAPE_2x2: {
+        const bounds = getRoomShapeBounds(shape);
+        let start = Vector(-1, -1);
+        if (
+          shape === RoomShape.ROOMSHAPE_IH ||
+          shape === RoomShape.ROOMSHAPE_IIH
+        ) {
+          start = Vector(-1, 2);
+        } else if (
+          shape === RoomShape.ROOMSHAPE_IV ||
+          shape === RoomShape.ROOMSHAPE_IIV
+        ) {
+          start = Vector(3, -1);
+        }
+
+        AccessValidator.addWallBox(
+          this.walls,
+          start,
+          bounds.X + 2,
+          bounds.Y + 2,
+        );
+        break;
+      }
+      case RoomShape.ROOMSHAPE_LTL:
+        // Horizontal lines, top to bottom
+        AccessValidator.addWallLine(this.walls, Vector(12, -1), true, 15);
+        AccessValidator.addWallLine(this.walls, Vector(-1, 6), true, 14);
+        AccessValidator.addWallLine(this.walls, Vector(-1, 14), true, 28);
+        // Vertical lines, left to right
+        AccessValidator.addWallLine(this.walls, Vector(-1, 7), false, 7);
+        AccessValidator.addWallLine(this.walls, Vector(12, 0), false, 6);
+        AccessValidator.addWallLine(this.walls, Vector(26, 0), false, 14);
+        break;
+      case RoomShape.ROOMSHAPE_LTR:
+        // Horizontal lines, top to bottom
+        AccessValidator.addWallLine(this.walls, Vector(-1, -1), true, 15);
+        AccessValidator.addWallLine(this.walls, Vector(13, 6), true, 14);
+        AccessValidator.addWallLine(this.walls, Vector(-1, 14), true, 28);
+        // Vertical lines, left to right
+        AccessValidator.addWallLine(this.walls, Vector(-1, 0), false, 14);
+        AccessValidator.addWallLine(this.walls, Vector(13, 0), false, 6);
+        AccessValidator.addWallLine(this.walls, Vector(26, 7), false, 7);
+        break;
+      case RoomShape.ROOMSHAPE_LBL:
+        // Horizontal lines, top to bottom
+        AccessValidator.addWallLine(this.walls, Vector(-1, -1), true, 28);
+        AccessValidator.addWallLine(this.walls, Vector(-1, 7), true, 14);
+        AccessValidator.addWallLine(this.walls, Vector(12, 14), true, 15);
+        // Vertical lines, left to right
+        AccessValidator.addWallLine(this.walls, Vector(-1, 0), false, 7);
+        AccessValidator.addWallLine(this.walls, Vector(12, 8), false, 6);
+        AccessValidator.addWallLine(this.walls, Vector(26, 0), false, 14);
+        break;
+      case RoomShape.ROOMSHAPE_LBR:
+        // Horizontal lines, top to bottom
+        AccessValidator.addWallLine(this.walls, Vector(-1, -1), true, 28);
+        AccessValidator.addWallLine(this.walls, Vector(13, 7), true, 14);
+        AccessValidator.addWallLine(this.walls, Vector(-1, 14), true, 15);
+        // Vertical lines, left to right
+        AccessValidator.addWallLine(this.walls, Vector(-1, 0), false, 14);
+        AccessValidator.addWallLine(this.walls, Vector(13, 8), false, 6);
+        AccessValidator.addWallLine(this.walls, Vector(26, 0), false, 7);
         break;
     }
   }

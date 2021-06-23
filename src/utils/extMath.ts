@@ -171,3 +171,21 @@ export function cardinalizedDirection(inVec: Vector): Direction {
   }
   return Direction.UP;
 }
+
+export function getSubsets<Type>(values: Type[]): Type[][] {
+  const result: Type[][] = [];
+
+  for (let i = 1; i < 1 << values.length; i++) {
+    const subset = [];
+
+    for (let j = 0; j < values.length; j++) {
+      if (i & (1 << j)) {
+        subset.push(values[j]);
+      }
+    }
+
+    result.push(subset);
+  }
+
+  return result;
+}

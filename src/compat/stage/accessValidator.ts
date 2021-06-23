@@ -12,8 +12,60 @@ export class AccessValidator {
   currentPaths = new Map<int, Vector[]>();
   doors: DoorSlot[] = [];
   blockingEntities = new Set<FlatVector>();
+  walls: Set<FlatVector>;
   constructor(shape: RoomShape) {
     this.shape = shape;
+    this.walls = new Set<FlatVector>();
+
+    switch (shape) {
+      default:
+      case RoomShape.ROOMSHAPE_1x1:
+        AccessValidator.addWallBox(this.walls, Vector(-1, -1), 15, 9);
+        break;
+    }
+  }
+
+  private static addWallBox(
+    wallSet: Set<FlatVector>,
+    start: Vector,
+    width: int,
+    height: int,
+  ): void {
+    AccessValidator.addWallLine(wallSet, start, true, width);
+    AccessValidator.addWallLine(
+      wallSet,
+      Vector(start.X, start.Y + height - 1),
+      true,
+      width,
+    );
+
+    AccessValidator.addWallLine(
+      wallSet,
+      Vector(start.X, start.Y + 1),
+      false,
+      height - 2,
+    );
+    AccessValidator.addWallLine(
+      wallSet,
+      Vector(start.X + width - 1, start.Y + 1),
+      false,
+      height - 2,
+    );
+  }
+
+  private static addWallLine(
+    wallSet: Set<FlatVector>,
+    start: Vector,
+    horiz: boolean,
+    len: int,
+  ): void {
+    for (let o = 0; o < len; o++) {
+      wallSet.add(
+        flattenVector(
+          Vector(start.X + (horiz ? o : 0), start.Y + (horiz ? 0 : o)),
+        ),
+      );
+    }
   }
 
   private static getPermutations(doors: DoorSlot[]): int[] {
@@ -30,7 +82,6 @@ export class AccessValidator {
     return out;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   isAccessible(room: CustomRoomConfig): boolean {
     this.doors = [];
     this.blockingEntities.clear();

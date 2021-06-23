@@ -217,6 +217,7 @@ export class AccessValidator {
         getSlotGridPos(doorPair.end, this.shape),
         manhattanDist,
         this.getNeighbors.bind(this),
+        10,
       );
       if (pathingResult === false) {
         return false;

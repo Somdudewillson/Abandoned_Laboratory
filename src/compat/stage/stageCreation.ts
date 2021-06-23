@@ -1,3 +1,4 @@
+import { getValidSlots } from "../../utils/utils";
 import { generateRoom } from "./layoutGen";
 
 const DefaultShadingName = "_default";
@@ -36,15 +37,10 @@ export function createStages(): void {
   );
   const lab1Rooms = StageAPI.RoomsList("lab1Rooms");
   const rand = RNG();
-  for (let i = 0; i < 5; i++) {
-    lab1Rooms.AddRooms([
-      generateRoom(rand, RoomShape.ROOMSHAPE_1x1, [
-        DoorSlot.LEFT0,
-        DoorSlot.UP0,
-        DoorSlot.RIGHT0,
-        DoorSlot.DOWN0,
-      ]),
-    ]);
+  for (let shape = 1; shape < RoomShape.NUM_ROOMSHAPES; shape++) {
+    for (let i = 0; i < 5; i++) {
+      lab1Rooms.AddRooms([generateRoom(rand, shape, getValidSlots(shape))]);
+    }
   }
   lab1Stage.SetRooms(lab1Rooms);
 

@@ -7,6 +7,7 @@ import {
 } from "../../types/StageAPI_helpers";
 import {
   getMirroredPos,
+  getRoomShapeSize,
   getSlotGridPos,
   getValidSlots,
   isValidGridPos,
@@ -74,11 +75,16 @@ function getValidSpots(
   return optionsMirrored;
 }
 
-/** Generates a 1x1 room
- * @param doors all *present* doors. **MUST** be valid `DoorSlot`s for a 1x1 room, and **MUST** be in order.
+/** Generates a bunch of obstacles in a room
+ * @param doors all *present* doors. **MUST** be valid `DoorSlot`s and **MUST** be in order.
  */
-export function genSmallRoom(rand: RNG, doors: DoorSlot[]): CustomRoomConfig {
-  const roomValidator = new AccessValidator(RoomShape.ROOMSHAPE_1x1);
+export function genRandObstacles(
+  rand: RNG,
+  shape: RoomShape,
+  doors: DoorSlot[],
+): CustomRoomConfig {
+  const roomValidator = new AccessValidator(shape);
+  const roomSize = getRoomShapeSize(shape);
   const newRoom = initCustomRoom(
     RoomType.ROOM_DEFAULT,
     0,
@@ -86,16 +92,16 @@ export function genSmallRoom(rand: RNG, doors: DoorSlot[]): CustomRoomConfig {
     `Generated Room-${rand.Next()}`,
     1,
     1,
-    13,
-    7,
-    RoomShape.ROOMSHAPE_1x1,
+    roomSize.X,
+    roomSize.Y,
+    shape,
   );
 
   let index = 1;
   // Add Doors
   let i = 0;
   const presentDoors: DoorSlot[] = [];
-  for (const doorSlot of getValidSlots(RoomShape.ROOMSHAPE_1x1)) {
+  for (const doorSlot of getValidSlots(shape)) {
     const present = i < doors.length && doors[i] === doorSlot;
     if (present) {
       presentDoors.push(doorSlot);
@@ -104,20 +110,12 @@ export function genSmallRoom(rand: RNG, doors: DoorSlot[]): CustomRoomConfig {
 
     newRoom.set(
       index++,
-      makeLuaDoor(
-        getSlotGridPos(doorSlot, RoomShape.ROOMSHAPE_1x1),
-        doorSlot,
-        present,
-      ),
+      makeLuaDoor(getSlotGridPos(doorSlot, shape), doorSlot, present),
     );
   }
 
   // Add some random rocks
-  const spots = getValidSpots(
-    RoomShape.ROOMSHAPE_1x1,
-    presentDoors,
-    SymmetryType.QUAD,
-  );
+  const spots = getValidSpots(shape, presentDoors, SymmetryType.QUAD);
   const rocksAmt = randomInt(rand, 1, Math.round(spots.length * 0.75));
   Isaac.DebugString(`Attempting to place ${rocksAmt} rocks.`);
   shuffleArray(spots, rand);
@@ -133,12 +131,7 @@ export function genSmallRoom(rand: RNG, doors: DoorSlot[]): CustomRoomConfig {
     if (
       !roomValidator.isAccessible(
         newRoom,
-        getMirroredPos(
-          RoomShape.ROOMSHAPE_1x1,
-          SymmetryType.QUAD,
-          newRockPos,
-          true,
-        ),
+        getMirroredPos(shape, SymmetryType.QUAD, newRockPos, true),
       )
     ) {
       Isaac.DebugString("Attempt failed - would block path.");
@@ -149,7 +142,7 @@ export function genSmallRoom(rand: RNG, doors: DoorSlot[]): CustomRoomConfig {
     index = mirrorLuaEntity(
       newRoom,
       index,
-      RoomShape.ROOMSHAPE_1x1,
+      shape,
       SymmetryType.QUAD,
       makeLuaEntity(
         newRockPos,

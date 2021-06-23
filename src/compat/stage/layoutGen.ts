@@ -1,4 +1,4 @@
-import { genSmallRoom } from "./randLayoutGen";
+import { genRandObstacles } from "./randLayoutGen";
 
 export function generateRoom(
   rand: RNG,
@@ -7,7 +7,6 @@ export function generateRoom(
 ): CustomRoomConfig {
   switch (shape) {
     default:
-    case RoomShape.ROOMSHAPE_1x1:
-      return genSmallRoom(rand, doors);
+      return genRandObstacles(rand, shape, doors);
   }
 }

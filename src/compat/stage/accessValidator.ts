@@ -196,18 +196,18 @@ export class AccessValidator {
       const flatDoorPair = flattenDoorPair(doorPair);
 
       if (this.currentPaths.has(flatDoorPair)) {
-        Isaac.DebugString(`Preexisting path found for [${flatDoorPair}].`);
+        // Isaac.DebugString(`Preexisting path found for [${flatDoorPair}].`);
         let clear = true;
         for (const pathPos of this.currentPaths.get(flatDoorPair)!) {
           if (this.blockingEntities.has(pathPos)) {
-            Isaac.DebugString("Path invalid.");
+            // Isaac.DebugString("Path invalid.");
             this.currentPaths.delete(flatDoorPair);
             clear = false;
             break;
           }
         }
         if (clear) {
-          Isaac.DebugString("Path valid.");
+          // Isaac.DebugString("Path valid.");
           continue;
         }
       }

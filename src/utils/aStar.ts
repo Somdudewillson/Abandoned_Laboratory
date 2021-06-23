@@ -34,7 +34,7 @@ export function findAStarPath(
 ): Vector[] | false {
   const start = flattenVector(startVec);
   const goal = flattenVector(goalVec);
-  Isaac.DebugString(`\tPathing initiated from (${start}) to (${goal}).`);
+  // Isaac.DebugString(`\tPathing initiated from (${start}) to (${goal}).`);
 
   // The set of discovered nodes that may need to be (re-)expanded.
   // Initially, only the start node is known.
@@ -59,7 +59,7 @@ export function findAStarPath(
     // This operation can occur in O(1) time if openSet is a min-heap or a priority queue
     const current = openSet.pop()!;
     if (current === goal) {
-      Isaac.DebugString("\tPath to goal found.");
+      // Isaac.DebugString("\tPath to goal found.");
       return reconstructPath(cameFrom, current);
     }
     const currentVec = expandVector(current);
@@ -86,7 +86,7 @@ export function findAStarPath(
   }
 
   // Open set is empty but goal was never reached
-  Isaac.DebugString("\tNo path to goal found.");
+  // Isaac.DebugString("\tNo path to goal found.");
   return false;
 }
 

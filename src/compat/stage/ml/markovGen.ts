@@ -3,9 +3,8 @@ import {
   isGridPassable,
   makeLuaDoor,
   makeLuaEntity,
-  mirrorLuaEntity,
-} from "../../types/StageAPI_helpers";
-import { randomInt, shuffleArray } from "../../utils/extMath";
+} from "../../../types/StageAPI_helpers";
+import { flattenVector, FlatVector } from "../../../utils/aStar";
 import {
   getMirroredPos,
   getRoomShapeSize,
@@ -13,8 +12,15 @@ import {
   getValidSlots,
   isValidGridPos,
   SymmetryType,
-} from "../../utils/utils";
-import { AccessValidator } from "./accessValidator";
+} from "../../../utils/utils";
+import { AccessValidator } from "../accessValidator";
+import {
+  ContextHash,
+  decayTokens,
+  detokenize,
+  EntityToken,
+  hashContext,
+} from "./tokenizer";
 
 const SymmetryTable = [
   SymmetryType.HORIZONTAL,
@@ -27,18 +33,6 @@ const SymmetryTable = [
   SymmetryType.QUAD,
   SymmetryType.QUAD,
   SymmetryType.QUAD,
-];
-
-const PIT_RATIO = 0.0;
-const DESTRUCTIBLE_RATIO = 0.1;
-const REMOVE_RATIO = 0.25;
-
-const DestructibleTable = [
-  LayoutGridType.POOP,
-  LayoutGridType.POOP,
-  LayoutGridType.POOP,
-  LayoutGridType.COBWEB,
-  LayoutGridType.COBWEB,
 ];
 
 function getValidSpots(
@@ -130,13 +124,99 @@ function getValidSpots(
   return optionsMirrored;
 }
 
-/** Generates a bunch of obstacles in a room
+function pickWeighted(
+  rand: RNG,
+  options: Array<{ token: EntityToken; weight: float }> | undefined,
+): EntityToken {
+  if (!options || options == null || options.length === 0) {
+    return EntityToken.AIR;
+  }
+
+  let cumulative = 0;
+  const random = rand.RandomFloat();
+  for (const option of options) {
+    if (random <= cumulative + option.weight) {
+      return option.token;
+    }
+
+    cumulative += option.weight;
+  }
+
+  return EntityToken.AIR;
+}
+
+function fetchToken(
+  pos: Vector,
+  shape: RoomShape,
+  doors: DoorSlot[],
+  entities: Map<FlatVector, EntityToken>,
+): EntityToken {
+  for (const doorSlot of doors) {
+    if (pos.DistanceSquared(getSlotGridPos(doorSlot, shape)) < 1) {
+      return EntityToken.DOOR;
+    }
+  }
+
+  if (!isValidGridPos(pos, shape)) {
+    return EntityToken.WALL;
+  }
+
+  const flatPos = flattenVector(pos);
+  if (entities.has(flatPos)) {
+    return entities.get(flatPos)!;
+  }
+
+  return EntityToken.AIR;
+}
+
+function fetchFromModel(
+  up: EntityToken,
+  left: EntityToken,
+  right: EntityToken,
+  down: EntityToken,
+  model: Map<ContextHash, Array<{ token: EntityToken; weight: float }>>,
+): Array<{ token: EntityToken; weight: float }> | undefined {
+  let result = model.get(hashContext(up, left, right, down));
+
+  // If there is no entry in the given model
+  if (!result) {
+    let nextSets: EntityToken[][] = [];
+    let currentSets: EntityToken[][] = [];
+
+    const initialDecay = decayTokens([up, left, right, down]);
+    if (initialDecay != null) {
+      currentSets = initialDecay;
+    }
+    while (currentSets.length > 0 && !result) {
+      for (const decaySet of currentSets) {
+        result = model.get(
+          hashContext(decaySet[0], decaySet[1], decaySet[2], decaySet[3]),
+        );
+
+        const newDecay = decayTokens(decaySet);
+        if (newDecay != null) {
+          for (const nextDecay of newDecay) {
+            nextSets.push(nextDecay);
+          }
+        }
+      }
+
+      currentSets = nextSets;
+      nextSets = [];
+    }
+  }
+
+  return result;
+}
+
+/** Generates grid entities in a room according to a Markov chain model
  * @param doors all *present* doors. **MUST** be valid `DoorSlot`s and **MUST** be in order.
  */
-export function genRandObstacles(
+export function genMarkovObstacles(
   rand: RNG,
   shape: RoomShape,
   doors: DoorSlot[],
+  model: Map<ContextHash, Array<{ token: EntityToken; weight: float }>>,
 ): CustomRoomConfig {
   const roomValidator = new AccessValidator(shape);
   const roomSize = getRoomShapeSize(shape);
@@ -170,62 +250,50 @@ export function genRandObstacles(
     );
   }
 
-  // Add some random obstacles
-  const spots = getValidSpots(shape, presentDoors, symmetry);
-  const obstacleAmt = randomInt(
-    rand,
-    Math.ceil(spots.length * 0.05),
-    Math.round(spots.length * 0.5),
-  );
-  // Isaac.DebugString(`Attempting to place ${rocksAmt} rocks.`);
-  shuffleArray(spots, rand);
-  for (let count = 0; count < obstacleAmt; count++) {
-    const toPlace = {
-      type: LayoutGridType.ROCK,
-      variant: 0,
-      subtype: LayoutRockSubtype.NORMAL,
-    };
-    if (rand.RandomFloat() < DESTRUCTIBLE_RATIO) {
-      toPlace.type =
-        DestructibleTable[rand.RandomInt(DestructibleTable.length)];
-    } else if (rand.RandomFloat() < PIT_RATIO) {
-      toPlace.type = LayoutGridType.PIT;
-    }
+  // Generate grid entities
+  const existingEntities = new Map<FlatVector, EntityToken>();
+  for (const spot of getValidSpots(shape, doors, symmetry)) {
+    const upContext = fetchToken(
+      Vector(spot.X, spot.Y - 1),
+      shape,
+      doors,
+      existingEntities,
+    );
+    const leftContext = fetchToken(
+      Vector(spot.X - 1, spot.Y),
+      shape,
+      doors,
+      existingEntities,
+    );
+    const rightContext = fetchToken(
+      Vector(spot.X + 1, spot.Y),
+      shape,
+      doors,
+      existingEntities,
+    );
+    const downContext = fetchToken(
+      Vector(spot.X, spot.Y + 1),
+      shape,
+      doors,
+      existingEntities,
+    );
 
-    if (spots.length === 0) {
-      // Isaac.DebugString("Out of places to put rocks!");
-      break;
-    }
-    const newRockPos = spots.pop()!;
-    // Isaac.DebugString(`Attempting to place rock at [${newRockPos}].`);
+    const newToken = pickWeighted(
+      rand,
+      fetchFromModel(upContext, leftContext, rightContext, downContext, model),
+    );
+    const newGrid = detokenize(newToken);
+    const mirroredNewPos = getMirroredPos(shape, symmetry, spot, true);
     if (
-      isGridPassable(toPlace.type) ||
-      !roomValidator.isAccessible(
-        newRoom,
-        getMirroredPos(shape, symmetry, newRockPos, true),
-      )
+      newGrid != null &&
+      (isGridPassable(newGrid) ||
+        roomValidator.isAccessible(newRoom, mirroredNewPos))
     ) {
-      // Isaac.DebugString("Attempt failed - would block path.");
-      if (rand.RandomFloat() < REMOVE_RATIO) {
-        // Place nothing in obstructed area
-        count--;
-        continue;
-      } else {
-        // Place non-obstructing grid in area
-        toPlace.type =
-          DestructibleTable[rand.RandomInt(DestructibleTable.length)];
-        toPlace.variant = 0;
-        toPlace.subtype = 0;
+      for (const mirrorSpot of mirroredNewPos) {
+        newRoom.set(index++, makeLuaEntity(mirrorSpot, newGrid, 0, 0));
+        existingEntities.set(flattenVector(mirrorSpot), newToken);
       }
     }
-
-    index = mirrorLuaEntity(
-      newRoom,
-      index,
-      shape,
-      symmetry,
-      makeLuaEntity(newRockPos, toPlace.type, toPlace.variant, toPlace.subtype),
-    );
   }
 
   return newRoom;

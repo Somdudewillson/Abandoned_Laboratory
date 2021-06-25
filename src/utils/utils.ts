@@ -856,10 +856,6 @@ export function isValidGridPos(pos: Vector, shape: RoomShape): boolean {
         return false;
       }
       break;
-      if (pos.X >= 13 || pos.Y >= 7) {
-        return false;
-      }
-      break;
     case RoomShape.ROOMSHAPE_IV:
       if (pos.X <= 3 || pos.X >= 9 || pos.Y >= 7) {
         return false;

@@ -129,6 +129,7 @@ export function isGridPassable(type: LayoutGridType, flying = false): boolean {
     case LayoutGridType.PIT:
     case LayoutGridType.SPIKES:
     case LayoutGridType.PITFALL:
+    case LayoutGridType.BLOCK_METAL:
       return flying;
     case LayoutGridType.BLOCK_KEY:
     case LayoutGridType.BLOCK_METAL_TALL:

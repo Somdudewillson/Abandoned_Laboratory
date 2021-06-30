@@ -14,7 +14,7 @@ import {
   SymmetryType,
 } from "../../../utils/utils";
 import { AccessValidator } from "../accessValidator";
-import { getfromModel, ModelWrapper } from "./modelInterface";
+import { getFromModel, ModelWrapper } from "./modelInterface";
 import { decayTokens, detokenize, EntityToken, hashContext } from "./tokenizer";
 
 // const SymmetryTable = [SymmetryType.NONE];
@@ -172,7 +172,7 @@ function fetchFromModel(
   down: EntityToken,
   model: ModelWrapper,
 ): Array<{ token: EntityToken; weight: float }> | null {
-  let result = getfromModel(hashContext(up, left, right, down), model);
+  let result = getFromModel(hashContext(up, left, right, down), model);
 
   // If there is no entry in the given model
   if (result == null) {
@@ -185,7 +185,7 @@ function fetchFromModel(
     }
     while (currentSets.length > 0 && result == null) {
       for (const decaySet of currentSets) {
-        result = getfromModel(
+        result = getFromModel(
           hashContext(decaySet[0], decaySet[1], decaySet[2], decaySet[3]),
           model,
         );

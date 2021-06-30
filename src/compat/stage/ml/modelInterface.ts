@@ -2,7 +2,7 @@ import { EntityToken } from "./tokenizer";
 
 export type ModelWrapper = LuaTable<string, LuaTable<number, number>>;
 
-export function getfromModel(
+export function getFromModel(
   key: string,
   model: ModelWrapper,
 ): Array<{ token: EntityToken; weight: float }> | null {

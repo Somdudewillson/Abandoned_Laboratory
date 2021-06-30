@@ -1,14 +1,17 @@
 import { EntityToken } from "./tokenizer";
 
-export type ModelWrapper = LuaTable<string, LuaTable<number, number>>;
+export interface ModelWrapper {
+  Model: LuaTable<string, LuaTable<number, number>>;
+  Context: Array<{ x: int; y: int }>;
+}
 
 export function getFromModel(
+  modelData: ModelWrapper,
   key: string,
-  model: ModelWrapper,
 ): Array<{ token: EntityToken; weight: float }> | null {
   const result: Array<{ token: EntityToken; weight: float }> = [];
 
-  const entrySet = model.get(key);
+  const entrySet = modelData.Model.get(key);
   if (entrySet == null) {
     return null;
   }

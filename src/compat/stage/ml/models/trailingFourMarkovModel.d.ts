@@ -1,2 +1,5 @@
 /* eslint-disable prettier/prettier */
-export const TrailingFourMarkovModel: LuaTable<string, LuaTable<number, number>>;
+export namespace TrailingFourMarkovModel {
+  export const Model: LuaTable<string, LuaTable<number, number>>;
+  export const Context: Array<{ x: int; y: int }>;
+}

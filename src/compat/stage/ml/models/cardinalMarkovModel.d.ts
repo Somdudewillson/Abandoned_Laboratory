@@ -1,2 +1,5 @@
 /* eslint-disable prettier/prettier */
-export const CardinalMarkovModel: LuaTable<string, LuaTable<number, number>>;
+export namespace CardinalMarkovModel {
+  export const Model: LuaTable<string, LuaTable<number, number>>;
+  export const Context: Array<{ x: int; y: int }>;
+}

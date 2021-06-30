@@ -169,7 +169,7 @@ function fetchFromModel(
   model: ModelWrapper,
   ...tokens: EntityToken[]
 ): Array<{ token: EntityToken; weight: float }> | null {
-  let result = getFromModel(hashContext(...tokens), model);
+  let result = getFromModel(model, hashContext(...tokens));
 
   // If there is no entry in the given model
   if (result == null) {
@@ -182,7 +182,7 @@ function fetchFromModel(
     }
     while (currentSets.length > 0 && result == null) {
       for (const decaySet of currentSets) {
-        result = getFromModel(hashContext(...decaySet), model);
+        result = getFromModel(model, hashContext(...decaySet));
 
         const newDecay = decayTokens(decaySet);
         if (newDecay != null) {
@@ -244,35 +244,19 @@ export function genMarkovObstacles(
   // Generate grid entities
   const existingEntities = new Map<FlatVector, EntityToken>();
   for (const spot of getValidSpots(shape, doors, symmetry)) {
-    const upContext = fetchToken(
-      Vector(spot.X, spot.Y - 1),
-      shape,
-      doors,
-      existingEntities,
-    );
-    const leftContext = fetchToken(
-      Vector(spot.X - 1, spot.Y),
-      shape,
-      doors,
-      existingEntities,
-    );
-    const rightContext = fetchToken(
-      Vector(spot.X + 1, spot.Y),
-      shape,
-      doors,
-      existingEntities,
-    );
-    const downContext = fetchToken(
-      Vector(spot.X, spot.Y + 1),
-      shape,
-      doors,
-      existingEntities,
-    );
+    const context: EntityToken[] = [];
+    for (const contextPos of model.Context) {
+      context.push(
+        fetchToken(
+          Vector(spot.X + contextPos.x, spot.Y + contextPos.y),
+          shape,
+          doors,
+          existingEntities,
+        ),
+      );
+    }
 
-    const newToken = pickWeighted(
-      rand,
-      fetchFromModel(model, upContext, leftContext, rightContext, downContext),
-    );
+    const newToken = pickWeighted(rand, fetchFromModel(model, ...context));
     const newGrid = detokenize(newToken);
     const mirroredNewPos = getMirroredPos(shape, symmetry, spot, true);
     if (

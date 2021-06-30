@@ -166,29 +166,23 @@ function fetchToken(
 }
 
 function fetchFromModel(
-  up: EntityToken,
-  left: EntityToken,
-  right: EntityToken,
-  down: EntityToken,
   model: ModelWrapper,
+  ...tokens: EntityToken[]
 ): Array<{ token: EntityToken; weight: float }> | null {
-  let result = getFromModel(hashContext(up, left, right, down), model);
+  let result = getFromModel(hashContext(...tokens), model);
 
   // If there is no entry in the given model
   if (result == null) {
     let nextSets: EntityToken[][] = [];
     let currentSets: EntityToken[][] = [];
 
-    const initialDecay = decayTokens([up, left, right, down]);
+    const initialDecay = decayTokens(tokens);
     if (initialDecay != null) {
       currentSets = initialDecay;
     }
     while (currentSets.length > 0 && result == null) {
       for (const decaySet of currentSets) {
-        result = getFromModel(
-          hashContext(decaySet[0], decaySet[1], decaySet[2], decaySet[3]),
-          model,
-        );
+        result = getFromModel(hashContext(...decaySet), model);
 
         const newDecay = decayTokens(decaySet);
         if (newDecay != null) {
@@ -277,7 +271,7 @@ export function genMarkovObstacles(
 
     const newToken = pickWeighted(
       rand,
-      fetchFromModel(upContext, leftContext, rightContext, downContext, model),
+      fetchFromModel(model, upContext, leftContext, rightContext, downContext),
     );
     const newGrid = detokenize(newToken);
     const mirroredNewPos = getMirroredPos(shape, symmetry, spot, true);

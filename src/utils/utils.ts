@@ -325,6 +325,41 @@ export function directionToDegrees(dir: Direction): number {
   }
 }
 
+export function rotateDirection(
+  dir: Direction,
+  rotateDir: Direction,
+): Direction {
+  if (dir === Direction.NO_DIRECTION) {
+    return Direction.NO_DIRECTION;
+  }
+
+  let shift = 0;
+  switch (rotateDir) {
+    default:
+    case Direction.NO_DIRECTION:
+    case Direction.UP:
+      return dir;
+    case Direction.LEFT:
+      shift = -1;
+      break;
+    case Direction.RIGHT:
+      shift = 1;
+      break;
+    case Direction.DOWN:
+      shift = -2;
+      break;
+  }
+
+  let newDir = dir + shift;
+  if (newDir < 0) {
+    newDir += 4;
+  } else if (newDir > 3) {
+    newDir -= 4;
+  }
+
+  return newDir;
+}
+
 export function isBetter(
   rand: RNG,
   current: Readonly<ItemConfigItem>,
@@ -968,5 +1003,27 @@ export function getRoomShapeBounds(shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_LBL:
     case RoomShape.ROOMSHAPE_LBR:
       return Vector(26, 14);
+  }
+}
+/** Get the top left pos of a given `RoomShape`. */
+export function getTopLeftPos(shape: RoomShape): Vector {
+  switch (shape) {
+    default:
+    case RoomShape.ROOMSHAPE_1x1:
+    case RoomShape.ROOMSHAPE_1x2:
+    case RoomShape.ROOMSHAPE_2x1:
+    case RoomShape.ROOMSHAPE_2x2:
+    case RoomShape.ROOMSHAPE_LTR:
+    case RoomShape.ROOMSHAPE_LBL:
+    case RoomShape.ROOMSHAPE_LBR:
+      return Vector(0, 0);
+    case RoomShape.ROOMSHAPE_IH:
+    case RoomShape.ROOMSHAPE_IIH:
+      return Vector(0, 2);
+    case RoomShape.ROOMSHAPE_IIV:
+    case RoomShape.ROOMSHAPE_IV:
+      return Vector(4, 0);
+    case RoomShape.ROOMSHAPE_LTL:
+      return Vector(13, 0);
   }
 }

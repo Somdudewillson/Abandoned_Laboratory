@@ -2,7 +2,9 @@
 
 import { SymmetryType } from "../../utils/utils";
 import { genMarkovObstacles } from "./ml/markovGen";
-import { TrailingFourMarkovModel } from "./ml/models/trailingFourMarkovModel";
+import { ChebyschevMarkovModel } from "./ml/models/chebyschevMarkovModel";
+
+const StaticChebyschevMarkovModel = ChebyschevMarkovModel;
 
 export function generateRoom(
   rand: RNG,
@@ -15,7 +17,7 @@ export function generateRoom(
         rand,
         shape,
         doors,
-        TrailingFourMarkovModel,
+        StaticChebyschevMarkovModel,
         SymmetryType.NONE,
       );
     // return genRandObstacles(rand, shape, doors);

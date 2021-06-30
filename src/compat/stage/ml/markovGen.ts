@@ -17,7 +17,6 @@ import { AccessValidator } from "../accessValidator";
 import { getFromModel, ModelWrapper } from "./modelInterface";
 import { decayTokens, detokenize, EntityToken, hashContext } from "./tokenizer";
 
-// const SymmetryTable = [SymmetryType.NONE];
 const SymmetryTable = [
   SymmetryType.HORIZONTAL,
   SymmetryType.HORIZONTAL,
@@ -30,6 +29,8 @@ const SymmetryTable = [
   SymmetryType.QUAD,
   SymmetryType.QUAD,
 ];
+
+const NON_AIR_BIAS = 7.5;
 
 function getValidSpots(
   shape: RoomShape,
@@ -130,17 +131,28 @@ function pickWeighted(
 
   let sum = 0;
   for (const option of options) {
-    sum += option.weight;
+    let weightMult = 1;
+    if (option.token !== EntityToken.AIR) {
+      weightMult *= NON_AIR_BIAS;
+    }
+
+    sum += option.weight * weightMult;
   }
 
   let cumulative = 0;
   const random = rand.RandomFloat() * sum;
   for (const option of options) {
-    if (random <= cumulative + option.weight) {
+    let weightMult = 1;
+    if (option.token !== EntityToken.AIR) {
+      weightMult *= NON_AIR_BIAS;
+    }
+
+    const adjustedWeight = option.weight * weightMult;
+    if (random <= cumulative + adjustedWeight) {
       return option.token;
     }
 
-    cumulative += option.weight;
+    cumulative += adjustedWeight;
   }
 
   return EntityToken.AIR;

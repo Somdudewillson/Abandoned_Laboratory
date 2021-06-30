@@ -41,22 +41,21 @@ export const enum EntityToken {
   POOP_GOLD = 21,
   POOP_RAINBOW = 22,
   POOP_BLACK = 23,
-  PROP = 24,
-  PICKUP = 25,
-  PICKUP_NOT_ITEM = 26,
-  PICKUP_NOT_CHEST_ITEM = 27,
-  PICKUP_NOT_CHEST_ITEM_COIN = 28,
-  PICKUP_NOT_CHEST_ITEM_TRINKET = 29,
-  PICKUP_HEART = 30,
-  PICKUP_COIN = 31,
-  PICKUP_KEY = 32,
-  PICKUP_BOMB = 33,
-  PICKUP_PILL = 34,
-  PICKUP_CARD = 35,
-  PICKUP_RUNE = 36,
-  PICKUP_TRINKET = 37,
-  PICKUP_BATTERY = 38,
-  PICKUP_SACK = 39,
+  PICKUP = 24,
+  PICKUP_NOT_ITEM = 25,
+  PICKUP_NOT_CHEST_ITEM = 26,
+  PICKUP_NOT_CHEST_ITEM_COIN = 27,
+  PICKUP_NOT_CHEST_ITEM_TRINKET = 28,
+  PICKUP_HEART = 29,
+  PICKUP_COIN = 30,
+  PICKUP_KEY = 31,
+  PICKUP_BOMB = 32,
+  PICKUP_PILL = 33,
+  PICKUP_CARD = 34,
+  PICKUP_RUNE = 35,
+  PICKUP_TRINKET = 36,
+  PICKUP_BATTERY = 37,
+  PICKUP_SACK = 38,
 }
 /** "Decays" a token into a more generic form.
  * @returns The decayed `EntityToken`, or `null` if the given `EntityToken` cannot decay.
@@ -67,18 +66,10 @@ export function decayToken(original: EntityToken): EntityToken | null {
       return null;
     case EntityToken.TNT_PUSHABLE:
       return EntityToken.TNT;
-    case EntityToken.PROP:
     case EntityToken.PICKUP:
       return EntityToken.AIR;
-    case EntityToken.PICKUP_HEART:
-    case EntityToken.PICKUP_COIN:
-    case EntityToken.PICKUP_KEY:
-    case EntityToken.PICKUP_BOMB:
-    case EntityToken.PICKUP_PILL:
-    case EntityToken.PICKUP_CARD:
-    case EntityToken.PICKUP_BATTERY:
-    case EntityToken.PICKUP_SACK:
-      return EntityToken.PICKUP_NOT_CHEST_ITEM_TRINKET;
+    case EntityToken.PICKUP_TRINKET:
+      return EntityToken.PICKUP_NOT_CHEST_ITEM_COIN;
     case EntityToken.ROCK_ALT:
     case EntityToken.ROCK_SPIKE:
     case EntityToken.BLOCK_METAL:
@@ -88,26 +79,33 @@ export function decayToken(original: EntityToken): EntityToken | null {
     case EntityToken.COBWEB:
     case EntityToken.POOP:
       return EntityToken.PASSABLE;
-    case EntityToken.PICKUP_TRINKET:
-      return EntityToken.PICKUP_NOT_CHEST_ITEM_COIN;
     case EntityToken.PICKUP_NOT_ITEM:
       return EntityToken.PICKUP;
-    case EntityToken.IMPASSABLE_ALL:
-    case EntityToken.ROCK:
-    case EntityToken.PIT:
-    case EntityToken.SPIKES:
-      return EntityToken.IMPASSABLE_GROUND;
+    case EntityToken.PICKUP_NOT_CHEST_ITEM:
+      return EntityToken.PICKUP_NOT_ITEM;
     case EntityToken.POOP_CORNY:
     case EntityToken.POOP_RED:
     case EntityToken.POOP_GOLD:
     case EntityToken.POOP_RAINBOW:
     case EntityToken.POOP_BLACK:
       return EntityToken.POOP;
-    case EntityToken.PICKUP_NOT_CHEST_ITEM:
-      return EntityToken.PICKUP_NOT_ITEM;
+    case EntityToken.IMPASSABLE_ALL:
+    case EntityToken.ROCK:
+    case EntityToken.PIT:
+    case EntityToken.SPIKES:
+      return EntityToken.IMPASSABLE_GROUND;
     case EntityToken.PICKUP_NOT_CHEST_ITEM_COIN:
     case EntityToken.PICKUP_NOT_CHEST_ITEM_TRINKET:
       return EntityToken.PICKUP_NOT_CHEST_ITEM;
+    case EntityToken.PICKUP_HEART:
+    case EntityToken.PICKUP_COIN:
+    case EntityToken.PICKUP_KEY:
+    case EntityToken.PICKUP_BOMB:
+    case EntityToken.PICKUP_PILL:
+    case EntityToken.PICKUP_CARD:
+    case EntityToken.PICKUP_BATTERY:
+    case EntityToken.PICKUP_SACK:
+      return EntityToken.PICKUP_NOT_CHEST_ITEM_TRINKET;
     case EntityToken.BLOCK_KEY:
       return EntityToken.IMPASSABLE_ALL;
     case EntityToken.PITFALL:
@@ -203,6 +201,8 @@ export function tokenize(entity: EntityData): EntityToken {
       return EntityToken.POOP_GOLD;
     case -2:
       return EntityToken.DOOR;
+    case 292:
+      return EntityToken.TNT_PUSHABLE;
     case 1495:
       return EntityToken.POOP_CORNY;
     case 291:
@@ -230,8 +230,6 @@ export function tokenize(entity: EntityData): EntityToken {
       return EntityToken.POOP_BLACK;
     case 1490:
       return EntityToken.POOP_RED;
-    case 292:
-      return EntityToken.TNT_PUSHABLE;
     case 1494:
       return EntityToken.POOP_RAINBOW;
     case 1901:
@@ -243,18 +241,6 @@ export function tokenize(entity: EntityData): EntityToken {
       return EntityToken.BLOCK_METAL;
     case 1010:
       return EntityToken.ROCK_SPIKE;
-    case 0:
-      switch (entity.Variant) {
-        default:
-        case 0:
-          return EntityToken.AIR;
-        case 10:
-          return EntityToken.PROP;
-        case 20:
-          return EntityToken.PROP;
-        case 30:
-          return EntityToken.PROP;
-      }
     case 5:
       switch (entity.Variant) {
         default:
@@ -344,38 +330,16 @@ export function detokenize(token: EntityToken): EntityData | null {
       return newEntityData(LayoutGridType.POOP_RAINBOW, 0, 0);
     case EntityToken.POOP_BLACK:
       return newEntityData(LayoutGridType.POOP_BLACK, 0, 0);
-    case EntityToken.PROP:
-      return newEntityData(LayoutGridType.PROP_A, 0, 0);
     case EntityToken.PICKUP:
-      return newEntityData(
-        EntityType.ENTITY_PICKUP,
-        PickupRandomGroupVariant.ANY,
-        0,
-      );
+      return newEntityData(EntityType.ENTITY_PICKUP, PickupRandomGroupVariant.ANY, 0);
     case EntityToken.PICKUP_NOT_ITEM:
-      return newEntityData(
-        EntityType.ENTITY_PICKUP,
-        PickupRandomGroupVariant.NOT_ITEM,
-        0,
-      );
+      return newEntityData(EntityType.ENTITY_PICKUP, PickupRandomGroupVariant.NOT_ITEM, 0);
     case EntityToken.PICKUP_NOT_CHEST_ITEM:
-      return newEntityData(
-        EntityType.ENTITY_PICKUP,
-        PickupRandomGroupVariant.NOT_CHEST_ITEM,
-        0,
-      );
+      return newEntityData(EntityType.ENTITY_PICKUP, PickupRandomGroupVariant.NOT_CHEST_ITEM, 0);
     case EntityToken.PICKUP_NOT_CHEST_ITEM_COIN:
-      return newEntityData(
-        EntityType.ENTITY_PICKUP,
-        PickupRandomGroupVariant.NOT_CHEST_ITEM_COIN,
-        0,
-      );
+      return newEntityData(EntityType.ENTITY_PICKUP, PickupRandomGroupVariant.NOT_CHEST_ITEM_COIN, 0);
     case EntityToken.PICKUP_NOT_CHEST_ITEM_TRINKET:
-      return newEntityData(
-        EntityType.ENTITY_PICKUP,
-        PickupRandomGroupVariant.NOT_CHEST_ITEM_TRINKET,
-        0,
-      );
+      return newEntityData(EntityType.ENTITY_PICKUP, PickupRandomGroupVariant.NOT_CHEST_ITEM_TRINKET, 0);
     case EntityToken.PICKUP_HEART:
       return newEntityData(EntityType.ENTITY_PICKUP, 10, 0);
     case EntityToken.PICKUP_COIN:

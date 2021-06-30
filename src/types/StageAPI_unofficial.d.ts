@@ -113,6 +113,7 @@ declare const enum LayoutPitfallVariant {
 }
 
 declare const enum PickupRandomGroupVariant {
+  ANY = 0,
   NOT_CHEST_ITEM = 1,
   NOT_ITEM = 2,
   NOT_CHEST_ITEM_COIN = 3,

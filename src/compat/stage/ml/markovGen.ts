@@ -128,8 +128,13 @@ function pickWeighted(
     return EntityToken.AIR;
   }
 
+  let sum = 0;
+  for (const option of options) {
+    sum += option.weight;
+  }
+
   let cumulative = 0;
-  const random = rand.RandomFloat();
+  const random = rand.RandomFloat() * sum;
   for (const option of options) {
     if (random <= cumulative + option.weight) {
       return option.token;
@@ -208,10 +213,10 @@ export function genMarkovObstacles(
   shape: RoomShape,
   doors: DoorSlot[],
   model: ModelWrapper,
+  symmetry: SymmetryType = SymmetryTable[rand.RandomInt(SymmetryTable.length)],
 ): CustomRoomConfig {
   const roomValidator = new AccessValidator(shape);
   const roomSize = getRoomShapeSize(shape);
-  const symmetry = SymmetryTable[rand.RandomInt(SymmetryTable.length)];
   const newRoom = initCustomRoom(
     RoomType.ROOM_DEFAULT,
     0,

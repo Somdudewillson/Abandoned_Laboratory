@@ -172,15 +172,16 @@ export function decayTokens(originals: EntityToken[]): EntityToken[][] | null {
 
   return null;
 }
+/** Minifies an `EntityToken` into a single character. */
+export function minifyToken(token: EntityToken): string {
+  return String.fromCharCode(token + 40);
+}
 /** Converts a set of `EntityToken`s into a `ContextHash`. */
 export function hashContext(...tokens: EntityToken[]): ContextHash {
   let out = "";
 
   for (let i = 0; i < tokens.length; i++) {
-    if (i > 0) {
-      out += " ";
-    }
-    out += tokens[i];
+    out += minifyToken(tokens[i]);
   }
 
   return out;

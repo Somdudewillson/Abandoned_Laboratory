@@ -1,7 +1,7 @@
 // import { genRandObstacles } from "./randLayoutGen";
 
-import { BasicMarkovModel } from "./ml/basicMarkovModel";
 import { genMarkovObstacles } from "./ml/markovGen";
+import { CardinalMarkovModel } from "./ml/models/cardinalMarkovModel";
 
 export function generateRoom(
   rand: RNG,
@@ -10,7 +10,7 @@ export function generateRoom(
 ): CustomRoomConfig {
   switch (shape) {
     default:
-      return genMarkovObstacles(rand, shape, doors, BasicMarkovModel);
+      return genMarkovObstacles(rand, shape, doors, CardinalMarkovModel);
     // return genRandObstacles(rand, shape, doors);
   }
 }

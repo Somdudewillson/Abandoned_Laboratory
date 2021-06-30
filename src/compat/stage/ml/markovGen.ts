@@ -14,14 +14,10 @@ import {
   SymmetryType,
 } from "../../../utils/utils";
 import { AccessValidator } from "../accessValidator";
-import {
-  ContextHash,
-  decayTokens,
-  detokenize,
-  EntityToken,
-  hashContext,
-} from "./tokenizer";
+import { getfromModel, ModelWrapper } from "./modelInterface";
+import { decayTokens, detokenize, EntityToken, hashContext } from "./tokenizer";
 
+// const SymmetryTable = [SymmetryType.NONE];
 const SymmetryTable = [
   SymmetryType.HORIZONTAL,
   SymmetryType.HORIZONTAL,
@@ -126,9 +122,9 @@ function getValidSpots(
 
 function pickWeighted(
   rand: RNG,
-  options: Array<{ token: EntityToken; weight: float }> | undefined,
+  options: Array<{ token: EntityToken; weight: float }> | null,
 ): EntityToken {
-  if (!options || options == null || options.length === 0) {
+  if (options == null || options.length === 0) {
     return EntityToken.AIR;
   }
 
@@ -174,12 +170,12 @@ function fetchFromModel(
   left: EntityToken,
   right: EntityToken,
   down: EntityToken,
-  model: Map<ContextHash, Array<{ token: EntityToken; weight: float }>>,
-): Array<{ token: EntityToken; weight: float }> | undefined {
-  let result = model.get(hashContext(up, left, right, down));
+  model: ModelWrapper,
+): Array<{ token: EntityToken; weight: float }> | null {
+  let result = getfromModel(hashContext(up, left, right, down), model);
 
   // If there is no entry in the given model
-  if (!result) {
+  if (result == null) {
     let nextSets: EntityToken[][] = [];
     let currentSets: EntityToken[][] = [];
 
@@ -187,10 +183,11 @@ function fetchFromModel(
     if (initialDecay != null) {
       currentSets = initialDecay;
     }
-    while (currentSets.length > 0 && !result) {
+    while (currentSets.length > 0 && result == null) {
       for (const decaySet of currentSets) {
-        result = model.get(
+        result = getfromModel(
           hashContext(decaySet[0], decaySet[1], decaySet[2], decaySet[3]),
+          model,
         );
 
         const newDecay = decayTokens(decaySet);
@@ -216,7 +213,7 @@ export function genMarkovObstacles(
   rand: RNG,
   shape: RoomShape,
   doors: DoorSlot[],
-  model: Map<ContextHash, Array<{ token: EntityToken; weight: float }>>,
+  model: ModelWrapper,
 ): CustomRoomConfig {
   const roomValidator = new AccessValidator(shape);
   const roomSize = getRoomShapeSize(shape);
@@ -286,11 +283,19 @@ export function genMarkovObstacles(
     const mirroredNewPos = getMirroredPos(shape, symmetry, spot, true);
     if (
       newGrid != null &&
-      (isGridPassable(newGrid) ||
+      (isGridPassable(newGrid.Type) ||
         roomValidator.isAccessible(newRoom, mirroredNewPos))
     ) {
       for (const mirrorSpot of mirroredNewPos) {
-        newRoom.set(index++, makeLuaEntity(mirrorSpot, newGrid, 0, 0));
+        newRoom.set(
+          index++,
+          makeLuaEntity(
+            mirrorSpot,
+            newGrid.Type,
+            newGrid.Variant,
+            newGrid.Subtype,
+          ),
+        );
         existingEntities.set(flattenVector(mirrorSpot), newToken);
       }
     }

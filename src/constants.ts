@@ -1135,4 +1135,4 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = false;
 export const DEBUG_SPAWN = false;
 export const UNBALANCED = false;
-export const VERSION = "0.17.2";
+export const VERSION = "0.17.6";

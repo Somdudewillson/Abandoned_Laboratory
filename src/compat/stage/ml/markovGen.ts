@@ -29,7 +29,7 @@ const SymmetryTable = [
   SymmetryType.QUAD,
 ];
 
-const NON_AIR_BIAS = 7.5;
+const NON_AIR_BIAS = 1; // Was using 7.5
 
 function getValidSpots(
   shape: RoomShape,
@@ -230,8 +230,8 @@ export function genMarkovObstacles(
   doors: DoorSlot[],
   model: ModelWrapper,
   symmetry: SymmetryType = SymmetryTable[rand.RandomInt(SymmetryTable.length)],
-): CustomRoomConfig {
-  const newRoom = new GeneratedRoom(shape, doors);
+  newRoom = new GeneratedRoom(shape, doors),
+): GeneratedRoom {
   const roomValidator = new AccessValidator(newRoom);
 
   // Generate grid entities
@@ -276,5 +276,5 @@ export function genMarkovObstacles(
     }
   }
 
-  return newRoom.convertToRoomLayout();
+  return newRoom;
 }

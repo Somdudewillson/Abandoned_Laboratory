@@ -828,6 +828,34 @@ export function getSlotGridPos(slot: DoorSlot, shape: RoomShape): Vector {
       }
   }
 }
+/** Get the grid position of the grid square directly in front of a `DoorSlot` in a room of the given `RoomShape` */
+export function getDoorEntryPos(slot: DoorSlot, shape: RoomShape): Vector {
+  const doorPos = getSlotGridPos(slot, shape);
+
+  let shiftX = 0;
+  let shiftY = 0;
+  switch (slot) {
+    default:
+    case DoorSlot.LEFT0:
+    case DoorSlot.LEFT1:
+      shiftX = 1;
+      break;
+    case DoorSlot.RIGHT0:
+    case DoorSlot.RIGHT1:
+      shiftX = -1;
+      break;
+    case DoorSlot.UP0:
+    case DoorSlot.UP1:
+      shiftY = 1;
+      break;
+    case DoorSlot.DOWN0:
+    case DoorSlot.DOWN1:
+      shiftY = -1;
+      break;
+  }
+
+  return Vector(doorPos.X + shiftX, doorPos.Y + shiftY);
+}
 /** Get all `DoorSlot`s that are valid for a given `RoomShape` */
 export function getValidSlots(shape: RoomShape): DoorSlot[] {
   switch (shape) {

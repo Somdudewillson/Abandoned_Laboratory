@@ -4,7 +4,7 @@ import {
   makeLuaDoor,
   makeLuaEntity,
 } from "../../../types/StageAPI_helpers";
-import { flattenVector, FlatVector } from "../../../utils/aStar";
+import { FlatGridVector, flattenVector } from "../../../utils/aStar";
 import {
   getMirroredPos,
   getRoomShapeSize,
@@ -162,7 +162,7 @@ function fetchToken(
   pos: Vector,
   shape: RoomShape,
   doors: DoorSlot[],
-  entities: Map<FlatVector, EntityToken>,
+  entities: Map<FlatGridVector, EntityToken>,
 ): EntityToken {
   for (const doorSlot of doors) {
     if (pos.DistanceSquared(getSlotGridPos(doorSlot, shape)) < 1) {
@@ -259,7 +259,7 @@ export function genMarkovObstacles(
   }
 
   // Generate grid entities
-  const existingEntities = new Map<FlatVector, EntityToken>();
+  const existingEntities = new Map<FlatGridVector, EntityToken>();
   for (const spot of getValidSpots(shape, doors, symmetry)) {
     const context: EntityToken[] = [];
     for (const contextPos of model.Context) {

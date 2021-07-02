@@ -2,8 +2,8 @@ import { isGridPassable } from "../../types/StageAPI_helpers";
 import {
   expandVector,
   findAStarPath,
+  FlatGridVector,
   flattenVector,
-  FlatVector,
   manhattanDist,
 } from "../../utils/aStar";
 import {
@@ -22,13 +22,13 @@ function flattenDoorPair(doorPair: {
 
 export class AccessValidator {
   private shape: RoomShape;
-  currentPaths = new Map<FlatDoorPair, FlatVector[]>();
+  currentPaths = new Map<FlatDoorPair, FlatGridVector[]>();
   private doors: DoorSlot[] = [];
-  private blockingEntities = new Set<FlatVector>();
-  private walls: Set<FlatVector>;
+  private blockingEntities = new Set<FlatGridVector>();
+  private walls: Set<FlatGridVector>;
   constructor(shape: RoomShape) {
     this.shape = shape;
-    this.walls = new Set<FlatVector>();
+    this.walls = new Set<FlatGridVector>();
 
     switch (shape) {
       default:
@@ -106,7 +106,7 @@ export class AccessValidator {
   }
 
   private static addWallBox(
-    wallSet: Set<FlatVector>,
+    wallSet: Set<FlatGridVector>,
     start: Vector,
     width: int,
     height: int,
@@ -134,7 +134,7 @@ export class AccessValidator {
   }
 
   private static addWallLine(
-    wallSet: Set<FlatVector>,
+    wallSet: Set<FlatGridVector>,
     start: Vector,
     horiz: boolean,
     len: int,
@@ -222,7 +222,7 @@ export class AccessValidator {
       if (pathingResult === false) {
         return false;
       }
-      const flatResult: FlatVector[] = [];
+      const flatResult: FlatGridVector[] = [];
       for (let r = 0; r < pathingResult.length; r++) {
         flatResult.push(flattenVector(pathingResult[r]));
       }
@@ -232,7 +232,7 @@ export class AccessValidator {
     return true;
   }
 
-  getNeighbors(current: FlatVector, goal: FlatVector): Vector[] {
+  getNeighbors(current: FlatGridVector, goal: FlatGridVector): Vector[] {
     const currentVec = expandVector(current);
     const possibleNeighbors = [
       Vector(currentVec.X + 1, currentVec.Y),

@@ -1,18 +1,18 @@
-import { parseFloat } from "./extMath";
 import { MinPriorityQueue } from "./priorityQueue";
 
-export type FlatVector = string;
-export function flattenVector(inVec: Vector): FlatVector {
-  return `${inVec.X},${inVec.Y}`;
+export type FlatGridVector = number;
+export function flattenVector(inVec: Vector): FlatGridVector {
+  return Math.round(inVec.X + 1) + Math.round(inVec.Y + 1) * 28;
 }
-export function expandVector(inVec: FlatVector): Vector {
-  const splitVals = inVec.split(",", 2);
-  return Vector(parseFloat(splitVals[0]), parseFloat(splitVals[1]));
+export function expandVector(inVec: FlatGridVector): Vector {
+  const X = math.floor(inVec / 28);
+  const Y = math.floor(inVec - X * 28);
+  return Vector(X - 1, Y - 1);
 }
 
 function reconstructPath(
-  cameFrom: Map<FlatVector, FlatVector>,
-  current: FlatVector,
+  cameFrom: Map<FlatGridVector, FlatGridVector>,
+  current: FlatGridVector,
 ): Vector[] {
   const fullPath = [expandVector(current)];
   while (cameFrom.has(current)) {
@@ -31,7 +31,7 @@ export function findAStarPath(
   startVec: Vector,
   goalVec: Vector,
   heuristic: (current: Vector, goal: Vector) => number,
-  getNeighbors: (current: FlatVector, goal: FlatVector) => Vector[],
+  getNeighbors: (current: FlatGridVector, goal: FlatGridVector) => Vector[],
   epsilon = 1,
 ): Vector[] | false {
   const start = flattenVector(startVec);
@@ -41,20 +41,20 @@ export function findAStarPath(
   // The set of discovered nodes that may need to be (re-)expanded.
   // Initially, only the start node is known.
   // This is usually implemented as a min-heap or priority queue rather than a hash-set.
-  const openSet = new MinPriorityQueue<FlatVector>();
+  const openSet = new MinPriorityQueue<FlatGridVector>();
   openSet.insert(start, epsilon * heuristic(startVec, goalVec));
 
   // For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from start
   // to n currently known.
-  const cameFrom = new Map<FlatVector, FlatVector>();
+  const cameFrom = new Map<FlatGridVector, FlatGridVector>();
 
   // For node n, gScore[n] is the cost of the cheapest path from start to n currently known.
-  const gScore = new Map<FlatVector, number>();
+  const gScore = new Map<FlatGridVector, number>();
   gScore.set(start, math.maxinteger);
 
   // For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our current best guess as to
   // how short a path from start to finish can be if it goes through n.
-  const fScore = new Map<FlatVector, number>();
+  const fScore = new Map<FlatGridVector, number>();
   fScore.set(start, epsilon * heuristic(startVec, goalVec));
 
   while (!openSet.isEmpty()) {

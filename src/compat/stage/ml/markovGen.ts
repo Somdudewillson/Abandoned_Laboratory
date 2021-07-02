@@ -29,12 +29,13 @@ const SymmetryTable = [
   SymmetryType.QUAD,
 ];
 
-const NON_AIR_BIAS = 1; // Was using 7.5
+const NON_AIR_BIAS = 3.5; // Was using 7.5
 
 function getValidSpots(
   shape: RoomShape,
   doors: DoorSlot[],
   symmetry: SymmetryType,
+  room: GeneratedRoom,
 ): Vector[] {
   const options: Vector[] = [];
 
@@ -44,7 +45,15 @@ function getValidSpots(
   for (let x = 0; x <= 25; x++) {
     for (let y = 0; y <= 13; y++) {
       const option = Vector(x, y);
+
       if (isValidGridPos(option, shape)) {
+        xMax = Math.max(xMax, option.X);
+        yMax = Math.max(yMax, option.Y);
+
+        if (!room.isPosEmpty(flattenVector(option))) {
+          continue;
+        }
+
         let valid = true;
         for (const door of doors) {
           if (option.DistanceSquared(getSlotGridPos(door, shape)) <= 1.1) {
@@ -54,8 +63,6 @@ function getValidSpots(
         }
 
         if (valid) {
-          xMax = Math.max(xMax, option.X);
-          yMax = Math.max(yMax, option.Y);
           options.push(option);
         }
       }
@@ -235,7 +242,7 @@ export function genMarkovObstacles(
   const roomValidator = new AccessValidator(newRoom);
 
   // Generate grid entities
-  for (const spot of getValidSpots(shape, doors, symmetry)) {
+  for (const spot of getValidSpots(shape, doors, symmetry, newRoom)) {
     const context: EntityToken[] = [];
     for (const contextPos of model.Context) {
       context.push(

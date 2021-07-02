@@ -12,6 +12,7 @@ import {
 import {
   getMirroredPos,
   getRoomShapeSize,
+  getRoomShapeVolume,
   getSlotGridPos,
   getValidSlots,
   isValidFlatGridPos,
@@ -184,6 +185,26 @@ export class GeneratedRoom {
     }
 
     return false;
+  }
+
+  isPosEmpty(pos: FlatGridVector, includeBuffer = false): boolean {
+    if (!isValidFlatGridPos(pos, this.shape)) {
+      return false;
+    }
+
+    return !(
+      this.gridEntities.has(pos) ||
+      (includeBuffer && this.gridEntityBuffer.has(pos))
+    );
+  }
+
+  getFillPercentage(includeBuffer = true): float {
+    let filled = this.groundObstacles.size;
+    if (includeBuffer) {
+      filled += this.groundObstacleBuffer.size;
+    }
+
+    return filled / getRoomShapeVolume(this.shape);
   }
 
   convertToRoomLayout(): CustomRoomConfig {

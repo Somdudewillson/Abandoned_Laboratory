@@ -1014,6 +1014,33 @@ export function getRoomShapeBounds(shape: RoomShape): Vector {
       return Vector(26, 14);
   }
 }
+/** Get the volume of a `RoomShape`'s internal space. */
+export function getRoomShapeVolume(shape: RoomShape): int {
+  switch (shape) {
+    default:
+    case RoomShape.ROOMSHAPE_1x1:
+      return 13 * 7;
+    case RoomShape.ROOMSHAPE_IH:
+      return 13 * 3;
+    case RoomShape.ROOMSHAPE_IV:
+      return 5 * 7;
+    case RoomShape.ROOMSHAPE_1x2:
+      return 13 * 14;
+    case RoomShape.ROOMSHAPE_IIV:
+      return 5 * 14;
+    case RoomShape.ROOMSHAPE_2x1:
+      return 26 * 7;
+    case RoomShape.ROOMSHAPE_IIH:
+      return 26 * 3;
+    case RoomShape.ROOMSHAPE_2x2:
+      return 26 * 14;
+    case RoomShape.ROOMSHAPE_LTL:
+    case RoomShape.ROOMSHAPE_LTR:
+    case RoomShape.ROOMSHAPE_LBL:
+    case RoomShape.ROOMSHAPE_LBR:
+      return 26 * 7 + 13 * 7;
+  }
+}
 /** Get the top left pos of a given `RoomShape`. */
 export function getTopLeftPos(shape: RoomShape): Vector {
   switch (shape) {

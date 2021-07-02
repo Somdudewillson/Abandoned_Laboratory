@@ -1,3 +1,5 @@
+import { expandVector, FlatGridVector } from "./flatGridVector";
+
 export function getCoinVal(pickup: EntityPickup, useDevil = false): int {
   switch (pickup.Variant) {
     case PickupVariant.PICKUP_COIN:
@@ -956,6 +958,13 @@ export function isValidGridPos(pos: Vector, shape: RoomShape): boolean {
   }
 
   return true;
+}
+/** Test if a flattened grid position is actually in the given `RoomShape` */
+export function isValidFlatGridPos(
+  pos: FlatGridVector,
+  shape: RoomShape,
+): boolean {
+  return isValidGridPos(expandVector(pos), shape);
 }
 /** Get a `RoomShape`'s layout size. This is **NOT** the size of the `RoomShape`'s actual contents! */
 export function getRoomShapeSize(shape: RoomShape): Vector {

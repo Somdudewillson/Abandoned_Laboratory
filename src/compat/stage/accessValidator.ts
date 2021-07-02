@@ -1,15 +1,11 @@
-import { isGridPassable } from "../../types/StageAPI_helpers";
 import { findAStarPath, manhattanDist } from "../../utils/aStar";
 import {
-  expandVector,
   FlatGridVector,
   flattenVector,
+  shiftFlat,
 } from "../../utils/flatGridVector";
-import {
-  getRoomShapeBounds,
-  getSlotGridPos,
-  isValidGridPos,
-} from "../../utils/utils";
+import { getSlotGridPos } from "../../utils/utils";
+import { GeneratedRoom } from "./generatedRoom";
 
 type FlatDoorPair = string;
 function flattenDoorPair(doorPair: {
@@ -20,131 +16,11 @@ function flattenDoorPair(doorPair: {
 }
 
 export class AccessValidator {
-  private shape: RoomShape;
+  private readonly room: GeneratedRoom;
   currentPaths = new Map<FlatDoorPair, FlatGridVector[]>();
-  private doors: DoorSlot[] = [];
-  private blockingEntities = new Set<FlatGridVector>();
-  private walls: Set<FlatGridVector>;
-  constructor(shape: RoomShape) {
-    this.shape = shape;
-    this.walls = new Set<FlatGridVector>();
-
-    switch (shape) {
-      default:
-      case RoomShape.ROOMSHAPE_1x1:
-      case RoomShape.ROOMSHAPE_IH:
-      case RoomShape.ROOMSHAPE_IV:
-      case RoomShape.ROOMSHAPE_1x2:
-      case RoomShape.ROOMSHAPE_IIV:
-      case RoomShape.ROOMSHAPE_2x1:
-      case RoomShape.ROOMSHAPE_IIH:
-      case RoomShape.ROOMSHAPE_2x2: {
-        const bounds = getRoomShapeBounds(shape);
-        let start = Vector(-1, -1);
-        if (
-          shape === RoomShape.ROOMSHAPE_IH ||
-          shape === RoomShape.ROOMSHAPE_IIH
-        ) {
-          start = Vector(-1, 2);
-        } else if (
-          shape === RoomShape.ROOMSHAPE_IV ||
-          shape === RoomShape.ROOMSHAPE_IIV
-        ) {
-          start = Vector(3, -1);
-        }
-
-        AccessValidator.addWallBox(
-          this.walls,
-          start,
-          bounds.X + 2,
-          bounds.Y + 2,
-        );
-        break;
-      }
-      case RoomShape.ROOMSHAPE_LTL:
-        // Horizontal lines, top to bottom
-        AccessValidator.addWallLine(this.walls, Vector(12, -1), true, 15);
-        AccessValidator.addWallLine(this.walls, Vector(-1, 6), true, 14);
-        AccessValidator.addWallLine(this.walls, Vector(-1, 14), true, 28);
-        // Vertical lines, left to right
-        AccessValidator.addWallLine(this.walls, Vector(-1, 7), false, 7);
-        AccessValidator.addWallLine(this.walls, Vector(12, 0), false, 6);
-        AccessValidator.addWallLine(this.walls, Vector(26, 0), false, 14);
-        break;
-      case RoomShape.ROOMSHAPE_LTR:
-        // Horizontal lines, top to bottom
-        AccessValidator.addWallLine(this.walls, Vector(-1, -1), true, 15);
-        AccessValidator.addWallLine(this.walls, Vector(13, 6), true, 14);
-        AccessValidator.addWallLine(this.walls, Vector(-1, 14), true, 28);
-        // Vertical lines, left to right
-        AccessValidator.addWallLine(this.walls, Vector(-1, 0), false, 14);
-        AccessValidator.addWallLine(this.walls, Vector(13, 0), false, 6);
-        AccessValidator.addWallLine(this.walls, Vector(26, 7), false, 7);
-        break;
-      case RoomShape.ROOMSHAPE_LBL:
-        // Horizontal lines, top to bottom
-        AccessValidator.addWallLine(this.walls, Vector(-1, -1), true, 28);
-        AccessValidator.addWallLine(this.walls, Vector(-1, 7), true, 14);
-        AccessValidator.addWallLine(this.walls, Vector(12, 14), true, 15);
-        // Vertical lines, left to right
-        AccessValidator.addWallLine(this.walls, Vector(-1, 0), false, 7);
-        AccessValidator.addWallLine(this.walls, Vector(12, 8), false, 6);
-        AccessValidator.addWallLine(this.walls, Vector(26, 0), false, 14);
-        break;
-      case RoomShape.ROOMSHAPE_LBR:
-        // Horizontal lines, top to bottom
-        AccessValidator.addWallLine(this.walls, Vector(-1, -1), true, 28);
-        AccessValidator.addWallLine(this.walls, Vector(13, 7), true, 14);
-        AccessValidator.addWallLine(this.walls, Vector(-1, 14), true, 15);
-        // Vertical lines, left to right
-        AccessValidator.addWallLine(this.walls, Vector(-1, 0), false, 14);
-        AccessValidator.addWallLine(this.walls, Vector(13, 8), false, 6);
-        AccessValidator.addWallLine(this.walls, Vector(26, 0), false, 7);
-        break;
-    }
-  }
-
-  private static addWallBox(
-    wallSet: Set<FlatGridVector>,
-    start: Vector,
-    width: int,
-    height: int,
-  ): void {
-    AccessValidator.addWallLine(wallSet, start, true, width);
-    AccessValidator.addWallLine(
-      wallSet,
-      Vector(start.X, start.Y + height - 1),
-      true,
-      width,
-    );
-
-    AccessValidator.addWallLine(
-      wallSet,
-      Vector(start.X, start.Y + 1),
-      false,
-      height - 2,
-    );
-    AccessValidator.addWallLine(
-      wallSet,
-      Vector(start.X + width - 1, start.Y + 1),
-      false,
-      height - 2,
-    );
-  }
-
-  private static addWallLine(
-    wallSet: Set<FlatGridVector>,
-    start: Vector,
-    horiz: boolean,
-    len: int,
-  ): void {
-    for (let o = 0; o < len; o++) {
-      wallSet.add(
-        flattenVector(
-          Vector(start.X + (horiz ? o : 0), start.Y + (horiz ? 0 : o)),
-        ),
-      );
-    }
+  newPaths: Map<FlatDoorPair, FlatGridVector[]> | undefined;
+  constructor(room: GeneratedRoom) {
+    this.room = room;
   }
 
   private static getPermutations(
@@ -163,44 +39,25 @@ export class AccessValidator {
     return out;
   }
 
-  isAccessible(room: CustomRoomConfig, newObstructions: Vector[]): boolean {
-    this.doors = [];
-    this.blockingEntities.clear();
-    for (const obstruction of newObstructions) {
-      this.blockingEntities.add(flattenVector(obstruction));
-    }
-
-    // Get room entity data
-    let i = 1;
-    let entity = room.get(i) as null | LuaRoomGenericEntity;
-    while (entity != null) {
-      if (entity.ISDOOR) {
-        const doorEntity = entity as LuaRoomDoor;
-        if (doorEntity.EXISTS) {
-          this.doors.push(doorEntity.SLOT);
-        }
-      } else {
-        const spawnEntity = entity as LuaRoomEntity;
-        if (!isGridPassable(spawnEntity[1].TYPE)) {
-          this.blockingEntities.add(
-            flattenVector(Vector(spawnEntity.GRIDX, spawnEntity.GRIDY)),
-          );
-        }
-      }
-      entity = room.get(++i) as null | LuaRoomGenericEntity;
+  isAccessible(): boolean {
+    this.newPaths = new Map<FlatDoorPair, FlatGridVector[]>();
+    for (const pathEntry of this.currentPaths.entries()) {
+      this.newPaths.set(pathEntry[0], pathEntry[1]);
     }
 
     // Test each path
-    for (const doorPair of AccessValidator.getPermutations(this.doors)) {
+    for (const doorPair of AccessValidator.getPermutations(
+      this.room.doorSlots,
+    )) {
       const flatDoorPair = flattenDoorPair(doorPair);
 
-      if (this.currentPaths.has(flatDoorPair)) {
+      if (this.newPaths.has(flatDoorPair)) {
         // Isaac.DebugString(`Preexisting path found for [${flatDoorPair}].`);
         let clear = true;
-        for (const pathPos of this.currentPaths.get(flatDoorPair)!) {
-          if (this.blockingEntities.has(pathPos)) {
+        for (const pathPos of this.newPaths.get(flatDoorPair)!) {
+          if (!this.room.isPosPassable(pathPos, false, true)) {
             // Isaac.DebugString("Path invalid.");
-            this.currentPaths.delete(flatDoorPair);
+            this.newPaths.delete(flatDoorPair);
             clear = false;
             break;
           }
@@ -212,11 +69,11 @@ export class AccessValidator {
       }
 
       const pathingResult = findAStarPath(
-        getSlotGridPos(doorPair.start, this.shape),
-        getSlotGridPos(doorPair.end, this.shape),
+        getSlotGridPos(doorPair.start, this.room.shape),
+        getSlotGridPos(doorPair.end, this.room.shape),
         manhattanDist,
         this.getNeighbors.bind(this),
-        10,
+        1,
       );
       if (pathingResult === false) {
         return false;
@@ -225,52 +82,50 @@ export class AccessValidator {
       for (let r = 0; r < pathingResult.length; r++) {
         flatResult.push(flattenVector(pathingResult[r]));
       }
-      this.currentPaths.set(flatDoorPair, flatResult);
+      this.newPaths.set(flatDoorPair, flatResult);
     }
 
     return true;
   }
 
-  getNeighbors(current: FlatGridVector, goal: FlatGridVector): Vector[] {
-    const currentVec = expandVector(current);
+  finalize(): void {
+    if (this.newPaths) {
+      this.currentPaths = this.newPaths;
+      this.newPaths = undefined;
+    }
+  }
+
+  getNeighbors(
+    current: FlatGridVector,
+    goal: FlatGridVector,
+    _path: Vector[],
+  ): FlatGridVector[] {
     const possibleNeighbors = [
-      Vector(currentVec.X + 1, currentVec.Y),
-      Vector(currentVec.X, currentVec.Y + 1),
-      Vector(currentVec.X - 1, currentVec.Y),
-      Vector(currentVec.X, currentVec.Y - 1),
-    ];
-    const flatPossibleNeighbors = [
-      flattenVector(possibleNeighbors[0]!),
-      flattenVector(possibleNeighbors[1]!),
-      flattenVector(possibleNeighbors[2]!),
-      flattenVector(possibleNeighbors[3]!),
+      shiftFlat(current, 1, 0),
+      shiftFlat(current, 0, 1),
+      shiftFlat(current, -1, 0),
+      shiftFlat(current, 0, -1),
     ];
 
-    const neighbors: Vector[] = [];
-    for (let i = 0; i < possibleNeighbors.length; i++) {
+    const neighbors: FlatGridVector[] = [];
+    for (const possibleNeighbor of possibleNeighbors) {
       if (
-        flatPossibleNeighbors[i] === goal ||
-        (isValidGridPos(possibleNeighbors[i], this.shape) &&
-          !this.walls.has(flatPossibleNeighbors[i]) &&
-          !this.blockingEntities.has(flatPossibleNeighbors[i]))
+        possibleNeighbor === goal ||
+        this.room.isPosPassable(possibleNeighbor, false, true)
       ) {
-        neighbors.push(possibleNeighbors[i]);
+        neighbors.push(possibleNeighbor);
       }
     }
 
     // Debug Logging
     /*
-    const doorPos = new Set<FlatVector>();
-    for (const door of this.doors) {
-      doorPos.add(flattenVector(getSlotGridPos(door, this.shape)));
+    const pathSet = new Set<FlatGridVector>();
+    for (const pathPos of path) {
+      pathSet.add(flattenVector(pathPos));
     }
-    const pathPos = new Set<FlatVector>();
-    for (const pathStep of path) {
-      pathPos.add(flattenVector(pathStep));
-    }
-    const flatNeighbors = new Set<FlatVector>();
+    const neighborSet = new Set<FlatGridVector>();
     for (const neighbor of neighbors) {
-      flatNeighbors.add(flattenVector(neighbor));
+      neighborSet.add(neighbor);
     }
     for (let y = -1; y < 15; y++) {
       let line = "";
@@ -284,27 +139,22 @@ export class AccessValidator {
         } else if (drawPos === goal) {
           line += "G";
           nonEmpty = true;
-        } else if (flatNeighbors.has(drawPos)) {
-          if (pathPos.has(drawPos)) {
-            line += "@";
-          } else {
-            line += "N";
-          }
+        } else if (neighborSet.has(drawPos) && !pathSet.has(drawPos)) {
+          line += "N";
           nonEmpty = true;
-        } else if (doorPos.has(drawPos)) {
-          if (pathPos.has(drawPos)) {
-            line += "O";
-          } else {
-            line += "H";
-          }
+        } else if (
+          this.room.doorEntities.has(drawPos) &&
+          this.room.doorEntities.get(drawPos)!.EXISTS
+        ) {
+          line += "H";
           nonEmpty = true;
-        } else if (this.walls.has(drawPos)) {
+        } else if (!isValidGridPos(Vector(x, y), this.room.shape)) {
           line += "+";
           nonEmpty = true;
-        } else if (this.blockingEntities.has(drawPos)) {
+        } else if (!this.room.isPosPassable(drawPos)) {
           line += "#";
           nonEmpty = true;
-        } else if (pathPos.has(drawPos)) {
+        } else if (pathSet.has(drawPos)) {
           line += "@";
           nonEmpty = true;
         } else {
@@ -316,7 +166,8 @@ export class AccessValidator {
       } else {
         break;
       }
-    } */
+    }
+    */
 
     return neighbors;
   }

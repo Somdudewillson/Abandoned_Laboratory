@@ -22,7 +22,11 @@ export function findAStarPath(
   startVec: Vector,
   goalVec: Vector,
   heuristic: (current: Vector, goal: Vector) => number,
-  getNeighbors: (current: FlatGridVector, goal: FlatGridVector) => Vector[],
+  getNeighbors: (
+    current: FlatGridVector,
+    goal: FlatGridVector,
+    path: Vector[],
+  ) => FlatGridVector[],
   epsilon = 1,
 ): Vector[] | false {
   const start = flattenVector(startVec);
@@ -33,7 +37,6 @@ export function findAStarPath(
   // Initially, only the start node is known.
   // This is usually implemented as a min-heap or priority queue rather than a hash-set.
   const openSet = new MinPriorityQueue<FlatGridVector>();
-  openSet.insert(start, epsilon * heuristic(startVec, goalVec));
 
   // For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from start
   // to n currently known.
@@ -41,12 +44,13 @@ export function findAStarPath(
 
   // For node n, gScore[n] is the cost of the cheapest path from start to n currently known.
   const gScore = new Map<FlatGridVector, number>();
-  gScore.set(start, math.maxinteger);
+  gScore.set(start, 0);
 
   // For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our current best guess as to
   // how short a path from start to finish can be if it goes through n.
   const fScore = new Map<FlatGridVector, number>();
   fScore.set(start, epsilon * heuristic(startVec, goalVec));
+  openSet.insert(start, fScore.get(start)!);
 
   while (!openSet.isEmpty()) {
     // This operation can occur in O(1) time if openSet is a min-heap or a priority queue
@@ -58,24 +62,26 @@ export function findAStarPath(
     const currentVec = expandVector(current);
 
     const currentGScore = gScore.get(current)!;
-    for (const neighbor of getNeighbors(current, goal)) {
-      const flatNeighbor = flattenVector(neighbor);
+    for (const neighbor of getNeighbors(
+      current,
+      goal,
+      reconstructPath(cameFrom, current),
+    )) {
+      const expandedNeighbor = expandVector(neighbor);
 
       // neighborGScore is the distance from start to the neighbor through current
-      const neighborGScore = currentGScore + heuristic(currentVec, neighbor);
-      if (
-        !gScore.has(flatNeighbor) ||
-        neighborGScore < gScore.get(flatNeighbor)!
-      ) {
+      const neighborGScore =
+        currentGScore + heuristic(currentVec, expandedNeighbor);
+      if (!gScore.has(neighbor) || neighborGScore < gScore.get(neighbor)!) {
         // This path to neighbor is better than any previous one. Record it!
-        cameFrom.set(flatNeighbor, current);
-        gScore.set(flatNeighbor, neighborGScore);
-        fScore.set(
-          flatNeighbor,
-          neighborGScore + epsilon * heuristic(neighbor, goalVec),
-        );
-        if (!openSet.has(flatNeighbor)) {
-          openSet.insert(flatNeighbor, neighborGScore);
+        cameFrom.set(neighbor, current);
+        gScore.set(neighbor, neighborGScore);
+
+        const neighborFScore =
+          neighborGScore + epsilon * heuristic(expandedNeighbor, goalVec);
+        fScore.set(neighbor, neighborFScore);
+        if (!openSet.has(neighbor)) {
+          openSet.insert(neighbor, neighborFScore);
         }
       }
     }

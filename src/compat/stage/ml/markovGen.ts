@@ -1,21 +1,20 @@
-import {
-  initCustomRoom,
-  isGridPassable,
-  makeLuaDoor,
-  makeLuaEntity,
-} from "../../../types/StageAPI_helpers";
+import { isGridPassable } from "../../../types/StageAPI_helpers";
 import { FlatGridVector, flattenVector } from "../../../utils/flatGridVector";
 import {
-  getMirroredPos,
-  getRoomShapeSize,
   getSlotGridPos,
-  getValidSlots,
   isValidGridPos,
   SymmetryType,
 } from "../../../utils/utils";
 import { AccessValidator } from "../accessValidator";
+import { GeneratedRoom } from "../generatedRoom";
 import { getFromModel, ModelWrapper } from "./modelInterface";
-import { decayTokens, detokenize, EntityToken, hashContext } from "./tokenizer";
+import {
+  decayTokens,
+  detokenize,
+  EntityToken,
+  hashContext,
+  tokenize,
+} from "./tokenizer";
 
 const SymmetryTable = [
   SymmetryType.HORIZONTAL,
@@ -162,7 +161,7 @@ function fetchToken(
   pos: Vector,
   shape: RoomShape,
   doors: DoorSlot[],
-  entities: Map<FlatGridVector, EntityToken>,
+  entities: Map<FlatGridVector, LuaRoomEntity>,
 ): EntityToken {
   for (const doorSlot of doors) {
     if (pos.DistanceSquared(getSlotGridPos(doorSlot, shape)) < 1) {
@@ -176,7 +175,12 @@ function fetchToken(
 
   const flatPos = flattenVector(pos);
   if (entities.has(flatPos)) {
-    return entities.get(flatPos)!;
+    const entity = entities.get(flatPos)!;
+    return tokenize({
+      Type: entity[1].TYPE,
+      Variant: entity[1].VARIANT,
+      Subtype: entity[1].SUBTYPE,
+    });
   }
 
   return EntityToken.AIR;
@@ -227,39 +231,10 @@ export function genMarkovObstacles(
   model: ModelWrapper,
   symmetry: SymmetryType = SymmetryTable[rand.RandomInt(SymmetryTable.length)],
 ): CustomRoomConfig {
-  const roomValidator = new AccessValidator(shape);
-  const roomSize = getRoomShapeSize(shape);
-  const newRoom = initCustomRoom(
-    RoomType.ROOM_DEFAULT,
-    0,
-    0,
-    `Generated Room-${rand.Next()}`,
-    1,
-    1,
-    roomSize.X,
-    roomSize.Y,
-    shape,
-  );
-
-  let index = 1;
-  // Add Doors
-  let i = 0;
-  const presentDoors: DoorSlot[] = [];
-  for (const doorSlot of getValidSlots(shape)) {
-    const present = i < doors.length && doors[i] === doorSlot;
-    if (present) {
-      presentDoors.push(doorSlot);
-      i++;
-    }
-
-    newRoom.set(
-      index++,
-      makeLuaDoor(getSlotGridPos(doorSlot, shape), doorSlot, present),
-    );
-  }
+  const newRoom = new GeneratedRoom(shape, doors);
+  const roomValidator = new AccessValidator(newRoom);
 
   // Generate grid entities
-  const existingEntities = new Map<FlatGridVector, EntityToken>();
   for (const spot of getValidSpots(shape, doors, symmetry)) {
     const context: EntityToken[] = [];
     for (const contextPos of model.Context) {
@@ -268,33 +243,38 @@ export function genMarkovObstacles(
           Vector(spot.X + contextPos.x, spot.Y + contextPos.y),
           shape,
           doors,
-          existingEntities,
+          newRoom.gridEntities,
         ),
       );
     }
 
-    const newToken = pickWeighted(rand, fetchFromModel(model, ...context));
-    const newGrid = detokenize(newToken);
-    const mirroredNewPos = getMirroredPos(shape, symmetry, spot, true);
-    if (
-      newGrid != null &&
-      (isGridPassable(newGrid.Type) ||
-        roomValidator.isAccessible(newRoom, mirroredNewPos))
-    ) {
-      for (const mirrorSpot of mirroredNewPos) {
-        newRoom.set(
-          index++,
-          makeLuaEntity(
-            mirrorSpot,
-            newGrid.Type,
-            newGrid.Variant,
-            newGrid.Subtype,
-          ),
-        );
-        existingEntities.set(flattenVector(mirrorSpot), newToken);
+    const newGridData = detokenize(
+      pickWeighted(rand, fetchFromModel(model, ...context)),
+    );
+    if (newGridData != null) {
+      const isPassable = isGridPassable(newGridData.Type);
+
+      newRoom.createMirroredEntity(
+        spot,
+        symmetry,
+        newGridData.Type,
+        newGridData.Variant,
+        newGridData.Subtype,
+        1,
+        isPassable,
+        true,
+      );
+
+      if (!isPassable) {
+        if (roomValidator.isAccessible()) {
+          newRoom.finalizeBuffer();
+          roomValidator.finalize();
+        } else {
+          newRoom.wipeBuffer();
+        }
       }
     }
   }
 
-  return newRoom;
+  return newRoom.convertToRoomLayout();
 }

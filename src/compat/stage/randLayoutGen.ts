@@ -1,20 +1,12 @@
-import {
-  initCustomRoom,
-  isGridPassable,
-  makeLuaDoor,
-  makeLuaEntity,
-  mirrorLuaEntity,
-} from "../../types/StageAPI_helpers";
+import { isGridPassable } from "../../types/StageAPI_helpers";
 import { randomInt, shuffleArray } from "../../utils/extMath";
 import {
-  getMirroredPos,
-  getRoomShapeSize,
   getSlotGridPos,
-  getValidSlots,
   isValidGridPos,
   SymmetryType,
 } from "../../utils/utils";
 import { AccessValidator } from "./accessValidator";
+import { GeneratedRoom } from "./generatedRoom";
 
 const SymmetryTable = [
   SymmetryType.HORIZONTAL,
@@ -31,7 +23,7 @@ const SymmetryTable = [
 
 const PIT_RATIO = 0.0;
 const DESTRUCTIBLE_RATIO = 0.1;
-const REMOVE_RATIO = 0.25;
+// const REMOVE_RATIO = 0.25;
 
 const DestructibleTable = [
   LayoutGridType.POOP,
@@ -138,40 +130,12 @@ export function genRandObstacles(
   shape: RoomShape,
   doors: DoorSlot[],
 ): CustomRoomConfig {
-  const roomValidator = new AccessValidator(shape);
-  const roomSize = getRoomShapeSize(shape);
+  const newRoom = new GeneratedRoom(shape, doors);
+  const roomValidator = new AccessValidator(newRoom);
   const symmetry = SymmetryTable[rand.RandomInt(SymmetryTable.length)];
-  const newRoom = initCustomRoom(
-    RoomType.ROOM_DEFAULT,
-    0,
-    0,
-    `Generated Room-${rand.Next()}`,
-    1,
-    1,
-    roomSize.X,
-    roomSize.Y,
-    shape,
-  );
-
-  let index = 1;
-  // Add Doors
-  let i = 0;
-  const presentDoors: DoorSlot[] = [];
-  for (const doorSlot of getValidSlots(shape)) {
-    const present = i < doors.length && doors[i] === doorSlot;
-    if (present) {
-      presentDoors.push(doorSlot);
-      i++;
-    }
-
-    newRoom.set(
-      index++,
-      makeLuaDoor(getSlotGridPos(doorSlot, shape), doorSlot, present),
-    );
-  }
 
   // Add some random obstacles
-  const spots = getValidSpots(shape, presentDoors, symmetry);
+  const spots = getValidSpots(shape, newRoom.doorSlots, symmetry);
   const obstacleAmt = randomInt(
     rand,
     Math.ceil(spots.length * 0.05),
@@ -197,36 +161,28 @@ export function genRandObstacles(
       break;
     }
     const newRockPos = spots.pop()!;
+
     // Isaac.DebugString(`Attempting to place rock at [${newRockPos}].`);
-    if (
-      isGridPassable(toPlace.type) ||
-      !roomValidator.isAccessible(
-        newRoom,
-        getMirroredPos(shape, symmetry, newRockPos, true),
-      )
-    ) {
-      // Isaac.DebugString("Attempt failed - would block path.");
-      if (rand.RandomFloat() < REMOVE_RATIO) {
-        // Place nothing in obstructed area
-        count--;
-        continue;
+    const isNewGridPassable = isGridPassable(toPlace.type);
+    newRoom.createMirroredEntity(
+      newRockPos,
+      symmetry,
+      toPlace.type,
+      toPlace.variant,
+      toPlace.subtype,
+      1,
+      isNewGridPassable,
+      true,
+    );
+
+    if (!isNewGridPassable) {
+      if (roomValidator.isAccessible()) {
+        newRoom.finalizeBuffer();
       } else {
-        // Place non-obstructing grid in area
-        toPlace.type =
-          DestructibleTable[rand.RandomInt(DestructibleTable.length)];
-        toPlace.variant = 0;
-        toPlace.subtype = 0;
+        newRoom.wipeBuffer();
       }
     }
-
-    index = mirrorLuaEntity(
-      newRoom,
-      index,
-      shape,
-      symmetry,
-      makeLuaEntity(newRockPos, toPlace.type, toPlace.variant, toPlace.subtype),
-    );
   }
 
-  return newRoom;
+  return newRoom.convertToRoomLayout();
 }

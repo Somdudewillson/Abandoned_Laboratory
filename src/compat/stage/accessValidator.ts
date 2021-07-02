@@ -1,11 +1,10 @@
 import { isGridPassable } from "../../types/StageAPI_helpers";
+import { findAStarPath, manhattanDist } from "../../utils/aStar";
 import {
   expandVector,
-  findAStarPath,
   FlatGridVector,
   flattenVector,
-  manhattanDist,
-} from "../../utils/aStar";
+} from "../../utils/flatGridVector";
 import {
   getRoomShapeBounds,
   getSlotGridPos,

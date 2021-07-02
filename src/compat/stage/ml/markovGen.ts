@@ -4,7 +4,7 @@ import {
   makeLuaDoor,
   makeLuaEntity,
 } from "../../../types/StageAPI_helpers";
-import { FlatGridVector, flattenVector } from "../../../utils/aStar";
+import { FlatGridVector, flattenVector } from "../../../utils/flatGridVector";
 import {
   getMirroredPos,
   getRoomShapeSize,

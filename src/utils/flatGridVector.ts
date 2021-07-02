@@ -1,12 +1,12 @@
 export type FlatGridVector = number;
 export function flattenVector(inVec: Vector): FlatGridVector {
-  return Math.round(inVec.X + 1) + Math.round(inVec.Y + 1) * 30;
+  return Math.round(inVec.X + 2) + Math.round(inVec.Y + 2) * 32;
 }
 export function expandVector(inVec: FlatGridVector): Vector {
-  const Y = math.floor(inVec / 30);
-  const X = math.floor(inVec - Y * 30);
+  const Y = math.floor(inVec / 32);
+  const X = math.floor(inVec - Y * 32);
 
-  return Vector(X - 1, Y - 1);
+  return Vector(X - 2, Y - 2);
 }
 export function shiftFlat(
   inVec: FlatGridVector,

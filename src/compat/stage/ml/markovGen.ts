@@ -1,6 +1,7 @@
 import { isGridPassable } from "../../../types/StageAPI_helpers";
 import { FlatGridVector, flattenVector } from "../../../utils/flatGridVector";
 import {
+  getDoorEntryPos,
   getSlotGridPos,
   isValidGridPos,
   SymmetryType,
@@ -29,7 +30,7 @@ const SymmetryTable = [
   SymmetryType.QUAD,
 ];
 
-const NON_AIR_BIAS = 3.5; // Was using 7.5
+const NON_AIR_BIAS = 3; // Was using 7.5
 
 function getValidSpots(
   shape: RoomShape,
@@ -50,13 +51,14 @@ function getValidSpots(
         xMax = Math.max(xMax, option.X);
         yMax = Math.max(yMax, option.Y);
 
+        const flatOption = flattenVector(option);
         if (!room.isPosEmpty(flattenVector(option))) {
           continue;
         }
 
         let valid = true;
         for (const door of doors) {
-          if (option.DistanceSquared(getSlotGridPos(door, shape)) <= 1.1) {
+          if (flatOption === flattenVector(getDoorEntryPos(door, shape))) {
             valid = false;
             break;
           }

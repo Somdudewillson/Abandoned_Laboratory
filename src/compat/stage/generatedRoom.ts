@@ -8,8 +8,10 @@ import {
   expandVector,
   FlatGridVector,
   flattenVector,
+  shiftFlat,
 } from "../../utils/flatGridVector";
 import {
+  getDoorEntryPos,
   getMirroredPos,
   getRoomShapeSize,
   getRoomShapeVolume,
@@ -18,6 +20,12 @@ import {
   isValidFlatGridPos,
   SymmetryType,
 } from "../../utils/utils";
+
+export const enum Accessibility {
+  NONE = 0,
+  FLIGHT = 1,
+  GROUND = 2,
+}
 
 export class GeneratedRoom {
   static nextID = 0;
@@ -33,6 +41,11 @@ export class GeneratedRoom {
   gridEntityBuffer = new Map<FlatGridVector, LuaRoomEntity>();
   groundObstacleBuffer = new Set<FlatGridVector>();
   flyingObstacleBuffer = new Set<FlatGridVector>();
+
+  private groundAccessible = new Set<FlatGridVector>();
+  private flightAccessible = new Set<FlatGridVector>();
+  private isAccessibilityDirty = true;
+  private isFlightAccessibilityDirty = false;
 
   constructor(shape: RoomShape, doorSlots: DoorSlot[]) {
     this.shape = shape;
@@ -96,8 +109,13 @@ export class GeneratedRoom {
         if (flightObstacle) {
           this.flyingObstacles.add(pos);
           this.groundObstacles.add(pos);
+
+          this.isFlightAccessibilityDirty = true;
+          this.isAccessibilityDirty = true;
         } else if (groundObstacle) {
           this.groundObstacles.add(pos);
+
+          this.isAccessibilityDirty = true;
         }
       } else {
         this.gridEntityBuffer.set(pos, newEntity);
@@ -171,20 +189,21 @@ export class GeneratedRoom {
     flying = false,
     includeBuffer = true,
   ): boolean {
-    if (isValidFlatGridPos(pos, this.shape)) {
-      if (flying) {
-        return !(
-          this.flyingObstacles.has(pos) ||
-          (includeBuffer && this.flyingObstacleBuffer.has(pos))
-        );
-      }
+    if (!isValidFlatGridPos(pos, this.shape)) {
+      return false;
+    }
+
+    if (flying) {
       return !(
-        this.groundObstacles.has(pos) ||
-        (includeBuffer && this.groundObstacleBuffer.has(pos))
+        this.flyingObstacles.has(pos) ||
+        (includeBuffer && this.flyingObstacleBuffer.has(pos))
       );
     }
 
-    return false;
+    return !(
+      this.groundObstacles.has(pos) ||
+      (includeBuffer && this.groundObstacleBuffer.has(pos))
+    );
   }
 
   isPosEmpty(pos: FlatGridVector, includeBuffer = false): boolean {
@@ -205,6 +224,214 @@ export class GeneratedRoom {
     }
 
     return filled / getRoomShapeVolume(this.shape);
+  }
+
+  printAccessibility(): void {
+    if (this.isAccessibilityDirty) {
+      this.updateAccessibility();
+    }
+
+    let horizDrawn = 0;
+    for (let y = -1; y < 15; y++) {
+      let line = "";
+      let nonEmpty = false;
+
+      for (let x = -1; x < 27; x++) {
+        const drawPos = flattenVector(Vector(x, y));
+
+        line += " ";
+        if (this.groundAccessible.has(drawPos)) {
+          line += "00";
+          nonEmpty = true;
+        } else if (this.flightAccessible.has(drawPos)) {
+          line += "01";
+          nonEmpty = true;
+        } else if (
+          this.doorEntities.has(drawPos) &&
+          this.doorEntities.get(drawPos)!.EXISTS
+        ) {
+          line += "[]";
+        } else if (isValidFlatGridPos(drawPos, this.shape)) {
+          line += "02";
+          nonEmpty = true;
+        } else {
+          let hasAdjacent = false;
+
+          for (const adjacent of GeneratedRoom.getChessboardNeighbors(
+            drawPos,
+          )) {
+            if (isValidFlatGridPos(adjacent, this.shape)) {
+              hasAdjacent = true;
+              break;
+            }
+          }
+
+          if (hasAdjacent) {
+            line += "XX";
+          } else {
+            line += "  ";
+          }
+        }
+      }
+      line += " ";
+
+      if (nonEmpty || horizDrawn < 2) {
+        Isaac.DebugString(line.trimEnd());
+
+        if (!nonEmpty) {
+          horizDrawn++;
+        }
+      }
+    }
+  }
+
+  getPosAccessibility(pos: FlatGridVector): Accessibility {
+    if (this.isAccessibilityDirty) {
+      this.updateAccessibility();
+    }
+
+    if (this.groundAccessible.has(pos)) {
+      return Accessibility.GROUND;
+    }
+    if (this.flightAccessible.has(pos)) {
+      return Accessibility.FLIGHT;
+    }
+    return Accessibility.NONE;
+  }
+
+  updateAccessibility(): void {
+    Isaac.DebugString("\t\tRebuilding accessibility data.");
+
+    let startTime = Isaac.GetTime();
+    const passThrough = this.updateGroundAccessibility();
+    Isaac.DebugString(
+      `\t\t\tGround accessibility built with ${
+        this.groundAccessible.size
+      } nodes (${math.floor(Isaac.GetTime() - startTime)} ms).`,
+    );
+
+    if (this.isFlightAccessibilityDirty) {
+      startTime = Isaac.GetTime();
+      this.updateFlyingAccessibility(passThrough.queue, passThrough.set);
+      Isaac.DebugString(
+        `\t\t\tFlight accessibility built with ${
+          this.flightAccessible.size
+        } nodes (${math.floor(Isaac.GetTime() - startTime)} ms).`,
+      );
+    }
+
+    this.isAccessibilityDirty = false;
+    this.isFlightAccessibilityDirty = false;
+  }
+
+  /** @returns starting queue & set for updating flight accessibility */
+  private updateGroundAccessibility(): {
+    queue: FlatGridVector[];
+    set: Set<FlatGridVector>;
+  } {
+    this.groundAccessible.clear();
+    const nodeQueue: FlatGridVector[] = [];
+    const queueSet = new Set<FlatGridVector>();
+
+    const flightQueue: FlatGridVector[] = [];
+    const flightQueueSet = new Set<FlatGridVector>();
+
+    for (const doorSlot of this.doorSlots) {
+      const doorPos = flattenVector(getDoorEntryPos(doorSlot, this.shape));
+
+      nodeQueue.push(doorPos);
+      queueSet.add(doorPos);
+    }
+
+    while (nodeQueue.length > 0) {
+      const expandingNode = nodeQueue.pop()!;
+      queueSet.delete(expandingNode);
+      this.groundAccessible.add(expandingNode);
+
+      for (const neighbor of GeneratedRoom.getCardinalNeighbors(
+        expandingNode,
+      )) {
+        if (this.groundAccessible.has(neighbor)) {
+          continue;
+        }
+        if (queueSet.has(neighbor)) {
+          continue;
+        }
+        if (!isValidFlatGridPos(neighbor, this.shape)) {
+          continue;
+        }
+        if (!this.isPosPassable(neighbor, false, false)) {
+          if (
+            !flightQueueSet.has(neighbor) &&
+            this.isPosPassable(neighbor, true, false)
+          ) {
+            flightQueue.push(neighbor);
+            flightQueueSet.add(neighbor);
+          }
+          continue;
+        }
+
+        nodeQueue.push(neighbor);
+        queueSet.add(neighbor);
+      }
+    }
+
+    return { queue: flightQueue, set: flightQueueSet };
+  }
+
+  private updateFlyingAccessibility(
+    nodeQueue: FlatGridVector[],
+    queueSet: Set<FlatGridVector>,
+  ): void {
+    this.flightAccessible.clear();
+
+    while (nodeQueue.length > 0) {
+      const expandingNode = nodeQueue.pop()!;
+      queueSet.delete(expandingNode);
+      this.flightAccessible.add(expandingNode);
+
+      for (const neighbor of GeneratedRoom.getCardinalNeighbors(
+        expandingNode,
+      )) {
+        if (this.flightAccessible.has(neighbor)) {
+          continue;
+        }
+        if (queueSet.has(neighbor)) {
+          continue;
+        }
+        if (!isValidFlatGridPos(neighbor, this.shape)) {
+          continue;
+        }
+        if (!this.isPosPassable(neighbor, true, false)) {
+          continue;
+        }
+
+        nodeQueue.push(neighbor);
+        queueSet.add(neighbor);
+      }
+    }
+  }
+
+  private static getCardinalNeighbors(pos: FlatGridVector): FlatGridVector[] {
+    return [
+      shiftFlat(pos, -1, 0),
+      shiftFlat(pos, 1, 0),
+      shiftFlat(pos, 0, -1),
+      shiftFlat(pos, 0, 1),
+    ];
+  }
+
+  private static getChessboardNeighbors(pos: FlatGridVector): FlatGridVector[] {
+    return [
+      shiftFlat(pos, -1, 0),
+      shiftFlat(pos, 1, 0),
+      shiftFlat(pos, 0, -1),
+      shiftFlat(pos, 0, 1),
+      shiftFlat(pos, -1, -1),
+      shiftFlat(pos, -1, 1),
+      shiftFlat(pos, 1, -1),
+      shiftFlat(pos, 1, 1),
+    ];
   }
 
   convertToRoomLayout(): CustomRoomConfig {

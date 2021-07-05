@@ -23,7 +23,7 @@ const SymmetryTable = [
   SymmetryType.QUAD,
 ];
 
-const NON_AIR_BIAS = 5;
+const NON_AIR_BIAS = 0.8;
 
 function getValidSpots(
   shape: RoomShape,

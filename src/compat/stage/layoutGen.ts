@@ -32,7 +32,7 @@ export function generateRoom(
         } s.`,
       );
 
-      for (let loops = 0; loops < 0; loops++) {
+      for (let loops = 0; loops < 3; loops++) {
         if (newRoom.getFillPercentage() >= 0.45) {
           break;
         }

@@ -46,6 +46,7 @@ export class GeneratedRoom {
   private flightAccessible = new Set<FlatGridVector>();
   private isAccessibilityDirty = true;
   private isFlightAccessibilityDirty = false;
+  private flightAccessibilityInitialized = false;
 
   constructor(shape: RoomShape, doorSlots: DoorSlot[]) {
     this.shape = shape;
@@ -293,7 +294,10 @@ export class GeneratedRoom {
     if (this.groundAccessible.has(pos)) {
       return Accessibility.GROUND;
     }
-    if (this.flightAccessible.has(pos)) {
+    if (
+      !this.flightAccessibilityInitialized ||
+      this.flightAccessible.has(pos)
+    ) {
       return Accessibility.FLIGHT;
     }
     return Accessibility.NONE;
@@ -383,6 +387,7 @@ export class GeneratedRoom {
     nodeQueue: FlatGridVector[],
     queueSet: Set<FlatGridVector>,
   ): void {
+    this.flightAccessibilityInitialized = true;
     this.flightAccessible.clear();
 
     while (nodeQueue.length > 0) {

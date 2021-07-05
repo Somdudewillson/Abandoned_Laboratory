@@ -3,9 +3,12 @@
 import { SymmetryType } from "../../utils/utils";
 import { genMarkovObstacles } from "./ml/markovGen";
 import { ChebyschevMarkovModel } from "./ml/models/chebyschevMarkovModel";
+import { SeedModel } from "./ml/models/seedModel";
+import { seedObstacles } from "./ml/seedGen";
 import { genPickups } from "./spawnPickups";
 
 const StaticChebyschevMarkovModel = ChebyschevMarkovModel;
+const StaticSeedModel = SeedModel;
 
 export function generateRoom(
   rand: RNG,
@@ -16,20 +19,20 @@ export function generateRoom(
     default: {
       let startTime = Isaac.GetTime();
 
-      const newRoom = genMarkovObstacles(
+      const newRoom = seedObstacles(
         rand,
         shape,
         doors,
-        StaticChebyschevMarkovModel,
+        StaticSeedModel,
         SymmetryType.NONE,
       );
       Isaac.DebugString(
-        `\tInitial seeding of room ${newRoom.id} (shape ${shape}) in ${
+        `\t>>Initial seeding of room ${newRoom.id} (shape ${shape}) in ${
           (Isaac.GetTime() - startTime) / 1000
         } s.`,
       );
 
-      for (let loops = 0; loops < 3; loops++) {
+      for (let loops = 0; loops < 0; loops++) {
         if (newRoom.getFillPercentage() >= 0.45) {
           break;
         }

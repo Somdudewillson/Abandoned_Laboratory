@@ -1,17 +1,18 @@
+import { FlatGridVector } from "../../../utils/flatGridVector";
 import { EntityToken } from "./tokenizer";
 
-export interface ModelWrapper {
+export interface SeedWrapper {
   Model: LuaTable<string, LuaTable<number, number>>;
-  Context: Array<{ x: int; y: int }>;
 }
 
 export function getFromModel(
-  modelData: ModelWrapper,
-  key: string,
+  modelData: SeedWrapper,
+  shape: RoomShape,
+  flatPos: FlatGridVector,
 ): Array<{ token: EntityToken; weight: float }> | null {
   const result: Array<{ token: EntityToken; weight: float }> = [];
 
-  const entrySet = modelData.Model.get(key);
+  const entrySet = modelData.Model.get(`${shape} ${math.floor(flatPos)}`);
   if (entrySet == null) {
     return null;
   }

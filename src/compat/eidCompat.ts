@@ -241,7 +241,7 @@ export function registerExternalItemDescriptions(): void {
   );
   EID.addCollectible(
     CollectibleTypeLabUpgrade.COLLECTIBLE_BLOODALCHEMIZER,
-    "Consumes 1 half-heart of health and spawns 1-4 {{Coin}}" +
+    "Consumes 1 half-heart of health and spawns 1-3 {{Coin}}" +
       "#!!! Will instead spawn 2-4 Blue Flies for the Keeper",
   );
   EID.addCollectible(

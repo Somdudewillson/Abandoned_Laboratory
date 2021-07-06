@@ -31,7 +31,7 @@ export function use(
   ) {
     player.AddBlueFlies(randomInt(rand, 2, 4), player.Position, null);
   } else {
-    spawnCoins(randomInt(rand, 1, 4), player.Position, rand, true, true);
+    spawnCoins(randomInt(rand, 1, 3), player.Position, rand, true, true);
   }
 
   return true;

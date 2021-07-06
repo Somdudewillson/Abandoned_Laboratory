@@ -982,7 +982,7 @@ export function itemHasUpgrade(item: int, playerType?: int): boolean {
 
   if (
     isSingleUpgrade(item) &&
-    blacklistData != null &&
+    blacklistData !== null &&
     blacklistData.includes(item)
   ) {
     return false;
@@ -1040,7 +1040,7 @@ export function getItemUpgrade(
       UPGRADE_BLACKLIST_KEY,
     ) as null | int[];
 
-    if (blacklistData == null) {
+    if (blacklistData === null) {
       saveGlobalData(SaveType.PER_RUN, UPGRADE_BLACKLIST_KEY, [item]);
     } else if (!blacklistData.includes(item)) {
       blacklistData.push(item);
@@ -1135,4 +1135,5 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = false;
 export const DEBUG_SPAWN = false;
 export const UNBALANCED = false;
-export const VERSION = "0.18.2";
+export const STAGE_TESTING = true;
+export const VERSION = "0.18.5";

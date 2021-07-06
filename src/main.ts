@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 // Define imports
-import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE, CollectibleTypeLabUpgrade, CollectibleTypeLabUtility } from "./constants";
+import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE, CollectibleTypeLabUpgrade, CollectibleTypeLabUtility, STAGE_TESTING } from "./constants";
 import * as SaveUtil from "./saveData";
 import * as extMath from "./utils/extMath";
 import { registerExternalItemDescriptions } from "./compat/eidCompat";
@@ -187,7 +187,7 @@ function postGameStarted(isContinued:boolean) {
   }
 
   if (EID !== null) {registerExternalItemDescriptions();}
-  if (StageAPI !== null) {
+  if (STAGE_TESTING && StageAPI !== null) {
     Isaac.DebugString("|LABOS| Stage API detected");
 
     STAGE_CREATION.createStages();

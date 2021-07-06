@@ -21,11 +21,10 @@ export function collide(
   familiar: EntityFamiliar,
   _collider: Entity,
   _low: boolean,
-): boolean | null {
+): boolean | void {
   switch (familiar.SubType) {
     default:
     case FamiliarEntitySubtype.CYBOB:
-      return null;
   }
 }
 

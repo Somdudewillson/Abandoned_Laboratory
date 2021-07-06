@@ -22,21 +22,21 @@ export function prePickupCollide(
   pickup: EntityPickup,
   Collider: Entity,
   _Low: boolean,
-): boolean | null {
+): boolean | void {
   if (Collider.Type !== EntityType.ENTITY_PLAYER) {
-    return null;
+    return;
   }
   const player = Collider.ToPlayer()!;
 
   if (!player.HasFullHearts()) {
-    return null;
+    return;
   }
 
   // Calculated added charge
   let addVal = 0;
   switch (pickup.SubType) {
     default:
-      return null;
+      return;
     case HeartSubType.HEART_DOUBLEPACK:
       addVal = 4;
       break;
@@ -49,7 +49,7 @@ export function prePickupCollide(
   }
 
   if (!player.HasCollectible(ownType())) {
-    return null;
+    return;
   }
 
   // Detect current slot of item
@@ -75,6 +75,4 @@ export function prePickupCollide(
     pickup.Remove();
     return true;
   }
-
-  return null;
 }

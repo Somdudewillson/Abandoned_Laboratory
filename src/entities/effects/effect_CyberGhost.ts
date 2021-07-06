@@ -24,7 +24,7 @@ function doDie(self: EntityEffect): void {
   const scaledSize = Math.min(self.Size, 2);
   for (let p = 0; p < Game().GetNumPlayers(); p++) {
     const player = Isaac.GetPlayer(p);
-    if (player == null) {
+    if (player === null) {
       continue;
     }
 
@@ -67,7 +67,7 @@ function doSeek(self: EntityEffect): void {
   }
 
   if (targetCount <= 0) {
-    if (self.Target == null) {
+    if (self.Target === null) {
       const entities = Isaac.GetRoomEntities();
       shuffleArray(entities, self.GetDropRNG());
       for (const entity of entities) {
@@ -86,7 +86,7 @@ function doSeek(self: EntityEffect): void {
     }
   } else {
     self.Target = null;
-    targetPos = targetPos.__div(targetCount);
+    targetPos = targetPos.div(targetCount);
     hasTarget = true;
   }
 

@@ -2,7 +2,7 @@ import { playSound } from "../../utils/utils";
 
 export function update(self: EntityTear): void {
   const targetDir =
-    self.Target == null
+    self.Target === null
       ? self.Velocity
       : self.Target.Position.sub(self.Position);
   self.Velocity = targetDir.Resized(math.min(25, self.Velocity.Length() + 0.5));
@@ -15,7 +15,7 @@ export function collide(
   self: EntityTear,
   _other: Entity,
   _low: boolean,
-): boolean | null {
+): boolean | void {
   const entities = Isaac.FindInRadius(self.Position, 15, EntityPartition.ENEMY);
   for (const entity of entities) {
     entity.TakeDamage(

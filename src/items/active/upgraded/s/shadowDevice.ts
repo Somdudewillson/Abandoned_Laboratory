@@ -38,7 +38,7 @@ export function interceptDamage(
   DamageFlags: int,
   _DamageSource: EntityRef,
   _DamageCountdownFrames: int,
-): boolean | null {
+): boolean | void {
   if (
     DamageAmount <= 0 ||
     (DamageFlags & DamageFlag.DAMAGE_FAKE) === DamageFlag.DAMAGE_FAKE ||
@@ -46,16 +46,16 @@ export function interceptDamage(
       (DamageFlag.DAMAGE_NO_PENALTIES | DamageFlag.DAMAGE_SPIKES)) ===
       0
   ) {
-    return null;
+    return;
   }
 
   const player = TookDamage.ToPlayer();
-  if (player == null) {
-    return null;
+  if (player === null) {
+    return;
   }
 
   if (!player.HasCollectible(ownType(), true)) {
-    return null;
+    return;
   }
   let charge: int = 0;
   let itemSlot: int = 0;
@@ -98,8 +98,6 @@ export function interceptDamage(
     triggerEffect(player, hasCarBattery);
     return false;
   }
-
-  return null;
 }
 
 function triggerEffect(player: EntityPlayer, hasCarBattery: boolean): void {

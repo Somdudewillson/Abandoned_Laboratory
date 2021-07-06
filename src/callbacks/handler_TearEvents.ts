@@ -35,7 +35,7 @@ export function collide(
   projectile: EntityTear,
   collider: Entity,
   low: boolean,
-): boolean | null {
+): boolean | void {
   switch (projectile.SubType) {
     default:
     case TearEntitySubtype.MINI_MISSILE:

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable prettier/prettier */
 // Define imports
 import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE, CollectibleTypeLabUpgrade, CollectibleTypeLabUtility } from "./constants";
@@ -428,7 +427,7 @@ let items = 0;
 const itemConfig = Isaac.GetItemConfig();
 for (let i=1;i<CollectibleType.NUM_COLLECTIBLES;i++) {
   const testConfig = itemConfig.GetCollectible(i);
-    if (testConfig != null && testConfig.Type === ItemType.ITEM_ACTIVE && !testConfig.HasTags(ItemConfigTag.QUEST) && !testConfig.Hidden) {
+    if (testConfig !== null && testConfig.Type === ItemType.ITEM_ACTIVE && !testConfig.HasTags(ItemConfigTag.QUEST) && !testConfig.Hidden) {
       items++;
     if (itemHasUpgrade(i)) {
       itemsWithUpgrade++;

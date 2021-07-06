@@ -21,5 +21,6 @@ module.exports = {
     // Insert changed or disabled rules here, if necessary
     "@typescript-eslint/no-non-null-assertion": "off",
     "no-plusplus": "off",
+    "consistent-return": "off",
   },
 };

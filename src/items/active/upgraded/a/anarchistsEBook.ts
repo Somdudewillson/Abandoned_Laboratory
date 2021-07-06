@@ -27,7 +27,7 @@ export function use(
   const entities = room.GetEntities();
   for (let i = 0; i < entities.Size; i++) {
     const entity = entities.Get(i);
-    if (entity == null) {
+    if (entity === null) {
       continue;
     }
 
@@ -39,7 +39,7 @@ export function use(
         l++
       ) {
         targets.push(
-          entity.Position.__add(
+          entity.Position.add(
             Vector(
               20 * extMath.randomSign(rand),
               20 * extMath.randomSign(rand),
@@ -64,7 +64,7 @@ export function use(
   // Add tinted rocks as targets
   for (let g = 0; g < room.GetGridSize(); g++) {
     const gridEnt = room.GetGridEntity(g);
-    if (gridEnt == null) {
+    if (gridEnt === null) {
       continue;
     }
 

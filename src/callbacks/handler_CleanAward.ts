@@ -59,7 +59,7 @@ export function addCleanListener(
   perCleanListeners.push(callback);
 }
 
-export function preClean(rand: RNG, SpawnPosition: Vector): boolean | null {
+export function preClean(rand: RNG, SpawnPosition: Vector): boolean | void {
   const room = Game().GetRoom();
   const level = Game().GetLevel();
 
@@ -69,7 +69,7 @@ export function preClean(rand: RNG, SpawnPosition: Vector): boolean | null {
 
   for (let p = 0; p < Game().GetNumPlayers(); p++) {
     const player = Isaac.GetPlayer(p);
-    if (player == null) {
+    if (player === null) {
       continue;
     }
 
@@ -85,6 +85,4 @@ export function preClean(rand: RNG, SpawnPosition: Vector): boolean | null {
       }
     }
   }
-
-  return null;
 }

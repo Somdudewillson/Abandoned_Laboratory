@@ -25,12 +25,12 @@ const enum PredictorDroneAnimKey {
   APPEAR = "Appear",
 }
 
-export function update(self: EntityNPC): boolean | null {
+export function update(self: EntityNPC): boolean | void {
   switch (self.Variant) {
     default:
     case MicrodroneEntityVariant.ATTACK_DRONE:
     case MicrodroneEntityVariant.NANO_DRONE:
-      return null;
+      return;
     case MicrodroneEntityVariant.BARRIER_DRONE:
       return updateBarrierDrone(self);
     case MicrodroneEntityVariant.PREDICTOR_DRONE:
@@ -38,7 +38,7 @@ export function update(self: EntityNPC): boolean | null {
   }
 }
 
-function updateBarrierDrone(self: EntityNPC): boolean | null {
+function updateBarrierDrone(self: EntityNPC): boolean | void {
   // Animation update
   const sprite = self.GetSprite();
   if (
@@ -60,7 +60,7 @@ function updateBarrierDrone(self: EntityNPC): boolean | null {
     const playerDist = tear.Parent!.Position.DistanceSquared(tear.Position);
 
     if (
-      (nearestTear == null || tearDist < nearestDist) &&
+      (nearestTear === null || tearDist < nearestDist) &&
       playerDist > 75 * 75
     ) {
       nearestTear = tear;
@@ -68,7 +68,7 @@ function updateBarrierDrone(self: EntityNPC): boolean | null {
     }
   }
 
-  if (nearestTear != null) {
+  if (nearestTear !== null) {
     // Chase tears
     const futureTearPos = nearestTear.Position.add(
       nearestTear.Velocity.mul(Vector(3, 3)),
@@ -91,7 +91,7 @@ function updateBarrierDrone(self: EntityNPC): boolean | null {
       self.AddVelocity(self.Position.sub(playerPos).Resized(0.15));
     } else {
       // Loose orbit movement
-      if (self.GetData().orbitDir == null) {
+      if (self.GetData().orbitDir === null) {
         self.GetData().orbitDir = 90;
       }
       if (self.GetDropRNG().RandomFloat() < 0.01) {
@@ -109,7 +109,7 @@ function updateBarrierDrone(self: EntityNPC): boolean | null {
 
   // Update timeout
   const curTimeout = self.GetData().timeout as number | null;
-  if (curTimeout != null && curTimeout > 0) {
+  if (curTimeout !== null && curTimeout > 0) {
     self.GetData().timeout = curTimeout - 1;
     if (curTimeout - 1 <= 0) {
       sprite.Play(BarrierDroneAnimKey.FLY, true);
@@ -118,7 +118,7 @@ function updateBarrierDrone(self: EntityNPC): boolean | null {
   return true;
 }
 
-function updatePredictorDrone(self: EntityNPC): boolean | null {
+function updatePredictorDrone(self: EntityNPC): boolean | void {
   const sprite = self.GetSprite();
   if (
     sprite.GetAnimation() === PredictorDroneAnimKey.APPEAR &&
@@ -155,7 +155,7 @@ function updatePredictorDrone(self: EntityNPC): boolean | null {
 
     if (sprite.IsPlaying(PredictorDroneAnimKey.TELEPORT_BEGIN)) {
       const oldAvg = self.GetData().avgVector as Vector | null;
-      if (oldAvg == null) {
+      if (oldAvg === null) {
         self.GetData().avgVector = Vector(
           targetPlayer.Velocity.X,
           targetPlayer.Velocity.Y,
@@ -194,12 +194,12 @@ function updatePredictorDrone(self: EntityNPC): boolean | null {
 
   // Update timeout
   const curTimeout = self.GetData().timeout as number | null;
-  if (curTimeout != null && curTimeout > 0) {
+  if (curTimeout !== null && curTimeout > 0) {
     self.GetData().timeout = curTimeout - 1;
     if (curTimeout - 1 <= 0 && isMoving) {
       sprite.Play(PredictorDroneAnimKey.TELEPORT_BEGIN, true);
     }
-  } else if (curTimeout == null) {
+  } else if (curTimeout === null) {
     self.GetData().timeout =
       30 * 2 + Math.round(self.GetDropRNG().RandomFloat() * 30);
   }
@@ -212,17 +212,16 @@ export function interceptDamage(
   _damageFlags: int,
   _damageSource: EntityRef,
   _damageCountdownFrames: int,
-): boolean | null {
+): boolean | void {
   if (tookDamage.Variant !== MicrodroneEntityVariant.BARRIER_DRONE) {
-    return null;
+    return;
   }
 
   const curTimeout = tookDamage.GetData().timeout as number | null;
-  if (curTimeout != null && curTimeout > 0) {
+  if (curTimeout !== null && curTimeout > 0) {
     return false;
   }
 
   tookDamage.GetData().timeout = 36;
   tookDamage.GetSprite().Play(BarrierDroneAnimKey.FLY_SHIELD, true);
-  return null;
 }

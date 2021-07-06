@@ -25,7 +25,7 @@ export function use(
       EntityRef(player),
       SaveType.PER_RUN,
       KEY_NICKEL_HEARTS,
-    ) != null
+    ) !== null
   ) {
     nickelHearts = SaveUtil.getPlayerData(
       EntityRef(player),
@@ -66,17 +66,17 @@ export function interceptDamage(
   DamageFlags: int,
   DamageSource: EntityRef,
   _DamageCountdownFrames: int,
-): boolean | null {
+): boolean | void {
   if (
     DamageAmount <= 0 ||
     (DamageFlags & DamageFlag.DAMAGE_FAKE) === DamageFlag.DAMAGE_FAKE
   ) {
-    return null;
+    return;
   }
 
   const player = TookDamage.ToPlayer();
-  if (player == null) {
-    return null;
+  if (player === null) {
+    return;
   }
 
   if (
@@ -84,9 +84,9 @@ export function interceptDamage(
       EntityRef(player),
       SaveType.PER_RUN,
       KEY_NICKEL_HEARTS,
-    ) == null
+    ) === null
   ) {
-    return null;
+    return;
   }
   const nickelHearts: int = SaveUtil.getPlayerData(
     EntityRef(player),
@@ -94,7 +94,7 @@ export function interceptDamage(
     KEY_NICKEL_HEARTS,
   ) as number;
   if (nickelHearts <= 0) {
-    return null;
+    return;
   }
 
   SaveUtil.savePlayerData(

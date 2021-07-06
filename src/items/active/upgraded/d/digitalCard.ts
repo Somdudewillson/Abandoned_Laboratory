@@ -23,7 +23,7 @@ export function use(
   const level: Level = Game().GetLevel();
 
   const currentCard: Card = player.GetCard(0);
-  if (currentCard == null || currentCard === 0) {
+  if (currentCard === null || currentCard === 0) {
     return false;
   }
   const hasTarot: boolean = player.HasCollectible(
@@ -220,7 +220,7 @@ function doReversedHermit(
   for (let i = 0; i < entities.Size; i++) {
     const entity = entities.Get(i);
 
-    if (entity == null) {
+    if (entity === null) {
       continue;
     }
     if (entity.Type !== EntityType.ENTITY_PICKUP) {
@@ -272,9 +272,9 @@ function doTower(
     shiftY *= extMath.randomSign(rand);
 
     const shift = Vector(shiftX, shiftY);
-    let position = player.Position.__add(shift);
+    let position = player.Position.add(shift);
     if (subType === BombSubType.BOMB_TROLL) {
-      position = position.__add(shift);
+      position = position.add(shift);
     }
     position = Isaac.GetFreeNearPosition(position, 5);
 
@@ -305,7 +305,7 @@ function doDeath(player: EntityPlayer, room: Room, hasTarot: boolean): void {
   for (let i = 0; i < entities.Size; i++) {
     const entity = entities.Get(i);
 
-    if (entity == null) {
+    if (entity === null) {
       continue;
     }
     if (!entity.IsActiveEnemy(false)) {
@@ -373,7 +373,7 @@ function doLovers(player: EntityPlayer, hasTarot: boolean, rand: RNG): void {
 }
 
 function validAceTarget(entity: Entity, variant: number): boolean {
-  if (entity == null) {
+  if (entity === null) {
     return false;
   }
 
@@ -451,7 +451,7 @@ function doGenericAce(
   for (let i = 0; i < entities.Size; i++) {
     const entity = entities.Get(i);
 
-    if (entity == null) {
+    if (entity === null) {
       continue;
     }
     let amount = 1;
@@ -482,7 +482,7 @@ function doAceHearts(
   for (let i = 0; i < entities.Size; i++) {
     const entity = entities.Get(i);
 
-    if (entity == null) {
+    if (entity === null) {
       continue;
     }
     let amount = 1;

@@ -4,17 +4,17 @@ export const enum SpiderEntityVariant {
   SMART_SPIDERBOT = 56,
 }
 
-export function update(self: EntityNPC): boolean | null {
+export function update(self: EntityNPC): boolean | void {
   if (self.Variant !== SpiderEntityVariant.SMART_SPIDERBOT) {
-    return null;
+    return;
   }
   const curTimeout = self.GetData().timeout as number | null;
   // Update timeout
-  if (curTimeout != null && curTimeout > 0) {
+  if (curTimeout !== null && curTimeout > 0) {
     self.GetData().timeout = curTimeout - 1;
   }
-  if (curTimeout != null && curTimeout - 1 > 0) {
-    return null;
+  if (curTimeout !== null && curTimeout - 1 > 0) {
+    return;
   }
 
   const nearTears = Isaac.FindInRadius(
@@ -27,13 +27,13 @@ export function update(self: EntityNPC): boolean | null {
   for (const tear of nearTears) {
     const tearDist = self.Position.DistanceSquared(tear.Position);
 
-    if (nearestTear == null || tearDist < nearestDist) {
+    if (nearestTear === null || tearDist < nearestDist) {
       nearestTear = tear;
       nearestDist = tearDist;
     }
   }
 
-  if (nearestTear != null) {
+  if (nearestTear !== null) {
     const tearDir = nearestTear.Velocity.Normalized();
     const fireLineToSpiderPosBase = nearestTear.Position.add(
       self.Position.sub(nearestTear.Position).mul(tearDir).mul(tearDir),
@@ -48,8 +48,6 @@ export function update(self: EntityNPC): boolean | null {
     self.AddVelocity(evadeVelocity.Resized(dodgeStrength * 15));
     self.GetData().timeout = Math.round(dodgeStrength * 15);
   }
-
-  return null;
 }
 
 export function interceptDamage(
@@ -58,13 +56,12 @@ export function interceptDamage(
   _damageFlags: int,
   damageSource: EntityRef,
   _damageCountdownFrames: int,
-): boolean | null {
+): boolean | void {
   if (tookDamage.Variant !== SpiderEntityVariant.SMART_SPIDERBOT) {
-    return null;
+    return;
   }
 
   if (damageSource.Type === EntityType.ENTITY_FIREPLACE) {
     return false;
   }
-  return null;
 }

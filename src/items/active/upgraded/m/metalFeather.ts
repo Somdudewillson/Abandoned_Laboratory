@@ -23,7 +23,7 @@ export function use(
   const entities = room.GetEntities();
   for (let i = 0; i < entities.Size; i++) {
     const entity = entities.Get(i);
-    if (entity == null) {
+    if (entity === null) {
       continue;
     }
 
@@ -38,7 +38,7 @@ export function use(
       l++
     ) {
       targets.push(
-        entity.Position.__add(
+        entity.Position.add(
           Vector(
             extMath.randomInt(rand, 0, attackRadius * 2) - attackRadius,
             extMath.randomInt(rand, 0, attackRadius * 2) - attackRadius,

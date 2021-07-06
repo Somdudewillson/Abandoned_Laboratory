@@ -36,16 +36,16 @@ export function preCollide(
   self: EntityNPC,
   collider: Entity,
   _low: boolean,
-): boolean | null {
+): boolean | void {
   if (collider.Type !== EntityType.ENTITY_PLAYER) {
-    return null;
+    return;
   }
   if (self.Variant !== LabMachineVariant.UPGRADE_MACHINE) {
-    return null;
+    return;
   }
   const timeout = self.GetData().timeout as number | null;
-  if (timeout != null && timeout > 0) {
-    return null;
+  if (timeout !== null && timeout > 0) {
+    return;
   }
 
   const isCharged = getGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY) as
@@ -55,8 +55,8 @@ export function preCollide(
     | boolean
     | null;
   const player = collider.ToPlayer()!;
-  if (isCharged) {
-    return tryAcceptItem(player, self);
+  if (isCharged !== null && isCharged) {
+    tryAcceptItem(player, self);
   }
 
   if (tryAcceptBattery(player)) {
@@ -65,9 +65,9 @@ export function preCollide(
     self.GetSprite().Play(UpgradeAnimKey.READY, true);
     self.GetData().timeout = 15;
 
-    return null;
+    return;
   }
-  if (hasBatt == null || hasBatt) {
+  if (hasBatt === null || hasBatt) {
     saveGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY, false);
     spawnPickup(
       self.Position.add(Vector(0, 25)),
@@ -79,8 +79,6 @@ export function preCollide(
     self.PlaySound(SoundEffect.SOUND_BATTERYDISCHARGE, 1, 0, false, 1);
     self.GetData().timeout = 15;
   }
-
-  return null;
 }
 
 function tryAcceptItem(player: EntityPlayer, self: EntityNPC): boolean | null {
@@ -135,9 +133,9 @@ function tryAcceptBattery(player: EntityPlayer): boolean {
   return false;
 }
 
-export function update(self: EntityNPC): boolean | null {
+export function update(self: EntityNPC): boolean | void {
   if (self.Variant !== LabMachineVariant.UPGRADE_MACHINE) {
-    return null;
+    return;
   }
 
   // State toggle from INITIATING to PROCESSING
@@ -159,7 +157,7 @@ export function update(self: EntityNPC): boolean | null {
   const curProcessTime = self.GetData().processTime as number | null;
   if (
     self.GetSprite().IsPlaying(UpgradeAnimKey.WIGGLE) &&
-    curProcessTime != null &&
+    curProcessTime !== null &&
     curProcessTime <= 0
   ) {
     // Isaac.DebugString("PROCESSING -> DISPENSE");
@@ -205,12 +203,12 @@ export function update(self: EntityNPC): boolean | null {
 
   // Update timeout
   const curTimeout = self.GetData().timeout as number | null;
-  if (curTimeout != null && curTimeout > 0) {
+  if (curTimeout !== null && curTimeout > 0) {
     self.GetData().timeout = curTimeout - 1;
   }
 
   // Update processTime
-  if (curProcessTime != null && curProcessTime > 0) {
+  if (curProcessTime !== null && curProcessTime > 0) {
     self.GetData().processTime = curProcessTime - 1;
 
     if (curProcessTime % 25 === 0) {
@@ -256,7 +254,7 @@ export function trySpawn(room: Room, floor: Level): void {
         const isCharged = getGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY) as
           | boolean
           | null;
-        if (isCharged == null) {
+        if (isCharged === null) {
           saveGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY, false);
         } else if (isCharged) {
           machineEnt.GetSprite().Play(UpgradeAnimKey.READY, true);
@@ -265,7 +263,7 @@ export function trySpawn(room: Room, floor: Level): void {
         const hasBatt = getGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY) as
           | boolean
           | null;
-        if (hasBatt == null) {
+        if (hasBatt === null) {
           saveGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY, true);
         }
       }

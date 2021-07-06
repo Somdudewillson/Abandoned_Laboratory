@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
-declare namespace SeedModel {
+/** @noResolution */
+declare module "models/SeedModel" {
   export const Model: LuaTable<string, LuaTable<number, number>>;
 }

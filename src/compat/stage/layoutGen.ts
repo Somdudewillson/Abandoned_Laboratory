@@ -1,12 +1,16 @@
 // import { genRandObstacles } from "./randLayoutGen";
 
+import * as ChebyschevMarkovModel from "models/ChebyschevMarkovModel";
+import * as SeedModel from "models/SeedModel";
 import { SymmetryType } from "../../utils/utils";
 import { genMarkovObstacles } from "./ml/markovGen";
+import { MarkovWrapper } from "./ml/markovInterface";
 import { seedObstacles } from "./ml/seedGen";
+import { SeedWrapper } from "./ml/seedInterface";
 import { genPickups } from "./spawnPickups";
 
-const StaticChebyschevMarkovModel = ChebyschevMarkovModel;
-const StaticSeedModel = SeedModel;
+const StaticChebyschevMarkovModel = ChebyschevMarkovModel as MarkovWrapper;
+const StaticSeedModel = SeedModel as SeedWrapper;
 
 export function generateRoom(
   rand: RNG,

@@ -2,8 +2,6 @@
 
 import { SymmetryType } from "../../utils/utils";
 import { genMarkovObstacles } from "./ml/markovGen";
-import { ChebyschevMarkovModel } from "./ml/models/chebyschevMarkovModel";
-import { SeedModel } from "./ml/models/seedModel";
 import { seedObstacles } from "./ml/seedGen";
 import { genPickups } from "./spawnPickups";
 

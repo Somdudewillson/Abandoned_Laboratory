@@ -2,9 +2,8 @@
 <metadata>
     <name>Abandoned Laboratory</name>
     <directory>abandoned_laboratory</directory>
-    <id>2491235243</id>
     <description>Abandoned Laboratory is a currently a work in progress.  It will eventually be a tech-themed general expansion mod.</description>
-    <version>0.18.5</version>
+    <version>0.18.6</version>
     <visibility>Private</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

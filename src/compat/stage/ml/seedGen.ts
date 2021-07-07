@@ -126,7 +126,7 @@ function pickWeighted(
   rand: RNG,
   options: Array<{ token: EntityToken; weight: float }> | null,
 ): EntityToken {
-  if (options == null || options.length === 0) {
+  if (options === null || options.length === 0) {
     return EntityToken.AIR;
   }
 
@@ -196,7 +196,7 @@ export function seedObstacles(
     fetchTime += Isaac.GetTime() - startTime;
 
     startTime = Isaac.GetTime();
-    if (newGridData != null) {
+    if (newGridData !== null) {
       const isPassable = isGridPassable(newGridData.Type);
 
       newRoom.createMirroredEntity(

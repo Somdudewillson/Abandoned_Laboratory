@@ -178,6 +178,7 @@ export function genRandObstacles(
     if (!isNewGridPassable) {
       if (roomValidator.isAccessible()) {
         newRoom.finalizeBuffer();
+        roomValidator.finalize();
       } else {
         newRoom.wipeBuffer();
       }

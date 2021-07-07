@@ -1136,4 +1136,4 @@ export const DUMP_NOUPGRADE = false;
 export const DEBUG_SPAWN = false;
 export const UNBALANCED = false;
 export const STAGE_TESTING = true;
-export const VERSION = "0.18.5";
+export const VERSION = "0.18.6";

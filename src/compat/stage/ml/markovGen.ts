@@ -133,7 +133,7 @@ function pickWeighted(
   rand: RNG,
   options: Array<{ token: EntityToken; weight: float }> | null,
 ): EntityToken {
-  if (options == null || options.length === 0) {
+  if (options === null || options.length === 0) {
     return EntityToken.AIR;
   }
 
@@ -202,20 +202,20 @@ function fetchFromModel(
   let result = getFromModel(model, hashContext(...tokens));
 
   // If there is no entry in the given model
-  if (result == null) {
+  if (result === null) {
     let nextSets: EntityToken[][] = [];
     let currentSets: EntityToken[][] = [];
 
     const initialDecay = decayTokens(tokens);
-    if (initialDecay != null) {
+    if (initialDecay !== null) {
       currentSets = initialDecay;
     }
-    while (currentSets.length > 0 && result == null) {
+    while (currentSets.length > 0 && result === null) {
       for (const decaySet of currentSets) {
         result = getFromModel(model, hashContext(...decaySet));
 
         const newDecay = decayTokens(decaySet);
-        if (newDecay != null) {
+        if (newDecay !== null) {
           for (const nextDecay of newDecay) {
             nextSets.push(nextDecay);
           }
@@ -280,7 +280,7 @@ export function genMarkovObstacles(
     fetchTime += Isaac.GetTime() - startTime;
 
     startTime = Isaac.GetTime();
-    if (newGridData != null) {
+    if (newGridData !== null) {
       const isPassable = isGridPassable(newGridData.Type);
 
       newRoom.createMirroredEntity(

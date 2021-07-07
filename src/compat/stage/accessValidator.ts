@@ -18,7 +18,7 @@ function flattenDoorPair(doorPair: {
 export class AccessValidator {
   private readonly room: GeneratedRoom;
   currentPaths = new Map<FlatDoorPair, FlatGridVector[]>();
-  newPaths: Map<FlatDoorPair, FlatGridVector[]> | undefined;
+  newPaths = new Map<FlatDoorPair, FlatGridVector[] | false>();
   constructor(room: GeneratedRoom) {
     this.room = room;
   }
@@ -40,10 +40,7 @@ export class AccessValidator {
   }
 
   isAccessible(): boolean {
-    this.newPaths = new Map<FlatDoorPair, FlatGridVector[]>();
-    for (const pathEntry of this.currentPaths.entries()) {
-      this.newPaths.set(pathEntry[0], pathEntry[1]);
-    }
+    this.newPaths.clear();
 
     // Test each path
     for (const doorPair of AccessValidator.getPermutations(
@@ -51,13 +48,13 @@ export class AccessValidator {
     )) {
       const flatDoorPair = flattenDoorPair(doorPair);
 
-      if (this.newPaths.has(flatDoorPair)) {
+      if (this.currentPaths.has(flatDoorPair)) {
         // Isaac.DebugString(`Preexisting path found for [${flatDoorPair}].`);
         let clear = true;
-        for (const pathPos of this.newPaths.get(flatDoorPair)!) {
+        for (const pathPos of this.currentPaths.get(flatDoorPair)!) {
           if (!this.room.isPosPassable(pathPos, false, true)) {
             // Isaac.DebugString("Path invalid.");
-            this.newPaths.delete(flatDoorPair);
+            this.newPaths.set(flatDoorPair, false);
             clear = false;
             break;
           }
@@ -89,10 +86,14 @@ export class AccessValidator {
   }
 
   finalize(): void {
-    if (this.newPaths) {
-      this.currentPaths = this.newPaths;
-      this.newPaths = undefined;
+    for (const newPathData of this.newPaths) {
+      if (newPathData[1] === false) {
+        this.currentPaths.delete(newPathData[0]);
+      } else {
+        this.currentPaths.set(newPathData[0], newPathData[1]);
+      }
     }
+    this.newPaths.clear();
   }
 
   getNeighbors(

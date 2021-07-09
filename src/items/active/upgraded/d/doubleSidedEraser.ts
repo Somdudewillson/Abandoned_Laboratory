@@ -35,11 +35,11 @@ export function use(
     SaveType.PER_FLOOR,
     ERASER_SAVE_KEY + ActiveSlot.toString(),
   ) as number | null;
-  Isaac.DebugString(`uses: ${uses}`);
+  // Isaac.DebugString(`uses: ${uses}`);
 
-  if (uses == null || uses > 1) {
+  if (uses === null || uses > 1) {
     queueThrowable(player, ownType(), ActiveSlot, doThrow, 1);
-    Isaac.DebugString("Recharging...");
+    // Isaac.DebugString("Recharging...");
 
     savePlayerData(
       EntityRef(player),
@@ -51,7 +51,7 @@ export function use(
   }
 
   queueThrowable(player, ownType(), ActiveSlot, doThrow, 2);
-  Isaac.DebugString("Discharging...");
+  // Isaac.DebugString("Discharging...");
   savePlayerData(
     EntityRef(player),
     SaveType.PER_FLOOR,

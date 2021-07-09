@@ -32,7 +32,7 @@ function doDie(self: EntityEffect): void {
       player.Position.DistanceSquared(self.Position) <=
       (scaledSize * 100) ** 2
     ) {
-      Isaac.DebugString("Attempted to intercept damage");
+      // Isaac.DebugString("Attempted to intercept damage");
       player.TakeDamage(0, DamageFlag.DAMAGE_FAKE, EntityRef(self), 0);
     }
   }

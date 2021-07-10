@@ -76,8 +76,13 @@ declare interface CustomStage {
   SetBosses(bosses: int[]): void;
   /** Gets the id of the currently playing music */
   GetPlayingMusic(): int;
-  // TODO: I don't know what this does yet
-  OverrideRockAltEffects(): void;
+  /** Indicates that this stage overrides alt rock effects
+   * @param rooms If present, only overrides rock alt effects for these `RoomType`s.
+   * If absent, overrides alt rocks everywhere.
+   *
+   * DOES NOT add any new effects on its own.
+   */
+  OverrideRockAltEffects(rooms?: RoomType[]): void;
   /** Sets the stage transition icon */
   // TODO: May not actually take a `Sprite`
   SetTransitionIcon(icon: Sprite): void;

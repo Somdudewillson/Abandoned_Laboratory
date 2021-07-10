@@ -8,6 +8,12 @@ declare const enum StageCallback {
    *
    * Called both on initial room load and when continuing game, before INIT. */
   PRE_ROOM_LAYOUT_CHOOSE = "PRE_ROOM_LAYOUT_CHOOSE",
+  /** Called when an overridden grid reaches its break state and is considered broken.
+   * Param `justBrokenGridSpawns` contains all deleted spawns from the grid.
+   *
+   * Breaks on first non-null return.
+   */
+  POST_OVERRIDDEN_GRID_BREAK = "POST_OVERRIDDEN_GRID_BREAK",
   POST_CHANGE_ROOM_GFX = "POST_CHANGE_ROOM_GFX",
   /** Runs before most but not all StageAPI room functionality. Guaranteed to run before any room loads. */
   PRE_STAGEAPI_NEW_ROOM = "PRE_STAGEAPI_NEW_ROOM",

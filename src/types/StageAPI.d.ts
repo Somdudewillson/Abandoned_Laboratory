@@ -17,6 +17,13 @@ interface StageAPICallbackParameters {
   ];
   [StageCallback.POST_CHANGE_ROOM_GFX]: [callback: () => void];
   [StageCallback.PRE_STAGEAPI_NEW_ROOM]: [callback: () => void];
+  [StageCallback.POST_OVERRIDDEN_GRID_BREAK]: [
+    callback: (
+      grindex: int,
+      grid: GridEntity,
+      justBrokenGridSpawns: LuaTable,
+    ) => false | void,
+  ];
 }
 
 declare global {

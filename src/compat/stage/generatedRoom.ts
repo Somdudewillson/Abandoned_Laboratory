@@ -148,6 +148,35 @@ export class GeneratedRoom {
     );
   }
 
+  removeGridEntity(pos: FlatGridVector, fromBuffer = false): void {
+    if (fromBuffer) {
+      if (!this.gridEntityBuffer.has(pos)) {
+        return;
+      }
+
+      this.gridEntityBuffer.delete(pos);
+      this.flyingObstacleBuffer.delete(pos);
+      this.groundObstacleBuffer.delete(pos);
+    } else {
+      if (!this.gridEntities.has(pos)) {
+        return;
+      }
+
+      this.gridEntities.delete(pos);
+      if (this.flyingObstacles.has(pos)) {
+        this.flyingObstacles.delete(pos);
+        this.groundObstacles.delete(pos);
+
+        this.isFlightAccessibilityDirty = true;
+        this.isAccessibilityDirty = true;
+      } else if (this.groundObstacles.has(pos)) {
+        this.groundObstacles.delete(pos);
+
+        this.isAccessibilityDirty = true;
+      }
+    }
+  }
+
   createMirroredEntity(
     pos: Vector,
     symmetry: SymmetryType,

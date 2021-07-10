@@ -1,6 +1,6 @@
 // import { genRandObstacles } from "./randLayoutGen";
 
-import * as ChebyschevMarkovModel from "models/ChebyschevMarkovModel";
+import * as FlexMarkovModel from "models/FlexMarkovModel";
 import * as SeedModel from "models/SeedModel";
 import { SymmetryType } from "../../utils/utils";
 import { genMarkovObstacles } from "./ml/markovGen";
@@ -9,7 +9,7 @@ import { seedObstacles } from "./ml/seedGen";
 import { SeedWrapper } from "./ml/seedInterface";
 import { genPickups } from "./spawnPickups";
 
-const StaticChebyschevMarkovModel = ChebyschevMarkovModel as MarkovWrapper;
+const StaticFlexMarkovModel = FlexMarkovModel as MarkovWrapper;
 const StaticSeedModel = SeedModel as SeedWrapper;
 
 export function generateRoom(
@@ -44,8 +44,8 @@ export function generateRoom(
           rand,
           shape,
           doors,
-          StaticChebyschevMarkovModel,
-          SymmetryType.NONE,
+          StaticFlexMarkovModel,
+          undefined,
           newRoom,
         );
         Isaac.DebugString(

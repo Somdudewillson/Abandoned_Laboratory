@@ -3,6 +3,7 @@
 import * as FlexMarkovModel from "models/FlexMarkovModel";
 import * as SeedModel from "models/SeedModel";
 import { SymmetryType } from "../../utils/utils";
+import { cleanLayout } from "./layoutCleanup";
 import { genMarkovObstacles } from "./ml/markovGen";
 import { MarkovWrapper } from "./ml/markovInterface";
 import { seedObstacles } from "./ml/seedGen";
@@ -69,8 +70,16 @@ export function generateRoom(
         newRoom.printAccessibility();
       }
       */
+
+      startTime = Isaac.GetTime();
+      cleanLayout(rand, newRoom);
+      Isaac.DebugString(
+        `\tRoom ${newRoom.id} cleaned in ${
+          (Isaac.GetTime() - startTime) / 1000
+        } s.`,
+      );
+
       return newRoom.convertToRoomLayout();
     }
-    // return genRandObstacles(rand, shape, doors);
   }
 }

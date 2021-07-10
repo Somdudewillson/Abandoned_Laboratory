@@ -4,11 +4,7 @@ import {
   flattenVector,
   shiftFlat,
 } from "../../utils/flatGridVector";
-import {
-  getDoorEntryPos,
-  isValidGridPos,
-  SymmetryType,
-} from "../../utils/utils";
+import { isValidGridPos, SymmetryType } from "../../utils/utils";
 import { Accessibility, GeneratedRoom } from "./generatedRoom";
 
 const PIT_THRESHOLD = 2;
@@ -27,22 +23,10 @@ function getValidSpots(symmetry: SymmetryType, room: GeneratedRoom): Vector[] {
         xMax = Math.max(xMax, option.X);
         yMax = Math.max(yMax, option.Y);
 
-        const flatOption = flattenVector(option);
-        if (!room.isPosEmpty(flattenVector(option))) {
+        if (room.isPosEmpty(flattenVector(option))) {
           continue;
         }
-
-        let valid = true;
-        for (const door of room.doorSlots) {
-          if (flatOption === flattenVector(getDoorEntryPos(door, room.shape))) {
-            valid = false;
-            break;
-          }
-        }
-
-        if (valid) {
-          options.push(option);
-        }
+        options.push(option);
       }
     }
   }

@@ -200,6 +200,16 @@ export class GeneratedRoom {
     }
   }
 
+  removeMirroredGrid(
+    pos: Vector,
+    symmetry: SymmetryType,
+    fromBuffer = false,
+  ): void {
+    for (const mirrorPos of getMirroredPos(this.shape, symmetry, pos, true)) {
+      this.removeGridEntity(flattenVector(mirrorPos), fromBuffer);
+    }
+  }
+
   finalizeBuffer(): void {
     for (const entry of this.gridEntityBuffer.entries()) {
       this.addGridEntity(entry[0], entry[1], true, true);

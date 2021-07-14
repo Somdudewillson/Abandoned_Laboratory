@@ -59,6 +59,7 @@ export function doFire(
     firedTear.SetColor(Color(0.7, 0.8, 1, 0.7), -1, 1);
     firedTear.SizeMulti = Vector(2, 2);
     firedTear.KnockbackMultiplier *= 100;
+    firedTear.CollisionDamage += 10;
     firedTear.AddTearFlags(TearFlags.TEAR_PIERCING);
     firedTear.AddTearFlags(TearFlags.TEAR_SPECTRAL);
     firedTear.AddTearFlags(TearFlags.TEAR_HYDROBOUNCE);
@@ -84,6 +85,7 @@ export function doFire(
     firedTear.SetColor(Color(0, 0.6, 1, 0.55), -1, 1);
     firedTear.SizeMulti = Vector(3.5, 3.5);
     firedTear.KnockbackMultiplier *= 500;
+    firedTear.CollisionDamage += 25;
     firedTear.AddTearFlags(TearFlags.TEAR_PIERCING);
     firedTear.AddTearFlags(TearFlags.TEAR_SPECTRAL);
     firedTear.AddTearFlags(TearFlags.TEAR_HYDROBOUNCE);

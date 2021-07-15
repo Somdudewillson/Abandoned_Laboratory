@@ -193,10 +193,10 @@ export function spawnHearts(
 
     let heartType: HeartSubType = singleType;
     let spawnedVal = 1;
-    if (quadType != null && h >= 4) {
+    if (quadType !== null && h >= 4) {
       heartType = quadType;
       spawnedVal = 4;
-    } else if (doubleType != null && h >= 2) {
+    } else if (doubleType !== null && h >= 2) {
       heartType = doubleType;
       spawnedVal = 2;
     }
@@ -222,11 +222,12 @@ export function spawnPickupCluster(
   subType: number,
   placeFree = false,
 ): void {
+  const room = Game().GetRoom();
   let velocity = Vector(0, 0);
 
   for (let i = 0; i < amount; i++) {
     if (placeFree) {
-      position = Isaac.GetFreeNearPosition(position, 5);
+      position = room.FindFreePickupSpawnPosition(position, 0, true);
     } else {
       velocity = Vector(rand.RandomFloat() * 4 - 2, rand.RandomFloat() * 4 - 2);
     }

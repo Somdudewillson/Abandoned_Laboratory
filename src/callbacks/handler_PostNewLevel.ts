@@ -32,7 +32,7 @@ export function postLevel(): void {
 
   for (let p = 0; p < Game().GetNumPlayers(); p++) {
     const player = Isaac.GetPlayer(p);
-    if (player == null) {
+    if (player === null) {
       continue;
     }
 

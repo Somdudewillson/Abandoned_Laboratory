@@ -104,7 +104,7 @@ function implodeObstacles(
 
   for (let i = 0; i < room.GetGridSize(); i++) {
     const gridEntity = room.GetGridEntity(i);
-    if (gridEntity == null) {
+    if (gridEntity === null) {
       continue;
     }
     if (gridEntity.CollisionClass === GridCollisionClass.COLLISION_NONE) {
@@ -183,7 +183,7 @@ function spawnDebris(
       randomOnCircle(rand, rand.RandomFloat() * 5 + 5),
       null,
     );
-    if (colorShift != null) {
+    if (colorShift !== null) {
       newDebris.SetColor(colorShift, -1, 1);
     }
   }

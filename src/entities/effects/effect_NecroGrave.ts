@@ -91,7 +91,7 @@ function doSpawn(self: EntityEffect, champion = false): void {
     Vector.Zero,
     self,
   ).ToNPC()!;
-  newMinion.AddCharmed(EntityRef(self.SpawnerEntity!), -1);
+  newMinion.AddCharmed(EntityRef(self.SpawnerEntity), -1);
   newMinion.Parent = self.SpawnerEntity;
   if (champion) {
     newMinion.MakeChampion(self.GetDropRNG().Next());
@@ -106,7 +106,7 @@ function countSpawned(): int {
       continue;
     }
     if (
-      entity.SpawnerEntity != null &&
+      entity.SpawnerEntity !== null &&
       entity.SpawnerEntity.Type === EntityType.ENTITY_EFFECT &&
       entity.SpawnerEntity.Variant === 579 &&
       entity.SpawnerEntity.SubType === 18

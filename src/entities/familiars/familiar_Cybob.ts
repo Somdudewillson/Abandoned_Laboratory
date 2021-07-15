@@ -34,13 +34,13 @@ export function update(self: EntityFamiliar): void {
 
   // ---Motion Planning---
   const parentDistSq =
-    self.Parent == null
+    self.Parent === null
       ? 0
       : self.Position.DistanceSquared(self.Parent.Position);
   let targetPos = self.Position;
   let toTargetDirection = Direction.NO_DIRECTION;
   if (
-    self.Parent != null &&
+    self.Parent !== null &&
     (parentDistSq > MAXFOLLOWDIST ** 2 || parentDistSq < MINFOLLOWDIST ** 2)
   ) {
     targetPos = self.Position.sub(self.Parent.Position)
@@ -48,7 +48,7 @@ export function update(self: EntityFamiliar): void {
       .add(self.Parent.Position);
     toTargetDirection = cardinalizedDirection(targetPos.sub(self.Position));
   }
-  if (self.Target != null) {
+  if (self.Target !== null) {
     toTargetDirection = cardinalizedDirection(
       self.Target.Position.sub(self.Position),
     );
@@ -100,7 +100,7 @@ export function update(self: EntityFamiliar): void {
   }
 
   // Attack
-  if (self.Target != null && self.FireCooldown <= 0 && self.State > 0) {
+  if (self.Target !== null && self.FireCooldown <= 0 && self.State > 0) {
     const newProjectile = Isaac.Spawn(
       EntityType.ENTITY_TEAR,
       LabTearEntityVariant,
@@ -134,7 +134,7 @@ export function update(self: EntityFamiliar): void {
 }
 
 function updateTarget(self: EntityFamiliar, room: Room): void {
-  if (self.Target == null || self.Target.IsDead()) {
+  if (self.Target === null || self.Target.IsDead()) {
     const entities = Isaac.GetRoomEntities();
     for (const entity of entities) {
       if (!entity.IsActiveEnemy(false)) {
@@ -161,7 +161,7 @@ function updateTarget(self: EntityFamiliar, room: Room): void {
       self.Target = entity;
       break;
     }
-  } else if (self.Target != null && Isaac.GetFrameCount() % 6 === 0) {
+  } else if (self.Target !== null && Isaac.GetFrameCount() % 6 === 0) {
     if (
       !checkLine(
         room,

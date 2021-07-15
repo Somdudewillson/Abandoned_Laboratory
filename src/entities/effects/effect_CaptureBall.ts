@@ -66,7 +66,7 @@ export function update(self: EntityEffect): void {
 
 function checkPlayerCollision(self: EntityEffect): void {
   if (
-    self.SpawnerEntity != null &&
+    self.SpawnerEntity !== null &&
     self.SpawnerEntity.Position.DistanceSquared(self.Position) <
       COLLISION_RADIUS ** 2
   ) {
@@ -176,7 +176,7 @@ function doRelease(self: EntityEffect): void {
     Vector.Zero,
     self.SpawnerEntity,
   );
-  newFriend.AddCharmed(EntityRef(self.SpawnerEntity!), -1);
+  newFriend.AddCharmed(EntityRef(self.SpawnerEntity), -1);
   newFriend.AddEntityFlags(EntityFlag.FLAG_PERSISTENT);
 
   self.Remove();
@@ -184,7 +184,7 @@ function doRelease(self: EntityEffect): void {
 
 function saveCapturedEntity(self: EntityEffect, target: EntityNPC): void {
   savePlayerData(
-    EntityRef(self.SpawnerEntity!),
+    EntityRef(self.SpawnerEntity),
     SaveType.PER_RUN,
     CAPTURED_ENTITY_SAVE_KEY,
     [
@@ -203,19 +203,19 @@ function getCapturedEntity(self: EntityEffect): {
   champion: int;
 } {
   const savedEntityData = getPlayerData(
-    EntityRef(self.SpawnerEntity!),
+    EntityRef(self.SpawnerEntity),
     SaveType.PER_RUN,
     CAPTURED_ENTITY_SAVE_KEY,
   ) as number[] | null;
 
   savePlayerData(
-    EntityRef(self.SpawnerEntity!),
+    EntityRef(self.SpawnerEntity),
     SaveType.PER_RUN,
     CAPTURED_ENTITY_SAVE_KEY,
     null,
   );
 
-  if (savedEntityData == null || savedEntityData.length < 4) {
+  if (savedEntityData === null || savedEntityData.length < 4) {
     return {
       type: EntityType.ENTITY_FLY,
       variant: 0,

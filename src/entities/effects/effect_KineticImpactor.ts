@@ -24,7 +24,7 @@ export function update(self: EntityEffect): void {
   if (sprite.IsFinished(KineticImpactorAnimKey.ATTACK_FAST)) {
     const attacks = self.GetData().attacksRemaining as null | number;
 
-    if (attacks == null || attacks <= 0) {
+    if (attacks === null || attacks <= 0) {
       sprite.Play(KineticImpactorAnimKey.IDLE, false);
       self.GetData().timeout = 45;
     } else {
@@ -43,7 +43,7 @@ export function update(self: EntityEffect): void {
 
       let attackCount = 0;
       for (const entity of entities) {
-        if (entity == null) {
+        if (entity === null) {
           continue;
         }
         if (!entity.IsVulnerableEnemy()) {
@@ -67,7 +67,7 @@ export function update(self: EntityEffect): void {
       if (attackCount < FAST_ATTACKS) {
         for (let i = 0; i < room.GetGridSize(); i++) {
           const gridEntity = room.GetGridEntity(i);
-          if (gridEntity == null) {
+          if (gridEntity === null) {
             continue;
           }
           if (
@@ -91,7 +91,7 @@ export function update(self: EntityEffect): void {
       doShockwave(self, 6);
 
       for (const entity of entities) {
-        if (entity == null) {
+        if (entity === null) {
           continue;
         }
         if (!entity.IsBoss()) {
@@ -112,7 +112,7 @@ export function update(self: EntityEffect): void {
 
   // Update timeout
   const curTimeout = self.GetData().timeout as number | null;
-  if (curTimeout != null && curTimeout > 0) {
+  if (curTimeout !== null && curTimeout > 0) {
     self.GetData().timeout = curTimeout - 1;
   } else if (
     sprite.GetAnimation() === KineticImpactorAnimKey.IDLE &&
@@ -193,7 +193,7 @@ function targetsPresent(room: Room): boolean {
 
   for (let i = 0; i < room.GetGridSize(); i++) {
     const gridEntity = room.GetGridEntity(i);
-    if (gridEntity == null) {
+    if (gridEntity === null) {
       continue;
     }
     if (

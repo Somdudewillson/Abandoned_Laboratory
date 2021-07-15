@@ -21,7 +21,7 @@
 		<bestiary transform="0,0,1" anim="Fly" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
-	
+
 	<!-- Effect Entities -->
     <entity name="Kinetic Impactor" anm2path="1000.579_kineticimpactor.anm2" id="1000" variant="579" subtype="12" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="14" friction="0" numGridCollisionPoints="0" shadowSize="30" stageHP="0">
     </entity>
@@ -39,11 +39,13 @@
     </entity>
     <entity name="Necro Soul" anm2path="1000.579_necrosoul.anm2" id="1000" variant="579" subtype="19" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="1" friction="1" numGridCollisionPoints="0" shadowSize="2" stageHP="0">
     </entity>
-	
+    <entity name="Coin Shield" anm2path="1000.579_coinshield.anm2" id="1000" variant="579" subtype="20" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+    </entity>
+
 	<!-- Familiar Entities -->
     <entity name="Cybob 4.0" anm2path="3.50456_cybob.anm2" id="3" variant="5045" subtype="23" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="10" collisionRadius="10" friction="1" numGridCollisionPoints="0" shadowSize="12" stageHP="0">
     </entity>
-	
+
 	<!-- Tear Entities -->
     <entity name="Mini Missile" anm2path="2.3468_minimissile.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="8" collisionRadius="10" friction="1" id="2" numGridCollisionPoints="8" shadowSize="8" stageHP="0" variant="3468" subtype="78">
     </entity>

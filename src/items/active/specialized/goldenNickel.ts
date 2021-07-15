@@ -1,11 +1,15 @@
+import {
+  EffectEntitySubtype,
+  LabEffectEntityVariant,
+} from "../../../callbacks/handler_EffectEvents";
 import { CollectibleTypeLabUpgrade } from "../../../constants";
 import * as SaveUtil from "../../../saveData";
 import { SaveType } from "../../../saveData";
 import * as extMath from "../../../utils/extMath";
 import { spawnCoins } from "../../../utils/utils";
 
-export const KEY_NICKEL_HEARTS = "nickel_hearts";
-const NICKEL_HEALTH_CAP: int = 3;
+export const KEY_COIN_SHIELDS = "coin_shields";
+const COIN_SHIELD_CAP: int = 3;
 
 export function ownType(): number {
   return CollectibleTypeLabUpgrade.COLLECTIBLE_GOLDENNICKEL as number;
@@ -19,42 +23,35 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean {
-  let nickelHearts: int = 0;
-  if (
-    SaveUtil.getPlayerData(
-      EntityRef(player),
-      SaveType.PER_RUN,
-      KEY_NICKEL_HEARTS,
-    ) !== null
-  ) {
-    nickelHearts = SaveUtil.getPlayerData(
-      EntityRef(player),
-      SaveType.PER_RUN,
-      KEY_NICKEL_HEARTS,
-    ) as number;
+  let coinShields: int | null = SaveUtil.getPlayerData(
+    EntityRef(player),
+    SaveType.PER_RUN,
+    KEY_COIN_SHIELDS,
+  ) as number | null;
+  if (coinShields === null) {
+    coinShields = 0;
   }
 
-  if (rand.RandomFloat() < 0.75) {
-    let amt: int = extMath.randomInt(rand, 1, 5);
-    if (rand.RandomFloat() < 0.2) {
-      amt = extMath.randomInt(rand, 5, 10);
-      if (rand.RandomFloat() < 0.2) {
-        amt = extMath.randomInt(rand, 10, 15);
-      }
-    }
-    spawnCoins(amt, player.Position, rand, false, true);
+  spawnCoins(extMath.randomInt(rand, 1, 3), player.Position, rand, false, true);
+  if (coinShields < COIN_SHIELD_CAP) {
+    SaveUtil.savePlayerData(
+      EntityRef(player),
+      SaveType.PER_RUN,
+      KEY_COIN_SHIELDS,
+      coinShields + 1,
+    );
 
-    if (
-      nickelHearts < NICKEL_HEALTH_CAP &&
-      rand.RandomFloat() < 0.75 - nickelHearts * 0.25
-    ) {
-      SaveUtil.savePlayerData(
-        EntityRef(player),
-        SaveType.PER_RUN,
-        KEY_NICKEL_HEARTS,
-        nickelHearts + 1,
-      );
-    }
+    const newGraphic = Isaac.Spawn(
+      EntityType.ENTITY_EFFECT,
+      LabEffectEntityVariant,
+      EffectEntitySubtype.COINSHIELD,
+      player.Position,
+      Vector.Zero,
+      player,
+    ).ToEffect()!;
+
+    newGraphic.FollowParent(player);
+    updateEffectStates(coinShields + 1);
   }
 
   return true;
@@ -79,54 +76,58 @@ export function interceptDamage(
     return;
   }
 
-  if (
-    SaveUtil.getPlayerData(
-      EntityRef(player),
-      SaveType.PER_RUN,
-      KEY_NICKEL_HEARTS,
-    ) === null
-  ) {
-    return;
-  }
-  const nickelHearts: int = SaveUtil.getPlayerData(
+  const nickelHearts: int | null = SaveUtil.getPlayerData(
     EntityRef(player),
     SaveType.PER_RUN,
-    KEY_NICKEL_HEARTS,
-  ) as number;
-  if (nickelHearts <= 0) {
+    KEY_COIN_SHIELDS,
+  ) as number | null;
+  if (nickelHearts === null || nickelHearts <= 0) {
     return;
   }
 
   SaveUtil.savePlayerData(
     EntityRef(player),
     SaveType.PER_RUN,
-    KEY_NICKEL_HEARTS,
+    KEY_COIN_SHIELDS,
     nickelHearts - 1,
   );
   player.TakeDamage(DamageAmount, DamageFlag.DAMAGE_FAKE, DamageSource, 0);
 
-  const rand: RNG = player.GetCollectibleRNG(ownType());
-  for (let i = 0; i < 6 * nickelHearts; i++) {
-    Isaac.Spawn(
-      EntityType.ENTITY_EFFECT,
-      EffectVariant.GOLD_PARTICLE,
-      0,
-      player.Position,
-      extMath.randomOnCircle(rand, rand.RandomFloat() * 9 + 1),
-      player,
-    );
-  }
-
-  if (rand.RandomFloat() < nickelHearts * 0.133) {
-    Isaac.Spawn(
-      EntityType.ENTITY_PICKUP,
-      PickupVariant.PICKUP_COIN,
-      CoinSubType.COIN_PENNY,
-      player.Position,
-      extMath.randomOnCircle(rand, rand.RandomFloat() * 10 + 10),
-      player,
-    );
-  }
+  updateEffectStates(nickelHearts - 1, true);
 
   return false;
+}
+
+function updateEffectStates(coinShields: int, remove = false): void {
+  const shieldEntities = Isaac.FindByType(
+    EntityType.ENTITY_EFFECT,
+    LabEffectEntityVariant,
+    EffectEntitySubtype.COINSHIELD,
+    false,
+    false,
+  );
+
+  const newRotOffset = 360 / coinShields;
+  let count = 1;
+  for (const shield of shieldEntities) {
+    if (remove) {
+      const rand = shield.GetDropRNG();
+      for (let i = 0; i < 6 * (coinShields + 1); i++) {
+        Isaac.Spawn(
+          EntityType.ENTITY_EFFECT,
+          EffectVariant.GOLD_PARTICLE,
+          0,
+          shield.Position,
+          extMath.randomOnCircle(rand, rand.RandomFloat() * 9 + 1),
+          shield,
+        );
+      }
+
+      shield.Remove();
+
+      remove = false;
+    } else {
+      shield.ToEffect()!.State = newRotOffset * count++;
+    }
+  }
 }

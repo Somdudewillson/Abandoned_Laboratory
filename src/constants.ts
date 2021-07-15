@@ -1135,5 +1135,5 @@ export function isSingleUpgrade(item: int): boolean {
 export const DUMP_NOUPGRADE = false;
 export const DEBUG_SPAWN = false;
 export const UNBALANCED = false;
-export const STAGE_TESTING = true;
-export const VERSION = "0.18.7";
+export const STAGE_TESTING = false;
+export const VERSION = "0.18.9";

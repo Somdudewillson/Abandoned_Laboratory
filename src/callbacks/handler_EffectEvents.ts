@@ -1,5 +1,6 @@
 import * as EFFECT_BLADEDISC from "../entities/effects/effect_BladeDisc";
 import * as EFFECT_CAPTUREBALL from "../entities/effects/effect_CaptureBall";
+import * as EFFECT_COINSHIELD from "../entities/effects/effect_CoinShield";
 import * as EFFECT_CYBERGHOST from "../entities/effects/effect_CyberGhost";
 import * as EFFECT_KINETICIMPACTOR from "../entities/effects/effect_KineticImpactor";
 import * as EFFECT_NECROGRAVE from "../entities/effects/effect_NecroGrave";
@@ -17,6 +18,7 @@ export const enum EffectEntitySubtype {
   SUPERBALL = 17,
   NECROGRAVE = 18,
   NECROSOUL = 19,
+  COINSHIELD = 20,
 }
 
 export function update(self: EntityEffect): void {
@@ -47,6 +49,9 @@ export function update(self: EntityEffect): void {
       break;
     case EffectEntitySubtype.NECROSOUL:
       EFFECT_NECROSOUL.update(self);
+      break;
+    case EffectEntitySubtype.COINSHIELD:
+      EFFECT_COINSHIELD.update(self);
       break;
   }
 }

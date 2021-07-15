@@ -140,7 +140,7 @@
 	<active description="Ctrl+Z" gfx="upgraded\z\zkey.png" maxcharges="300" chargetype="special" name="Z Key" hidden="true"/>
 
 	<!--Specialized Upgrades-->
-	<active description="Flip a Coin" gfx="upgraded\specialized\goldennickel.png" maxcharges="200" chargetype="timed" name="Golden Nickel" hidden="true"/>
+	<active description="Flip a Coin" gfx="upgraded\specialized\goldennickel.png" maxcharges="2" name="Golden Nickel" hidden="true"/>
 	<active description="Active Reusable Regeneration" gfx="upgraded\specialized\reconstructiveheart.png" maxcharges="4" name="Reconstructive Heart" hidden="true"/>
 	<active description="Stabilized Destiny Alteration" gfx="upgraded\specialized\stabilizedeternald6.png" maxcharges="3" name="Stabilized Eternal D6" hidden="true"/>
 	<active description="Energized Destiny Alteration" gfx="upgraded\specialized\energizedd6.png" maxcharges="6" name="Energized D6" hidden="true"/>

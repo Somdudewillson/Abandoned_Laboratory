@@ -3,7 +3,7 @@
     <name>Abandoned Laboratory</name>
     <directory>abandoned_laboratory</directory>
     <description>Abandoned Laboratory is a currently a work in progress.  It will eventually be a tech-themed general expansion mod.</description>
-    <version>0.18.7</version>
+    <version>0.18.9</version>
     <visibility>Private</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>

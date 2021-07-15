@@ -76,12 +76,12 @@ export function interceptDamage(
     return;
   }
 
-  const nickelHearts: int | null = SaveUtil.getPlayerData(
+  const coinShields: int | null = SaveUtil.getPlayerData(
     EntityRef(player),
     SaveType.PER_RUN,
     KEY_COIN_SHIELDS,
   ) as number | null;
-  if (nickelHearts === null || nickelHearts <= 0) {
+  if (coinShields === null || coinShields <= 0) {
     return;
   }
 
@@ -89,11 +89,11 @@ export function interceptDamage(
     EntityRef(player),
     SaveType.PER_RUN,
     KEY_COIN_SHIELDS,
-    nickelHearts - 1,
+    coinShields - 1,
   );
   player.TakeDamage(DamageAmount, DamageFlag.DAMAGE_FAKE, DamageSource, 0);
 
-  updateEffectStates(nickelHearts - 1, true);
+  updateEffectStates(coinShields - 1, true);
 
   return false;
 }

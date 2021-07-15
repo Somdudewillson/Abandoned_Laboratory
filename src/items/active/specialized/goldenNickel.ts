@@ -51,6 +51,7 @@ export function use(
     ).ToEffect()!;
 
     newGraphic.FollowParent(player);
+    newGraphic.AddEntityFlags(EntityFlag.FLAG_PERSISTENT);
     updateEffectStates(coinShields + 1);
   }
 

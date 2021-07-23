@@ -21,7 +21,7 @@ interface StageAPICallbackParameters {
     callback: (
       grindex: int,
       grid: GridEntity,
-      justBrokenGridSpawns: LuaTable,
+      justBrokenGridSpawns: LuaTable<int, RemovedEntityData> | null,
     ) => false | void,
   ];
 }
@@ -54,7 +54,7 @@ declare global {
 
     /** Stores a function and its params in a table indexed by `ID` and sorted by `priority`, where low priority is at the start. */
     function AddCallback<T extends keyof StageAPICallbackParameters>(
-      modID: Mod,
+      modID: string,
       id: T,
       priority: int,
       ...args: StageAPICallbackParameters[T]

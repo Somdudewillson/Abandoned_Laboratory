@@ -3,11 +3,11 @@ declare interface VanillaStage {
   Stage: LevelStage;
   StageType: StageType;
 }
-declare interface StageOverrideStage {
+declare type StageOverrideStage = {
   OverrideStage: LevelStage;
   OverrideStageType: StageType;
   ReplaceWith: CustomStage | VanillaStage;
-}
+};
 declare interface DoorInfo {
   RequireCurrent?: RoomType[];
   RequireTarget?: RoomType[];
@@ -31,6 +31,15 @@ declare interface RoomGfx {
 }
 declare interface RoomsList {
   AddRooms(roomfiles: string[] | CustomRoomConfig[]): void;
+}
+declare interface RemovedEntityData {
+  Type: EntityType;
+  Variant: int;
+  SubType: int;
+  Position: Vector;
+  Velocity: Vector;
+  Spawner: Entity | null;
+  Seed: number;
 }
 
 declare interface CustomStage {

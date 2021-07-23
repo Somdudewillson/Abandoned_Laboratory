@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 // Define imports
-import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE, CollectibleTypeLabUpgrade, CollectibleTypeLabUtility, STAGE_TESTING } from "./constants";
+import { randomCollectible, DEBUG_SPAWN, itemHasUpgrade, VERSION, DUMP_NOUPGRADE, CollectibleTypeLabUpgrade, CollectibleTypeLabUtility, STAGE_TESTING, MOD_ID } from "./constants";
 import * as SaveUtil from "./saveData";
 import * as extMath from "./utils/extMath";
 import { registerExternalItemDescriptions } from "./compat/eidCompat";
@@ -178,7 +178,7 @@ import * as STAGE_CREATION from "./compat/stage/stageCreation";
 
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
-const ABANDONED_LABORATORY = RegisterMod("Abandoned_Laboratory", 1);
+const ABANDONED_LABORATORY = RegisterMod(MOD_ID, 1);
 
 // Define callback functions
 function postGameStarted(isContinued:boolean) {

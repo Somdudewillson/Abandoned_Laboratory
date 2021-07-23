@@ -1,3 +1,5 @@
+import { MOD_ID } from "../../constants";
+
 const DefaultShadingName = "_default";
 const DefaultShadingPrefix = "stageapi/shading/shading";
 
@@ -22,6 +24,13 @@ export function createStages(): void {
   lab1Stage.SetReplace(
     StageAPI.StageOverride.CatacombsOne as unknown as StageOverrideStage,
   );
+  lab1Stage.OverrideRockAltEffects();
+  StageAPI.AddCallback(
+    MOD_ID,
+    StageCallback.POST_OVERRIDDEN_GRID_BREAK,
+    1,
+    postAltGridBreak,
+  );
 
   lab1Stage.SetRoomGfx(
     StageAPI.RoomGfx(
@@ -36,6 +45,102 @@ export function createStages(): void {
   // lab1Stage.SetRooms(generateRooms("lab1Rooms"));
 
   StageAPI.GotoCustomStage(lab1Stage, false, false);
+}
+
+const altGridItemPool = [
+  CollectibleType.COLLECTIBLE_DIVORCE_PAPERS,
+  CollectibleType.COLLECTIBLE_DIVORCE_PAPERS,
+  CollectibleType.COLLECTIBLE_DIVORCE_PAPERS,
+  CollectibleType.COLLECTIBLE_DIVORCE_PAPERS,
+  CollectibleType.COLLECTIBLE_DIVORCE_PAPERS,
+  CollectibleType.COLLECTIBLE_BLANK_CARD,
+  CollectibleType.COLLECTIBLE_BLANK_CARD,
+  CollectibleType.COLLECTIBLE_BLANK_CARD,
+  CollectibleType.COLLECTIBLE_BLANK_CARD,
+  CollectibleType.COLLECTIBLE_BLANK_CARD,
+  CollectibleType.COLLECTIBLE_MISSING_PAGE_2,
+  CollectibleType.COLLECTIBLE_MISSING_PAGE_2,
+  CollectibleType.COLLECTIBLE_MISSING_PAGE_2,
+  CollectibleType.COLLECTIBLE_MISSING_PAGE_2,
+  CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW,
+  CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW,
+  CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW,
+  CollectibleType.COLLECTIBLE_CONTRACT_FROM_BELOW,
+  CollectibleType.COLLECTIBLE_COUPON,
+  CollectibleType.COLLECTIBLE_COUPON,
+  CollectibleType.COLLECTIBLE_COUPON,
+  CollectibleType.COLLECTIBLE_COUPON,
+  CollectibleType.COLLECTIBLE_COUPON,
+  CollectibleType.COLLECTIBLE_BIRTHRIGHT,
+  CollectibleType.COLLECTIBLE_BIRTHRIGHT,
+  CollectibleType.COLLECTIBLE_DEATH_CERTIFICATE,
+];
+
+/** @noSelf */
+function postAltGridBreak(
+  grindex: number,
+  grid: GridEntity,
+  _justBrokenGridSpawns: LuaTable<int, RemovedEntityData> | null,
+): false | void {
+  if (grid.GetType() !== GridEntityType.GRID_ROCK_ALT) {
+    return;
+  }
+
+  const game = Game();
+
+  const rand = RNG();
+  rand.SetSeed(grindex + 3478, 0);
+  const spawnSelection = rand.RandomFloat();
+  const spawnPos = grid.Position;
+
+  if (spawnSelection <= 0.01) {
+    // Choose an item to spawn
+    const itemToSpawn = altGridItemPool[rand.RandomInt(altGridItemPool.length)];
+
+    // Check that we haven't already spawned this item
+    let spawnItem = true;
+    for (let i = 0; i < game.GetNumPlayers(); i++) {
+      const player = Isaac.GetPlayer(i);
+      if (player === null) {
+        continue;
+      }
+      if (player.HasCollectible(itemToSpawn)) {
+        spawnItem = false;
+        break;
+      }
+    }
+
+    // Spawn the item
+    if (spawnItem) {
+      Isaac.Spawn(
+        EntityType.ENTITY_PICKUP,
+        PickupVariant.PICKUP_COLLECTIBLE,
+        itemToSpawn,
+        spawnPos,
+        Vector.Zero,
+        null,
+      );
+      return false;
+    }
+  }
+
+  // Spawn a card
+  if (spawnSelection < 0.15) {
+    const cardSelection = game
+      .GetItemPool()
+      .GetCard(rand.Next(), false, false, false);
+
+    Isaac.Spawn(
+      EntityType.ENTITY_PICKUP,
+      PickupVariant.PICKUP_TAROTCARD,
+      cardSelection,
+      spawnPos,
+      Vector.Zero,
+      null,
+    );
+  }
+
+  return false;
 }
 
 /*

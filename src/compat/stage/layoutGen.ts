@@ -1,5 +1,6 @@
 // import { genRandObstacles } from "./randLayoutGen";
 
+/*
 import * as FlexMarkovModel from "models/FlexMarkovModel";
 import * as SeedModel from "models/SeedModel";
 import { SymmetryType } from "../../utils/utils";
@@ -64,12 +65,6 @@ export function generateRoom(
           (Isaac.GetTime() - startTime) / 1000
         } s.`,
       );
-      /*
-      if (shape === RoomShape.ROOMSHAPE_1x1) {
-        Isaac.DebugString(`Accessibility of room [${newRoom.id}]`);
-        newRoom.printAccessibility();
-      }
-      */
 
       startTime = Isaac.GetTime();
       cleanLayout(rand, newRoom);
@@ -83,3 +78,4 @@ export function generateRoom(
     }
   }
 }
+*/

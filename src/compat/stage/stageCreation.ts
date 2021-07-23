@@ -1,7 +1,3 @@
-import { getSubsets } from "../../utils/extMath";
-import { getValidSlots } from "../../utils/utils";
-import { generateRoom } from "./layoutGen";
-
 const DefaultShadingName = "_default";
 const DefaultShadingPrefix = "stageapi/shading/shading";
 
@@ -36,7 +32,15 @@ export function createStages(): void {
     ),
     RoomType.ROOM_DEFAULT,
   );
-  const lab1Rooms = StageAPI.RoomsList("lab1Rooms");
+
+  // lab1Stage.SetRooms(generateRooms("lab1Rooms"));
+
+  StageAPI.GotoCustomStage(lab1Stage, false, false);
+}
+
+/*
+function generateRooms(listName: string): RoomsList {
+  const newRooms = StageAPI.RoomsList(listName);
   // Generate Rooms
   let totalRooms = 0;
   for (let shape = 1; shape < RoomShape.NUM_ROOMSHAPES; shape++) {
@@ -52,7 +56,7 @@ export function createStages(): void {
     for (const doorSet of doorSets) {
       const desiredCount = shape === RoomShape.ROOMSHAPE_1x1 ? 5 : 1;
       for (let count = 0; count < desiredCount; count++) {
-        lab1Rooms.AddRooms([generateRoom(rand, shape, doorSet)]);
+        newRooms.AddRooms([generateRoom(rand, shape, doorSet)]);
         generatedRooms++;
       }
     }
@@ -66,9 +70,7 @@ export function createStages(): void {
     );
   }
 
-  lab1Stage.SetRooms(lab1Rooms);
-
-  StageAPI.GotoCustomStage(lab1Stage, false, false);
+  return newRooms;
 }
 
 function getDoorSets(shape: RoomShape): DoorSlot[][] {
@@ -92,3 +94,4 @@ function getDoorSets(shape: RoomShape): DoorSlot[][] {
 
   return doorSets;
 }
+*/

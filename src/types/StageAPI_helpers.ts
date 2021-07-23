@@ -98,6 +98,18 @@ export function mirrorLuaEntity(
   return index;
 }
 
+export function makeOverrideStage(
+  stageToOverride: LevelStage,
+  stageTypeToOverride: StageType,
+  customStage: CustomStage,
+): StageOverrideStage {
+  return {
+    OverrideStage: stageToOverride,
+    OverrideStageType: stageTypeToOverride,
+    ReplaceWith: customStage,
+  } as StageOverrideStage;
+}
+
 // Layout Grid Metadata
 export function isGridPassable(type: LayoutGridType, flying = false): boolean {
   switch (type) {

@@ -1131,9 +1131,10 @@ export function isSingleUpgrade(item: int): boolean {
   return false;
 }
 
+export const MOD_ID = "Abandoned_Laboratory";
 // Per-Build Constants
 export const DUMP_NOUPGRADE = false;
 export const DEBUG_SPAWN = false;
 export const UNBALANCED = false;
-export const STAGE_TESTING = false;
+export const STAGE_TESTING = true;
 export const VERSION = "0.18.9";

@@ -32,7 +32,7 @@ export function use(
     coinShields = 0;
   }
 
-  spawnCoins(extMath.randomInt(rand, 1, 3), player.Position, rand, false, true);
+  spawnCoins(extMath.randomInt(rand, 1, 2), player.Position, rand, false, true);
   if (coinShields < COIN_SHIELD_CAP) {
     SaveUtil.savePlayerData(
       EntityRef(player),

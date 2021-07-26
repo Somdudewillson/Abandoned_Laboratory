@@ -34,9 +34,10 @@ declare global {
       CatacombsTwo: 2;
     };
 
-    /** Creates a new custom stage
+    /**
+     * Creates a new custom stage
      * @param name IS NOT OPTIONAL. USED TO IDENTIFY STAGE AND FOR SAVING CURRENT STAGE.  MUST BE UNIQUE.
-     * @param noSetReplaces replaces defaults to catacombs one if noSetReplaces is not set.
+     * @param noSetReplaces Replaces defaults to catacombs one if noSetReplaces is not set.
      */
     function CustomStage(
       name: string,
@@ -67,7 +68,8 @@ declare global {
       playTransition?: boolean,
       noForgetSeed?: boolean,
     ): void;
-    /** Convenience function that assembles filenames and packages them in a `Backdrop` for you.
+    /**
+     * Convenience function that assembles filenames and packages them in a `Backdrop` for you.
      * @param prefix the path to the directory containing the backdrop spritesheets, as well as any shared prefix.
      *
      *  Ex: "gfx/backdrop/revel1/glacier/main_"

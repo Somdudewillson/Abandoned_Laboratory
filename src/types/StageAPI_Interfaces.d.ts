@@ -43,28 +43,32 @@ declare interface RemovedEntityData {
 }
 
 declare interface CustomStage {
-  /** Automatically aliases the new stage to the old one, if noSetAlias is not set.
+  /**
+   * Automatically aliases the new stage to the old one, if noSetAlias is not set.
    *
    * This means that IsStage calls on either will return true if either is active.
    *
-   * STILL NEEDS A UNIQUE NAME. */
+   * STILL NEEDS A UNIQUE NAME.
+   */
   InheritInit(name: string, noSetAlias?: boolean): void;
-  /** Sets the internal id
+  /**
+   * Sets the internal name/id.
    *
-   * MUST BE UNIQUE
+   * MUST BE UNIQUE.
    */
   SetName(name: string): void;
-  /** Sets the name displayed to the player */
+  /** Sets the name displayed to the player. */
   SetDisplayName(name: string): void;
-  /** Sets if this is the second half of a stage */
+  /** Sets if this is the second half of a stage. */
   SetIsSecondStage(isSecondStage: boolean): void;
-  /** Sets the stage's number */
+  /** Sets the stage's number. */
   SetStageNumber(num: int): void;
-  /** Sets the stage overridden */
+  /** Sets the stage this `CustomStage` overrides. */
   SetReplace(StageOverrideStage: StageOverrideStage): void;
-  /** Sets the stage after this one */
-  SetNextStage(nextStage: CustomStage): void;
-  /** Sets the `RoomGFX` used by the stage
+  /** Sets the stage after this one. */
+  SetNextStage(nextStage: CustomStage | VanillaStage): void;
+  /**
+   * Sets the `RoomGFX` used by the stage
    * @param RoomTypes the room types these gfx apply to.
    *
    * Can be a string identifier, a `RoomType`, or an array of either.
@@ -73,28 +77,28 @@ declare interface CustomStage {
     RoomGfx: RoomGfx,
     RoomTypes: string | int | string[] | int[],
   ): void;
-  /** Sets the room layouts used by the stage */
+  /** Sets the list room layouts used by the stage. */
   SetRooms(RoomsList: RoomsList): void;
-  /** Sets the music used by the stage */
+  /** Sets the music used by the stage. */
   SetMusic(musicID: int, roomType: RoomType): void;
-  /** Sets the boss music used by the stage */
+  /** Sets the boss music used by the stage. */
   SetBossMusic(musicID: int, clearedMusicID: int): void;
-  // TODO: I don't know what this does yet
-  SetSpots(bossSpot: int, playerSpot: int): void;
-  /** Sets the available bosses for the stage */
-  SetBosses(bosses: int[]): void;
-  /** Gets the id of the currently playing music */
+  /** Sets the paths to the "spot" graphic, the patch of ground underneath the boss and player sprites in the pre-boss cutscene. */
+  SetSpots(bossSpot: string | null, playerSpot: string | null): void;
+  /** Sets the available bosses for the stage. */
+  SetBosses(bossIDs: int[]): void;
+  /** Gets the id of the currently playing music. */
   GetPlayingMusic(): int;
-  /** Indicates that this stage overrides alt rock effects
+  /**
+   * Indicates that this stage overrides alt rock effects
    * @param rooms If present, only overrides rock alt effects for these `RoomType`s.
    * If absent, overrides alt rocks everywhere.
    *
    * DOES NOT add any new effects on its own.
    */
   OverrideRockAltEffects(rooms?: RoomType[]): void;
-  /** Sets the stage transition icon */
-  // TODO: May not actually take a `Sprite`
-  SetTransitionIcon(icon: Sprite): void;
+  /** Sets the path to the stage transition icon. */
+  SetTransitionIcon(iconPath: string): void;
   /** If this `CustomStage` is, in fact, a stage. */
   IsStage(noAlias: boolean): boolean;
 }

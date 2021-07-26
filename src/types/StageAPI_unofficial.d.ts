@@ -1,15 +1,20 @@
 declare const enum StageCallback {
-  /** Takes 1 return value. If `false`, cancels spawning the grid. If a table, uses it as the grid data.
+  /**
+   * Takes 1 return value. If `false`, cancels spawning the grid. If a table, uses it as the grid data.
    *
-   * Any return value breaks out of future callbacks. */
+   * Any return value breaks out of future callbacks.
+   */
   PRE_SPAWN_GRID = "PRE_SPAWN_GRID",
-  /** Takes 1 return value. If a table, uses it as the current room layout. Otherwise, chooses from `roomsList` with seeded RNG.
+  /**
+   * Takes 1 return value. If a table, uses it as the current room layout. Otherwise, chooses from `roomsList` with seeded RNG.
    * Breaks on first return.
    *
-   * Called both on initial room load and when continuing game, before INIT. */
+   * Called both on initial room load and when continuing game, before INIT.
+   */
   PRE_ROOM_LAYOUT_CHOOSE = "PRE_ROOM_LAYOUT_CHOOSE",
-  /** Called when an overridden grid reaches its break state and is considered broken.
-   * Param `justBrokenGridSpawns` contains all deleted spawns from the grid.
+  /**
+   * Called when an overridden grid reaches its break state and is considered broken.
+   * @param justBrokenGridSpawns Contains all deleted spawns from the grid.
    *
    * Breaks on first non-null return.
    */
@@ -42,7 +47,7 @@ declare interface LuaRoomEntity extends LuaRoomGenericEntity {
   };
 }
 
-// Layout entity enums
+// ----- Layout entity enums -----
 declare const enum LayoutGridType {
   ROCK = 1000,
   ROCK_ALT = 1002,

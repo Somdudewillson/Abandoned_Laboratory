@@ -14,6 +14,7 @@ declare const enum StageCallback {
   PRE_ROOM_LAYOUT_CHOOSE = "PRE_ROOM_LAYOUT_CHOOSE",
   /**
    * Called when an overridden grid reaches its break state and is considered broken.
+   *
    * @param justBrokenGridSpawns Contains all deleted spawns from the grid.
    *
    * Breaks on first non-null return.

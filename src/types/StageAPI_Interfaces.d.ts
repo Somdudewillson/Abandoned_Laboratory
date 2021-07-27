@@ -64,21 +64,22 @@ declare interface CustomStage {
   /** Sets the stage's number. */
   SetStageNumber(num: int): void;
   /** Sets the stage this `CustomStage` overrides. */
-  SetReplace(StageOverrideStage: StageOverrideStage): void;
+  SetReplace(stageOverrideStage: StageOverrideStage): void;
   /** Sets the stage after this one. */
   SetNextStage(nextStage: CustomStage | VanillaStage): void;
   /**
-   * Sets the `RoomGFX` used by the stage
+   * Sets the {@link RoomGfx} used by the stage.
+   *
    * @param RoomTypes the room types these gfx apply to.
    *
-   * Can be a string identifier, a `RoomType`, or an array of either.
+   * Can be a string identifier, a {@link RoomType}, or an array of either.
    */
   SetRoomGfx(
-    RoomGfx: RoomGfx,
-    RoomTypes: string | int | string[] | int[],
+    roomGfx: RoomGfx,
+    roomTypes: string | int | string[] | int[],
   ): void;
   /** Sets the list room layouts used by the stage. */
-  SetRooms(RoomsList: RoomsList): void;
+  SetRooms(roomsList: RoomsList): void;
   /** Sets the music used by the stage. */
   SetMusic(musicID: int, roomType: RoomType): void;
   /** Sets the boss music used by the stage. */
@@ -90,8 +91,9 @@ declare interface CustomStage {
   /** Gets the id of the currently playing music. */
   GetPlayingMusic(): int;
   /**
-   * Indicates that this stage overrides alt rock effects
-   * @param rooms If present, only overrides rock alt effects for these `RoomType`s.
+   * Indicates that this stage overrides alt rock effects.
+   *
+   * @param rooms If present, only overrides rock alt effects for the specified {@link RoomType RoomTypes}.
    * If absent, overrides alt rocks everywhere.
    *
    * DOES NOT add any new effects on its own.
@@ -99,12 +101,12 @@ declare interface CustomStage {
   OverrideRockAltEffects(rooms?: RoomType[]): void;
   /** Sets the path to the stage transition icon. */
   SetTransitionIcon(iconPath: string): void;
-  /** If this `CustomStage` is, in fact, a stage. */
+  /** If this {@link CustomStage} is, in fact, a stage. */
   IsStage(noAlias: boolean): boolean;
 }
 
 declare interface GridGfx {
-  /** Sets the path to the gfx spritesheet for the specified `GridEntity`. */
+  /** Sets the path to the gfx spritesheet for the specified {@link GridEntity}. */
   SetGrid(filename: string, GridEntityType: GridEntityType, variant: int): void;
   /** Sets the path to the rock gfx spritesheet. */
   SetRocks(filename: string): void;
@@ -112,6 +114,7 @@ declare interface GridGfx {
    * Sets the path to the pit gfx spritesheet
    *
    * Alt Pits are used where water pits would be.
+   *
    * @param hasExtraFrames Controls for situations where the base game would not normally tile pits specially.
    */
   SetPits(

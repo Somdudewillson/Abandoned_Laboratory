@@ -104,36 +104,38 @@ declare interface CustomStage {
 }
 
 declare interface GridGfx {
-  /** Sets the path to the gfx spritesheet for the specified `GridEntity` */
+  /** Sets the path to the gfx spritesheet for the specified `GridEntity`. */
   SetGrid(filename: string, GridEntityType: GridEntityType, variant: int): void;
-  /** Sets the path to the rock gfx spritesheet */
+  /** Sets the path to the rock gfx spritesheet. */
   SetRocks(filename: string): void;
-  /** Sets the path to the pit gfx spritesheet
+  /**
+   * Sets the path to the pit gfx spritesheet
    *
    * Alt Pits are used where water pits would be.
-   * @param hasExtraFrames controls for situations where the base game would not normally tile pits specially
+   * @param hasExtraFrames Controls for situations where the base game would not normally tile pits specially.
    */
   SetPits(
     filename: string,
     altpitsfilename?: string,
     hasExtraFrames?: boolean,
   ): void;
-  /** Sets the paths to the pit gfx spritesheets
+  /**
+   * Sets the paths to the pit gfx spritesheets.
    *
-   * Takes lists of { File, HasExtraFrames }
+   * Takes lists of { File, HasExtraFrames }.
    *
-   * (see utero override)
+   * (Original docs indicate to "see utero override".)
    */
   SetPits(
     filenames: Array<{ File: string; HasExtraFrames?: boolean }>,
     altpitsfilenames: Array<{ File: string; HasExtraFrames?: boolean }>,
   ): void;
-  /** Sets the path to the bridge gfx spritesheet */
+  /** Sets the path to the bridge gfx spritesheet. */
   SetBridges(filename: string): void;
-  /** Sets the path to the decoration gfx spritesheet */
+  /** Sets the path to the decoration gfx spritesheet. */
   SetDecorations(filename: string): void;
-  /** Sets the path to the gfx spritesheet of the specified subset of doors */
+  /** Sets the path to the gfx spritesheet of the specified subset of doors. */
   AddDoors(filename: string, DoorInfo: DoorInfo): void;
-  /** Sets the path to the pay-to-play door gfx spritesheet */
+  /** Sets the path to the pay-to-play door gfx spritesheet. */
   SetPayToPlayDoor(filename: string): void;
 }

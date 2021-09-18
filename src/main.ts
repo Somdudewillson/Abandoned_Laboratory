@@ -176,277 +176,279 @@ import * as EFF_NONE from "./items/active/utility/noEffect";
 import * as CACHE_CYBERBOB from "./items/passive/cyberBob";
 import * as STAGE_CREATION from "./compat/stage/stageCreation";
 
-// Register the mod
-// (which will make it show up in the list of mods on the mod screen in the main menu)
-const ABANDONED_LABORATORY = RegisterMod(MOD_ID, 1);
+export default function main(): void {
+  // Register the mod
+  // (which will make it show up in the list of mods on the mod screen in the main menu)
+  const ABANDONED_LABORATORY = RegisterMod(MOD_ID, 1);
 
-// Define callback functions
-function postGameStarted(isContinued:boolean) {
-  if (ABANDONED_LABORATORY.HasData()) {
-    SaveUtil.deserialize(ABANDONED_LABORATORY.LoadData(),isContinued);
-  }
+  // Define callback functions
+  function postGameStarted(isContinued:boolean) {
+    if (ABANDONED_LABORATORY.HasData()) {
+      SaveUtil.deserialize(ABANDONED_LABORATORY.LoadData(),isContinued);
+    }
 
-  if (EID !== undefined) {registerExternalItemDescriptions();}
-  if (StageAPI !== undefined) {
-    Isaac.DebugString("|LABOS| Stage API detected");
-    StageAPI.UnregisterCallbacks(ABANDONED_LABORATORY);
+    if (EID !== undefined) {registerExternalItemDescriptions();}
+    if (StageAPI !== undefined) {
+      Isaac.DebugString("|LABOS| Stage API detected");
+      StageAPI.UnregisterCallbacks(ABANDONED_LABORATORY);
 
-    if (STAGE_TESTING) {
-      STAGE_CREATION.createStages(ABANDONED_LABORATORY);
+      if (STAGE_TESTING) {
+        STAGE_CREATION.createStages(ABANDONED_LABORATORY);
+      }
+    }
+
+    if (!isContinued && DEBUG_SPAWN) {
+      const rand:RNG = RNG();
+      rand.SetSeed(Game().GetSeeds().GetStartSeed(), 0);
+      const collectible = randomCollectible(rand);
+
+      Isaac.Spawn(
+        EntityType.ENTITY_PICKUP,
+        PickupVariant.PICKUP_COLLECTIBLE,
+        collectible,
+        Game().GetRoom().GetCenterPos(),
+        Vector.Zero,
+        undefined);
+
+      Isaac.Spawn(
+        MachineEntityType.UPGRADEMACHINE,
+        MachineEntityVariant.UPGRADEMACHINE,
+        0,
+        Game().GetRoom().GetTopLeftPos().add(Vector(50, 15)),
+        Vector.Zero,
+        undefined);
     }
   }
-
-  if (!isContinued && DEBUG_SPAWN) {
-    const rand:RNG = RNG();
-    rand.SetSeed(Game().GetSeeds().GetStartSeed(), 0);
-    const collectible = randomCollectible(rand);
-
-    Isaac.Spawn(
-      EntityType.ENTITY_PICKUP,
-      PickupVariant.PICKUP_COLLECTIBLE,
-      collectible,
-      Game().GetRoom().GetCenterPos(),
-      Vector.Zero,
-      undefined);
-
-    Isaac.Spawn(
-       MachineEntityType.UPGRADEMACHINE,
-       MachineEntityVariant.UPGRADEMACHINE,
-       0,
-       Game().GetRoom().GetTopLeftPos().add(Vector(50, 15)),
-       Vector.Zero,
-       undefined);
+  function preGameExit(willContinue:boolean) {
+    ABANDONED_LABORATORY.SaveData(SaveUtil.serialize(willContinue));
   }
-}
-function preGameExit(willContinue:boolean) {
-  ABANDONED_LABORATORY.SaveData(SaveUtil.serialize(willContinue));
-}
 
-// Print flavorful logging messages
-Isaac.DebugString("| Abandoned_Laboratory initializing.");
-Isaac.DebugString("|===================================");
-Isaac.DebugString(`| LABOS v${VERSION} startup initiated`);
-const versionSplit = VERSION.split(".")
-Isaac.DebugString(`|LABOS| Last maintenance visit: ${Math.floor(extMath.parseInt(versionSplit[0])*197 +
-  extMath.parseInt(versionSplit[1])*53 +
-  extMath.parseInt(versionSplit[2]))} days ago`);
+  // Print flavorful logging messages
+  Isaac.DebugString("| Abandoned_Laboratory initializing.");
+  Isaac.DebugString("|===================================");
+  Isaac.DebugString(`| LABOS v${VERSION} startup initiated`);
+  const versionSplit = VERSION.split(".")
+  Isaac.DebugString(`|LABOS| Last maintenance visit: ${Math.floor(extMath.parseInt(versionSplit[0])*197 +
+    extMath.parseInt(versionSplit[1])*53 +
+    extMath.parseInt(versionSplit[2]))} days ago`);
 
-// Register callbacks
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, SaveUtil.wipePerFloor);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, SaveUtil.wipePerRoom);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SaveUtil.initPlayer);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PostRoomHandler.postRoom);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PostLevelHandler.postLevel);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_UPDATE, PostUpdateHandler.postUpdate);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, PreCleanHandler.preClean);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_DEATH, PostNPCDeathHandler.postDeath);
-PostUpdateHandler.addPlayerListener(ThrownHandler.postUpdate);
+  // Register callbacks
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, postGameStarted);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, preGameExit);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, SaveUtil.wipePerFloor);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, SaveUtil.wipePerRoom);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, SaveUtil.initPlayer);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, PostRoomHandler.postRoom);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, PostLevelHandler.postLevel);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_UPDATE, PostUpdateHandler.postUpdate);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, PreCleanHandler.preClean);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_DEATH, PostNPCDeathHandler.postDeath);
+  PostUpdateHandler.addPlayerListener(ThrownHandler.postUpdate);
 
-Isaac.DebugString("|LABOS| Boot initialization complete");
+  Isaac.DebugString("|LABOS| Boot initialization complete");
 
-// --- Entities ---
-Isaac.DebugString("|LABOS| Scanning facility automata...");
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, MachineEvents.preCollide, MachineEntityType.UPGRADEMACHINE);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MachineEvents.update, MachineEntityType.UPGRADEMACHINE);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_INIT, MachineEvents.onSpawn, MachineEntityType.UPGRADEMACHINE);
-PostRoomHandler.addRoomListener(MachineEvents.trySpawn);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, SpiderEvents.update, SpiderEvents.SPIDER_ENTITYTYPE);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SpiderEvents.interceptDamage, SpiderEvents.SPIDER_ENTITYTYPE);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MicrodroneEvents.update, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, MicrodroneEvents.interceptDamage, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
+  // --- Entities ---
+  Isaac.DebugString("|LABOS| Scanning facility automata...");
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, MachineEvents.preCollide, MachineEntityType.UPGRADEMACHINE);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MachineEvents.update, MachineEntityType.UPGRADEMACHINE);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_INIT, MachineEvents.onSpawn, MachineEntityType.UPGRADEMACHINE);
+  PostRoomHandler.addRoomListener(MachineEvents.trySpawn);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, SpiderEvents.update, SpiderEvents.SPIDER_ENTITYTYPE);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SpiderEvents.interceptDamage, SpiderEvents.SPIDER_ENTITYTYPE);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MicrodroneEvents.update, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, MicrodroneEvents.interceptDamage, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
 
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EffectEvents.update, EffectEvents.LabEffectEntityVariant);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, FamiliarEvents.update, FamiliarEvents.LabFamiliarEntityVariant);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, FamiliarEvents.collide, FamiliarEvents.LabFamiliarEntityVariant);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_TEAR_INIT, TearEvents.init, TearEvents.LabTearEntityVariant);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, TearEvents.update, TearEvents.LabTearEntityVariant);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, TearEvents.collide, TearEvents.LabTearEntityVariant);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EffectEvents.update, EffectEvents.LabEffectEntityVariant);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, FamiliarEvents.update, FamiliarEvents.LabFamiliarEntityVariant);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_FAMILIAR_COLLISION, FamiliarEvents.collide, FamiliarEvents.LabFamiliarEntityVariant);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_TEAR_INIT, TearEvents.init, TearEvents.LabTearEntityVariant);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, TearEvents.update, TearEvents.LabTearEntityVariant);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, TearEvents.collide, TearEvents.LabTearEntityVariant);
 
-Isaac.DebugString("|LABOS| Automata scan complete — All units present");
+  Isaac.DebugString("|LABOS| Automata scan complete — All units present");
 
-// --- Normal Upgraded Actives ---
-Isaac.DebugString("|LABOS| Running check on automated enhancement device...");
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DigitalCard.use, EFF_DigitalCard.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CartographersTome.use, EFF_CartographersTome.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AnarchistsEBook.use, EFF_AnarchistsEBook.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHADOWDEVICE.use, EFF_SHADOWDEVICE.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EFF_SHADOWDEVICE.interceptDamage, EntityType.ENTITY_PLAYER);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CHESTOFSIN.use, EFF_CHESTOFSIN.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RUNICAMPLIFIER.use, EFF_RUNICAMPLIFIER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GLOWINGHEART.use, EFF_GLOWINGHEART.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PILLMACHINE.use, EFF_PILLMACHINE.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_JAROFHEADS.use, EFF_JAROFHEADS.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SILVERNICKEL.use, EFF_SILVERNICKEL.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_METALFEATHER.use, EFF_METALFEATHER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BIGBOXOFSPIDERS.use, EFF_BIGBOXOFSPIDERS.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BOMBDISPENSER.use, EFF_BOMBDISPENSER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MATTERREARRANGER.use, EFF_MATTERREARRANGER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_FORGETMELATER.use, EFF_FORGETMELATER.ownType());
-PreCleanHandler.addSlotListener(EFF_FORGETMELATER.preClean,EFF_FORGETMELATER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLOODSAW.use, EFF_BLOODSAW.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DIVINITYGENERATOR.use, EFF_DIVINITYGENERATOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SATANITYGENERATOR.use, EFF_SATANITYGENERATOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDGLASSCANNON.use, EFF_TEMPEREDGLASSCANNON.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ZKEY.use, EFF_ZKEY.ownType());
-PostUpdateHandler.addSlotListener(EFF_ZKEY.tick, EFF_ZKEY.ownType());
-// ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_ZKEY.postRoom);
-PostRoomHandler.addPlayerListener(EFF_ZKEY.postRoom);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SYNTHETICSKIN.use, EFF_SYNTHETICSKIN.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PAUSE2.use, EFF_PAUSE2.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLOODSIPHON.use, EFF_BLOODSIPHON.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ARTIFICIALSOUL.use, EFF_ARTIFICIALSOUL.ownType());
-// ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_ARTIFICIALSOUL.postRoom);
-PostRoomHandler.addPlayerListener(EFF_ARTIFICIALSOUL.postRoom);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_D2.use, EFF_D2.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WEEKLYGIFT.use, EFF_WEEKLYGIFT.ownType());
-PostLevelHandler.addSlotListener(EFF_WEEKLYGIFT.postLevel, EFF_WEEKLYGIFT.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DISCOUNTCODE.use, EFF_DISCOUNTCODE.ownType());
-PostRoomHandler.addRoomListener(EFF_DISCOUNTCODE.postRoom);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ILLUSORYRAZOR.use, EFF_ILLUSORYRAZOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTABLETERRAFORMER.use, EFF_PORTABLETERRAFORMER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEARRESERVOIR.use, EFF_TEARRESERVOIR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, EFF_TEARRESERVOIR.postTear);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WAVECANNON.use, EFF_WAVECANNON.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TERRORVORTEX.use, EFF_TERRORVORTEX.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PETRIFACTIONVORTEX.use, EFF_PETRIFACTIONVORTEX.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WEBBEDVORTEX.use, EFF_WEBBEDVORTEX.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CHRONALVORTEX.use, EFF_CHRONALVORTEX.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NECROVORTEX.use, EFF_NECROVORTEX.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MICROTRANSACTION.use, EFF_MICROTRANSACTION.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERMUSH.use, EFF_CYBERMUSH.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLAND.use, EFF_PLAND.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_COUNTERFEITDEATHCERTIFICATE.use, EFF_COUNTERFEITDEATHCERTIFICATE.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STRAIGHTENEDPENNY.use, EFF_STRAIGHTENEDPENNY.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CRIMSONKEY.use, EFF_CRIMSONKEY.ownType());
-// ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_CRIMSONKEY.postRoom);
-PostRoomHandler.addSlotListener(EFF_CRIMSONKEY.postRoom, EFF_CRIMSONKEY.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DIGITALFORTUNE.use, EFF_DIGITALFORTUNE.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_VENDINGMACHINE.use, EFF_VENDINGMACHINE.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLOODALCHEMIZER.use, EFF_BLOODALCHEMIZER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUMMARIZEDBIBLE.use, EFF_SUMMARIZEDBIBLE.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CORNYPOOP.use, EFF_CORNYPOOP.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TRIPLOPIA.use, EFF_TRIPLOPIA.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_OMNIDETONATOR.use, EFF_OMNIDETONATOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_BOMB_INIT, EFF_OMNIDETONATOR.postBombInit);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BOOSTEDBEAN.use, EFF_BOOSTEDBEAN.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLUMORGAN.use, EFF_PLUMORGAN.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DECREMENTDICE.use, EFF_DECREMENTDICE.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PILLDISPENSER.use, EFF_PILLDISPENSER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AMPLIFIEDD4.use, EFF_AMPLIFIEDD4.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STEELRAZOR.use, EFF_STEELRAZOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERGUPPYSPAW.use, EFF_CYBERGUPPYSPAW.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERGUPPYSHEAD.use, EFF_CYBERGUPPYSHEAD.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CARDDISPENSER.use, EFF_CARDDISPENSER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_OVERCLOCKEDMETRONOME.use, EFF_OVERCLOCKEDMETRONOME.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ROTTINGHEART.use, EFF_ROTTINGHEART.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_EYECANISTER.use, EFF_EYECANISTER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BOXSHOP.use, EFF_BOXSHOP.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ESSENCESPLITTER.use, EFF_ESSENCESPLITTER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TELEPORT4.use, EFF_TELEPORT4.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULGENERATOR.use, EFF_SOULGENERATOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PETROGLYPHOFBELIAL.use, EFF_PETROGLYPHOFBELIAL.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHAPEDCHARGEVEST.use, EFF_SHAPEDCHARGEVEST.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULREACTOR.use, EFF_SOULREACTOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, EFF_SOULREACTOR.prePickupCollide, PickupVariant.PICKUP_HEART);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RESEALEDBOX.use, EFF_RESEALEDBOX.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_UNIVERSALKEY.use, EFF_UNIVERSALKEY.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFAGGRESSION.use, EFF_SCROLLOFAGGRESSION.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFBLOOD.use, EFF_SCROLLOFBLOOD.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFBLASTS.use, EFF_SCROLLOFBLASTS.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFUTILITY.use, EFF_SCROLLOFUTILITY.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_INACTIONREPLAY.use, EFF_INACTIONREPLAY.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MRYOU.use, EFF_MRYOU.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TOXICVAT.use, EFF_TOXICVAT.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_LAZERBLAST.use, EFF_LAZERBLAST.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ALARMTRIGGER.use, EFF_ALARMTRIGGER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_KINETICIMPACTOR.use, EFF_KINETICIMPACTOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ITEMFABRICATOR.use, EFF_ITEMFABRICATOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_FRIENDSEARCHER.use, EFF_FRIENDSEARCHER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DOUBLESIDEDERASER.use, EFF_DOUBLESIDEDERASER.ownType());
-PostLevelHandler.addSlotListener(EFF_DOUBLESIDEDERASER.postLevel, EFF_DOUBLESIDEDERASER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STRIKEDESIGNATOR.use, EFF_STRIKEDESIGNATOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLATEDRAZOR.use, EFF_PLATEDRAZOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SACRIFICEREACTOR.use, EFF_SACRIFICEREACTOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CLONEVAT.use, EFF_CLONEVAT.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DEMONICNAIL.use, EFF_DEMONICNAIL.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AUGER.use, EFF_AUGER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDSHEARS.use, EFF_TEMPEREDSHEARS.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLADEDISC.use, EFF_BLADEDISC.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENFLUSH.use, EFF_GOLDENFLUSH.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BRIMSTONECANNON.use, EFF_BRIMSTONECANNON.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUMMARIZEDMONSTERMANUAL.use, EFF_SUMMARIZEDMONSTERMANUAL.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_COMPOSTBIN.use, EFF_COMPOSTBIN.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULJAR.use, EFF_SOULJAR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, EFF_SOULJAR.prePickupCollide, PickupVariant.PICKUP_HEART);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENSHARPKEY.use, EFF_GOLDENSHARPKEY.ownType());
-PostNPCDeathHandler.addSlotListener(EFF_GOLDENSHARPKEY.postDeath, EFF_GOLDENSHARPKEY.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ACCELERATEDD10.use, EFF_ACCELERATEDD10.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AMPLIFIEDD8.use, EFF_AMPLIFIEDD8.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_POWEREDD100.use, EFF_POWEREDD100.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLUEFRIENDSBOX.use, EFF_BLUEFRIENDSBOX.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDMEGABLAST.use, EFF_ENERGIZEDMEGABLAST.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUPERHEATEDSMELTER.use, EFF_SUPERHEATEDSMELTER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MOTHEROFBOMBS.use, EFF_MOTHEROFBOMBS.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDDELIRIOUS.use, EFF_ENERGIZEDDELIRIOUS.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SINGULARITYGENERATOR.use, EFF_SINGULARITYGENERATOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SPRINKLERS.use, EFF_SPRINKLERS.ownType());
-PostUpdateHandler.addSlotListener(EFF_SPRINKLERS.tick, EFF_SPRINKLERS.ownType());
-PreCleanHandler.addSlotListener(EFF_SPRINKLERS.preClean,EFF_SPRINKLERS.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHARPENEDMEATCLEAVER.use, EFF_SHARPENEDMEATCLEAVER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_OMNIJAR.use, EFF_OMNIJAR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ABIEXSPIRAVIT.use, EFF_ABIEXSPIRAVIT.ownType());
-PostNPCDeathHandler.addSlotListener(EFF_ABIEXSPIRAVIT.postDeath, EFF_ABIEXSPIRAVIT.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTALGENERATOR.use, EFF_PORTALGENERATOR.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_HEALTHYBALL.use, EFF_HEALTHYBALL.ownType());
-PreCleanHandler.addSlotListener(EFF_HEALTHYBALL.preClean,EFF_HEALTHYBALL.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUPERBALL.use, EFF_SUPERBALL.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDCONVERTER.use, EFF_ENERGIZEDCONVERTER.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NECROMANTICSHOVEL.use, EFF_NECROMANTICSHOVEL.ownType());
-PostNPCDeathHandler.addPlayerListener(EFF_NECROMANTICSHOVEL.postDeath);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDPLATER.use, EFF_GOLDPLATER.ownType());
+  // --- Normal Upgraded Actives ---
+  Isaac.DebugString("|LABOS| Running check on automated enhancement device...");
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DigitalCard.use, EFF_DigitalCard.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CartographersTome.use, EFF_CartographersTome.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AnarchistsEBook.use, EFF_AnarchistsEBook.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHADOWDEVICE.use, EFF_SHADOWDEVICE.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EFF_SHADOWDEVICE.interceptDamage, EntityType.ENTITY_PLAYER);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CHESTOFSIN.use, EFF_CHESTOFSIN.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RUNICAMPLIFIER.use, EFF_RUNICAMPLIFIER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GLOWINGHEART.use, EFF_GLOWINGHEART.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PILLMACHINE.use, EFF_PILLMACHINE.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_JAROFHEADS.use, EFF_JAROFHEADS.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SILVERNICKEL.use, EFF_SILVERNICKEL.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_METALFEATHER.use, EFF_METALFEATHER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BIGBOXOFSPIDERS.use, EFF_BIGBOXOFSPIDERS.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BOMBDISPENSER.use, EFF_BOMBDISPENSER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MATTERREARRANGER.use, EFF_MATTERREARRANGER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_FORGETMELATER.use, EFF_FORGETMELATER.ownType());
+  PreCleanHandler.addSlotListener(EFF_FORGETMELATER.preClean,EFF_FORGETMELATER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLOODSAW.use, EFF_BLOODSAW.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DIVINITYGENERATOR.use, EFF_DIVINITYGENERATOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SATANITYGENERATOR.use, EFF_SATANITYGENERATOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDGLASSCANNON.use, EFF_TEMPEREDGLASSCANNON.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ZKEY.use, EFF_ZKEY.ownType());
+  PostUpdateHandler.addSlotListener(EFF_ZKEY.tick, EFF_ZKEY.ownType());
+  // ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_ZKEY.postRoom);
+  PostRoomHandler.addPlayerListener(EFF_ZKEY.postRoom);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SYNTHETICSKIN.use, EFF_SYNTHETICSKIN.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PAUSE2.use, EFF_PAUSE2.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLOODSIPHON.use, EFF_BLOODSIPHON.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ARTIFICIALSOUL.use, EFF_ARTIFICIALSOUL.ownType());
+  // ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_ARTIFICIALSOUL.postRoom);
+  PostRoomHandler.addPlayerListener(EFF_ARTIFICIALSOUL.postRoom);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_D2.use, EFF_D2.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WEEKLYGIFT.use, EFF_WEEKLYGIFT.ownType());
+  PostLevelHandler.addSlotListener(EFF_WEEKLYGIFT.postLevel, EFF_WEEKLYGIFT.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DISCOUNTCODE.use, EFF_DISCOUNTCODE.ownType());
+  PostRoomHandler.addRoomListener(EFF_DISCOUNTCODE.postRoom);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ILLUSORYRAZOR.use, EFF_ILLUSORYRAZOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTABLETERRAFORMER.use, EFF_PORTABLETERRAFORMER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEARRESERVOIR.use, EFF_TEARRESERVOIR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, EFF_TEARRESERVOIR.postTear);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WAVECANNON.use, EFF_WAVECANNON.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TERRORVORTEX.use, EFF_TERRORVORTEX.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PETRIFACTIONVORTEX.use, EFF_PETRIFACTIONVORTEX.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_WEBBEDVORTEX.use, EFF_WEBBEDVORTEX.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CHRONALVORTEX.use, EFF_CHRONALVORTEX.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NECROVORTEX.use, EFF_NECROVORTEX.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MICROTRANSACTION.use, EFF_MICROTRANSACTION.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERMUSH.use, EFF_CYBERMUSH.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLAND.use, EFF_PLAND.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_COUNTERFEITDEATHCERTIFICATE.use, EFF_COUNTERFEITDEATHCERTIFICATE.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STRAIGHTENEDPENNY.use, EFF_STRAIGHTENEDPENNY.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CRIMSONKEY.use, EFF_CRIMSONKEY.ownType());
+  // ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, EFF_CRIMSONKEY.postRoom);
+  PostRoomHandler.addSlotListener(EFF_CRIMSONKEY.postRoom, EFF_CRIMSONKEY.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DIGITALFORTUNE.use, EFF_DIGITALFORTUNE.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_VENDINGMACHINE.use, EFF_VENDINGMACHINE.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLOODALCHEMIZER.use, EFF_BLOODALCHEMIZER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUMMARIZEDBIBLE.use, EFF_SUMMARIZEDBIBLE.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CORNYPOOP.use, EFF_CORNYPOOP.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TRIPLOPIA.use, EFF_TRIPLOPIA.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_OMNIDETONATOR.use, EFF_OMNIDETONATOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_BOMB_INIT, EFF_OMNIDETONATOR.postBombInit);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BOOSTEDBEAN.use, EFF_BOOSTEDBEAN.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLUMORGAN.use, EFF_PLUMORGAN.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DECREMENTDICE.use, EFF_DECREMENTDICE.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PILLDISPENSER.use, EFF_PILLDISPENSER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AMPLIFIEDD4.use, EFF_AMPLIFIEDD4.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STEELRAZOR.use, EFF_STEELRAZOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERGUPPYSPAW.use, EFF_CYBERGUPPYSPAW.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CYBERGUPPYSHEAD.use, EFF_CYBERGUPPYSHEAD.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CARDDISPENSER.use, EFF_CARDDISPENSER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_OVERCLOCKEDMETRONOME.use, EFF_OVERCLOCKEDMETRONOME.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ROTTINGHEART.use, EFF_ROTTINGHEART.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_EYECANISTER.use, EFF_EYECANISTER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BOXSHOP.use, EFF_BOXSHOP.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ESSENCESPLITTER.use, EFF_ESSENCESPLITTER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TELEPORT4.use, EFF_TELEPORT4.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULGENERATOR.use, EFF_SOULGENERATOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PETROGLYPHOFBELIAL.use, EFF_PETROGLYPHOFBELIAL.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHAPEDCHARGEVEST.use, EFF_SHAPEDCHARGEVEST.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULREACTOR.use, EFF_SOULREACTOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, EFF_SOULREACTOR.prePickupCollide, PickupVariant.PICKUP_HEART);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RESEALEDBOX.use, EFF_RESEALEDBOX.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_UNIVERSALKEY.use, EFF_UNIVERSALKEY.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFAGGRESSION.use, EFF_SCROLLOFAGGRESSION.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFBLOOD.use, EFF_SCROLLOFBLOOD.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFBLASTS.use, EFF_SCROLLOFBLASTS.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SCROLLOFUTILITY.use, EFF_SCROLLOFUTILITY.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_INACTIONREPLAY.use, EFF_INACTIONREPLAY.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MRYOU.use, EFF_MRYOU.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TOXICVAT.use, EFF_TOXICVAT.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_LAZERBLAST.use, EFF_LAZERBLAST.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ALARMTRIGGER.use, EFF_ALARMTRIGGER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_KINETICIMPACTOR.use, EFF_KINETICIMPACTOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ITEMFABRICATOR.use, EFF_ITEMFABRICATOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_FRIENDSEARCHER.use, EFF_FRIENDSEARCHER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DOUBLESIDEDERASER.use, EFF_DOUBLESIDEDERASER.ownType());
+  PostLevelHandler.addSlotListener(EFF_DOUBLESIDEDERASER.postLevel, EFF_DOUBLESIDEDERASER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STRIKEDESIGNATOR.use, EFF_STRIKEDESIGNATOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PLATEDRAZOR.use, EFF_PLATEDRAZOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SACRIFICEREACTOR.use, EFF_SACRIFICEREACTOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CLONEVAT.use, EFF_CLONEVAT.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_DEMONICNAIL.use, EFF_DEMONICNAIL.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AUGER.use, EFF_AUGER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDSHEARS.use, EFF_TEMPEREDSHEARS.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLADEDISC.use, EFF_BLADEDISC.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENFLUSH.use, EFF_GOLDENFLUSH.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BRIMSTONECANNON.use, EFF_BRIMSTONECANNON.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUMMARIZEDMONSTERMANUAL.use, EFF_SUMMARIZEDMONSTERMANUAL.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_COMPOSTBIN.use, EFF_COMPOSTBIN.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SOULJAR.use, EFF_SOULJAR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, EFF_SOULJAR.prePickupCollide, PickupVariant.PICKUP_HEART);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENSHARPKEY.use, EFF_GOLDENSHARPKEY.ownType());
+  PostNPCDeathHandler.addSlotListener(EFF_GOLDENSHARPKEY.postDeath, EFF_GOLDENSHARPKEY.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ACCELERATEDD10.use, EFF_ACCELERATEDD10.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_AMPLIFIEDD8.use, EFF_AMPLIFIEDD8.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_POWEREDD100.use, EFF_POWEREDD100.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_BLUEFRIENDSBOX.use, EFF_BLUEFRIENDSBOX.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDMEGABLAST.use, EFF_ENERGIZEDMEGABLAST.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUPERHEATEDSMELTER.use, EFF_SUPERHEATEDSMELTER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_MOTHEROFBOMBS.use, EFF_MOTHEROFBOMBS.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDDELIRIOUS.use, EFF_ENERGIZEDDELIRIOUS.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SINGULARITYGENERATOR.use, EFF_SINGULARITYGENERATOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SPRINKLERS.use, EFF_SPRINKLERS.ownType());
+  PostUpdateHandler.addSlotListener(EFF_SPRINKLERS.tick, EFF_SPRINKLERS.ownType());
+  PreCleanHandler.addSlotListener(EFF_SPRINKLERS.preClean,EFF_SPRINKLERS.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SHARPENEDMEATCLEAVER.use, EFF_SHARPENEDMEATCLEAVER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_OMNIJAR.use, EFF_OMNIJAR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ABIEXSPIRAVIT.use, EFF_ABIEXSPIRAVIT.ownType());
+  PostNPCDeathHandler.addSlotListener(EFF_ABIEXSPIRAVIT.postDeath, EFF_ABIEXSPIRAVIT.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_PORTALGENERATOR.use, EFF_PORTALGENERATOR.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_HEALTHYBALL.use, EFF_HEALTHYBALL.ownType());
+  PreCleanHandler.addSlotListener(EFF_HEALTHYBALL.preClean,EFF_HEALTHYBALL.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SUPERBALL.use, EFF_SUPERBALL.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDCONVERTER.use, EFF_ENERGIZEDCONVERTER.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NECROMANTICSHOVEL.use, EFF_NECROMANTICSHOVEL.ownType());
+  PostNPCDeathHandler.addPlayerListener(EFF_NECROMANTICSHOVEL.postDeath);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDPLATER.use, EFF_GOLDPLATER.ownType());
 
-// --- Upgraded Starting Actives ---
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EFF_GOLDENNICKEL.interceptDamage, EntityType.ENTITY_PLAYER);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RECONSTRUCTIVEHEART.use, EFF_RECONSTRUCTIVEHEART.ownType());
-PreCleanHandler.addSlotListener(EFF_RECONSTRUCTIVEHEART.preClean,EFF_RECONSTRUCTIVEHEART.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STABILIZEDETERNALD6.use, EFF_STABILIZEDETERNALD6.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDD6.use, EFF_ENERGIZEDD6.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CRATEOFFRIENDS.use, EFF_CRATEOFFRIENDS.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, EFF_CRATEOFFRIENDS.findAllFriendItems);
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CHAOSPOOP.use, EFF_CHAOSPOOP.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SIGILOFBELIAL.use, EFF_SIGILOFBELIAL.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDBLADE.use, EFF_TEMPEREDBLADE.ownType());
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_REINFORCEDFABRICATOR.use, EFF_REINFORCEDFABRICATOR.ownType());
+  // --- Upgraded Starting Actives ---
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_GOLDENNICKEL.use, EFF_GOLDENNICKEL.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, EFF_GOLDENNICKEL.interceptDamage, EntityType.ENTITY_PLAYER);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_RECONSTRUCTIVEHEART.use, EFF_RECONSTRUCTIVEHEART.ownType());
+  PreCleanHandler.addSlotListener(EFF_RECONSTRUCTIVEHEART.preClean,EFF_RECONSTRUCTIVEHEART.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_STABILIZEDETERNALD6.use, EFF_STABILIZEDETERNALD6.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_ENERGIZEDD6.use, EFF_ENERGIZEDD6.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CRATEOFFRIENDS.use, EFF_CRATEOFFRIENDS.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_GAME_STARTED, EFF_CRATEOFFRIENDS.findAllFriendItems);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_CHAOSPOOP.use, EFF_CHAOSPOOP.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_SIGILOFBELIAL.use, EFF_SIGILOFBELIAL.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_TEMPEREDBLADE.use, EFF_TEMPEREDBLADE.ownType());
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_REINFORCEDFABRICATOR.use, EFF_REINFORCEDFABRICATOR.ownType());
 
-let itemsWithUpgrade = 0;
-let items = 0;
-const itemConfig = Isaac.GetItemConfig();
-for (let i=1;i<CollectibleType.NUM_COLLECTIBLES;i++) {
-  const testConfig = itemConfig.GetCollectible(i);
-    if (testConfig !== undefined && testConfig.Type === ItemType.ITEM_ACTIVE && !testConfig.HasTags(ItemConfigTag.QUEST) && !testConfig.Hidden) {
-      items++;
-    if (itemHasUpgrade(i)) {
-      itemsWithUpgrade++;
-    } else if (DUMP_NOUPGRADE) {
-      Isaac.DebugString(`|LABOS| WARN- No registered output for input ${testConfig.Name}[${i}]`);
+  let itemsWithUpgrade = 0;
+  let items = 0;
+  const itemConfig = Isaac.GetItemConfig();
+  for (let i=1;i<CollectibleType.NUM_COLLECTIBLES;i++) {
+    const testConfig = itemConfig.GetCollectible(i);
+      if (testConfig !== undefined && testConfig.Type === ItemType.ITEM_ACTIVE && !testConfig.HasTags(ItemConfigTag.QUEST) && !testConfig.Hidden) {
+        items++;
+      if (itemHasUpgrade(i)) {
+        itemsWithUpgrade++;
+      } else if (DUMP_NOUPGRADE) {
+        Isaac.DebugString(`|LABOS| WARN- No registered output for input ${testConfig.Name}[${i}]`);
+      }
     }
   }
+  Isaac.DebugString("|LABOS| Automated enhancement device check complete."+
+  `  Availability: ${itemsWithUpgrade}/${items}`+
+  ` (${Math.round((itemsWithUpgrade/items)*100*100)/100}%)`);
+  Isaac.DebugString(`|LABOS| Total registered upgrade items: ${Math.floor(Object.entries(CollectibleTypeLabUpgrade).length/2)}`);
+
+  Isaac.DebugString("|LABOS| Checking item patents...");
+  // --- Utility Items ---
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NONE.use, CollectibleTypeLabUtility.COLLECTIBLE_DISCHARGEDBATTERY);
+
+  // --- Passive Items ---
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, CACHE_CYBERBOB.evalCache, CACHE_CYBERBOB.ownCache());
+  Isaac.DebugString("|LABOS| Item patents validated.");
+
+  Isaac.DebugString("|LABOS| Startup complete");
+  Isaac.DebugString("====================================");
 }
-Isaac.DebugString("|LABOS| Automated enhancement device check complete."+
-`  Availability: ${itemsWithUpgrade}/${items}`+
-` (${Math.round((itemsWithUpgrade/items)*100*100)/100}%)`);
-Isaac.DebugString(`|LABOS| Total registered upgrade items: ${Math.floor(Object.entries(CollectibleTypeLabUpgrade).length/2)}`);
-
-Isaac.DebugString("|LABOS| Checking item patents...");
-// --- Utility Items ---
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_USE_ITEM, EFF_NONE.use, CollectibleTypeLabUtility.COLLECTIBLE_DISCHARGEDBATTERY);
-
-// --- Passive Items ---
-ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_EVALUATE_CACHE, CACHE_CYBERBOB.evalCache, CACHE_CYBERBOB.ownCache());
-Isaac.DebugString("|LABOS| Item patents validated.");
-
-Isaac.DebugString("|LABOS| Startup complete");
-Isaac.DebugString("====================================");

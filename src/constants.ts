@@ -1136,5 +1136,5 @@ export const MOD_ID = "Abandoned_Laboratory";
 export const DUMP_NOUPGRADE = false;
 export const DEBUG_SPAWN = false;
 export const UNBALANCED = false;
-export const STAGE_TESTING = true;
+export const STAGE_TESTING = false;
 export const VERSION = "0.18.9";

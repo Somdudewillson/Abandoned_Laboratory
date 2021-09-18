@@ -76,7 +76,7 @@ export class GeneratedRoom {
   getGridEntity(
     pos: FlatGridVector,
     includeBuffer = false,
-  ): LuaRoomGenericEntity | null {
+  ): LuaRoomGenericEntity | undefined {
     if (includeBuffer && this.gridEntityBuffer.has(pos)) {
       return this.gridEntityBuffer.get(pos)!;
     }
@@ -88,7 +88,7 @@ export class GeneratedRoom {
     }
 
     if (isValidFlatGridPos(pos, this.shape)) {
-      return null;
+      return undefined;
     }
     return makeLuaEntity(expandVector(pos), GridEntityType.GRID_WALL, 0, 0);
   }

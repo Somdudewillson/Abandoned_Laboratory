@@ -20,7 +20,7 @@ export function use(
   const room = Game().GetRoom();
   for (let i = 0; i < room.GetGridSize(); i++) {
     const gridEntity = room.GetGridEntity(i);
-    if (gridEntity == null) {
+    if (gridEntity === undefined) {
       continue;
     }
 
@@ -31,7 +31,7 @@ export function use(
 
   const entities = Isaac.GetRoomEntities();
   for (const entity of entities) {
-    if (entity == null) {
+    if (entity === undefined) {
       continue;
     }
 

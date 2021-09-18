@@ -978,11 +978,11 @@ export function itemHasUpgrade(item: int, playerType?: int): boolean {
   const blacklistData = getGlobalData(
     SaveType.PER_RUN,
     UPGRADE_BLACKLIST_KEY,
-  ) as null | int[];
+  ) as undefined | int[];
 
   if (
     isSingleUpgrade(item) &&
-    blacklistData !== null &&
+    blacklistData !== undefined &&
     blacklistData.includes(item)
   ) {
     return false;
@@ -1038,9 +1038,9 @@ export function getItemUpgrade(
     const blacklistData = getGlobalData(
       SaveType.PER_RUN,
       UPGRADE_BLACKLIST_KEY,
-    ) as null | int[];
+    ) as undefined | int[];
 
-    if (blacklistData === null) {
+    if (blacklistData === undefined) {
       saveGlobalData(SaveType.PER_RUN, UPGRADE_BLACKLIST_KEY, [item]);
     } else if (!blacklistData.includes(item)) {
       blacklistData.push(item);

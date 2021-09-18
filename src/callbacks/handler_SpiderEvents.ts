@@ -8,12 +8,12 @@ export function update(self: EntityNPC): boolean | void {
   if (self.Variant !== SpiderEntityVariant.SMART_SPIDERBOT) {
     return;
   }
-  const curTimeout = self.GetData().timeout as number | null;
+  const curTimeout = self.GetData().timeout as number | undefined;
   // Update timeout
-  if (curTimeout !== null && curTimeout > 0) {
+  if (curTimeout !== undefined && curTimeout > 0) {
     self.GetData().timeout = curTimeout - 1;
   }
-  if (curTimeout !== null && curTimeout - 1 > 0) {
+  if (curTimeout !== undefined && curTimeout - 1 > 0) {
     return;
   }
 
@@ -22,18 +22,18 @@ export function update(self: EntityNPC): boolean | void {
     100,
     EntityPartition.TEAR,
   );
-  let nearestTear = null;
+  let nearestTear = undefined;
   let nearestDist = 0;
   for (const tear of nearTears) {
     const tearDist = self.Position.DistanceSquared(tear.Position);
 
-    if (nearestTear === null || tearDist < nearestDist) {
+    if (nearestTear === undefined || tearDist < nearestDist) {
       nearestTear = tear;
       nearestDist = tearDist;
     }
   }
 
-  if (nearestTear !== null) {
+  if (nearestTear !== undefined) {
     const tearDir = nearestTear.Velocity.Normalized();
     const fireLineToSpiderPosBase = nearestTear.Position.add(
       self.Position.sub(nearestTear.Position).mul(tearDir).mul(tearDir),

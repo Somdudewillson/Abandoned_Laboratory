@@ -41,7 +41,7 @@ export function findAllFriendItems(): void {
   for (let i = 0; i < collectibles.Size; i++) {
     const item = itemConfig.GetCollectible(i);
 
-    if (item == null || item.IsNull()) {
+    if (item == undefined || item.IsNull()) {
       continue;
     }
     if (!item.IsCollectible()) {

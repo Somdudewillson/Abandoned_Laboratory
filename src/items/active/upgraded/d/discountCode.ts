@@ -14,10 +14,9 @@ export function use(
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
   player.UseActiveItem(CollectibleType.COLLECTIBLE_COUPON);
 
-  const entities = Game().GetRoom().GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-    if (entity == null) {
+  const entities = Isaac.GetRoomEntities();
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
 
@@ -36,11 +35,11 @@ export function use(
   return true;
 }
 
-export function postRoom(room: Room, _level: Level): void {
+export function postRoom(_room: Room, _level: Level): void {
   let hasChargedDiscount = false;
   for (let p = 0; p < Game().GetNumPlayers(); p++) {
     const player = Isaac.GetPlayer(p);
-    if (player == null) {
+    if (player === undefined) {
       continue;
     }
     if (!player.HasCollectible(ownType())) {
@@ -65,16 +64,8 @@ export function postRoom(room: Room, _level: Level): void {
     return;
   }
 
-  const entities = room.GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-    if (entity == null) {
-      continue;
-    }
-
-    if (entity.Type !== EntityType.ENTITY_PICKUP) {
-      continue;
-    }
+  const entities = Isaac.FindByType(EntityType.ENTITY_PICKUP);
+  for (const entity of entities) {
     const pickup = entity.ToPickup()!;
     if (!pickup.IsShopItem()) {
       continue;

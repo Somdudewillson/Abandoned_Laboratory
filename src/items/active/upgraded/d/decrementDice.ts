@@ -20,7 +20,7 @@ export function use(
   // Find all items
   const entities = Isaac.GetRoomEntities();
   for (const entity of entities) {
-    if (entity == null) {
+    if (entity === undefined) {
       continue;
     }
 
@@ -46,9 +46,10 @@ export function use(
         break;
       }
 
-      const newInfo = itemConfig.GetCollectible(newTarget);
+      const newInfo = itemConfig.GetCollectible(newTarget)!;
       if (
         curTarget === CollectibleType.COLLECTIBLE_NULL ||
+        curInfo === undefined ||
         isBetter(rand, curInfo, newInfo)
       ) {
         curTarget = newTarget;
@@ -79,6 +80,7 @@ function decrement(itemConfig: ItemConfig, itemID: int): int {
 
   while (
     selectedID > 0 ||
+    selectedInfo === undefined ||
     !selectedInfo.IsCollectible() ||
     selectedInfo.Hidden
   ) {

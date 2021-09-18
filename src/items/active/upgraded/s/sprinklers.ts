@@ -23,8 +23,8 @@ export function use(
     EntityRef(player),
     SaveType.PER_ROOM,
     SAVE_KEY_USES,
-  ) as null | int;
-  if (uses == null) {
+  ) as undefined | int;
+  if (uses === undefined) {
     savePlayerData(
       EntityRef(player),
       SaveType.PER_ROOM,
@@ -56,9 +56,9 @@ export function tick(
     EntityRef(player),
     SaveType.PER_ROOM,
     SAVE_KEY_USES,
-  ) as null | int;
+  ) as undefined | int;
 
-  if (uses == null || uses <= 0 || room.IsClear()) {
+  if (uses === undefined || uses <= 0 || room.IsClear()) {
     return;
   }
 
@@ -82,8 +82,8 @@ export function preClean(
     EntityRef(player),
     SaveType.PER_ROOM,
     SAVE_KEY_USES,
-  ) as null | int;
-  if (uses != null) {
+  ) as undefined | int;
+  if (uses !== undefined) {
     player.SetActiveCharge(0, slot);
   }
 }

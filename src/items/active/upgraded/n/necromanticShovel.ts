@@ -54,7 +54,7 @@ export function postDeath(
     }
 
     if (
-      entity.SpawnerEntity == null ||
+      entity.SpawnerEntity == undefined ||
       GetPtrHash(player) !== GetPtrHash(entity.SpawnerEntity)
     ) {
       continue;

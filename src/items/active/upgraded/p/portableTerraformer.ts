@@ -22,7 +22,7 @@ export function use(
 
   for (let i = 0; i < room.GetGridSize(); i++) {
     const gridEntity = room.GetGridEntity(i);
-    if (gridEntity == null) {
+    if (gridEntity === undefined) {
       continue;
     }
     if (gridEntity.CollisionClass === GridCollisionClass.COLLISION_NONE) {
@@ -98,8 +98,8 @@ export function use(
         replaceGridEntity(gridEntity, GridEntityType.GRID_ROCK);
         break;
       case GridEntityType.GRID_PIT: {
-        const pit: GridEntityPit = gridEntity.ToPit();
-        pit.MakeBridge(null);
+        const pit: GridEntityPit = gridEntity.ToPit()!;
+        pit.MakeBridge(undefined);
         break;
       }
       case GridEntityType.GRID_ROCK:
@@ -221,7 +221,7 @@ function replaceGridEntity(
   original: GridEntity,
   newType: int,
   newVariant: int = 0,
-): void {
+) {
   original.Destroy(true);
   Isaac.GridSpawn(newType, newVariant, original.Position, true);
 }

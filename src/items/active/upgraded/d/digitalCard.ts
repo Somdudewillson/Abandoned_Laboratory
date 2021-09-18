@@ -19,11 +19,10 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean {
-  const room: Room = Game().GetRoom();
   const level: Level = Game().GetLevel();
 
   const currentCard: Card = player.GetCard(0);
-  if (currentCard === null || currentCard === 0) {
+  if (currentCard === undefined || currentCard === 0) {
     return false;
   }
   const hasTarot: boolean = player.HasCollectible(
@@ -87,7 +86,7 @@ export function use(
 
     // -----Amped cards-----
     case Card.CARD_REVERSE_HERMIT: // The Hermit?
-      doReversedHermit(player, room, hasTarot, rand);
+      doReversedHermit(player, hasTarot, rand);
       break;
     case Card.CARD_MAGICIAN: // The Magician
     case Card.CARD_REVERSE_CHARIOT: // The Chariot?
@@ -125,7 +124,7 @@ export function use(
       }
       break;
     case Card.CARD_DEATH: // Death
-      doDeath(player, room, hasTarot);
+      doDeath(player, hasTarot);
       break;
     case Card.CARD_LOVERS: // The Lovers
       doLovers(player, hasTarot, rand);
@@ -133,10 +132,10 @@ export function use(
     case Card.CARD_ACE_OF_CLUBS: // Ace of Clubs
     case Card.CARD_ACE_OF_SPADES: // Ace of Spades
     case Card.CARD_ACE_OF_DIAMONDS: // Ace of Diamonds
-      doGenericAce(currentCard, room, hasTarot, rand, 0.25);
+      doGenericAce(currentCard, hasTarot, rand, 0.25);
       break;
     case Card.CARD_ACE_OF_HEARTS: // Ace of Hearts
-      doAceHearts(room, hasTarot, rand, 0.15, 0.4, 0.15);
+      doAceHearts(hasTarot, rand, 0.15, 0.4, 0.15);
       break;
     case Card.CARD_HIEROPHANT: // The Hierophant
       spawnHearts(
@@ -194,7 +193,7 @@ export function use(
   return true;
 }
 
-function doSilentGoldenRazor(player: EntityPlayer, repeat: int = 1): void {
+function doSilentGoldenRazor(player: EntityPlayer, repeat: int = 1) {
   const coins = player.GetNumCoins();
   for (let i = 0; i < repeat; i++) {
     player.UseActiveItem(
@@ -208,25 +207,11 @@ function doSilentGoldenRazor(player: EntityPlayer, repeat: int = 1): void {
   player.AddCoins(coins - player.GetNumCoins());
 }
 
-function doReversedHermit(
-  player: EntityPlayer,
-  room: Room,
-  hasTarot: boolean,
-  rand: RNG,
-): void {
+function doReversedHermit(player: EntityPlayer, hasTarot: boolean, rand: RNG) {
   let sold = false;
 
-  const entities = room.GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-
-    if (entity === null) {
-      continue;
-    }
-    if (entity.Type !== EntityType.ENTITY_PICKUP) {
-      continue;
-    }
-
+  const entities = Isaac.FindByType(EntityType.ENTITY_PICKUP);
+  for (const entity of entities) {
     const testSell = entity.ToPickup()!;
     if (testSell.Variant === PickupVariant.PICKUP_COIN) {
       continue;
@@ -257,7 +242,7 @@ function doTower(
   oddsTroll: float,
   count: int,
   avgDist: float,
-): void {
+) {
   for (let i = 0; i < count; i++) {
     let subType = BombSubType.BOMB_NORMAL;
     if (rand.RandomFloat() < oddsTroll) {
@@ -288,24 +273,22 @@ function doTower(
       PickupVariant.PICKUP_BOMB,
       position,
       velocity,
-      null,
+      undefined,
       subType,
       rand.GetSeed(),
     );
   }
 }
 
-function doDeath(player: EntityPlayer, room: Room, hasTarot: boolean): void {
+function doDeath(player: EntityPlayer, hasTarot: boolean) {
   player.UseCard(Card.CARD_DEATH);
   if (hasTarot) {
     player.UseCard(Card.CARD_DEATH);
   }
 
-  const entities = room.GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-
-    if (entity === null) {
+  const entities = Isaac.GetRoomEntities();
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
     if (!entity.IsActiveEnemy(false)) {
@@ -332,7 +315,7 @@ function doDeath(player: EntityPlayer, room: Room, hasTarot: boolean): void {
   }
 }
 
-function doLovers(player: EntityPlayer, hasTarot: boolean, rand: RNG): void {
+function doLovers(player: EntityPlayer, hasTarot: boolean, rand: RNG) {
   let points = 5;
   if (hasTarot) {
     points *= 2;
@@ -365,7 +348,7 @@ function doLovers(player: EntityPlayer, hasTarot: boolean, rand: RNG): void {
       PickupVariant.PICKUP_HEART,
       position,
       velocity,
-      null,
+      undefined,
       spawnType,
       rand.GetSeed(),
     );
@@ -373,7 +356,7 @@ function doLovers(player: EntityPlayer, hasTarot: boolean, rand: RNG): void {
 }
 
 function validAceTarget(entity: Entity, variant: number): boolean {
-  if (entity === null) {
+  if (entity === undefined) {
     return false;
   }
 
@@ -419,11 +402,10 @@ function validAceTarget(entity: Entity, variant: number): boolean {
 
 function doGenericAce(
   currentCard: Card,
-  room: Room,
   hasTarot: boolean,
   rand: RNG,
   doubleOdds: float,
-): void {
+) {
   if (hasTarot) {
     doubleOdds *= 2;
   }
@@ -447,11 +429,9 @@ function doGenericAce(
       return;
   }
 
-  const entities = room.GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-
-    if (entity === null) {
+  const entities = Isaac.GetRoomEntities();
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
     let amount = 1;
@@ -467,22 +447,19 @@ function doGenericAce(
 }
 
 function doAceHearts(
-  room: Room,
   hasTarot: boolean,
   rand: RNG,
   doubleOdds: float,
   soulOdds: float,
   evilOdds: float,
-): void {
+) {
   if (hasTarot) {
     doubleOdds *= 2;
   }
 
-  const entities = room.GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-
-    if (entity === null) {
+  const entities = Isaac.GetRoomEntities();
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
     let amount = 1;
@@ -511,7 +488,7 @@ function doAceHearts(
   }
 }
 
-function doTwoClubs(player: EntityPlayer, rand: RNG, mult: float): void {
+function doTwoClubs(player: EntityPlayer, rand: RNG, mult: float) {
   let count = player.GetNumBombs();
   if (count < 1) {
     count = 1;
@@ -520,7 +497,7 @@ function doTwoClubs(player: EntityPlayer, rand: RNG, mult: float): void {
   player.AddBombs(extMath.randRound(count * (mult - 1), rand));
 }
 
-function doTwoSpades(player: EntityPlayer, rand: RNG, mult: float): void {
+function doTwoSpades(player: EntityPlayer, rand: RNG, mult: float) {
   let count = player.GetNumKeys();
   if (count < 1) {
     count = 1;
@@ -529,7 +506,7 @@ function doTwoSpades(player: EntityPlayer, rand: RNG, mult: float): void {
   player.AddKeys(extMath.randRound(count * (mult - 1), rand));
 }
 
-function doTwoDiamonds(player: EntityPlayer, rand: RNG, mult: float): void {
+function doTwoDiamonds(player: EntityPlayer, rand: RNG, mult: float) {
   let count = player.GetNumCoins();
   if (count < 1) {
     count = 1;
@@ -543,7 +520,7 @@ function doTwoHearts(
   rand: RNG,
   mult: float,
   hasTarot: boolean,
-): void {
+) {
   if (hasTarot) {
     mult *= mult;
   }

@@ -22,21 +22,13 @@ export function use(
   let itemCount: int = 0;
 
   // Find all items
-  const entities = room.GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-    if (entity == null) {
-      continue;
-    }
-
-    if (entity.Type !== EntityType.ENTITY_PICKUP) {
-      continue;
-    }
+  const entities = Isaac.FindByType(
+    EntityType.ENTITY_PICKUP,
+    PickupVariant.PICKUP_COLLECTIBLE,
+  );
+  for (const entity of entities) {
     const pickup = entity.ToPickup()!;
-    if (
-      pickup.Variant !== PickupVariant.PICKUP_COLLECTIBLE ||
-      pickup.SubType === CollectibleType.COLLECTIBLE_NULL
-    ) {
+    if (pickup.SubType === CollectibleType.COLLECTIBLE_NULL) {
       continue;
     }
     itemCount++;
@@ -55,7 +47,8 @@ export function use(
       const newInfo = itemConfig.GetCollectible(newTarget);
       if (
         curTarget === CollectibleType.COLLECTIBLE_NULL ||
-        isBetter(rand, curInfo, newInfo)
+        curInfo === undefined ||
+        (newInfo !== undefined && isBetter(rand, curInfo, newInfo))
       ) {
         curTarget = newTarget;
         curInfo = newInfo;

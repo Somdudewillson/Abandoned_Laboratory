@@ -19,7 +19,7 @@ export function use(
   const spawnPos = room.GetGridPosition(room.GetGridIndex(player.Position));
   for (let i = 0; i < DoorSlot.NUM_DOOR_SLOTS; i++) {
     const door = room.GetDoor(i);
-    if (door == null) {
+    if (door == undefined) {
       continue;
     }
 
@@ -31,7 +31,7 @@ export function use(
   const hasSpawnedCrawlspace = getGlobalData(
     SaveType.PER_FLOOR,
     SAVE_KEY_AUGER,
-  ) as boolean | null;
+  ) as boolean | undefined;
 
   if (!hasSpawnedCrawlspace) {
     Isaac.GridSpawn(GridEntityType.GRID_STAIRS, 0, player.Position, true);

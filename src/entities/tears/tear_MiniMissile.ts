@@ -2,7 +2,7 @@ import { playSound } from "../../utils/utils";
 
 export function update(self: EntityTear): void {
   const targetDir =
-    self.Target === null
+    self.Target === undefined
       ? self.Velocity
       : self.Target.Position.sub(self.Position);
   self.Velocity = targetDir.Resized(math.min(25, self.Velocity.Length() + 0.5));
@@ -33,7 +33,7 @@ export function collide(
     0,
     self.Position,
     Vector.Zero,
-    null,
+    undefined,
   ).ToEffect()!;
   newBomb.SpriteScale = Vector(0.4, 0.4);
 

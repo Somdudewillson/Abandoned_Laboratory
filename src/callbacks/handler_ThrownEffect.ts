@@ -13,11 +13,6 @@ const queuedEffects = new Map<
   }
 >();
 
-const enum HeldCollectibleAnimKeys {
-  LIFTITEM = "LiftItem",
-  HIDEITEM = "HideItem",
-}
-
 export function postUpdate(
   player: EntityPlayer,
   _room: Room,
@@ -31,7 +26,8 @@ export function postUpdate(
   const thrownData = queuedEffects.get(playerHash)!;
   const itemConfig = Isaac.GetItemConfig();
   if (!player.IsHoldingItem()) {
-    const maxCharge = itemConfig.GetCollectible(thrownData.itemID).MaxCharges;
+    const itemData = itemConfig.GetCollectible(thrownData.itemID);
+    const maxCharge = itemData !== undefined ? itemData.MaxCharges : 0;
     const newCharge = player.GetActiveCharge(thrownData.slot) + maxCharge;
 
     player.SetActiveCharge(
@@ -74,11 +70,8 @@ export function postUpdate(
   } else {
     return;
   }
-  thrownData.callback.call(null, player, dirVec, dir, thrownData.data);
-  player.AnimateCollectible(
-    thrownData.itemID,
-    HeldCollectibleAnimKeys.HIDEITEM,
-  );
+  thrownData.callback.call(undefined, player, dirVec, dir, thrownData.data);
+  player.AnimateCollectible(thrownData.itemID, PlayerItemAnimation.HIDE_ITEM);
   queuedEffects.delete(playerHash);
 }
 
@@ -105,5 +98,5 @@ export function queueThrowable(
     data: throwableData,
     callback,
   });
-  player.AnimateCollectible(id, HeldCollectibleAnimKeys.LIFTITEM);
+  player.AnimateCollectible(id, PlayerItemAnimation.LIFT_ITEM);
 }

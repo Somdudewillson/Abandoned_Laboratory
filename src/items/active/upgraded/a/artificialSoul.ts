@@ -59,8 +59,8 @@ export function postRoom(player: EntityPlayer, room: Room, level: Level): void {
     EntityRef(player),
     SaveType.PER_FLOOR,
     KEY_VISITED_COUNT,
-  ) as int | null;
-  if (visitedRoomCount === null) {
+  ) as int | undefined;
+  if (visitedRoomCount === undefined) {
     visitedRoomCount = 0;
   }
   visitedRoomCount++;

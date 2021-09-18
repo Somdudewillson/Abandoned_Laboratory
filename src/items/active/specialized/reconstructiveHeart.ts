@@ -21,7 +21,7 @@ export function use(
 
   for (let p = 0; p < Game().GetNumPlayers(); p++) {
     const otherPlayer = Isaac.GetPlayer(p);
-    if (otherPlayer == null) {
+    if (otherPlayer == undefined) {
       continue;
     }
 
@@ -39,11 +39,11 @@ export function preClean(
   _slot: ActiveSlot,
   _room: Room,
   _level: Level,
-): boolean | null {
+): boolean | undefined {
   if (rand.RandomFloat() < 0.2) {
     for (let p = 0; p < Game().GetNumPlayers(); p++) {
       const otherPlayer = Isaac.GetPlayer(p);
-      if (otherPlayer == null) {
+      if (otherPlayer == undefined) {
         continue;
       }
 
@@ -56,5 +56,5 @@ export function preClean(
       }
     }
   }
-  return null;
+  return undefined;
 }

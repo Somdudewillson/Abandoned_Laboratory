@@ -15,10 +15,9 @@ export function use(
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
   const baseDamage = player.Damage + 5;
 
-  const entities = Game().GetRoom().GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-    if (entity == null) {
+  const entities = Isaac.GetRoomEntities();
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
 

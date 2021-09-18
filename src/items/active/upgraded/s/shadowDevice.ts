@@ -3,7 +3,7 @@ import * as extMath from "../../../../utils/extMath";
 
 const BASE_MAX_CHARGE = Isaac.GetItemConfig().GetCollectible(
   ownType(),
-).MaxCharges;
+)!.MaxCharges;
 const MAX_CHARGE_ODDS = 0.75;
 const MIN_CHARGE_ODDS = 0.25;
 
@@ -50,7 +50,7 @@ export function interceptDamage(
   }
 
   const player = TookDamage.ToPlayer();
-  if (player === null) {
+  if (player === undefined) {
     return;
   }
 
@@ -100,7 +100,7 @@ export function interceptDamage(
   }
 }
 
-function triggerEffect(player: EntityPlayer, hasCarBattery: boolean): void {
+function triggerEffect(player: EntityPlayer, hasCarBattery: boolean) {
   player.UseActiveItem(
     CollectibleType.COLLECTIBLE_BOOK_OF_SHADOWS,
     UseFlag.USE_NOANIM,

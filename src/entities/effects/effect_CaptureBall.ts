@@ -1,4 +1,5 @@
-/** Entity Data Usage:
+/**
+ * Entity Data Usage:
  * State = ActiveSlot this was thrown from
  * Size = Ball type:
  *  0: empty
@@ -64,17 +65,19 @@ export function update(self: EntityEffect): void {
   );
 }
 
-function checkPlayerCollision(self: EntityEffect): void {
+function checkPlayerCollision(self: EntityEffect) {
   if (
-    self.SpawnerEntity !== null &&
+    self.SpawnerEntity !== undefined &&
     self.SpawnerEntity.Position.DistanceSquared(self.Position) <
       COLLISION_RADIUS ** 2
   ) {
-    const itemConfig = Isaac.GetItemConfig();
     const player = self.SpawnerEntity.ToPlayer()!;
+    const itemConfig = Isaac.GetItemConfig().GetCollectible(
+      player.GetActiveItem(self.State),
+    );
 
     player.SetActiveCharge(
-      itemConfig.GetCollectible(player.GetActiveItem(self.State)).MaxCharges,
+      itemConfig !== undefined ? itemConfig.MaxCharges : 0,
       self.State,
     );
     self.Remove();
@@ -91,7 +94,7 @@ function checkWallCollision(self: EntityEffect): boolean {
   return false;
 }
 
-function checkEnemyCollision(self: EntityEffect): void {
+function checkEnemyCollision(self: EntityEffect) {
   // Scan for valid bosses, to avoid accidental capture of non-basses instead
   let hasValidBoss = false;
   if (self.SubType === BallSubType.SUPERBALL) {
@@ -166,7 +169,7 @@ function canCaptureBoss(self: EntityEffect, target: Entity): boolean {
   return true;
 }
 
-function doRelease(self: EntityEffect): void {
+function doRelease(self: EntityEffect) {
   const entityData = getCapturedEntity(self);
   const newFriend = Isaac.Spawn(
     entityData.type,
@@ -182,7 +185,7 @@ function doRelease(self: EntityEffect): void {
   self.Remove();
 }
 
-function saveCapturedEntity(self: EntityEffect, target: EntityNPC): void {
+function saveCapturedEntity(self: EntityEffect, target: EntityNPC) {
   savePlayerData(
     EntityRef(self.SpawnerEntity),
     SaveType.PER_RUN,
@@ -206,16 +209,16 @@ function getCapturedEntity(self: EntityEffect): {
     EntityRef(self.SpawnerEntity),
     SaveType.PER_RUN,
     CAPTURED_ENTITY_SAVE_KEY,
-  ) as number[] | null;
+  ) as number[] | undefined;
 
   savePlayerData(
     EntityRef(self.SpawnerEntity),
     SaveType.PER_RUN,
     CAPTURED_ENTITY_SAVE_KEY,
-    null,
+    undefined,
   );
 
-  if (savedEntityData === null || savedEntityData.length < 4) {
+  if (savedEntityData === undefined || savedEntityData.length < 4) {
     return {
       type: EntityType.ENTITY_FLY,
       variant: 0,

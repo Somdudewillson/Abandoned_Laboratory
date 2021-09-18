@@ -39,8 +39,8 @@ export class MinPriorityQueue<T> {
     return this.heap.length === 0;
   }
 
-  peek(): null | T {
-    return this.isEmpty() ? null : this.heap[0].value;
+  peek(): undefined | T {
+    return this.isEmpty() ? undefined : this.heap[0].value;
   }
 
   size(): int {
@@ -67,8 +67,8 @@ export class MinPriorityQueue<T> {
     }
   }
 
-  pop(): T | null {
-    if (this.isEmpty()) return null;
+  pop(): T | undefined {
+    if (this.isEmpty()) return undefined;
 
     this.swap(0, this.heap.length - 1);
     const item = this.heap.pop()!;

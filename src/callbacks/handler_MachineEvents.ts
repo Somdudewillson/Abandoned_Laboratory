@@ -43,19 +43,19 @@ export function preCollide(
   if (self.Variant !== LabMachineVariant.UPGRADE_MACHINE) {
     return;
   }
-  const timeout = self.GetData().timeout as number | null;
-  if (timeout !== null && timeout > 0) {
+  const timeout = self.GetData().timeout as number | undefined;
+  if (timeout !== undefined && timeout > 0) {
     return;
   }
 
   const isCharged = getGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY) as
     | boolean
-    | null;
+    | undefined;
   const hasBatt = getGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY) as
     | boolean
-    | null;
+    | undefined;
   const player = collider.ToPlayer()!;
-  if (isCharged !== null && isCharged) {
+  if (isCharged !== undefined && isCharged) {
     tryAcceptItem(player, self);
   }
 
@@ -67,7 +67,7 @@ export function preCollide(
 
     return;
   }
-  if (hasBatt === null || hasBatt) {
+  if (hasBatt === undefined || hasBatt) {
     saveGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY, false);
     spawnPickup(
       self.Position.add(Vector(0, 25)),
@@ -81,7 +81,7 @@ export function preCollide(
   }
 }
 
-function tryAcceptItem(player: EntityPlayer, self: EntityNPC): boolean | null {
+function tryAcceptItem(player: EntityPlayer, self: EntityNPC): boolean {
   for (const slot of UPGRADE_SELECTION_ORDER) {
     if (itemHasUpgrade(player.GetActiveItem(slot), player.GetPlayerType())) {
       const upgradingItem = player.GetActiveItem(slot);
@@ -94,7 +94,7 @@ function tryAcceptItem(player: EntityPlayer, self: EntityNPC): boolean | null {
       playSound(SoundEffect.SOUND_COIN_INSERT, 1.1, 0, false, 1.3);
       self.GetData().timeout = 2 * 30;
 
-      return null;
+      return true;
     }
   }
 
@@ -102,7 +102,7 @@ function tryAcceptItem(player: EntityPlayer, self: EntityNPC): boolean | null {
   playSound(SoundEffect.SOUND_THUMBS_DOWN, 1.1, 0, false, 0.7);
   self.GetData().timeout = 2 * 30;
 
-  return null;
+  return false;
 }
 
 function tryAcceptBattery(player: EntityPlayer): boolean {
@@ -143,10 +143,12 @@ export function update(self: EntityNPC): boolean | void {
     // Isaac.DebugString("INITIATING -> PROCESSING");
 
     self.GetSprite().Play(UpgradeAnimKey.WIGGLE, false);
+    const upgradingCollectible = Isaac.GetItemConfig().GetCollectible(
+      self.GetData().upgrading as number,
+    );
     self.GetData().processTime =
       60 +
-      Isaac.GetItemConfig().GetCollectible(self.GetData().upgrading as number)
-        .Quality *
+      (upgradingCollectible !== undefined ? upgradingCollectible.Quality : 2) *
         15;
     self.GetData().timeout = (self.GetData().processTime as number) + 30;
 
@@ -154,10 +156,10 @@ export function update(self: EntityNPC): boolean | void {
   }
 
   // State toggle from PROCESSING to DISPENSE
-  const curProcessTime = self.GetData().processTime as number | null;
+  const curProcessTime = self.GetData().processTime as number | undefined;
   if (
     self.GetSprite().IsPlaying(UpgradeAnimKey.WIGGLE) &&
-    curProcessTime !== null &&
+    curProcessTime !== undefined &&
     curProcessTime <= 0
   ) {
     // Isaac.DebugString("PROCESSING -> DISPENSE");
@@ -197,18 +199,18 @@ export function update(self: EntityNPC): boolean | void {
     playSound(SoundEffect.SOUND_SLOTSPAWN);
 
     saveGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY, false);
-    self.GetData().upgrading = null;
-    self.GetData().upgradingPlayer = null;
+    self.GetData().upgrading = undefined;
+    self.GetData().upgradingPlayer = undefined;
   }
 
   // Update timeout
-  const curTimeout = self.GetData().timeout as number | null;
-  if (curTimeout !== null && curTimeout > 0) {
+  const curTimeout = self.GetData().timeout as number | undefined;
+  if (curTimeout !== undefined && curTimeout > 0) {
     self.GetData().timeout = curTimeout - 1;
   }
 
   // Update processTime
-  if (curProcessTime !== null && curProcessTime > 0) {
+  if (curProcessTime !== undefined && curProcessTime > 0) {
     self.GetData().processTime = curProcessTime - 1;
 
     if (curProcessTime % 25 === 0) {
@@ -248,13 +250,13 @@ export function trySpawn(room: Room, floor: Level): void {
           0,
           pos,
           Vector.Zero,
-          null,
+          undefined,
         );
 
         const isCharged = getGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY) as
           | boolean
-          | null;
-        if (isCharged === null) {
+          | undefined;
+        if (isCharged === undefined) {
           saveGlobalData(SaveType.PER_FLOOR, CHARGE_SAVE_KEY, false);
         } else if (isCharged) {
           machineEnt.GetSprite().Play(UpgradeAnimKey.READY, true);
@@ -262,8 +264,8 @@ export function trySpawn(room: Room, floor: Level): void {
 
         const hasBatt = getGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY) as
           | boolean
-          | null;
-        if (hasBatt === null) {
+          | undefined;
+        if (hasBatt === undefined) {
           saveGlobalData(SaveType.PER_FLOOR, BATT_SAVE_KEY, true);
         }
       }

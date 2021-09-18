@@ -15,11 +15,9 @@ export function use(
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
   const result = rand.RandomFloat() < 0.75;
 
-  const entities = Game().GetRoom().GetEntities();
-  const size = entities.Size;
-  for (let i = 0; i < size; i++) {
-    const entity = entities.Get(i);
-    if (entity == null) {
+  const entities = Isaac.GetRoomEntities();
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
 

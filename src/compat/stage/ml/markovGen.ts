@@ -131,9 +131,9 @@ function getValidSpots(
 
 function pickWeighted(
   rand: RNG,
-  options: Array<{ token: EntityToken; weight: float }> | null,
+  options: Array<{ token: EntityToken; weight: float }> | undefined,
 ): EntityToken {
-  if (options === null || options.length === 0) {
+  if (options === undefined || options.length === 0) {
     return EntityToken.AIR;
   }
 
@@ -198,24 +198,24 @@ function fetchToken(
 function fetchFromModel(
   model: MarkovWrapper,
   ...tokens: EntityToken[]
-): Array<{ token: EntityToken; weight: float }> | null {
+): Array<{ token: EntityToken; weight: float }> | undefined {
   let result = getFromModel(model, hashContext(...tokens));
 
   // If there is no entry in the given model
-  if (result === null) {
+  if (result === undefined) {
     let nextSets: EntityToken[][] = [];
     let currentSets: EntityToken[][] = [];
 
     const initialDecay = decayTokens(tokens);
-    if (initialDecay !== null) {
+    if (initialDecay !== undefined) {
       currentSets = initialDecay;
     }
-    while (currentSets.length > 0 && result === null) {
+    while (currentSets.length > 0 && result === undefined) {
       for (const decaySet of currentSets) {
         result = getFromModel(model, hashContext(...decaySet));
 
         const newDecay = decayTokens(decaySet);
-        if (newDecay !== null) {
+        if (newDecay !== undefined) {
           for (const nextDecay of newDecay) {
             nextSets.push(nextDecay);
           }
@@ -280,7 +280,7 @@ export function genMarkovObstacles(
     fetchTime += Isaac.GetTime() - startTime;
 
     startTime = Isaac.GetTime();
-    if (newGridData !== null) {
+    if (newGridData !== undefined) {
       const isPassable = isGridPassable(newGridData.Type);
 
       newRoom.createMirroredEntity(

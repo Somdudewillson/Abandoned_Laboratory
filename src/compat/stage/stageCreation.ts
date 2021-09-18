@@ -1,22 +1,32 @@
+import {
+  MicrodroneEntityVariant,
+  MICRODRONE_ENTITYTYPE,
+} from "../../callbacks/handler_MicrodroneEvents";
 import { MOD_ID } from "../../constants";
 
 const DefaultShadingName = "_default";
 const DefaultShadingPrefix = "stageapi/shading/shading";
 
-const LabBackdrop = StageAPI.BackdropHelper(
-  {
-    Walls: ["a", "b", "c"],
-    NFloors: ["nfloor"],
-    LFloors: ["lfloor"],
-    Corners: ["corner"],
-  },
-  "gfx/backdrop/lab/restored/generic/main_",
-  "0001.png",
-);
-const LabGrid = StageAPI.GridGfx();
-LabGrid.SetRocks("gfx/grid/lab/restored/generic/lab_rocks.png");
+export function createStages(mod: Mod): void {
+  if (StageAPI === undefined) {
+    return;
+  }
 
-export function createStages(): void {
+  registerCallbacks(mod);
+
+  const LabBackdrop = StageAPI.BackdropHelper(
+    {
+      Walls: ["a", "b", "c"],
+      NFloors: ["nfloor"],
+      LFloors: ["lfloor"],
+      Corners: ["corner"],
+    },
+    "gfx/backdrop/lab/restored/generic/main_",
+    "0001.png",
+  );
+  const LabGrid = StageAPI.GridGfx();
+  LabGrid.SetRocks("gfx/grid/lab/restored/generic/lab_rocks.png");
+
   const lab1Stage = StageAPI.CustomStage("Lab I");
   lab1Stage.SetDisplayName("Lab I");
   lab1Stage.SetIsSecondStage(false);
@@ -80,7 +90,7 @@ const altGridItemPool = [
 function postAltGridBreak(
   grindex: number,
   grid: GridEntity,
-  _justBrokenGridSpawns: LuaTable<int, RemovedEntityData> | null,
+  _justBrokenGridSpawns: LuaTable<int, RemovedEntityData> | undefined,
 ): false | void {
   if (grid.GetType() !== GridEntityType.GRID_ROCK_ALT) {
     return;
@@ -101,7 +111,7 @@ function postAltGridBreak(
     let spawnItem = true;
     for (let i = 0; i < game.GetNumPlayers(); i++) {
       const player = Isaac.GetPlayer(i);
-      if (player === null) {
+      if (player === undefined) {
         continue;
       }
       if (player.HasCollectible(itemToSpawn)) {
@@ -118,7 +128,7 @@ function postAltGridBreak(
         itemToSpawn,
         spawnPos,
         Vector.Zero,
-        null,
+        undefined,
       );
       return false;
     }
@@ -136,11 +146,30 @@ function postAltGridBreak(
       cardSelection,
       spawnPos,
       Vector.Zero,
-      null,
+      undefined,
     );
   }
 
   return false;
+}
+
+function registerCallbacks(mod: Mod) {
+  mod.AddCallback(ModCallbacks.MC_PRE_ROOM_ENTITY_SPAWN, replaceEnemies);
+}
+
+function replaceEnemies(
+  entityType: number,
+  _variant: number,
+  _subType: number,
+  _gridIndex: number,
+  _seed: number,
+): void | [number, number, number] {
+  switch (entityType) {
+    default:
+      break;
+    case EntityType.ENTITY_FLY:
+      return [MICRODRONE_ENTITYTYPE, MicrodroneEntityVariant.ATTACK_DRONE, 0];
+  }
 }
 
 /*

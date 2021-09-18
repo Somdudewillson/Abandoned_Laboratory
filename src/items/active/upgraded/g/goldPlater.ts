@@ -53,7 +53,7 @@ export function use(
         5,
       ),
       Vector.Zero,
-      null,
+      undefined,
     ).ToPickup()!;
 
     newTrinket.OptionsPickupIndex = 58;

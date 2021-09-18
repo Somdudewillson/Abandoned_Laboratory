@@ -31,7 +31,7 @@ export function postBombInit(bomb: EntityBomb): void {
   }
   const spawner = bomb.SpawnerEntity;
   if (
-    spawner != null &&
+    spawner != undefined &&
     spawner.Type === EntityType.ENTITY_PLAYER &&
     spawner.ToPlayer()!.HasCollectible(ownType())
   ) {

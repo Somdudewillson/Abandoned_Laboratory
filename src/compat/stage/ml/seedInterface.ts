@@ -9,12 +9,12 @@ export function getFromModel(
   modelData: SeedWrapper,
   shape: RoomShape,
   flatPos: FlatGridVector,
-): Array<{ token: EntityToken; weight: float }> | null {
+): Array<{ token: EntityToken; weight: float }> | undefined {
   const result: Array<{ token: EntityToken; weight: float }> = [];
 
   const entrySet = modelData.Model.get(`${shape} ${math.floor(flatPos)}`);
-  if (entrySet == null) {
-    return null;
+  if (entrySet == undefined) {
+    return undefined;
   }
 
   for (const [entryToken, entryWeight] of pairs(entrySet)) {

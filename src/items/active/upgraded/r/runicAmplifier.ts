@@ -21,11 +21,8 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean {
-  const room: Room = Game().GetRoom();
-  // const level: Level = Game().GetLevel();
-
   const currentCard: Card = player.GetCard(0);
-  if (currentCard == null || currentCard === 0) {
+  if (currentCard === undefined || currentCard === 0) {
     return false;
   }
   const hasTarot: boolean = player.HasCollectible(
@@ -81,7 +78,7 @@ export function use(
       }
       break;
     case Card.RUNE_HAGALAZ: // Hagalaz
-      doHagalaz(player, room);
+      doHagalaz(player);
       break;
     case Card.RUNE_ALGIZ: // Algiz
       player.UseCard(Card.RUNE_ALGIZ);
@@ -151,7 +148,7 @@ export function use(
       doSilentGoldenRazor(player, hasTarot ? 2 : 1);
       break;
     case Card.RUNE_JERA: // Jera
-      doJera(player, rand, room, hasTarot);
+      doJera(player, rand, hasTarot);
       break;
     case Card.CARD_SOUL_KEEPER: // Soul of the Keeper
       spawnCoins(
@@ -186,7 +183,7 @@ export function use(
   return true;
 }
 
-function doSilentGoldenRazor(player: EntityPlayer, repeat: int = 1): void {
+function doSilentGoldenRazor(player: EntityPlayer, repeat: int = 1) {
   const coins = player.GetNumCoins();
   for (let i = 0; i < repeat; i++) {
     player.UseActiveItem(
@@ -200,13 +197,12 @@ function doSilentGoldenRazor(player: EntityPlayer, repeat: int = 1): void {
   player.AddCoins(coins - player.GetNumCoins());
 }
 
-function doHagalaz(player: EntityPlayer, room: Room): void {
+function doHagalaz(player: EntityPlayer) {
   player.UseCard(Card.RUNE_HAGALAZ);
 
-  const entities = room.GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-    if (entity == null) {
+  const entities = Isaac.GetRoomEntities();
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
 
@@ -227,25 +223,15 @@ function doHagalaz(player: EntityPlayer, room: Room): void {
   }
 }
 
-function doJera(
-  player: EntityPlayer,
-  rand: RNG,
-  room: Room,
-  hasTarot: boolean,
-): void {
+function doJera(player: EntityPlayer, rand: RNG, hasTarot: boolean) {
   player.UseCard(Card.RUNE_JERA);
   if (hasTarot) {
     player.UseCard(Card.RUNE_JERA);
   }
 
-  const entities = room.GetEntities();
+  const entities = Isaac.GetRoomEntities();
   let pickupPresent = false;
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-    if (entity == null) {
-      continue;
-    }
-
+  for (const entity of entities) {
     if (entity.Type !== EntityType.ENTITY_PICKUP) {
       continue;
     }

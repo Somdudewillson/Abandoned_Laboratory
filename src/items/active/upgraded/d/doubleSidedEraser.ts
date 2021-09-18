@@ -34,10 +34,10 @@ export function use(
     EntityRef(player),
     SaveType.PER_FLOOR,
     ERASER_SAVE_KEY + ActiveSlot.toString(),
-  ) as number | null;
+  ) as number | undefined;
   // Isaac.DebugString(`uses: ${uses}`);
 
-  if (uses === null || uses > 1) {
+  if (uses === undefined || uses > 1) {
     queueThrowable(player, ownType(), ActiveSlot, doThrow, 1);
     // Isaac.DebugString("Recharging...");
 

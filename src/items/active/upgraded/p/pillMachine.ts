@@ -13,7 +13,7 @@ export function use(
   _CustomVarData: int,
 ): boolean {
   const currentPillColor: PillColor = player.GetPill(0);
-  if (currentPillColor == null || currentPillColor === PillColor.PILL_NULL) {
+  if (currentPillColor == undefined || currentPillColor === PillColor.PILL_NULL) {
     return false;
   }
   const currentPillEffect: PillEffect = Game()

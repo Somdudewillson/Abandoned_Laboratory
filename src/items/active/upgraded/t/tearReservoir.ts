@@ -27,11 +27,11 @@ export function use(
 }
 
 export function postTear(tear: EntityTear): void {
-  if (tear.SpawnerEntity == null) {
+  if (tear.SpawnerEntity === undefined) {
     return;
   }
   const player = tear.SpawnerEntity.ToPlayer();
-  if (player == null) {
+  if (player === undefined) {
     return;
   }
 
@@ -66,5 +66,5 @@ export function doFire(
     player.FireTear(player.Position, fireDir, true, true, false, player);
   }
 
-  player.SetActiveCharge(0,data);
+  player.SetActiveCharge(0, data);
 }

@@ -47,6 +47,6 @@ export function doThrow(
 
   newBall.Parent = player;
   newBall.State = data;
-  newBall.Size = capturedEntityData == null ? 0 : 2;
+  newBall.Size = capturedEntityData === undefined ? 0 : 2;
   newBall.SpriteScale = Vector(1.15, 1.15);
 }

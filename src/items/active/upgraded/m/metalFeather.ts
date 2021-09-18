@@ -20,10 +20,9 @@ export function use(
   const targets: Vector[] = [];
 
   // Add all enemies as targets
-  const entities = room.GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-    if (entity === null) {
+  const entities = Isaac.GetRoomEntities();
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
 

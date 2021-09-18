@@ -53,14 +53,14 @@ function updateBarrierDrone(self: EntityNPC): boolean | void {
     100,
     EntityPartition.TEAR,
   );
-  let nearestTear = null;
+  let nearestTear = undefined;
   let nearestDist = 0;
   for (const tear of nearTears) {
     const tearDist = self.Position.DistanceSquared(tear.Position);
     const playerDist = tear.Parent!.Position.DistanceSquared(tear.Position);
 
     if (
-      (nearestTear === null || tearDist < nearestDist) &&
+      (nearestTear === undefined || tearDist < nearestDist) &&
       playerDist > 75 * 75
     ) {
       nearestTear = tear;
@@ -68,7 +68,7 @@ function updateBarrierDrone(self: EntityNPC): boolean | void {
     }
   }
 
-  if (nearestTear !== null) {
+  if (nearestTear !== undefined) {
     // Chase tears
     const futureTearPos = nearestTear.Position.add(
       nearestTear.Velocity.mul(Vector(3, 3)),
@@ -91,7 +91,7 @@ function updateBarrierDrone(self: EntityNPC): boolean | void {
       self.AddVelocity(self.Position.sub(playerPos).Resized(0.15));
     } else {
       // Loose orbit movement
-      if (self.GetData().orbitDir === null) {
+      if (self.GetData().orbitDir === undefined) {
         self.GetData().orbitDir = 90;
       }
       if (self.GetDropRNG().RandomFloat() < 0.01) {
@@ -108,8 +108,8 @@ function updateBarrierDrone(self: EntityNPC): boolean | void {
   }
 
   // Update timeout
-  const curTimeout = self.GetData().timeout as number | null;
-  if (curTimeout !== null && curTimeout > 0) {
+  const curTimeout = self.GetData().timeout as number | undefined;
+  if (curTimeout !== undefined && curTimeout > 0) {
     self.GetData().timeout = curTimeout - 1;
     if (curTimeout - 1 <= 0) {
       sprite.Play(BarrierDroneAnimKey.FLY, true);
@@ -154,8 +154,8 @@ function updatePredictorDrone(self: EntityNPC): boolean | void {
     self.Velocity = Vector.Zero;
 
     if (sprite.IsPlaying(PredictorDroneAnimKey.TELEPORT_BEGIN)) {
-      const oldAvg = self.GetData().avgVector as Vector | null;
-      if (oldAvg === null) {
+      const oldAvg = self.GetData().avgVector as Vector | undefined;
+      if (oldAvg === undefined) {
         self.GetData().avgVector = Vector(
           targetPlayer.Velocity.X,
           targetPlayer.Velocity.Y,
@@ -183,7 +183,7 @@ function updatePredictorDrone(self: EntityNPC): boolean | void {
         .GetClampedPosition(targetPlayer.Position.add(targetShift), 7);
 
       sprite.Play(PredictorDroneAnimKey.TELEPORT_END, true);
-      self.GetData().avgVector = null;
+      self.GetData().avgVector = undefined;
     } else if (sprite.IsFinished(PredictorDroneAnimKey.TELEPORT_END)) {
       sprite.Play(PredictorDroneAnimKey.FLY, true);
 
@@ -193,13 +193,13 @@ function updatePredictorDrone(self: EntityNPC): boolean | void {
   }
 
   // Update timeout
-  const curTimeout = self.GetData().timeout as number | null;
-  if (curTimeout !== null && curTimeout > 0) {
+  const curTimeout = self.GetData().timeout as number | undefined;
+  if (curTimeout !== undefined && curTimeout > 0) {
     self.GetData().timeout = curTimeout - 1;
     if (curTimeout - 1 <= 0 && isMoving) {
       sprite.Play(PredictorDroneAnimKey.TELEPORT_BEGIN, true);
     }
-  } else if (curTimeout === null) {
+  } else if (curTimeout === undefined) {
     self.GetData().timeout =
       30 * 2 + Math.round(self.GetDropRNG().RandomFloat() * 30);
   }
@@ -217,8 +217,8 @@ export function interceptDamage(
     return;
   }
 
-  const curTimeout = tookDamage.GetData().timeout as number | null;
-  if (curTimeout !== null && curTimeout > 0) {
+  const curTimeout = tookDamage.GetData().timeout as number | undefined;
+  if (curTimeout !== undefined && curTimeout > 0) {
     return false;
   }
 

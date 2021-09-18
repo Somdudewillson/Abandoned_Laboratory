@@ -50,24 +50,24 @@ export function postDeath(npc: EntityNPC): void {
   const level = Game().GetLevel();
 
   for (const callback of perDeathListeners) {
-    callback.call(null, npc, room, level);
+    callback.call(undefined, npc, room, level);
   }
 
   for (let p = 0; p < Game().GetNumPlayers(); p++) {
     const player = Isaac.GetPlayer(p);
-    if (player === null) {
+    if (player === undefined) {
       continue;
     }
 
     for (const callback of perPlayerListeners) {
-      callback.call(null, npc, player, room, level);
+      callback.call(undefined, npc, player, room, level);
     }
 
     for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
       if (perSlotListeners.has(player.GetActiveItem(s))) {
         perSlotListeners
           .get(player.GetActiveItem(s))!
-          .call(null, npc, player, s, room, level);
+          .call(undefined, npc, player, s, room, level);
       }
     }
   }

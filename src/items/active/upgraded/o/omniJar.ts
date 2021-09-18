@@ -25,9 +25,9 @@ export function use(
     EntityRef(player),
     SaveType.PER_RUN,
     SAVE_KEY_USES,
-  ) as null | int;
+  ) as undefined | int;
 
-  if (uses == null) {
+  if (uses == undefined) {
     savePlayerData(EntityRef(player), SaveType.PER_RUN, SAVE_KEY_USES, 2);
   } else if (uses > 3) {
     savePlayerData(EntityRef(player), SaveType.PER_RUN, SAVE_KEY_USES, 1);
@@ -143,7 +143,7 @@ function spawnFinalRewards(
     BombSubType.BOMB_GIGA,
     true,
   );
-  player.AddBlueFlies(randomInt(rand, 3, 9), position, null);
+  player.AddBlueFlies(randomInt(rand, 3, 9), position, undefined);
   for (let i = 0; i < randomInt(rand, 3, 9); i++) {
     player.AddBlueSpider(position);
   }

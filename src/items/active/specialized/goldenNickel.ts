@@ -23,12 +23,12 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean {
-  let coinShields: int | null = SaveUtil.getPlayerData(
+  let coinShields: int | undefined = SaveUtil.getPlayerData(
     EntityRef(player),
     SaveType.PER_RUN,
     KEY_COIN_SHIELDS,
-  ) as number | null;
-  if (coinShields === null) {
+  ) as number | undefined;
+  if (coinShields === undefined) {
     coinShields = 0;
   }
 
@@ -73,16 +73,16 @@ export function interceptDamage(
   }
 
   const player = TookDamage.ToPlayer();
-  if (player === null) {
+  if (player === undefined) {
     return;
   }
 
-  const coinShields: int | null = SaveUtil.getPlayerData(
+  const coinShields: int | undefined = SaveUtil.getPlayerData(
     EntityRef(player),
     SaveType.PER_RUN,
     KEY_COIN_SHIELDS,
-  ) as number | null;
-  if (coinShields === null || coinShields <= 0) {
+  ) as number | undefined;
+  if (coinShields === undefined || coinShields <= 0) {
     return;
   }
 

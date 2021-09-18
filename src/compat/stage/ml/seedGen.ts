@@ -124,9 +124,9 @@ function getValidSpots(
 
 function pickWeighted(
   rand: RNG,
-  options: Array<{ token: EntityToken; weight: float }> | null,
+  options: Array<{ token: EntityToken; weight: float }> | undefined,
 ): EntityToken {
-  if (options === null || options.length === 0) {
+  if (options === undefined || options.length === 0) {
     return EntityToken.AIR;
   }
 
@@ -196,7 +196,7 @@ export function seedObstacles(
     fetchTime += Isaac.GetTime() - startTime;
 
     startTime = Isaac.GetTime();
-    if (newGridData !== null) {
+    if (newGridData !== undefined) {
       const isPassable = isGridPassable(newGridData.Type);
 
       newRoom.createMirroredEntity(

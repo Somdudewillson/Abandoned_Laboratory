@@ -14,16 +14,11 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
-  const entities = Game().GetRoom().GetEntities();
-  const indexes: int[] = [];
-  for (let i = 0; i < entities.Size; i++) {
-    indexes.push(i);
-  }
-  shuffleArray(indexes, rand);
+  const entities = Isaac.GetRoomEntities();
+  shuffleArray(entities, rand);
 
-  for (let i = 0; i < indexes.length; i++) {
-    const entity = entities.Get(indexes[i]);
-    if (entity == null) {
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
 

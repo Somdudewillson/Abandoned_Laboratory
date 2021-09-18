@@ -64,24 +64,24 @@ export function preClean(rand: RNG, SpawnPosition: Vector): boolean | void {
   const level = Game().GetLevel();
 
   for (const callback of perCleanListeners) {
-    callback.call(null, rand, SpawnPosition, room, level);
+    callback.call(undefined, rand, SpawnPosition, room, level);
   }
 
   for (let p = 0; p < Game().GetNumPlayers(); p++) {
     const player = Isaac.GetPlayer(p);
-    if (player === null) {
+    if (player === undefined) {
       continue;
     }
 
     for (const callback of perPlayerListeners) {
-      callback.call(null, rand, SpawnPosition, player, room, level);
+      callback.call(undefined, rand, SpawnPosition, player, room, level);
     }
 
     for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
       if (perSlotListeners.has(player.GetActiveItem(s))) {
         perSlotListeners
           .get(player.GetActiveItem(s))!
-          .call(null, rand, SpawnPosition, player, s, room, level);
+          .call(undefined, rand, SpawnPosition, player, s, room, level);
       }
     }
   }

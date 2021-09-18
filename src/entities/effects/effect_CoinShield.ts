@@ -4,7 +4,7 @@ const ORBIT_HEIGHT = -15;
 
 export function update(self: EntityEffect): void {
   const parent = self.Parent;
-  if (parent === null) {
+  if (parent === undefined) {
     self.Remove();
     return;
   }

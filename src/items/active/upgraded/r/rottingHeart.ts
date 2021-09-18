@@ -14,7 +14,7 @@ export function use(
   _CustomVarData: int,
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
   player.AddRottenHearts(2);
-  player.AddBlueFlies(randomInt(rand, 1, 5), player.Position, null);
+  player.AddBlueFlies(randomInt(rand, 1, 5), player.Position, undefined);
 
   return true;
 }

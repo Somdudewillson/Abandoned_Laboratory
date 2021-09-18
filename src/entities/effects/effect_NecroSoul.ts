@@ -15,7 +15,7 @@ const ABSORB_DIST = 25;
 
 export function update(self: EntityEffect): void {
   const target = self.Target;
-  if (target === null) {
+  if (target === undefined) {
     self.Remove();
     return;
   }

@@ -24,10 +24,9 @@ export function use(
   const targets: Vector[] = [];
 
   // Add all enemies, stone chests, and blue/purple fireplaces as targets
-  const entities = room.GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-    if (entity === null) {
+  const entities = Isaac.GetRoomEntities();
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
 
@@ -64,7 +63,7 @@ export function use(
   // Add tinted rocks as targets
   for (let g = 0; g < room.GetGridSize(); g++) {
     const gridEnt = room.GetGridEntity(g);
-    if (gridEnt === null) {
+    if (gridEnt === undefined) {
       continue;
     }
 
@@ -89,7 +88,7 @@ export function use(
         BombSubType.BOMB_TROLL,
         targets.pop()!,
         Vector.Zero,
-        null,
+        undefined,
       );
     } else {
       spawnPickupCluster(

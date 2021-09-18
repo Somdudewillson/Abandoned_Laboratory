@@ -145,7 +145,7 @@ function validatePitPos(
   let adjPits = 0;
   for (const diagonal of diagonalPos) {
     const grid = room.getGridEntity(diagonal);
-    if (grid === null || grid.ISDOOR) {
+    if (grid === undefined || grid.ISDOOR) {
       continue;
     }
     const gridEnt = grid as LuaRoomEntity;
@@ -162,7 +162,7 @@ function validatePitPos(
   let adjRock = 0;
   for (const cardinal of cardinalPos) {
     const grid = room.getGridEntity(cardinal);
-    if (grid === null || grid.ISDOOR) {
+    if (grid === undefined || grid.ISDOOR) {
       continue;
     }
     const gridType = (grid as LuaRoomEntity)[1].TYPE;
@@ -216,7 +216,7 @@ function validateAccessiblity(
   const transformOptions: GridEntityType[] = [];
   for (const cardinal of cardinalPos) {
     const grid = room.getGridEntity(cardinal);
-    if (grid === null || grid.ISDOOR) {
+    if (grid === undefined || grid.ISDOOR) {
       continue;
     }
     const gridType = (grid as LuaRoomEntity)[1].TYPE;

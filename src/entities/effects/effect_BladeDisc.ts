@@ -22,8 +22,8 @@ export function update(self: EntityEffect): void {
 }
 
 function doBounce(bouncePos: Vector, self: EntityEffect, room: Room): boolean {
-  const bounces = self.GetData().bounces as number | null;
-  if (bounces === null) {
+  const bounces = self.GetData().bounces as number | undefined;
+  if (bounces === undefined) {
     self.GetData().bounces = 1;
   } else if (bounces < MAX_BOUNCES) {
     (self.GetData().bounces as number)++;
@@ -112,8 +112,8 @@ function doPickup(self: EntityEffect, target: EntityPickup): void {
     return;
   }
 
-  const pickups = self.GetData().pickups as null | int[];
-  if (pickups === null) {
+  const pickups = self.GetData().pickups as undefined | int[];
+  if (pickups === undefined) {
     self.GetData().pickups = [packPickup(target)];
   } else {
     pickups.push(packPickup(target));
@@ -123,9 +123,9 @@ function doPickup(self: EntityEffect, target: EntityPickup): void {
 }
 
 function doDeath(self: EntityEffect): void {
-  const pickups = self.GetData().pickups as null | int[];
+  const pickups = self.GetData().pickups as undefined | int[];
 
-  if (pickups !== null && pickups.length > 0) {
+  if (pickups !== undefined && pickups.length > 0) {
     let first = true;
     for (const packedPickup of pickups) {
       if (first) {

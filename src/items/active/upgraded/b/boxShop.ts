@@ -24,7 +24,7 @@ export function use(
     0,
     Isaac.GetFreeNearPosition(centerPos.add(Vector(0, -85)), 5),
     Vector.Zero,
-    null,
+    undefined,
   );
 
   // Spawn reroll machine
@@ -35,7 +35,7 @@ export function use(
       0,
       Isaac.GetFreeNearPosition(centerPos.add(Vector(-160, -160)), 5),
       Vector.Zero,
-      null,
+      undefined,
     );
   }
 

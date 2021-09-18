@@ -186,11 +186,14 @@ function postGameStarted(isContinued:boolean) {
     SaveUtil.deserialize(ABANDONED_LABORATORY.LoadData(),isContinued);
   }
 
-  if (EID !== null) {registerExternalItemDescriptions();}
-  if (STAGE_TESTING && StageAPI !== null) {
+  if (EID !== undefined) {registerExternalItemDescriptions();}
+  if (StageAPI !== undefined) {
     Isaac.DebugString("|LABOS| Stage API detected");
+    StageAPI.UnregisterCallbacks(ABANDONED_LABORATORY);
 
-    STAGE_CREATION.createStages();
+    if (STAGE_TESTING) {
+      STAGE_CREATION.createStages(ABANDONED_LABORATORY);
+    }
   }
 
   if (!isContinued && DEBUG_SPAWN) {
@@ -204,7 +207,7 @@ function postGameStarted(isContinued:boolean) {
       collectible,
       Game().GetRoom().GetCenterPos(),
       Vector.Zero,
-      null);
+      undefined);
 
     Isaac.Spawn(
        MachineEntityType.UPGRADEMACHINE,
@@ -212,7 +215,7 @@ function postGameStarted(isContinued:boolean) {
        0,
        Game().GetRoom().GetTopLeftPos().add(Vector(50, 15)),
        Vector.Zero,
-       null);
+       undefined);
   }
 }
 function preGameExit(willContinue:boolean) {
@@ -240,10 +243,6 @@ ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_UPDATE, PostUpdateHandler.
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, PreCleanHandler.preClean);
 ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_DEATH, PostNPCDeathHandler.postDeath);
 PostUpdateHandler.addPlayerListener(ThrownHandler.postUpdate);
-
-StageAPI.UnregisterCallbacks(ABANDONED_LABORATORY);
-// ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NEW_ROOM, LAYOUT_GEN.dumpRoomPos);
-// StageAPI.AddCallback(ABANDONED_LABORATORY, StageCallback.PRE_ROOM_LAYOUT_CHOOSE, 0, STAGE_CREATION.preRoom);
 
 Isaac.DebugString("|LABOS| Boot initialization complete");
 
@@ -427,7 +426,7 @@ let items = 0;
 const itemConfig = Isaac.GetItemConfig();
 for (let i=1;i<CollectibleType.NUM_COLLECTIBLES;i++) {
   const testConfig = itemConfig.GetCollectible(i);
-    if (testConfig !== null && testConfig.Type === ItemType.ITEM_ACTIVE && !testConfig.HasTags(ItemConfigTag.QUEST) && !testConfig.Hidden) {
+    if (testConfig !== undefined && testConfig.Type === ItemType.ITEM_ACTIVE && !testConfig.HasTags(ItemConfigTag.QUEST) && !testConfig.Hidden) {
       items++;
     if (itemHasUpgrade(i)) {
       itemsWithUpgrade++;

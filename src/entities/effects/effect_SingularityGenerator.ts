@@ -104,7 +104,7 @@ function implodeObstacles(
 
   for (let i = 0; i < room.GetGridSize(); i++) {
     const gridEntity = room.GetGridEntity(i);
-    if (gridEntity === null) {
+    if (gridEntity === undefined) {
       continue;
     }
     if (gridEntity.CollisionClass === GridCollisionClass.COLLISION_NONE) {
@@ -140,7 +140,7 @@ function spawnDebris(
   room: Room,
 ): void {
   let debrisVariant = EffectVariant.EFFECT_NULL;
-  let colorShift: null | Color = null;
+  let colorShift: undefined | Color = undefined;
   switch (source.GetType()) {
     case GridEntityType.GRID_ROCK_GOLD:
     case GridEntityType.GRID_ROCK:
@@ -181,9 +181,9 @@ function spawnDebris(
       0,
       source.Position,
       randomOnCircle(rand, rand.RandomFloat() * 5 + 5),
-      null,
+      undefined,
     );
-    if (colorShift !== null) {
+    if (colorShift !== undefined) {
       newDebris.SetColor(colorShift, -1, 1);
     }
   }
@@ -246,13 +246,13 @@ function shouldImplodeEntity(target: Entity): boolean {
     return false;
   }
   if (
-    target.Parent !== null &&
+    target.Parent !== undefined &&
     target.Parent.Type === EntityType.ENTITY_PLAYER
   ) {
     return false;
   }
   if (
-    target.SpawnerEntity !== null &&
+    target.SpawnerEntity !== undefined &&
     target.SpawnerEntity.Type === EntityType.ENTITY_PLAYER
   ) {
     return false;

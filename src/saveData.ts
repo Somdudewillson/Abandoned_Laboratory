@@ -125,7 +125,7 @@ export function deserialize(data: string, isContinued: boolean): void {
 
   /* for (let p = 0; p < 4; p++) {
     const player = Isaac.GetPlayer(p);
-    if (player == null) {
+    if (player == undefined) {
       continue;
     }
     PLAYER_HASHES.set(GetPtrHash(player), p);

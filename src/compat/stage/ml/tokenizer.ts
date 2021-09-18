@@ -58,12 +58,12 @@ export const enum EntityToken {
   PICKUP_SACK = 38,
 }
 /** "Decays" a token into a more generic form.
- * @returns The decayed `EntityToken`, or `null` if the given `EntityToken` cannot decay.
+ * @returns The decayed `EntityToken`, or `undefined` if the given `EntityToken` cannot decay.
  */
-export function decayToken(original: EntityToken): EntityToken | null {
+export function decayToken(original: EntityToken): EntityToken | undefined {
   switch (original) {
     default:
-      return null;
+      return undefined;
     case EntityToken.TNT_PUSHABLE:
       return EntityToken.TNT;
     case EntityToken.PICKUP:
@@ -115,25 +115,25 @@ export function decayToken(original: EntityToken): EntityToken | null {
   }
 }
 /** "Decays" a set of tokens into every possible set of more generic forms. */
-export function decayTokens(originals: EntityToken[]): EntityToken[][] | null {
+export function decayTokens(originals: EntityToken[]): EntityToken[][] | undefined {
   const options: EntityToken[][] = [];
 
   // Get decay products of each original
-  let nullCount = 0;
+  let undefinedCount = 0;
   for (let i = 0; i < originals.length; i++) {
     const decayed = decayToken(originals[i]);
 
-    if (decayed != null) {
+    if (decayed != undefined) {
       options.push([originals[i], decayed]);
     } else {
       options.push([originals[i]]);
-      nullCount++;
+      undefinedCount++;
     }
   }
 
   // If none of the original tokens can decay, short-circuit
-  if (nullCount === originals.length) {
-    return null;
+  if (undefinedCount === originals.length) {
+    return undefined;
   }
 
   const out: EntityToken[][] = [];
@@ -168,7 +168,7 @@ export function decayTokens(originals: EntityToken[]): EntityToken[][] | null {
     }
   }
 
-  return null;
+  return undefined;
 }
 /** Minifies an `EntityToken` into a single character. */
 export function minifyToken(token: EntityToken): string {
@@ -279,15 +279,15 @@ export function tokenize(entity: EntityData): EntityToken {
 }
 
 /** Converts an `EntityToken` to an entity type. */
-export function detokenize(token: EntityToken): EntityData | null {
+export function detokenize(token: EntityToken): EntityData | undefined {
   switch (token) {
     default:
     case EntityToken.AIR:
-      return null;
+      return undefined;
     case EntityToken.WALL:
-      return null;
+      return undefined;
     case EntityToken.DOOR:
-      return null;
+      return undefined;
     case EntityToken.PASSABLE:
       return newEntityData(LayoutGridType.POOP, 0, 0);
     case EntityToken.IMPASSABLE_GROUND:

@@ -17,9 +17,9 @@ export function use(
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
   const teleportedToUltra = getGlobalData(SaveType.PER_FLOOR, SAVE_KEY) as
     | boolean
-    | null;
+    | undefined;
 
-  if (teleportedToUltra == null || !teleportedToUltra) {
+  if (teleportedToUltra === undefined || !teleportedToUltra) {
     player.UseCard(
       Card.CARD_REVERSE_MOON,
       UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER,

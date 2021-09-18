@@ -75,7 +75,7 @@ export function use(
   let maxPillRank = -5;
   for (let i = 1; i < PillColor.NUM_STANDARD_PILLS; i++) {
     let pillRank = PILL_EFF_RANKING.get(itemPool.GetPillEffect(i, player));
-    pillRank = pillRank == null ? 0 : pillRank;
+    pillRank = pillRank == undefined ? 0 : pillRank;
 
     if (pillRank > maxPillRank) {
       maxPillRank = pillRank;

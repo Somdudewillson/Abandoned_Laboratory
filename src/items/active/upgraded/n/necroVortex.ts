@@ -22,10 +22,9 @@ export function use(
     damageMult++;
   }
 
-  const entities = Game().GetRoom().GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-    if (entity == null) {
+  const entities = Isaac.GetRoomEntities();
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
 

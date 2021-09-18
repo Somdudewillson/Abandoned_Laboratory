@@ -29,7 +29,7 @@ export function use(
     player.GetPlayerType() === PlayerType.PLAYER_KEEPER ||
     player.GetPlayerType() === PlayerType.PLAYER_KEEPER_B
   ) {
-    player.AddBlueFlies(randomInt(rand, 2, 4), player.Position, null);
+    player.AddBlueFlies(randomInt(rand, 2, 4), player.Position, undefined);
   } else {
     spawnCoins(randomInt(rand, 1, 3), player.Position, rand, true, true);
   }

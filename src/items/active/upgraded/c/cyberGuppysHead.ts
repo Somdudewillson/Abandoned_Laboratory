@@ -16,7 +16,7 @@ export function use(
   const entities = Isaac.GetRoomEntities();
   let hadEnemies = false;
   for (const entity of entities) {
-    if (entity == null) {
+    if (entity == undefined) {
       continue;
     }
     if (!entity.IsActiveEnemy(false)) {
@@ -31,7 +31,7 @@ export function use(
     }
   }
   if (!hadEnemies) {
-    player.AddBlueFlies(randomInt(rand, 4, 6), player.Position, null);
+    player.AddBlueFlies(randomInt(rand, 4, 6), player.Position, undefined);
   }
 
   return true;

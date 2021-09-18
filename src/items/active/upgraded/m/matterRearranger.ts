@@ -168,13 +168,10 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean {
-  const room: Room = Game().GetRoom();
-
-  const entities = room.GetEntities();
+  const entities = Isaac.GetRoomEntities();
   let points: float = 0;
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-    if (entity == null) {
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
 
@@ -210,7 +207,7 @@ export function use(
     const pickupWeights = copyWeights(BASE_PICKUP_WEIGHTS);
 
     // ---Modify weights conditionally---
-    for (const entry of pickupWeights) {
+    for (const entry of pickupWeights.entries()) {
       modifyWeight(entry, pickupWeights, spawningData, points);
     }
 
@@ -408,13 +405,13 @@ function weightedRandomPickup(
   rand: RNG,
 ): { variant: number; subtype: number; cost: number } {
   let sum = 0;
-  for (const entry of weights) {
+  for (const entry of weights.entries()) {
     sum += entry[1].weight;
   }
 
   let selection = rand.RandomFloat() * sum;
 
-  for (const entry of weights) {
+  for (const entry of weights.entries()) {
     if (selection < entry[1].weight) {
       const newVariant = Math.floor(entry[0] / 100);
       return {
@@ -460,7 +457,7 @@ function modifyWeight(
     keyChests: number;
   },
   points: int,
-): void {
+) {
   const key = entry[0];
   const value = entry[1];
   const variant = Math.floor(key / 100);

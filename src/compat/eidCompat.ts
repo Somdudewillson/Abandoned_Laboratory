@@ -2,6 +2,10 @@
 import { CollectibleTypeLabUpgrade } from "../constants";
 
 export function registerExternalItemDescriptions(): void {
+  if (EID === undefined) {
+    return;
+  }
+
   // =====Upgraded Vanilla Items=====
   EID.addCollectible(
     CollectibleTypeLabUpgrade.COLLECTIBLE_DIGITALCARD,

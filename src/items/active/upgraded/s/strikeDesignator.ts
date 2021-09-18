@@ -21,7 +21,7 @@ export function use(
   // Add all enemies as targets
   const entities = Isaac.GetRoomEntities();
   for (const entity of entities) {
-    if (entity === null) {
+    if (entity === undefined) {
       continue;
     }
 
@@ -45,7 +45,7 @@ export function use(
   // Add tinted/super-secret rocks as targets
   for (let i = 0; i < room.GetGridSize(); i++) {
     const gridEntity = room.GetGridEntity(i);
-    if (gridEntity === null) {
+    if (gridEntity === undefined) {
       continue;
     }
 
@@ -62,7 +62,7 @@ export function use(
   // Add secret rooms as targets
   for (let i = 0; i < DoorSlot.NUM_DOOR_SLOTS; i++) {
     const door = room.GetDoor(i);
-    if (door === null) {
+    if (door === undefined) {
       continue;
     }
     if (

@@ -50,7 +50,7 @@ export function postRoom(
   }
 
   const triggerSlot = player.GetData().zTriggered as number;
-  if (triggerSlot != null || triggerSlot !== 0) {
+  if (triggerSlot !== undefined || triggerSlot !== 0) {
     player.SetActiveCharge(0, triggerSlot - 1);
     player.GetData().zTriggered = 0;
   }

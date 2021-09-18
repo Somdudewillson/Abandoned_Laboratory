@@ -25,20 +25,20 @@ export function use(
     CollectibleType.COLLECTIBLE_CAR_BATTERY,
   );
   const inCooldown = !(
-    player.GetData().omniCooldown == null ||
+    player.GetData().omniCooldown == undefined ||
     (player.GetData().omniCooldown as number) < Isaac.GetFrameCount()
   );
 
   const entities = Isaac.GetRoomEntities();
   for (const entity of entities) {
-    if (entity == null) {
+    if (entity == undefined) {
       continue;
     }
 
     if (
       ((entity.Type === EntityType.ENTITY_TEAR && !inCooldown) ||
         entity.Type === EntityType.ENTITY_BOMBDROP) &&
-      entity.SpawnerEntity != null &&
+      entity.SpawnerEntity != undefined &&
       GetPtrHash(entity.SpawnerEntity) === GetPtrHash(player)
     ) {
       for (let i = 0; i < (hasCarBattery ? TEAR_COUNT * 2 : TEAR_COUNT); i++) {
@@ -75,7 +75,7 @@ export function postBombInit(bomb: EntityBomb): void {
   }
   const spawner = bomb.SpawnerEntity;
   if (
-    spawner != null &&
+    spawner != undefined &&
     spawner.Type === EntityType.ENTITY_PLAYER &&
     spawner.ToPlayer()!.HasCollectible(ownType())
   ) {

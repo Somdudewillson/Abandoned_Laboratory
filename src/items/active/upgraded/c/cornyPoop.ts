@@ -23,11 +23,11 @@ export function use(
     player.Position,
     true,
   )
-    .ToPoop()
+    .ToPoop()!
     .ReduceSpawnRate();
 
   if (rand.RandomFloat() < 0.5) {
-    player.AddBlueFlies(1, player.Position, null);
+    player.AddBlueFlies(1, player.Position, undefined);
   }
 
   return true;

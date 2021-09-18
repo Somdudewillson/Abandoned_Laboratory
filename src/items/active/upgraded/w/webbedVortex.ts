@@ -13,10 +13,9 @@ export function use(
   _ActiveSlot: int,
   _CustomVarData: int,
 ): boolean | { Discharge: boolean; Remove: boolean; ShowAnim: boolean } {
-  const entities = Game().GetRoom().GetEntities();
-  for (let i = 0; i < entities.Size; i++) {
-    const entity = entities.Get(i);
-    if (entity == null) {
+  const entities = Isaac.GetRoomEntities();
+  for (const entity of entities) {
+    if (entity === undefined) {
       continue;
     }
 

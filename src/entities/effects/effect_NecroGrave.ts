@@ -106,7 +106,7 @@ function countSpawned(): int {
       continue;
     }
     if (
-      entity.SpawnerEntity !== null &&
+      entity.SpawnerEntity !== undefined &&
       entity.SpawnerEntity.Type === EntityType.ENTITY_EFFECT &&
       entity.SpawnerEntity.Variant === 579 &&
       entity.SpawnerEntity.SubType === 18

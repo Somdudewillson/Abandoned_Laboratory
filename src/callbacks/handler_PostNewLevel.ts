@@ -27,24 +27,24 @@ export function postLevel(): void {
   const level = Game().GetLevel();
 
   for (const callback of perLevelListeners) {
-    callback.call(null, level);
+    callback.call(undefined, level);
   }
 
   for (let p = 0; p < Game().GetNumPlayers(); p++) {
     const player = Isaac.GetPlayer(p);
-    if (player === null) {
+    if (player === undefined) {
       continue;
     }
 
     for (const callback of perPlayerListeners) {
-      callback.call(null, player, level);
+      callback.call(undefined, player, level);
     }
 
     for (let s = 0; s < ActiveSlot.SLOT_POCKET2; s++) {
       if (perSlotListeners.has(player.GetActiveItem(s))) {
         perSlotListeners
           .get(player.GetActiveItem(s))!
-          .call(null, player, s, level);
+          .call(undefined, player, s, level);
       }
     }
   }

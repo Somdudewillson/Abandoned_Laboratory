@@ -7,8 +7,12 @@ export function getCoinVal(pickup: EntityPickup, useDevil = false): int {
     case PickupVariant.PICKUP_COLLECTIBLE:
       if (useDevil) {
         // Calculate item value
+        const collectibleConfig = Isaac.GetItemConfig().GetCollectible(
+          pickup.SubType,
+        );
         return (
-          Isaac.GetItemConfig().GetCollectible(pickup.SubType).DevilPrice * 15
+          (collectibleConfig !== undefined ? collectibleConfig.DevilPrice : 1) *
+          15
         );
       }
       return 15;
@@ -107,7 +111,7 @@ export function spawnCoins(
       coinType,
       position,
       velocity,
-      null,
+      undefined,
     );
     c -= spawnedVal;
   }
@@ -132,8 +136,8 @@ export function spawnHearts(
     );
     return;
   }
-  let quadType = null;
-  let doubleType = null;
+  let quadType;
+  let doubleType;
   let singleType = HeartSubType.HEART_HALF;
   switch (subtype) {
     case HeartSubType.HEART_BLACK:
@@ -193,10 +197,10 @@ export function spawnHearts(
 
     let heartType: HeartSubType = singleType;
     let spawnedVal = 1;
-    if (quadType !== null && h >= 4) {
+    if (quadType !== undefined && h >= 4) {
       heartType = quadType;
       spawnedVal = 4;
-    } else if (doubleType !== null && h >= 2) {
+    } else if (doubleType !== undefined && h >= 2) {
       heartType = doubleType;
       spawnedVal = 2;
     }
@@ -206,7 +210,7 @@ export function spawnHearts(
       PickupVariant.PICKUP_HEART,
       position,
       velocity,
-      null,
+      undefined,
       heartType,
       rand.GetSeed(),
     );
@@ -237,7 +241,7 @@ export function spawnPickupCluster(
       variant,
       position,
       velocity,
-      null,
+      undefined,
       subType,
       rand.GetSeed(),
     );
@@ -267,7 +271,7 @@ export function playSound(
     0,
     Vector.Zero,
     Vector.Zero,
-    null,
+    undefined,
   );
   effEntity.ToNPC()!.PlaySound(sound, volume, frameDelay, loop, pitch);
   effEntity.Remove();
@@ -291,7 +295,7 @@ export function chargeEffect(position: Vector): void {
     0,
     position,
     Vector.Zero,
-    null,
+    undefined,
   );
   playSound(SoundEffect.SOUND_BATTERYCHARGE);
 }

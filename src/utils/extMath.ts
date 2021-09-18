@@ -1,5 +1,6 @@
 /**
  * Simple in-place shuffle algorithm.
+ *
  * @param array The array to be shuffled.
  */
 export function shuffleArray<Type>(array: Type[], rand: RNG): void {
@@ -21,7 +22,8 @@ export function randomInt(rand: RNG, min: int, max: int): int {
   return Math.floor(rand.RandomFloat() * (max - min + 1)) + min;
 }
 
-/** Rounds in such a way as to approximate non-integer values over many calls.
+/**
+ * Rounds in such a way as to approximate non-integer values over many calls.
  * Functions by randomly rounding up or down with a probability equal to the trailing decimal.
  * Only supports positive numbers.
  */

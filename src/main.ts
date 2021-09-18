@@ -16,6 +16,7 @@ import * as MachineEvents from "./callbacks/handler_MachineEvents";
 import { MachineEntityType, MachineEntityVariant } from "./callbacks/handler_MachineEvents";
 import * as SpiderEvents from "./callbacks/handler_SpiderEvents";
 import * as MicrodroneEvents from "./callbacks/handler_MicrodroneEvents";
+import * as HorfEvents from "./callbacks/handler_HorfEvents";
 import * as EffectEvents from "./callbacks/handler_EffectEvents";
 import * as FamiliarEvents from "./callbacks/handler_FamiliarEvents";
 import * as TearEvents from "./callbacks/handler_TearEvents";
@@ -257,6 +258,7 @@ export default function main(): void {
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SpiderEvents.interceptDamage, SpiderEvents.SPIDER_ENTITYTYPE);
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MicrodroneEvents.update, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, MicrodroneEvents.interceptDamage, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, HorfEvents.update, EntityType.ENTITY_HORF);
 
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EffectEvents.update, EffectEvents.LabEffectEntityVariant);
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, FamiliarEvents.update, FamiliarEvents.LabFamiliarEntityVariant);

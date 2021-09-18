@@ -22,7 +22,7 @@ export function update(self: EntityNPC): boolean | void {
     100,
     EntityPartition.TEAR,
   );
-  let nearestTear = undefined;
+  let nearestTear;
   let nearestDist = 0;
   for (const tear of nearTears) {
     const tearDist = self.Position.DistanceSquared(tear.Position);

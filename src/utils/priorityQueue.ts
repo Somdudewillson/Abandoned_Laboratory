@@ -1,3 +1,5 @@
+import { FastSet } from "./fastSet";
+
 interface Node<T> {
   priority: number;
   value: T;
@@ -5,7 +7,7 @@ interface Node<T> {
 
 export class MinPriorityQueue<T> {
   heap: Array<Node<T>> = [];
-  heapSet = new Set<T>();
+  heapSet = new FastSet<T>();
 
   // -----Tree Navigation Methods-----
   private static parent(index: int): int {

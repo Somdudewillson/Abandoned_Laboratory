@@ -1,8 +1,9 @@
+import { FastMap } from "./fastMap";
 import { expandVector, FlatGridVector, flattenVector } from "./flatGridVector";
 import { MinPriorityQueue } from "./priorityQueue";
 
 function reconstructPath(
-  cameFrom: Map<FlatGridVector, FlatGridVector>,
+  cameFrom: FastMap<FlatGridVector, FlatGridVector>,
   current: FlatGridVector,
 ): Vector[] {
   const fullPath = [expandVector(current)];
@@ -14,10 +15,12 @@ function reconstructPath(
   return fullPath;
 }
 
-/** A* Pathfinder
+/**
+ * A* Pathfinder
+ *
  * @param heuristic `heuristic(current, goal)` estimates the distance between current and goal.
  * @param epsilon static weighting factor-must be >1, higher values trade accuracy for speed.
- * */
+ */
 export function findAStarPath(
   startVec: Vector,
   goalVec: Vector,
@@ -40,15 +43,15 @@ export function findAStarPath(
 
   // For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from start
   // to n currently known.
-  const cameFrom = new Map<FlatGridVector, FlatGridVector>();
+  const cameFrom = new FastMap<FlatGridVector, FlatGridVector>();
 
   // For node n, gScore[n] is the cost of the cheapest path from start to n currently known.
-  const gScore = new Map<FlatGridVector, number>();
+  const gScore = new FastMap<FlatGridVector, number>();
   gScore.set(start, 0);
 
   // For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our current best guess as to
   // how short a path from start to finish can be if it goes through n.
-  const fScore = new Map<FlatGridVector, number>();
+  const fScore = new FastMap<FlatGridVector, number>();
   fScore.set(start, epsilon * heuristic(startVec, goalVec));
   openSet.insert(start, fScore.get(start)!);
 

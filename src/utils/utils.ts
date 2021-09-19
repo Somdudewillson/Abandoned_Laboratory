@@ -1,3 +1,4 @@
+import { lerp } from "./extMath";
 import { expandVector, FlatGridVector } from "./flatGridVector";
 
 export function getCoinVal(pickup: EntityPickup, useDevil = false): int {
@@ -1095,4 +1096,35 @@ export function getTopLeftPos(shape: RoomShape): Vector {
     case RoomShape.ROOMSHAPE_LTL:
       return Vector(13, 0);
   }
+}
+
+export function isFriendly(self: Entity): boolean {
+  return (
+    self.HasEntityFlags(EntityFlag.FLAG_CHARM) ||
+    self.HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
+  );
+}
+
+export function rgbLerp(c1: Color, c2: Color, pos: float): Color {
+  return Color(
+    lerp(c1.R, c2.R, pos),
+    lerp(c1.G, c2.G, pos),
+    lerp(c1.B, c2.B, pos),
+  );
+}
+
+export function hasGridCollision(
+  ent: EntityProjectile,
+  room = Game().GetRoom(),
+): boolean {
+  const halfSize = math.ceil(ent.Size / 2);
+  return (
+    ent.Height + ent.FallingSpeed + ent.FallingAccel >= -halfSize ||
+    !room.CheckLine(
+      ent.Position,
+      ent.Position.add(ent.Velocity),
+      LineCheckMode.PROJECTILE,
+      halfSize,
+    )[0]
+  );
 }

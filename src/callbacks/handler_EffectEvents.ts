@@ -19,6 +19,7 @@ export const enum EffectEntitySubtype {
   NECROGRAVE = 18,
   NECROSOUL = 19,
   COINSHIELD = 20,
+  PLASMABURST = 101,
 }
 
 export function update(self: EntityEffect): void {
@@ -53,5 +54,15 @@ export function update(self: EntityEffect): void {
     case EffectEntitySubtype.COINSHIELD:
       EFFECT_COINSHIELD.update(self);
       break;
+    case EffectEntitySubtype.PLASMABURST:
+      animEffectGeneric(self);
+      break;
+  }
+}
+
+function animEffectGeneric(self: EntityEffect) {
+  const sprite = self.GetSprite();
+  if (sprite.IsFinished(sprite.GetAnimation())) {
+    self.Remove();
   }
 }

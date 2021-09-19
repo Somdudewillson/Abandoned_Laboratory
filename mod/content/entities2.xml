@@ -24,17 +24,19 @@
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 
-    <entity anm2path="012.087_plasmorb.anm2" reroll="true" baseHP="12.5" boss="0" champion="0" collisionDamage="1" collisionMass="4" collisionRadius="14" friction="1" id="12" name="Plasma Floater" numGridCollisionPoints="12" shadowSize="3" stageHP="0" variant="87" portrait="53" gridCollision="walls">
-		<bestiary transform="0,0,1" anim="Walk" />
+    <entity anm2path="012.087_plasmorb.anm2" reroll="true" baseHP="25" boss="0" champion="0" collisionDamage="1" collisionMass="4" collisionRadius="14" friction="1" id="12" name="Plasma Floater" numGridCollisionPoints="12" shadowSize="5" stageHP="0" variant="87" portrait="53" gridCollision="walls">
+		<bestiary transform="0,0,1" anim="Down" />
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 
     <!-- Projectile Entities -->
-    <entity anm2path="9.2490_plasmaball.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="10" friction="1" id="9" name="Plasma Ball" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="2490">
+    <entity anm2path="9.2490_plasmaball.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="10" friction="1" id="9" name="Plasma Ball" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="2490" subtype="56">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 
 	<!-- Effect Entities -->
+    <entity name="Plasma Burst" anm2path="1000.579_plasmaburst.anm2" id="1000" variant="579" subtype="101" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="0" friction="0" numGridCollisionPoints="0" shadowSize="0" stageHP="0">
+    </entity>
     <entity name="Kinetic Impactor" anm2path="1000.579_kineticimpactor.anm2" id="1000" variant="579" subtype="12" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="14" friction="0" numGridCollisionPoints="0" shadowSize="30" stageHP="0">
     </entity>
     <entity name="Blade Disc" anm2path="1000.579_bladedisc.anm2" id="1000" variant="579" subtype="13" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="1000" collisionRadius="16" friction="1" numGridCollisionPoints="0" shadowSize="20" stageHP="0">

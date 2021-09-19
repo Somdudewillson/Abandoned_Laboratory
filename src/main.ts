@@ -20,6 +20,7 @@ import * as HorfEvents from "./callbacks/handler_HorfEvents";
 import * as EffectEvents from "./callbacks/handler_EffectEvents";
 import * as FamiliarEvents from "./callbacks/handler_FamiliarEvents";
 import * as TearEvents from "./callbacks/handler_TearEvents";
+import * as ProjectileEvents from "./callbacks/handler_ProjectileEvents";
 // ===== import item code =====
 // --- Normal Upgraded Actives ---
 import * as EFF_ABIEXSPIRAVIT from "./items/active/upgraded/a/abiExspiravit";
@@ -258,6 +259,7 @@ export default function main(): void {
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, SpiderEvents.interceptDamage, SpiderEvents.SPIDER_ENTITYTYPE);
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, MicrodroneEvents.update, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, MicrodroneEvents.interceptDamage, MicrodroneEvents.MICRODRONE_ENTITYTYPE);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_NPC_INIT, HorfEvents.init, EntityType.ENTITY_HORF);
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, HorfEvents.update, EntityType.ENTITY_HORF);
 
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, EffectEvents.update, EffectEvents.LabEffectEntityVariant);
@@ -266,7 +268,9 @@ export default function main(): void {
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_TEAR_INIT, TearEvents.init, TearEvents.LabTearEntityVariant);
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, TearEvents.update, TearEvents.LabTearEntityVariant);
   ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, TearEvents.collide, TearEvents.LabTearEntityVariant);
-
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_PROJECTILE_INIT, ProjectileEvents.init, ProjectileEvents.LabProjectileEntityVariant);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_POST_PROJECTILE_UPDATE, ProjectileEvents.update, ProjectileEvents.LabProjectileEntityVariant);
+  ABANDONED_LABORATORY.AddCallback(ModCallbacks.MC_PRE_PROJECTILE_COLLISION, ProjectileEvents.collide, ProjectileEvents.LabProjectileEntityVariant);
   Isaac.DebugString("|LABOS| Automata scan complete — All units present");
 
   // --- Normal Upgraded Actives ---
